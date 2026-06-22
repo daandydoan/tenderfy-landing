@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Pricing — Tenderfy</title>
+<meta name="description" content="Simple, transparent pricing for tendering teams of every size. Start free, no credit card." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body data-page="pricing">
+<div id="mount-header"></div>
+
+<main>
+  <section class="page-hero">
+    <div class="container">
+      <p class="eyebrow">Pricing</p>
+      <h1>Plans for every stage of growth.</h1>
+      <p>Start free, upgrade when you're ready. No lock-in, no hidden enterprise pricing — just transparent plans.</p>
+    </div>
+  </section>
+
+  <section class="section section-offwhite">
+    <div class="container">
+      <div class="bt-wrap">
+        <div class="billing-toggle" id="billingToggle" role="tablist" aria-label="Billing period">
+          <button class="bt-opt active" data-billing="monthly">Monthly</button>
+          <button class="bt-opt" data-billing="annual">Annual <span class="bt-save">−17%</span></button>
+        </div>
+      </div>
+      <div class="plans">
+        <div class="plan" data-plan="starter">
+          <div class="plan-head">
+            <span class="plan-name">Starter</span>
+            <div class="plan-price">Free</div>
+            <span class="plan-desc">Try us out first</span>
+          </div>
+          <button class="btn btn-outline-dark btn-block plan-cta">Start for free</button>
+          <ul class="plan-features">
+            <li>1 active tender</li>
+            <li>Knowledge Hub (basic)</li>
+            <li>Ray drafting (limited)</li>
+            <li>PDF export</li>
+            <li>Email support</li>
+          </ul>
+        </div>
+        <div class="plan plan-featured" data-plan="pro">
+          <div class="plan-badge">Most popular</div>
+          <div class="plan-head">
+            <span class="plan-name">Pro</span>
+            <div class="plan-price"><span data-monthly="$99" data-annual="$82">$99</span> <span class="plan-period">/ month</span></div>
+            <span class="plan-desc" id="billingNote">billed monthly</span>
+          </div>
+          <button class="btn btn-secondary btn-block plan-cta">Start with Pro</button>
+          <ul class="plan-features">
+            <li>Unlimited tenders</li>
+            <li>Full Ray AI Co-Pilot</li>
+            <li>Up to 20 users</li>
+            <li>Pipeline management</li>
+            <li>Priority &amp; phone support</li>
+          </ul>
+        </div>
+        <div class="plan" data-plan="enterprise">
+          <div class="plan-head">
+            <span class="plan-name">Enterprise</span>
+            <div class="plan-price">Contact us</div>
+            <span class="plan-desc">Large firms</span>
+          </div>
+          <button class="btn btn-outline-dark btn-block plan-cta">Book a Demo</button>
+          <ul class="plan-features">
+            <li>Everything in Pro</li>
+            <li>Unlimited users</li>
+            <li>SSO &amp; advanced security</li>
+            <li>Custom integrations</li>
+            <li>Dedicated success manager</li>
+          </ul>
+        </div>
+      </div>
+      <p class="center-narrow" style="margin-top:40px;color:var(--gray);font-size:14px;">All plans include a 14-day free trial. Prices in AUD, billed monthly or annually. Cancel anytime.</p>
+    </div>
+  </section>
+
+  <!-- TRUSTED BY -->
+  <section class="section section-light" style="padding-top: clamp(48px, 6vw, 80px); padding-bottom: clamp(48px, 6vw, 80px);">
+    <div class="container">
+      <p class="center-narrow" style="margin-bottom:36px;font-weight:600;color:var(--gray);">Trusted by tender teams across Australia &amp; New Zealand</p>
+      <div class="logo-wall">
+        <div class="logo-ph"><span class="glyph"></span> BuildCorp</div>
+        <div class="logo-ph"><span class="glyph"></span> InfraTech</div>
+        <div class="logo-ph"><span class="glyph"></span> CivilWorks</div>
+        <div class="logo-ph"><span class="glyph"></span> Constructo</div>
+        <div class="logo-ph"><span class="glyph"></span> Taylor Builders</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-offwhite">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow eyebrow-primary">FAQ</p>
+        <h2 class="section-title">Questions, answered.</h2>
+      </div>
+      <div class="faq">
+        <div class="faq-item open">
+          <button class="faq-q">Is there really a free plan? <svg class="faq-ic" viewBox="0 0 16 16"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+          <div class="faq-a" style="max-height:200px;"><p>Yes. The Starter plan is free forever for a single active tender — no credit card required. It's the easiest way to see Ray work on a real submission.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Does Ray use my data to train AI models? <svg class="faq-ic" viewBox="0 0 16 16"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+          <div class="faq-a"><p>No. Your content is yours. Ray works from your library to draft responses, and we never train shared models on your data. See the <a href="ai-policy.html">AI Policy</a> for detail.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Where is my data stored? <svg class="faq-ic" viewBox="0 0 16 16"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+          <div class="faq-a"><p>Data is hosted in Australian data centres with encryption in transit and at rest. Full detail is in our <a href="trust.html">Trust Centre</a>.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Can I change plans or cancel anytime? <svg class="faq-ic" viewBox="0 0 16 16"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+          <div class="faq-a"><p>Absolutely. Upgrade, downgrade or cancel from your account settings at any time — no lock-in contracts.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Do you offer onboarding? <svg class="faq-ic" viewBox="0 0 16 16"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+          <div class="faq-a"><p>Pro and Enterprise plans include guided onboarding to import your existing content library and set up your first pipeline.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="closing-cta">
+    <div class="container closing-inner">
+      <h2 class="closing-title">Start free today.</h2>
+      <p class="closing-sub">Your next tender win starts here — no credit card needed.</p>
+      <div class="closing-actions">
+        <a href="#" class="btn btn-secondary btn-lg" data-action="login">Try Tenderfy for Free</a>
+        <a href="#" class="btn btn-outline-light btn-lg" data-toast="Demo request — prototype only">Book a Demo</a>
+      </div>
+      <p class="closing-note">No credit card · Cancel anytime · Transparent pricing</p>
+    </div>
+  </section>
+</main>
+
+<div id="mount-footer"></div>
+<script src="partials.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

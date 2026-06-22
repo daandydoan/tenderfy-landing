@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AI Policy — Tenderfy</title>
+<meta name="description" content="How Ray — Tenderfy's AI Co-Pilot — works, where your data lives, and our commitments on privacy, model isolation, and AI training." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body data-page="">
+<div id="mount-header"></div>
+
+<main>
+  <section class="page-hero">
+    <div class="container">
+      <p class="eyebrow">AI Policy</p>
+      <h1>How Ray uses AI — in plain English.</h1>
+      <p>Ray AI Privacy &amp; Security Guidelines · Effective 20 April 2026.</p>
+    </div>
+  </section>
+
+  <!-- How Ray works diagram -->
+  <section class="section section-offwhite" style="padding-bottom: clamp(40px, 5vw, 64px);">
+    <div class="container">
+      <div class="ph-grid three">
+        <div class="placeholder ph-light"><svg class="ph-icon" viewBox="0 0 64 64"><path d="M14 20h36M14 32h24M14 44h30" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg><span class="ph-label">1 · Your content</span></div>
+        <div class="placeholder ph-light"><svg class="ph-icon" viewBox="0 0 64 64"><circle cx="32" cy="32" r="18" fill="none" stroke="currentColor" stroke-width="3"/><path d="M32 22v10l6 6" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="ph-label">2 · Isolated AI processing</span></div>
+        <div class="placeholder ph-light"><svg class="ph-icon" viewBox="0 0 64 64"><path d="M16 34l10 10 22-24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="ph-label">3 · Grounded draft</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-light">
+    <div class="container">
+      <div class="prose">
+        <p class="lead">Ray — Tenderfy Co-Pilot ("Ray AI") is an AI-powered assistant designed to help users navigate the tendering process, answer inquiries, and provide general support. Ray AI uses models from multiple providers — including OpenAI, Anthropic and Google — and we reserve discretion to update underlying providers to maintain performance and security standards.</p>
+
+        <h2>1. How Ray AI works</h2>
+        <p>Ray leverages multiple AI models, with dynamic selection based on task type — drafting, summarising, analysis or conversation. Each task is processed by a single model in isolation. User data is not pooled, shared between providers, or used for any purpose beyond completing the immediate request. Ray provides automated responses and does not replace professional guidance.</p>
+
+        <h2>2. Data storage, residency &amp; sub-processors</h2>
+        <p>The Tenderfy platform and all user-generated content — tender documents, assets, account data and chat history — are hosted on Amazon Web Services (AWS) in the Sydney (ap-southeast-2) region. AWS holds SOC 1, SOC 2, SOC 3, ISO 27001, ISO 27017 and ISO 27018 certifications.</p>
+        <p>During task completion, request content is transmitted to the selected LLM provider — potentially in international data centres — using only enterprise-grade APIs with contractual protections. Our sub-processors are AWS, OpenAI, Anthropic and Google.</p>
+
+        <h2>3. Data privacy &amp; AI training</h2>
+        <ul>
+          <li><strong>No AI training:</strong> Tenderfy uses only enterprise API offerings, under agreements that prohibit the use of customer data for training or fine-tuning AI models.</li>
+          <li><strong>Model isolation:</strong> each task is processed by a single model.</li>
+          <li><strong>Retention:</strong> chat is retained for up to 90 days for quality assurance, then deleted or anonymised.</li>
+          <li><strong>De-identification:</strong> data retained for quality assurance is de-identified — it is not linked to individual user accounts.</li>
+        </ul>
+
+        <h2>4. Breach notification</h2>
+        <p>Tenderfy commits to notifying affected users of confirmed breaches without undue delay and within applicable legal timeframes, including Australia's Notifiable Data Breaches scheme.</p>
+
+        <h2>5. User responsibilities</h2>
+        <ul>
+          <li>Use Ray AI for its intended tendering purposes.</li>
+          <li>Ensure shared information aligns with your organisation's policies.</li>
+          <li>Acknowledge that AI responses may contain inaccuracies.</li>
+        </ul>
+
+        <h2>6. Limitations of AI responses</h2>
+        <p>Ray AI provides informational support only and should not be considered a substitute for legal, financial, or professional advice.</p>
+
+        <h2>7. Changes to this policy</h2>
+        <p>Policy updates reflect product improvements, model changes, regulatory updates or security enhancements, with material changes communicated via the platform or email.</p>
+
+        <h2>8. Contact</h2>
+        <p>Questions about this policy? Email <a href="mailto:support@tenderfy.org">support@tenderfy.org</a>, or read more in our <a href="trust.html">Trust Centre</a>.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div id="mount-footer"></div>
+<script src="partials.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
