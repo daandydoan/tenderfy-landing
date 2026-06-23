@@ -920,20 +920,20 @@ img, svg { display: block; }
 .app-main { padding: 22px; display: flex; flex-direction: column; gap: 14px; }
 .hero-float { position: absolute; left: -26px; bottom: 24px; width: 262px; z-index: 3; }
 
-/* flywheel diagram */
-.flywheel { position: relative; width: min(480px, 100%); margin: 8px auto 0; aspect-ratio: 1 / 1; }
-.fw-ring { position: absolute; inset: 0; width: 100%; height: 100%; }
-.fw-hub { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 33%; height: 33%; border-radius: 50%; background: var(--white); border: 1px solid var(--lighter); box-shadow: 0 12px 28px -14px rgba(46,60,59,.35); display: flex; align-items: center; justify-content: center; text-align: center; }
-.fw-hub span { font-weight: 700; font-size: clamp(13px, 1.5vw, 16px); color: var(--black); line-height: 1.2; }
-.fw-node { position: absolute; transform: translate(-50%,-50%); width: 28%; display: flex; flex-direction: column; align-items: center; gap: 9px; text-align: center; }
-.fw-n { top: 13%; left: 50%; }
-.fw-e { top: 50%; left: 87%; }
-.fw-s { top: 87%; left: 50%; }
-.fw-w { top: 50%; left: 13%; }
-.fw-node .ic { width: 56px; height: 56px; border-radius: 16px; background: var(--white); border: 1px solid var(--teal-50); color: var(--primary); display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 18px -10px rgba(46,60,59,.3); transition: transform .3s var(--ease), background .3s var(--ease), color .3s var(--ease); }
-.fw-node .ic svg { width: 26px; height: 26px; }
-.fw-node:hover .ic { background: var(--primary); color: #fff; transform: translateY(-3px) scale(1.05); }
-.fw-node .lbl { font-weight: 600; font-size: 13px; color: var(--black); line-height: 1.25; }
+/* flywheel — left-to-right flow that loops back */
+.flow { display: flex; align-items: stretch; gap: 6px; }
+.flow-step { flex: 1 1 0; position: relative; background: var(--white); border: 1px solid var(--lighter); border-radius: 16px; padding: 28px 22px 24px; display: flex; flex-direction: column; gap: 10px; transition: transform .3s var(--ease), box-shadow .3s var(--ease), border-color .3s var(--ease); }
+.flow-step:hover { transform: translateY(-5px); box-shadow: 0 18px 36px -20px rgba(46,60,59,.28); border-color: var(--primary); }
+.flow-num { position: absolute; top: 16px; right: 18px; width: 24px; height: 24px; border-radius: 50%; background: var(--teal-50); color: var(--primary); font-weight: 700; font-size: 12px; display: flex; align-items: center; justify-content: center; }
+.flow-ic { width: 48px; height: 48px; border-radius: 14px; background: var(--teal-50); color: var(--primary); display: flex; align-items: center; justify-content: center; transition: transform .3s var(--ease), background .3s var(--ease), color .3s var(--ease); }
+.flow-ic svg { width: 25px; height: 25px; }
+.flow-step:hover .flow-ic { background: var(--primary); color: #fff; }
+.flow-step h3 { font-size: 16px; font-weight: 700; margin: 4px 0 0; color: var(--black); letter-spacing: -.2px; }
+.flow-step p { font-size: 13px; line-height: 1.6; color: var(--gray); margin: 0; }
+.flow-arrow { flex: 0 0 auto; display: flex; align-items: center; justify-content: center; color: var(--primary); opacity: .55; }
+.flow-arrow svg { width: 22px; height: 22px; }
+.flow-loop { display: flex; align-items: center; justify-content: center; gap: 10px; margin: 30px auto 0; max-width: 660px; text-align: center; font-size: 15px; font-weight: 600; color: var(--primary); background: var(--teal-tint); border: 1px solid var(--teal-50); border-radius: 99px; padding: 12px 22px; }
+.flow-loop svg { width: 19px; height: 19px; flex-shrink: 0; }
 .fw-cta { display: flex; justify-content: center; margin-top: clamp(24px, 3vw, 40px); }
 
 /* lean Ray summary (full detail on Product) */
@@ -956,9 +956,8 @@ img, svg { display: block; }
   .site-header { background: rgba(46,60,59,.92); backdrop-filter: blur(10px); }
   .hero-grid { grid-template-columns: 1fr; gap: 40px; padding-top: 48px; }
   .hero-float { position: static; width: 100%; left: auto; bottom: auto; margin: 16px auto 0; }
-  .flywheel { width: min(380px, 100%); }
-  .fw-node .ic { width: 48px; height: 48px; }
-  .fw-node .lbl { font-size: 12px; }
+  .flow { flex-direction: column; gap: 4px; }
+  .flow-arrow { transform: rotate(90deg); margin: 2px auto; }
   .flywheel-grid, .ray-grid, .feature-block { grid-template-columns: 1fr; gap: 32px; }
   .feature-blocks { gap: 56px; }
   .feature-block-reverse .fb-copy { order: 1; }
