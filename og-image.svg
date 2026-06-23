@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" font-family="Outfit, Arial, sans-serif">
+  <defs>
+    <radialGradient id="g" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(0 0) scale(1400)">
+      <stop offset="0.05" stop-color="#FFBC4A"/>
+      <stop offset="0.22" stop-color="#71B178"/>
+      <stop offset="0.46" stop-color="#1D9E75"/>
+      <stop offset="0.72" stop-color="#256E85"/>
+      <stop offset="0.95" stop-color="#124580"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#g)"/>
+  <g transform="translate(96 250)">
+    <text x="0" y="0" font-size="92" font-weight="800" fill="#fff" letter-spacing="-2">Win more tenders.</text>
+    <text x="0" y="104" font-size="92" font-weight="800" fill="#fff" letter-spacing="-2">With less effort.</text>
+    <text x="0" y="180" font-size="34" font-weight="500" fill="rgba(255,255,255,0.9)">The AI-powered tendering platform for AU &amp; NZ.</text>
+  </g>
+  <g transform="translate(96 96)">
+    <rect width="58" height="58" rx="14" fill="#1D9E75"/>
+    <rect x="26" y="13" width="6.5" height="31" rx="2.5" fill="#fff"/>
+    <rect x="18" y="22" width="22" height="6.5" rx="2.5" fill="#fff"/>
+    <circle cx="40" cy="40" r="4" fill="#FFBC4A"/>
+    <text x="74" y="40" font-size="34" font-weight="800" fill="#fff">tenderfy</text>
+  </g>
+</svg>

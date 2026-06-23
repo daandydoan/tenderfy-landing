@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://daandydoan.github.io/tenderfy-landing/sitemap.xml
