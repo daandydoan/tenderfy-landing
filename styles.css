@@ -9,10 +9,10 @@
   --teal-50: #E1F5EE;   /* Teal-50 — light tint */
   --teal-tint: #F1FAF6;
   /* cool supporting accents (harmonise with teal, never clash with the amber CTA) */
-  --mint: #2BBD8E;   --mint-50: #DCF6EC;
-  --blue: #2F78C2;   --blue-50: #E5EEFA;
-  --cyan: #149DB0;   --cyan-50: #DBF1F3;
-  --indigo: #6168D6; --indigo-50: #E9EAFB;
+  --mint: #3FA98A;   --mint-50: #DEF1EA;
+  --blue: #5A86B0;   --blue-50: #E7EDF4;
+  --cyan: #439AA3;   --cyan-50: #E0EFF0;
+  --indigo: #8084BE; --indigo-50: #ECEDF6;
   --lighter: #CBD5D3;   /* Shades/Lighter */
   --bg: #EAEDEC;        /* Shades/Background */
   --offwhite: #F9F9F7;
@@ -192,8 +192,8 @@ img, svg { display: block; }
   -webkit-mask: linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%);
   mask: linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%);
 }
-.chips-track { display: flex; width: max-content; animation: chipsScroll 26s linear infinite; }
-.chips:hover .chips-track { animation-play-state: paused; }
+.chips-track { display: flex; width: max-content; animation: chipsScroll 30s linear infinite; animation-play-state: paused; }
+.chips:hover .chips-track { animation-play-state: running; }
 .chip-group { display: flex; gap: 12px; padding-right: 12px; flex-shrink: 0; }
 @keyframes chipsScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 @media (prefers-reduced-motion: reduce) { .chips-track { animation: none !important; } }
@@ -682,7 +682,7 @@ img, svg { display: block; }
 
 /* ============ INTERACTIONS ============ */
 /* scroll reveal */
-.reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
+.reveal { opacity: 0; transform: translateY(16px); transition: opacity .5s var(--ease), transform .5s var(--ease); }
 .reveal.in { opacity: 1; transform: none; }
 /* opacity-only reveal (for elements that keep their own transform, e.g. scaled plan) */
 .reveal-fade { opacity: 0; transition: opacity .7s var(--ease); }
@@ -908,12 +908,57 @@ img, svg { display: block; }
 }
 @keyframes shine { to { background-position: -220% center; } }
 
+/* ============ RESTRAINT PASS ============ */
+/* hero — single composition: app skeleton + floating tender card */
+.hero-shot { position: relative; }
+.app-skeleton { background: var(--white); border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,.25); box-shadow: var(--shadow-card); }
+.app-bar { background: #f4f5f4; display: flex; align-items: center; gap: 7px; padding: 13px 16px; border-bottom: 1px solid var(--lighter); }
+.app-bar .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--lighter); }
+.app-title { margin-left: 10px; font-size: 12px; color: var(--gray); font-weight: 600; }
+.app-body { display: grid; grid-template-columns: 96px 1fr; min-height: 320px; }
+.app-side { background: #f8f9f8; border-right: 1px solid var(--bg); padding: 18px 14px; display: flex; flex-direction: column; gap: 15px; }
+.app-main { padding: 22px; display: flex; flex-direction: column; gap: 14px; }
+.hero-float { position: absolute; left: -26px; bottom: 24px; width: 262px; z-index: 3; }
+
+/* flywheel diagram */
+.flywheel { position: relative; width: min(480px, 100%); margin: 8px auto 0; aspect-ratio: 1 / 1; }
+.fw-ring { position: absolute; inset: 0; width: 100%; height: 100%; }
+.fw-hub { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 33%; height: 33%; border-radius: 50%; background: var(--white); border: 1px solid var(--lighter); box-shadow: 0 12px 28px -14px rgba(46,60,59,.35); display: flex; align-items: center; justify-content: center; text-align: center; }
+.fw-hub span { font-weight: 700; font-size: clamp(13px, 1.5vw, 16px); color: var(--black); line-height: 1.2; }
+.fw-node { position: absolute; transform: translate(-50%,-50%); width: 28%; display: flex; flex-direction: column; align-items: center; gap: 9px; text-align: center; }
+.fw-n { top: 13%; left: 50%; }
+.fw-e { top: 50%; left: 87%; }
+.fw-s { top: 87%; left: 50%; }
+.fw-w { top: 50%; left: 13%; }
+.fw-node .ic { width: 56px; height: 56px; border-radius: 16px; background: var(--white); border: 1px solid var(--teal-50); color: var(--primary); display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 18px -10px rgba(46,60,59,.3); transition: transform .3s var(--ease), background .3s var(--ease), color .3s var(--ease); }
+.fw-node .ic svg { width: 26px; height: 26px; }
+.fw-node:hover .ic { background: var(--primary); color: #fff; transform: translateY(-3px) scale(1.05); }
+.fw-node .lbl { font-weight: 600; font-size: 13px; color: var(--black); line-height: 1.25; }
+.fw-cta { display: flex; justify-content: center; margin-top: clamp(24px, 3vw, 40px); }
+
+/* lean Ray summary (full detail on Product) */
+.ray-lean { display: flex; flex-direction: column; justify-content: center; gap: 24px; }
+.ray-lead { font-size: clamp(17px, 2vw, 20px); line-height: 1.6; color: #fff; margin: 0; }
+.ray-lean .fb-list li { color: rgba(255,255,255,.92); }
+.ray-lean-cta { display: flex; gap: 12px; flex-wrap: wrap; }
+
+/* 4B — feature the first card in each value grid */
+.value-grid .value-card:first-child { background: linear-gradient(160deg, var(--primary), #18926b); border-color: transparent; }
+.value-grid .value-card:first-child h3 { color: #fff; }
+.value-grid .value-card:first-child p { color: rgba(255,255,255,.88); }
+.value-grid .value-card:first-child .card-icon { --ic-50: rgba(255,255,255,.2); --ic: #fff; }
+.value-grid .value-card:first-child:hover .card-icon { background: rgba(255,255,255,.3); color: #fff; }
+
 /* ============ RESPONSIVE ============ */
 @media (max-width: 980px) {
   .nav-links, .header-right { display: none; }
   .hamburger { display: flex; }
   .site-header { background: rgba(46,60,59,.92); backdrop-filter: blur(10px); }
   .hero-grid { grid-template-columns: 1fr; gap: 40px; padding-top: 48px; }
+  .hero-float { position: static; width: 100%; left: auto; bottom: auto; margin: 16px auto 0; }
+  .flywheel { width: min(380px, 100%); }
+  .fw-node .ic { width: 48px; height: 48px; }
+  .fw-node .lbl { font-size: 12px; }
   .flywheel-grid, .ray-grid, .feature-block { grid-template-columns: 1fr; gap: 32px; }
   .feature-blocks { gap: 56px; }
   .feature-block-reverse .fb-copy { order: 1; }

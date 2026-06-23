@@ -64,48 +64,44 @@
         </div>
       </div>
 
-      <!-- Active tender card mockup -->
-      <div class="tender-card hero-anim d4" id="tenderCard">
-        <div class="tender-card-bar">
-          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-          <span class="tender-card-title">Tenderfy — Active Tender</span>
+      <!-- One composition: app screenshot (skeleton) with the tender card floating as an accent -->
+      <div class="hero-shot hero-anim d4">
+        <div class="app-skeleton" aria-hidden="true">
+          <div class="app-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="app-title">Tenderfy — Dashboard</span></div>
+          <div class="app-body">
+            <div class="app-side"><span class="sk sk-line"></span><span class="sk sk-line sk-w80"></span><span class="sk sk-line sk-w80"></span><span class="sk sk-line sk-w60"></span><span class="sk sk-line sk-w80"></span></div>
+            <div class="app-main"><span class="sk sk-title"></span><span class="sk sk-line"></span><span class="sk sk-line sk-w80"></span><span class="sk sk-block"></span><span class="sk sk-twocol"><span></span><span></span></span></div>
+          </div>
         </div>
-        <div class="tender-card-body">
-          <div class="tc-head">
-            <div>
-              <div class="tc-h1">Civil Infrastructure Package — Stage 3</div>
-              <div class="tc-h2">RFT-2026-0441 · Due in 6 days</div>
+        <div class="tender-card hero-float" id="tenderCard">
+          <div class="tender-card-bar">
+            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            <span class="tender-card-title">Active Tender</span>
+          </div>
+          <div class="tender-card-body">
+            <div class="tc-head">
+              <div>
+                <div class="tc-h1">Civil Infrastructure — Stage 3</div>
+                <div class="tc-h2">RFT-2026-0441 · Due in 6 days</div>
+              </div>
+              <span class="tc-badge">In Progress</span>
             </div>
-            <span class="tc-badge">In Progress</span>
-          </div>
-          <div class="tc-progress">
-            <div class="tc-progress-row"><span>Completion</span><span class="stat-num" data-count="72" data-suffix="%">0%</span></div>
-            <div class="tc-bar"><div class="tc-bar-fill" data-fill="72" style="width:0%"></div></div>
-          </div>
-          <div class="tc-ray">
-            <div class="tc-ray-head">
-              <span class="tc-avatar">R</span>
-              <span class="tc-ray-name">Ray AI Co-Pilot</span>
-              <span class="tc-ray-active">Active</span>
+            <div class="tc-progress">
+              <div class="tc-progress-row"><span>Completion</span><span class="stat-num" data-count="72" data-suffix="%">0%</span></div>
+              <div class="tc-bar"><div class="tc-bar-fill" data-fill="72" style="width:0%"></div></div>
             </div>
-            <p class="tc-ray-msg">"I've pre-filled your methodology from the Westgate Bridge project. Your safety management section is 94% complete. Want me to finalise the subcontractor schedule?"</p>
-            <button class="tc-ray-btn" data-toast="Suggestions accepted ✓">Accept suggestions</button>
-          </div>
-          <div class="tc-tabs">
-            <span class="tc-tab tc-tab-done">Methodology ✓</span>
-            <span class="tc-tab">Pricing →</span>
-            <span class="tc-tab">Safety Plan →</span>
-            <span class="tc-tab">Appendices</span>
+            <div class="tc-ray">
+              <div class="tc-ray-head">
+                <span class="tc-avatar">R</span>
+                <span class="tc-ray-name">Ray AI Co-Pilot</span>
+                <span class="tc-ray-active">Active</span>
+              </div>
+              <p class="tc-ray-msg">"I've pre-filled your methodology from the Westgate Bridge project — 94% complete."</p>
+              <button class="tc-ray-btn" data-toast="Suggestions accepted ✓">Accept suggestions</button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-
-  <div class="container hero-screenshot-wrap">
-    <div class="placeholder placeholder-hero" aria-hidden="true">
-      <svg class="ph-icon" viewBox="0 0 64 64"><rect x="6" y="10" width="52" height="44" rx="6" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="22" cy="26" r="5" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M10 48l14-14 10 10 8-8 12 12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      <span class="ph-label">Product screenshot</span>
     </div>
   </div>
 </section>
@@ -138,41 +134,13 @@
   </div>
 </section>
 
-<!-- ============ PROBLEM ============ -->
-<section class="section section-light" id="problem">
+<!-- ============ THE PROBLEM → TENDERFY ============ -->
+<section class="section" id="problem" style="background:var(--teal-tint);">
   <div class="container">
     <div class="section-head">
       <p class="eyebrow eyebrow-primary">The Problem</p>
       <h2 class="section-title">Tendering is still broken for most firms.</h2>
-      <p class="section-sub">The same chaotic workflow that slows you down today will lose you the bid tomorrow.</p>
-    </div>
-    <div class="cards-3">
-      <div class="problem-card">
-        <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
-        <h3>Content buried everywhere</h3>
-        <p>Your best work is scattered across drives, inboxes, and old Word docs.</p>
-      </div>
-      <div class="problem-card">
-        <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M12 3v18M3 12h18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/></svg></div>
-        <h3>Every tender starts from zero</h3>
-        <p>The same resumes, policies, and methodologies — rewritten every single time.</p>
-      </div>
-      <div class="problem-card">
-        <div class="card-icon"><svg viewBox="0 0 24 24"><path d="M12 9v4m0 4h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <h3>Submissions that undersell you</h3>
-        <p>Rushed formatting and inconsistent branding cost you work you should be winning.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ OLD WAY vs NEW WAY ============ -->
-<section class="section" style="background:var(--teal-tint);">
-  <div class="container">
-    <div class="section-head">
-      <p class="eyebrow eyebrow-primary">From scramble to system</p>
-      <h2 class="section-title">There's the old way. Then there's Tenderfy.</h2>
-      <p class="section-sub">The same chaotic workflow that slows you down today is the one losing you bids tomorrow.</p>
+      <p class="section-sub">The same chaotic workflow that slows you down today is the one losing you the bid tomorrow. Here's the difference.</p>
     </div>
     <div class="compare">
       <div class="compare-col compare-col-old">
@@ -207,29 +175,36 @@
       <h2 class="section-title">From brief to submission → <span class="text-primary">In one platform.</span></h2>
       <p class="section-sub">A connected workflow where every tender makes the next one faster.</p>
     </div>
-    <div class="flywheel-grid">
-      <div class="fw-cards">
-        <div class="fw-card fw-card-dark">
-          <div class="fw-card-btn fw-card-btn-active">Knowledge Hub <span class="fw-ic">⤢</span></div>
-          <p>Your entire response library in one place. Resumes, policies, case studies, responses.</p>
-        </div>
-        <div class="fw-card">
-          <div class="fw-card-btn">Ray AI Co-Pilot <span class="fw-ic">✦</span></div>
-          <p>Autofills schedules, drafts responses, analyses tender packs. Your team focuses on strategy, not formatting.</p>
-        </div>
-        <div class="fw-card">
-          <div class="fw-card-btn">Pipeline Management <span class="fw-ic">▦</span></div>
-          <p>Deadlines, task assignments, and document reviews — all tracked, nothing missed.</p>
-        </div>
-        <div class="fw-card">
-          <div class="fw-card-btn">Designer-Grade Output <span class="fw-ic">◆</span></div>
-          <p>Every submission leaves as a polished, branded PDF. Not a patched Word document.</p>
-        </div>
+    <div class="flywheel">
+      <svg class="fw-ring" viewBox="0 0 100 100" aria-hidden="true">
+        <circle cx="50" cy="50" r="35" fill="none" stroke="#c9d4d0" stroke-width="0.8" stroke-dasharray="1.4 2.4"/>
+        <g fill="var(--primary)">
+          <g transform="rotate(45 50 50)"><path d="M47.5 11.3 L53.2 15 L47.5 18.7 Z"/></g>
+          <g transform="rotate(135 50 50)"><path d="M47.5 11.3 L53.2 15 L47.5 18.7 Z"/></g>
+          <g transform="rotate(225 50 50)"><path d="M47.5 11.3 L53.2 15 L47.5 18.7 Z"/></g>
+          <g transform="rotate(315 50 50)"><path d="M47.5 11.3 L53.2 15 L47.5 18.7 Z"/></g>
+        </g>
+      </svg>
+      <div class="fw-hub"><span>One<br />platform</span></div>
+      <div class="fw-node fw-n">
+        <span class="ic"><svg viewBox="0 0 24 24"><path d="M5 4h14v16l-7-3-7 3z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span>
+        <span class="lbl">Knowledge Hub</span>
       </div>
-      <div class="placeholder placeholder-tall" aria-hidden="true">
-        <svg class="ph-icon" viewBox="0 0 64 64"><rect x="6" y="10" width="52" height="44" rx="6" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="22" cy="26" r="5" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M10 48l14-14 10 10 8-8 12 12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <span class="ph-label">Workflow preview</span>
+      <div class="fw-node fw-e">
+        <span class="ic"><svg viewBox="0 0 24 24"><path d="M12 3l2 5 5 2-5 2-2 5-2-5-5-2 5-2z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span>
+        <span class="lbl">Ray AI Co-Pilot</span>
       </div>
+      <div class="fw-node fw-s">
+        <span class="ic"><svg viewBox="0 0 24 24"><path d="M5 5h4v14H5zM15 5h4v14h-4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span>
+        <span class="lbl">Pipeline</span>
+      </div>
+      <div class="fw-node fw-w">
+        <span class="ic"><svg viewBox="0 0 24 24"><path d="M7 3h7l4 4v14H7z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M10 13l2 2 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="lbl">Designer Output</span>
+      </div>
+    </div>
+    <div class="fw-cta">
+      <a href="product.html" class="btn btn-outline-dark">Explore the full platform <svg class="arrow" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
     </div>
   </div>
 </section>
@@ -312,31 +287,18 @@
         </form>
       </div>
 
-      <!-- Feature cards -->
-      <div class="ray-features">
-        <div class="ray-feat-grid">
-          <div class="ray-feat">
-            <div class="card-icon card-icon-dark"><svg viewBox="0 0 24 24"><path d="M5 4h14v16l-7-3-7 3z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></div>
-            <h3>Autofill schedules</h3>
-            <p>Pulls the right content from your library and places it exactly where it belongs.</p>
-          </div>
-          <div class="ray-feat">
-            <div class="card-icon card-icon-dark"><svg viewBox="0 0 24 24"><path d="M4 4h12l4 4v12H4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M8 12h8M8 16h5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
-            <h3>Draft methodology sections</h3>
-            <p>Brief Ray on the scope. Ray writes. You refine.</p>
-          </div>
-          <div class="ray-feat">
-            <div class="card-icon card-icon-dark"><svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 18 0 9 9 0 0 0-18 0z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 12l3 3 5-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-            <h3>Go/No-Go analysis</h3>
-            <p>Assess risk, capability fit, and strategic alignment before committing a single hour.</p>
-          </div>
-          <div class="ray-feat">
-            <div class="card-icon card-icon-dark"><svg viewBox="0 0 24 24"><path d="M7 3h7l4 4v14H7z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M10 13l2 2 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-            <h3>Deep document review</h3>
-            <p>Upload your tender pack. Ray extracts dates, compliance requirements, and red flags — across every document at once.</p>
-          </div>
+      <!-- Lean summary — full feature detail lives on the Product page -->
+      <div class="ray-lean">
+        <p class="ray-lead">Ask Ray anything about a live tender and watch it draft, score, and cite — every answer grounded in your own content library, not the internet.</p>
+        <ul class="fb-list">
+          <li>Autofills schedules &amp; drafts methodology</li>
+          <li>Go/No-Go scoring before you commit a single hour</li>
+          <li>Reviews entire tender packs in minutes</li>
+        </ul>
+        <div class="ray-lean-cta">
+          <a href="#pricing" class="btn btn-secondary">See Ray in action <svg class="arrow" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a href="product.html" class="btn btn-outline-light">Explore Ray</a>
         </div>
-        <a href="#pricing" class="btn btn-secondary btn-block">See Ray in action <svg class="arrow" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       </div>
     </div>
   </div>

@@ -129,7 +129,7 @@
         // stagger siblings within a grid
         var sibs = [].slice.call(el.parentNode.children).filter(function (c) { return c.classList.contains('reveal') || c.classList.contains('reveal-fade'); });
         var idx = sibs.indexOf(el);
-        el.style.transitionDelay = (Math.max(idx, 0) % 4 * 0.08) + 's';
+        el.style.transitionDelay = (Math.max(idx, 0) % 4 * 0.05) + 's';
         el.classList.add('in');
         io.unobserve(el);
       });
