@@ -319,6 +319,10 @@ img, svg { display: block; }
 .placeholder-hero { height: clamp(280px, 38vw, 560px); }
 
 /* ============ PLACEHOLDERS ============ */
+/* PROTOTYPE MOCKUPS — desaturated so they're clearly placeholder demo UI,
+   not real product screenshots. Remove this rule once real assets land. */
+.hero-shot, .showcase-rail, .chat, .logo-wall { filter: grayscale(1); opacity: .9; }
+
 .placeholder {
   background: var(--black);
   border-radius: 28px;
