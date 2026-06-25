@@ -1,3 +1,6 @@
+/* registered so changing it repaints the hero gradient (not just computed value) */
+@property --hsp { syntax: "<number>"; inherits: false; initial-value: 0; }
+
 /* ============ TOKENS ============ */
 :root {
   --white: #FFFFFF;
@@ -151,12 +154,15 @@ img, svg { display: block; }
      value must be >= the header's real height (≈81px) to avoid a white strip at the top */
   margin-top: calc(-1 * var(--header-h));
   padding-top: var(--header-h);
-  /* --hsp (0..1, set by JS on scroll) slides the warm focal point left -> right */
+  /* --hsp (0..1, set by JS on scroll) slides the warm focal point left -> right.
+     fixed attachment anchors the gradient to the viewport so the warm spot stays
+     on-screen and visibly sweeps across while the hero content scrolls past it. */
   background:
     radial-gradient(120% 130% at calc(var(--hsp, 0) * 100%) 0%,
       #FFBC4A 4%, #B8B661 14%, #94B36D 19%,
       #71B178 24%, #54A481 36%, #1D9E75 49%,
       #256E85 70%, #124580 92%);
+  background-attachment: fixed;
 }
 .hero-grid {
   display: grid;
