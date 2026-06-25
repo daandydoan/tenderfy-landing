@@ -192,13 +192,16 @@ img, svg { display: block; }
   letter-spacing: -.025em;
   margin: 0 0 clamp(28px, 3vw, 44px);
 }
-.hero-title .accent { color: var(--white); text-transform: uppercase; }
+.hero-title .accent { color: var(--white); text-transform: uppercase; font-weight: 700; }
 /* per-line mask reveal on load — each line slides up from behind its own clip */
 .hero-title .title-line { display: block; overflow: hidden; padding-bottom: .1em; }
 .hero-title .title-line-in { display: block; transform: translateY(115%); animation: titleLineUp .85s var(--ease) both; }
 .hero-title .title-line:nth-child(1) .title-line-in { animation-delay: .12s; }
 .hero-title .title-line:nth-child(2) .title-line-in { animation-delay: .30s; }
 @keyframes titleLineUp { from { transform: translateY(115%); } to { transform: translateY(0); } }
+/* same reveal for the sub paragraph, after the title lines */
+.hero-sub .sub-reveal { display: block; overflow: hidden; padding-bottom: .12em; }
+.hero-sub .sub-reveal-in { display: block; transform: translateY(110%); animation: titleLineUp .8s var(--ease) both; animation-delay: .42s; }
 .hero-sub {
   font-size: clamp(18px, 2.1vw, 22px);
   line-height: 1.7;
