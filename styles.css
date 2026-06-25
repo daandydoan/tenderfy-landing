@@ -199,18 +199,18 @@ img, svg { display: block; }
 }
 /* Full-width, oversized headline (dapper-style) */
 .hero-title {
-  font-size: clamp(46px, 9vw, 128px);
+  font-size: clamp(38px, 6.8vw, 92px);
   line-height: 1.16;
   font-weight: 400;
   letter-spacing: -.025em;
-  margin: 0 0 clamp(44px, 4.4vw, 64px);
+  margin: clamp(18px, 2.4vw, 32px) 0 clamp(40px, 4vw, 60px);
 }
 .hero-title .accent { color: var(--white); text-transform: uppercase; font-weight: 700; }
-/* per-line mask reveal on load — each line slides up from behind its own clip */
-.hero-title .title-line { display: block; overflow: hidden; padding-bottom: .05em; }
-.hero-title .title-line-in { display: block; transform: translateY(115%); animation: titleLineUp .85s var(--ease) both; }
-.hero-title .title-line:nth-child(1) .title-line-in { animation-delay: .12s; }
-.hero-title .title-line:nth-child(2) .title-line-in { animation-delay: .30s; }
+/* word-by-word reveal, left to right (per-word delay via --d); the highlight follows */
+.hero-title .hw { display: inline-block; opacity: 0; transform: translateY(.5em); animation: wordIn .55s var(--ease) both; animation-delay: var(--d, 0s); }
+@keyframes wordIn { to { opacity: 1; transform: none; } }
+.hero-title .mark::before { transition-delay: .95s; }
+@media (prefers-reduced-motion: reduce) { .hero-title .hw { animation: none; opacity: 1; transform: none; } }
 @keyframes titleLineUp { from { transform: translateY(115%); } to { transform: translateY(0); } }
 /* line-by-line reveal (lines built by JS) — used by the hero sub and the
    inner-page hero heading/sub-heading */
