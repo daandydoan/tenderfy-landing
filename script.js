@@ -7,6 +7,7 @@
   var header = document.getElementById('siteHeader');
   var progress = document.getElementById('scrollProgress');
   var toTop = document.getElementById('toTop');
+  var heroEl = document.getElementById('hero');
 
   function onScroll() {
     var y = window.scrollY;
@@ -15,6 +16,9 @@
     var docH = document.documentElement.scrollHeight - window.innerHeight;
     var pct = docH > 0 ? (y / docH) * 100 : 0;
     progress.style.width = pct + '%';
+
+    // slide the hero's warm focal point left -> right while the hero scrolls past
+    if (heroEl) heroEl.style.setProperty('--hsp', Math.min(y / window.innerHeight, 1).toFixed(4));
 
     toTop.classList.toggle('show', y > 600);
     updateSpy();
