@@ -3,6 +3,9 @@
 
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  // sections whose background gradients drift with scroll (--sp set per element)
+  var gradEls = [].slice.call(document.querySelectorAll('.section-light, .section-offwhite, #problem'));
+
   /* ---- Header shadow + scroll progress + back-to-top ---- */
   var header = document.getElementById('siteHeader');
   var progress = document.getElementById('scrollProgress');
@@ -15,6 +18,10 @@
     var docH = document.documentElement.scrollHeight - window.innerHeight;
     var pct = docH > 0 ? (y / docH) * 100 : 0;
     progress.style.width = pct + '%';
+
+    // scroll-driven gradient drift (0..1 across the page), set per section
+    var sp = (docH > 0 ? y / docH : 0).toFixed(4);
+    for (var i = 0; i < gradEls.length; i++) gradEls[i].style.setProperty('--sp', sp);
 
     toTop.classList.toggle('show', y > 600);
     updateSpy();
