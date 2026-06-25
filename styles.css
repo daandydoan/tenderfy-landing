@@ -201,7 +201,7 @@ img, svg { display: block; }
   line-height: 1.02;
   font-weight: 400;
   letter-spacing: -.025em;
-  margin: 0 0 clamp(20px, 2.2vw, 30px);
+  margin: 0 0 clamp(28px, 3vw, 42px);
 }
 .hero-title .accent { color: var(--white); text-transform: uppercase; font-weight: 700; }
 /* per-line mask reveal on load — each line slides up from behind its own clip */
