@@ -877,6 +877,36 @@ img, svg { display: block; }
 .section-head { position: relative; }
 .section-head::before { content: ""; position: absolute; top: -30px; left: 50%; transform: translateX(-50%); width: 260px; height: 160px; background: radial-gradient(circle, rgba(29,158,117,.12), transparent 70%); filter: blur(20px); z-index: -1; pointer-events: none; }
 
+/* ============ BACKGROUND ENRICHMENT (subtle) ============ */
+/* transformation moment — teal tint + faint dot texture */
+#problem {
+  background:
+    radial-gradient(rgba(29,158,117,.06) 1.4px, transparent 1.5px) 0 0 / 26px 26px,
+    radial-gradient(45% 55% at 100% 0%, rgba(90,134,176,.06), transparent 60%),
+    var(--teal-tint);
+}
+/* flywheel — soft corner orbs (the "system" section) */
+#flywheel {
+  background:
+    radial-gradient(38% 48% at 92% 6%, rgba(29,158,117,.11), transparent 62%),
+    radial-gradient(34% 44% at 5% 96%, rgba(90,134,176,.10), transparent 62%),
+    var(--offwhite);
+}
+/* output showcase — faint dot grid + teal glow */
+#showcase {
+  background:
+    radial-gradient(rgba(29,158,117,.05) 1.3px, transparent 1.4px) 0 0 / 28px 28px,
+    radial-gradient(48% 58% at 100% 4%, rgba(29,158,117,.06), transparent 60%),
+    var(--white);
+}
+/* pricing — soft orbs */
+#pricing {
+  background:
+    radial-gradient(36% 46% at 96% 6%, rgba(90,134,176,.10), transparent 62%),
+    radial-gradient(32% 42% at 4% 96%, rgba(29,158,117,.08), transparent 62%),
+    var(--offwhite);
+}
+
 /* ============ MOVING GRADIENT (aurora) ============ */
 .hero, .section-gradient, .page-hero { overflow: hidden; }
 .hero::before,
