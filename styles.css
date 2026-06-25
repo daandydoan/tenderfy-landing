@@ -32,9 +32,9 @@
   --ink: #1A1A1A;
   --muted: #717182;
 
-  --max: 1440px;
+  --max: 1560px;
   --header-h: 88px;
-  --pad: clamp(22px, 6.5vw, 140px);
+  --pad: clamp(20px, 4.5vw, 72px);
   --section-y: clamp(58px, 7.5vw, 104px);
   --radius: 12px;
   --shadow-card: 0 30px 58px -14px rgba(0,0,0,.22);
@@ -176,18 +176,18 @@ img, svg { display: block; }
 }
 .hero-grid {
   display: grid;
-  grid-template-columns: 1.05fr 1fr;
-  gap: 56px;
+  grid-template-columns: 1.25fr 1fr;
+  gap: clamp(44px, 4.5vw, 72px);
   align-items: start;
   padding-top: clamp(52px, 6vw, 84px);
   padding-bottom: clamp(44px, 5vw, 68px);
 }
 .hero-title {
-  font-size: clamp(34px, 5vw, 52px);
-  line-height: 1.14;
+  font-size: clamp(40px, 5.4vw, 64px);
+  line-height: 1.1;
   font-weight: 700;
-  letter-spacing: -.015em;
-  margin: 0 0 24px;
+  letter-spacing: -.02em;
+  margin: 0 0 26px;
 }
 .hero-title .accent { color: var(--white); text-transform: uppercase; }
 /* per-line mask reveal on load — each line slides up from behind its own clip */
@@ -197,10 +197,10 @@ img, svg { display: block; }
 .hero-title .title-line:nth-child(2) .title-line-in { animation-delay: .30s; }
 @keyframes titleLineUp { from { transform: translateY(115%); } to { transform: translateY(0); } }
 .hero-sub {
-  font-size: clamp(17px, 2vw, 20px);
-  line-height: 1.75;
-  max-width: 560px;
-  margin: 0 0 40px;
+  font-size: clamp(18px, 2.1vw, 22px);
+  line-height: 1.7;
+  max-width: 620px;
+  margin: 0 0 42px;
   opacity: .96;
 }
 .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; }
