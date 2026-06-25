@@ -190,6 +190,12 @@ img, svg { display: block; }
   margin: 0 0 24px;
 }
 .hero-title .accent { color: var(--white); text-transform: uppercase; }
+/* per-line mask reveal on load — each line slides up from behind its own clip */
+.hero-title .title-line { display: block; overflow: hidden; padding-bottom: .06em; }
+.hero-title .title-line-in { display: block; transform: translateY(115%); animation: titleLineUp .85s var(--ease) both; }
+.hero-title .title-line:nth-child(1) .title-line-in { animation-delay: .12s; }
+.hero-title .title-line:nth-child(2) .title-line-in { animation-delay: .30s; }
+@keyframes titleLineUp { from { transform: translateY(115%); } to { transform: translateY(0); } }
 .hero-sub {
   font-size: clamp(17px, 2vw, 20px);
   line-height: 1.75;
