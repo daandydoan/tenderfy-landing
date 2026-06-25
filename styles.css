@@ -174,24 +174,27 @@ img, svg { display: block; }
       #256E85 70%, #124580 92%);
   background-attachment: fixed;
 }
-.hero-grid {
-  display: grid;
-  grid-template-columns: 1.25fr 1fr;
-  gap: clamp(44px, 4.5vw, 72px);
-  align-items: start;
-  padding-top: clamp(52px, 6vw, 84px);
+.hero-inner {
+  padding-top: clamp(28px, 3.5vw, 56px);
   padding-bottom: clamp(44px, 5vw, 68px);
 }
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(36px, 4vw, 64px);
+  align-items: start;
+}
+/* Full-width, oversized headline (dapper-style) */
 .hero-title {
-  font-size: clamp(40px, 5.4vw, 64px);
-  line-height: 1.1;
-  font-weight: 700;
-  letter-spacing: -.02em;
-  margin: 0 0 26px;
+  font-size: clamp(46px, 9vw, 128px);
+  line-height: 1.04;
+  font-weight: 800;
+  letter-spacing: -.035em;
+  margin: 0 0 clamp(28px, 3vw, 44px);
 }
 .hero-title .accent { color: var(--white); text-transform: uppercase; }
 /* per-line mask reveal on load — each line slides up from behind its own clip */
-.hero-title .title-line { display: block; overflow: hidden; padding-bottom: .06em; }
+.hero-title .title-line { display: block; overflow: hidden; padding-bottom: .1em; }
 .hero-title .title-line-in { display: block; transform: translateY(115%); animation: titleLineUp .85s var(--ease) both; }
 .hero-title .title-line:nth-child(1) .title-line-in { animation-delay: .12s; }
 .hero-title .title-line:nth-child(2) .title-line-in { animation-delay: .30s; }
