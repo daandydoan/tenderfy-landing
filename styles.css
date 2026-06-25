@@ -323,7 +323,7 @@ img, svg { display: block; }
 /* ============ PLACEHOLDERS ============ */
 /* PROTOTYPE MOCKUPS — desaturated so they're clearly placeholder demo UI,
    not real product screenshots. Remove this rule once real assets land. */
-.hero-shot, .showcase-rail, .chat { filter: grayscale(1); opacity: .9; }
+.showcase-rail, .chat { filter: grayscale(1); opacity: .9; }
 
 .placeholder {
   background: var(--black);
@@ -1052,6 +1052,7 @@ img, svg { display: block; }
 .hero-shot { position: relative; }
 .app-skeleton { background: var(--white); border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,.25); box-shadow: var(--shadow-card); }
 .app-bar { background: #f4f5f4; display: flex; align-items: center; gap: 7px; padding: 13px 16px; border-bottom: 1px solid var(--lighter); }
+.app-video { display: block; width: 100%; height: auto; background: var(--white); }
 .app-bar .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--lighter); }
 .app-title { margin-left: 10px; font-size: 12px; color: var(--gray); font-weight: 600; }
 .app-body { display: grid; grid-template-columns: 104px 1fr; min-height: 232px; }
