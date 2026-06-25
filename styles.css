@@ -236,12 +236,14 @@ img, svg { display: block; }
 .chips {
   width: 100%;
   margin-bottom: 18px;
+  /* vertical padding gives the hover-lift room so chips aren't clipped at the top */
+  padding: 9px 0;
   overflow: hidden;
   -webkit-mask: linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%);
   mask: linear-gradient(90deg, transparent 0, #000 7%, #000 93%, transparent 100%);
 }
-.chips-track { display: flex; width: max-content; animation: chipsScroll 30s linear infinite; animation-play-state: paused; }
-.chips:hover .chips-track { animation-play-state: running; }
+.chips-track { display: flex; width: max-content; animation: chipsScroll 30s linear infinite; }
+.chips:hover .chips-track { animation-play-state: paused; }
 .chip-group { display: flex; gap: 12px; padding-right: 12px; flex-shrink: 0; }
 @keyframes chipsScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 @media (prefers-reduced-motion: reduce) { .chips-track { animation: none !important; } }
