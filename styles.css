@@ -180,13 +180,13 @@ img, svg { display: block; }
 }
 .hero-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 0.82fr 1.18fr;
   gap: clamp(36px, 4vw, 64px);
-  align-items: start;
+  align-items: center;
 }
 /* Full-width, oversized headline (dapper-style) */
 .hero-title {
-  font-size: clamp(46px, 9vw, 128px);
+  font-size: clamp(44px, 8vw, 112px);
   line-height: 1.04;
   font-weight: 400;
   letter-spacing: -.025em;
@@ -1013,7 +1013,7 @@ img, svg { display: block; }
 .app-bar { background: #f4f5f4; display: flex; align-items: center; gap: 7px; padding: 13px 16px; border-bottom: 1px solid var(--lighter); }
 .app-bar .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--lighter); }
 .app-title { margin-left: 10px; font-size: 12px; color: var(--gray); font-weight: 600; }
-.app-body { display: grid; grid-template-columns: 92px 1fr; min-height: 320px; }
+.app-body { display: grid; grid-template-columns: 104px 1fr; min-height: 384px; }
 .app-side { background: #f7f9f8; border-right: 1px solid var(--bg); padding: 18px 14px; display: flex; flex-direction: column; gap: 13px; }
 .app-logo-dot { width: 22px; height: 22px; border-radius: 7px; background: var(--primary); margin-bottom: 6px; }
 .nav-item { height: 9px; border-radius: 5px; background: var(--lighter); }
@@ -1038,7 +1038,7 @@ img, svg { display: block; }
 .dr-bar i { display: block; height: 100%; border-radius: 99px; background: var(--primary); }
 .dash-chart { display: flex; align-items: flex-end; gap: 7px; height: 54px; margin-top: 2px; }
 .dash-chart i { flex: 1; border-radius: 4px 4px 0 0; background: linear-gradient(var(--primary), #5fd6a8); opacity: .9; }
-.hero-float { position: absolute; left: -24px; bottom: 22px; width: 256px; z-index: 3; }
+.hero-float { position: absolute; left: -34px; bottom: -10px; width: 234px; z-index: 3; }
 
 /* flywheel — left-to-right flow that loops back */
 .flow { display: flex; align-items: stretch; gap: 6px; }
