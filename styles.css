@@ -877,39 +877,33 @@ img, svg { display: block; }
 .section-head { position: relative; }
 .section-head::before { content: ""; position: absolute; top: -30px; left: 50%; transform: translateX(-50%); width: 260px; height: 160px; background: radial-gradient(circle, rgba(29,158,117,.12), transparent 70%); filter: blur(20px); z-index: -1; pointer-events: none; }
 
-/* ============ SCROLL-DRIVEN SECTION GRADIENTS ============ */
-/* soft gradient blobs on the section background that drift as the page scrolls
-   (--sp = 0..1 set by JS). On the element background, so always behind content. */
-.section-light, .section-offwhite, #problem {
+/* ============ MOVING SECTION GRADIENTS ============ */
+/* slow drifting soft gradients behind the light content sections */
+.section-light, .section-offwhite, #problem { position: relative; }
+.section-light::before,
+.section-offwhite::before,
+#problem::before {
+  content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background:
+    radial-gradient(38% 48% at 18% 26%, rgba(29,158,117,.10), transparent 62%),
+    radial-gradient(36% 46% at 84% 78%, rgba(90,134,176,.09), transparent 62%);
   background-repeat: no-repeat;
-  background-size: 220% 220%, 220% 220%, auto;
+  background-size: 200% 200%, 200% 200%;
+  animation: sectionFlow 30s ease-in-out infinite alternate;
 }
-.section-light {
-  background-image:
-    radial-gradient(38% 48% at 50% 50%, rgba(29,158,117,.11), transparent 62%),
-    radial-gradient(36% 46% at 50% 50%, rgba(90,134,176,.09), transparent 62%),
-    linear-gradient(var(--white), var(--white));
-  background-position:
-    calc(16% + var(--sp, 0) * 70%) calc(22% + var(--sp, 0) * 50%),
-    calc(86% - var(--sp, 0) * 70%) calc(80% - var(--sp, 0) * 50%), 0 0;
+.section-offwhite::before { animation-duration: 38s; animation-direction: alternate-reverse; }
+#problem::before {
+  background:
+    radial-gradient(42% 52% at 80% 18%, rgba(29,158,117,.13), transparent 62%),
+    radial-gradient(38% 48% at 12% 86%, rgba(90,134,176,.11), transparent 62%);
 }
-.section-offwhite {
-  background-image:
-    radial-gradient(38% 48% at 50% 50%, rgba(29,158,117,.10), transparent 62%),
-    radial-gradient(36% 46% at 50% 50%, rgba(90,134,176,.10), transparent 62%),
-    linear-gradient(var(--offwhite), var(--offwhite));
-  background-position:
-    calc(86% - var(--sp, 0) * 70%) calc(22% + var(--sp, 0) * 50%),
-    calc(16% + var(--sp, 0) * 70%) calc(80% - var(--sp, 0) * 50%), 0 0;
-}
-#problem {
-  background-image:
-    radial-gradient(42% 52% at 50% 50%, rgba(29,158,117,.14), transparent 62%),
-    radial-gradient(38% 48% at 50% 50%, rgba(90,134,176,.11), transparent 62%),
-    linear-gradient(var(--teal-tint), var(--teal-tint));
-  background-position:
-    calc(80% - var(--sp, 0) * 64%) calc(16% + var(--sp, 0) * 46%),
-    calc(12% + var(--sp, 0) * 64%) calc(86% - var(--sp, 0) * 46%), 0 0;
+.section-light > *,
+.section-offwhite > *,
+#problem > * { position: relative; z-index: 1; }
+@keyframes sectionFlow {
+  0%   { background-position: 0% 0%, 100% 100%; }
+  50%  { background-position: 72% 28%, 22% 72%; }
+  100% { background-position: 28% 82%, 82% 18%; }
 }
 
 /* ============ MOVING GRADIENT (aurora) ============ */
