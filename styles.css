@@ -475,8 +475,9 @@ img, svg { display: block; }
 
 /* ============ MEET RAY ============ */
 .section-gradient {
+  /* --hsp (per-section scroll progress, set by JS) slides the warm focal point */
   background:
-    radial-gradient(120% 130% at 0% 0%,
+    radial-gradient(120% 130% at calc(var(--hsp, 0) * 100%) 0%,
       #FFBC4A 4%, #B8B661 14%, #94B36D 19%,
       #71B178 24%, #54A481 36%, #1D9E75 49%,
       #256E85 70%, #124580 92%);
@@ -756,7 +757,8 @@ img, svg { display: block; }
   position: relative; color: var(--white); text-align: center;
   margin-top: calc(-1 * var(--header-h));
   padding: calc(var(--header-h) + clamp(40px, 5vw, 66px)) 0 clamp(44px, 6vw, 76px);
-  background: radial-gradient(125% 150% at 0% 0%, #FFBC4A 2%, #71B178 22%, #1D9E75 46%, #256E85 72%, #124580 96%);
+  background: radial-gradient(125% 150% at calc(var(--hsp, 0) * 100%) 0%, #FFBC4A 2%, #71B178 22%, #1D9E75 46%, #256E85 72%, #124580 96%);
+  background-attachment: fixed;
 }
 .page-hero .container { display: flex; flex-direction: column; align-items: center; gap: 18px; }
 .page-hero h1 { font-size: clamp(30px, 4.4vw, 48px); font-weight: 700; letter-spacing: -.015em; line-height: 1.12; margin: 0; max-width: 860px; }

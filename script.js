@@ -7,7 +7,12 @@
   var header = document.getElementById('siteHeader');
   var progress = document.getElementById('scrollProgress');
   var toTop = document.getElementById('toTop');
-  var heroEl = document.getElementById('hero');
+  // brand gradients whose warm focal point slides left -> right on scroll:
+  //  - top-of-page heroes track scroll from the top
+  //  - mid-page gradient sections track their own progress through the viewport
+  var topGrads = [].slice.call(document.querySelectorAll('.hero, .page-hero'));
+  var midGrads = [].slice.call(document.querySelectorAll('.section-gradient'));
+  function clamp01(v) { return v < 0 ? 0 : v > 1 ? 1 : v; }
 
   function onScroll() {
     var y = window.scrollY;
@@ -17,8 +22,15 @@
     var pct = docH > 0 ? (y / docH) * 100 : 0;
     progress.style.width = pct + '%';
 
-    // slide the hero's warm focal point left -> right while the hero scrolls past
-    if (heroEl) heroEl.style.setProperty('--hsp', Math.min(y / window.innerHeight, 1).toFixed(4));
+    // slide the warm focal point left -> right across the brand gradients
+    var vh = window.innerHeight;
+    for (var i = 0; i < topGrads.length; i++) {
+      topGrads[i].style.setProperty('--hsp', clamp01(y / vh).toFixed(4));
+    }
+    for (var j = 0; j < midGrads.length; j++) {
+      var r = midGrads[j].getBoundingClientRect();
+      midGrads[j].style.setProperty('--hsp', clamp01((vh - r.top) / (vh + r.height)).toFixed(4));
+    }
 
     toTop.classList.toggle('show', y > 600);
     updateSpy();
