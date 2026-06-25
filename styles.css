@@ -877,34 +877,33 @@ img, svg { display: block; }
 .section-head { position: relative; }
 .section-head::before { content: ""; position: absolute; top: -30px; left: 50%; transform: translateX(-50%); width: 260px; height: 160px; background: radial-gradient(circle, rgba(29,158,117,.12), transparent 70%); filter: blur(20px); z-index: -1; pointer-events: none; }
 
-/* ============ BACKGROUND ENRICHMENT (subtle) ============ */
-/* transformation moment — teal tint + faint dot texture */
-#problem {
+/* ============ MOVING SECTION GRADIENTS ============ */
+/* slow drifting soft gradients behind the light content sections */
+.section-light, .section-offwhite, #problem { position: relative; }
+.section-light::before,
+.section-offwhite::before,
+#problem::before {
+  content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
   background:
-    radial-gradient(rgba(29,158,117,.06) 1.4px, transparent 1.5px) 0 0 / 26px 26px,
-    radial-gradient(45% 55% at 100% 0%, rgba(90,134,176,.06), transparent 60%),
-    var(--teal-tint);
+    radial-gradient(38% 48% at 18% 26%, rgba(29,158,117,.10), transparent 62%),
+    radial-gradient(36% 46% at 84% 78%, rgba(90,134,176,.09), transparent 62%);
+  background-repeat: no-repeat;
+  background-size: 200% 200%, 200% 200%;
+  animation: sectionFlow 30s ease-in-out infinite alternate;
 }
-/* flywheel — soft corner orbs (the "system" section) */
-#flywheel {
+.section-offwhite::before { animation-duration: 38s; animation-direction: alternate-reverse; }
+#problem::before {
   background:
-    radial-gradient(38% 48% at 92% 6%, rgba(29,158,117,.11), transparent 62%),
-    radial-gradient(34% 44% at 5% 96%, rgba(90,134,176,.10), transparent 62%),
-    var(--offwhite);
+    radial-gradient(42% 52% at 80% 18%, rgba(29,158,117,.13), transparent 62%),
+    radial-gradient(38% 48% at 12% 86%, rgba(90,134,176,.11), transparent 62%);
 }
-/* output showcase — faint dot grid + teal glow */
-#showcase {
-  background:
-    radial-gradient(rgba(29,158,117,.05) 1.3px, transparent 1.4px) 0 0 / 28px 28px,
-    radial-gradient(48% 58% at 100% 4%, rgba(29,158,117,.06), transparent 60%),
-    var(--white);
-}
-/* pricing — soft orbs */
-#pricing {
-  background:
-    radial-gradient(36% 46% at 96% 6%, rgba(90,134,176,.10), transparent 62%),
-    radial-gradient(32% 42% at 4% 96%, rgba(29,158,117,.08), transparent 62%),
-    var(--offwhite);
+.section-light > *,
+.section-offwhite > *,
+#problem > * { position: relative; z-index: 1; }
+@keyframes sectionFlow {
+  0%   { background-position: 0% 0%, 100% 100%; }
+  50%  { background-position: 72% 28%, 22% 72%; }
+  100% { background-position: 28% 82%, 82% 18%; }
 }
 
 /* ============ MOVING GRADIENT (aurora) ============ */
