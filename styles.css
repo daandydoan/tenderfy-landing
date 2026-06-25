@@ -4,12 +4,12 @@
 @property --ix { syntax: "<number>"; inherits: false; initial-value: 0; }
 @property --iy { syntax: "<number>"; inherits: false; initial-value: 0; }
 @keyframes idleDrift {
-  0%, 100% { --ix: -0.04; --iy: 0.02; }
-  25%      { --ix:  0.06; --iy: 0.08; }
-  50%      { --ix:  0.10; --iy: 0.03; }
-  75%      { --ix:  0.02; --iy: 0.09; }
+  0%, 100% { --ix: -0.24; --iy: 0.03; }
+  25%      { --ix: -0.05; --iy: 0.09; }
+  50%      { --ix:  0.24; --iy: 0.03; }
+  75%      { --ix:  0.05; --iy: 0.09; }
 }
-.hero, .page-hero, .section-gradient { animation: idleDrift 18s ease-in-out infinite; }
+.hero, .page-hero, .section-gradient { animation: idleDrift 24s ease-in-out infinite; }
 
 /* ============ TOKENS ============ */
 :root {
