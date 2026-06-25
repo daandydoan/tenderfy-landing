@@ -14,6 +14,29 @@
   var midGrads = [].slice.call(document.querySelectorAll('.section-gradient'));
   function clamp01(v) { return v < 0 ? 0 : v > 1 ? 1 : v; }
 
+  /* ---- Parallax depth: conflict-free wrappers move at their own rate as they
+     scroll through the viewport. Driven from onScroll, which Lenis fires every
+     frame during inertia, so it stays in sync with the smooth scroll. ---- */
+  var parallaxItems = [];
+  if (!reduceMotion) {
+    var heroAside = document.querySelector('.hero-aside');
+    if (heroAside) parallaxItems.push({ el: heroAside, speed: 0.10, max: 64 });
+    [].slice.call(document.querySelectorAll(
+      '#trust > .container, #problem > .container, #flywheel > .container, #showcase > .container, #meet-ray > .container, #proof > .container, #pricing > .container, #get-started > .container'
+    )).forEach(function (c) { parallaxItems.push({ el: c, speed: 0.035, max: 20 }); });
+  }
+  function updateParallax() {
+    if (!parallaxItems.length) return;
+    var vc = window.innerHeight / 2;
+    for (var i = 0; i < parallaxItems.length; i++) {
+      var p = parallaxItems[i];
+      var r = p.el.getBoundingClientRect();
+      var off = (vc - (r.top + r.height / 2)) * p.speed;
+      if (off > p.max) off = p.max; else if (off < -p.max) off = -p.max;
+      p.el.style.transform = 'translate3d(0,' + off.toFixed(1) + 'px,0)';
+    }
+  }
+
   function onScroll() {
     var y = window.scrollY;
     header.classList.toggle('scrolled', y > 12);
@@ -32,6 +55,7 @@
       midGrads[j].style.setProperty('--hsp', clamp01((vh - r.top) / (vh + r.height)).toFixed(4));
     }
 
+    updateParallax();
     toTop.classList.toggle('show', y > 600);
     updateSpy();
   }

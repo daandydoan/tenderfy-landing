@@ -164,6 +164,12 @@ img, svg { display: block; }
 .hero {
   position: relative;
   color: var(--white);
+  /* fill the viewport (≈1080p) and vertically center the content; the larger
+     top padding vs bottom shifts the centred block clear of the sticky header */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   padding-bottom: 48px;
   /* pull the hero up under the transparent sticky header so the gradient reaches y=0.
      value must be >= the header's real height (≈81px) to avoid a white strip at the top */
