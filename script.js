@@ -25,6 +25,18 @@
       '#trust > .container, #problem > .container, #flywheel > .container, #showcase > .container, #meet-ray > .container, #proof > .container, #pricing > .container, #get-started > .container'
     )).forEach(function (c) { parallaxItems.push({ el: c, speed: 0.035, max: 20 }); });
   }
+  // highlighter sweep: light a marked keyword each time it scrolls into the
+  // comfortable middle of the viewport (re-triggers on every scroll-in)
+  var markEls = [].slice.call(document.querySelectorAll('.mark'));
+  function updateMarks() {
+    if (!markEls.length) return;
+    var vh = window.innerHeight;
+    for (var i = 0; i < markEls.length; i++) {
+      var r = markEls[i].getBoundingClientRect();
+      markEls[i].classList.toggle('lit', r.top < vh * 0.82 && r.bottom > vh * 0.18);
+    }
+  }
+
   function updateParallax() {
     if (!parallaxItems.length) return;
     var vc = window.innerHeight / 2;
@@ -78,6 +90,10 @@
     requestAnimationFrame(function () { onScroll(); scrollTicking = false; });
   }
   window.addEventListener('scroll', onScrollRaf, { passive: true });
+  // marks are cheap (a few elements) and must stay responsive, so update them
+  // directly on scroll rather than through the rAF throttle
+  window.addEventListener('scroll', updateMarks, { passive: true });
+  updateMarks();
 
   // Only run the idle gradient animation while its section is on-screen, so
   // off-screen gradients aren't repainted every frame (saves CPU/GPU + battery).

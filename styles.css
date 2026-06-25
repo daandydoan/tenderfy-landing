@@ -499,6 +499,17 @@ img, svg { display: block; }
 .section-title-left { text-align: left; }
 .text-primary { color: var(--primary); }
 .text-secondary { color: var(--white); }
+/* highlighter sweep on a keyword — lights up each time its section scrolls into view */
+.mark { position: relative; z-index: 0; }
+.mark::before {
+  content: ""; position: absolute; z-index: -1;
+  left: -.14em; right: -.14em; top: .14em; bottom: .06em;
+  background: rgba(255,188,74,.45); border-radius: 4px;
+  transform: scaleX(0); transform-origin: left center;
+  transition: transform .55s cubic-bezier(.6,0,.25,1);
+}
+.mark.lit::before { transform: scaleX(1); }
+@media (prefers-reduced-motion: reduce) { .mark::before { transition: none; } }
 .section-sub { font-size: clamp(15px, 1.8vw, 17px); line-height: 1.7; color: var(--muted); margin: 0; }
 .section-sub-light { color: rgba(255,255,255,.92); }
 .section-sub-left { text-align: left; }
