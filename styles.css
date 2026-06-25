@@ -107,8 +107,10 @@ img, svg { display: block; }
   position: sticky;
   top: 0;
   z-index: 100;
-  transition: background .25s ease, box-shadow .25s ease, backdrop-filter .25s ease;
+  transition: background .25s ease, box-shadow .25s ease, backdrop-filter .25s ease, transform .35s ease;
 }
+/* auto-hide: slide the header up when scrolling down, reveal it when scrolling up */
+.site-header.hide { transform: translateY(-100%); }
 .site-header.scrolled {
   background: rgba(46,60,59,.92);
   backdrop-filter: blur(10px);

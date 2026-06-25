@@ -37,9 +37,20 @@
     }
   }
 
+  var lastY = window.scrollY;
+  function updateHeaderVisibility(y) {
+    // always show near the top; otherwise hide on scroll-down, reveal on scroll-up
+    if (y < 80) { header.classList.remove('hide'); }
+    else if (Math.abs(y - lastY) > 5) {
+      header.classList.toggle('hide', y > lastY);
+    }
+    lastY = y;
+  }
+
   function onScroll() {
     var y = window.scrollY;
     header.classList.toggle('scrolled', y > 12);
+    updateHeaderVisibility(y);
 
     var docH = document.documentElement.scrollHeight - window.innerHeight;
     var pct = docH > 0 ? (y / docH) * 100 : 0;
