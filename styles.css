@@ -186,7 +186,7 @@ img, svg { display: block; }
 }
 /* Full-width, oversized headline (dapper-style) */
 .hero-title {
-  font-size: clamp(44px, 8vw, 112px);
+  font-size: clamp(46px, 9vw, 128px);
   line-height: 1.04;
   font-weight: 400;
   letter-spacing: -.025em;
@@ -210,6 +210,11 @@ img, svg { display: block; }
   opacity: .96;
 }
 .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; }
+/* buttons slide in from the left on load, staggered (dapper-style) */
+.hero-cta .btn { opacity: 0; animation: slideInLeft .7s var(--ease) both; }
+.hero-cta .btn:nth-child(1) { animation-delay: .5s; }
+.hero-cta .btn:nth-child(2) { animation-delay: .62s; }
+@keyframes slideInLeft { from { opacity: 0; transform: translateX(-56px); } to { opacity: 1; transform: translateX(0); } }
 
 .hero-copy { min-width: 0; }
 .hero-aside { position: relative; perspective: 1400px; min-width: 0; }
