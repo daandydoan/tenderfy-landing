@@ -46,6 +46,11 @@
 
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+/* Lenis smooth-scroll (inertia) support */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
 body {
   margin: 0;
   font-family: 'Outfit', system-ui, -apple-system, sans-serif;
@@ -199,9 +204,9 @@ img, svg { display: block; }
 .hero-title .title-line:nth-child(1) .title-line-in { animation-delay: .12s; }
 .hero-title .title-line:nth-child(2) .title-line-in { animation-delay: .30s; }
 @keyframes titleLineUp { from { transform: translateY(115%); } to { transform: translateY(0); } }
-/* same reveal for the sub paragraph, after the title lines */
-.hero-sub .sub-reveal { display: block; overflow: hidden; padding-bottom: .12em; }
-.hero-sub .sub-reveal-in { display: block; transform: translateY(110%); animation: titleLineUp .8s var(--ease) both; animation-delay: .42s; }
+/* sub paragraph reveals line-by-line — lines are built by JS */
+.hero-sub .line-reveal { display: block; overflow: hidden; }
+.hero-sub .line-reveal-in { display: block; transform: translateY(110%); animation: titleLineUp .75s var(--ease) both; }
 .hero-sub {
   font-size: clamp(18px, 2.1vw, 22px);
   line-height: 1.7;
@@ -212,8 +217,8 @@ img, svg { display: block; }
 .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; }
 /* buttons slide in from the left on load, staggered (dapper-style) */
 .hero-cta .btn { opacity: 0; animation: slideInLeft .7s var(--ease) both; }
-.hero-cta .btn:nth-child(1) { animation-delay: .5s; }
-.hero-cta .btn:nth-child(2) { animation-delay: .62s; }
+.hero-cta .btn:nth-child(1) { animation-delay: .82s; }
+.hero-cta .btn:nth-child(2) { animation-delay: .94s; }
 @keyframes slideInLeft { from { opacity: 0; transform: translateX(-56px); } to { opacity: 1; transform: translateX(0); } }
 
 .hero-copy { min-width: 0; }

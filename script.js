@@ -59,8 +59,81 @@
   }
 
   toTop.addEventListener('click', function () {
-    window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+    if (window.__lenis) window.__lenis.scrollTo(0);
+    else window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
   });
+
+  /* ---- Smooth inertia scrolling (dapper-style) via Lenis, loaded on demand ---- */
+  if (!reduceMotion) {
+    var ls = document.createElement('script');
+    ls.src = 'https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js';
+    ls.onload = function () {
+      if (!window.Lenis) return;
+      var lenis = new Lenis({ duration: 1.1, smoothWheel: true, touchMultiplier: 1.6 });
+      window.__lenis = lenis;
+      function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+      requestAnimationFrame(raf);
+      // route in-page anchor links through Lenis so they ease instead of jump
+      document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+        a.addEventListener('click', function (e) {
+          var id = a.getAttribute('href');
+          if (id.length > 1 && document.querySelector(id)) {
+            e.preventDefault();
+            lenis.scrollTo(id, { offset: -90 });
+          }
+        });
+      });
+    };
+    document.head.appendChild(ls);
+  }
+
+  /* ---- Hero sub: reveal line-by-line (detect visual line breaks, mask each) ---- */
+  (function () {
+    var sub = document.querySelector('.hero-sub');
+    if (!sub) return;
+    var text = sub.textContent.replace(/\s+/g, ' ').trim();
+    function build(animate) {
+      // lay each word out as an inline span so we can read where lines wrap
+      sub.textContent = '';
+      var words = text.split(' ');
+      var spans = words.map(function (w, i) {
+        var s = document.createElement('span');
+        s.textContent = w + (i < words.length - 1 ? ' ' : '');
+        sub.appendChild(s);
+        return s;
+      });
+      var lines = [], cur = null, top = null;
+      spans.forEach(function (s) {
+        var t = s.offsetTop;
+        if (top === null || t - top > 2) { cur = []; lines.push(cur); top = t; }
+        cur.push(s.textContent);
+      });
+      // rebuild as one masked, sliding line per visual line
+      sub.textContent = '';
+      lines.forEach(function (parts, i) {
+        var mask = document.createElement('span');
+        mask.className = 'line-reveal';
+        var inner = document.createElement('span');
+        inner.className = 'line-reveal-in';
+        inner.textContent = parts.join('').replace(/\s+$/, '');
+        if (animate && !reduceMotion) {
+          inner.style.animationDelay = (0.36 + i * 0.11).toFixed(2) + 's';
+        } else {
+          inner.style.animation = 'none';
+          inner.style.transform = 'none';
+        }
+        mask.appendChild(inner);
+        sub.appendChild(mask);
+      });
+    }
+    build(true);
+    // re-split (without re-animating) on resize so wrapping stays correct and never clips
+    var rt;
+    window.addEventListener('resize', function () {
+      clearTimeout(rt);
+      rt = setTimeout(function () { build(false); }, 160);
+    }, { passive: true });
+  })();
 
   /* ---- Scroll-spy nav highlighting ---- */
   var navLinks = [].slice.call(document.querySelectorAll('.nav-link'));
