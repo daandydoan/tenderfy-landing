@@ -199,7 +199,7 @@ img, svg { display: block; }
 }
 /* Full-width, oversized headline (dapper-style) */
 .hero-title {
-  font-size: clamp(38px, 6.8vw, 92px);
+  font-size: clamp(42px, 8vw, 112px);
   line-height: 1.16;
   font-weight: 400;
   letter-spacing: -.025em;
