@@ -122,19 +122,20 @@
     document.head.appendChild(ls);
   }
 
-  /* ---- Hero sub: reveal line-by-line (detect visual line breaks, mask each) ---- */
-  (function () {
-    var sub = document.querySelector('.hero-sub');
-    if (!sub) return;
-    var text = sub.textContent.replace(/\s+/g, ' ').trim();
+  /* ---- Line-by-line reveal: detect visual line breaks and mask/slide each.
+     Used by the homepage hero sub and the inner-page hero heading + sub. ---- */
+  function revealLines(el, baseDelay, step) {
+    if (!el || el.children.length) return; // skip empty / markup-containing nodes
+    var text = el.textContent.replace(/\s+/g, ' ').trim();
+    if (!text) return;
     function build(animate) {
       // lay each word out as an inline span so we can read where lines wrap
-      sub.textContent = '';
+      el.textContent = '';
       var words = text.split(' ');
       var spans = words.map(function (w, i) {
         var s = document.createElement('span');
         s.textContent = w + (i < words.length - 1 ? ' ' : '');
-        sub.appendChild(s);
+        el.appendChild(s);
         return s;
       });
       var lines = [], cur = null, top = null;
@@ -144,7 +145,7 @@
         cur.push(s.textContent);
       });
       // rebuild as one masked, sliding line per visual line
-      sub.textContent = '';
+      el.textContent = '';
       lines.forEach(function (parts, i) {
         var mask = document.createElement('span');
         mask.className = 'line-reveal';
@@ -152,13 +153,13 @@
         inner.className = 'line-reveal-in';
         inner.textContent = parts.join('').replace(/\s+$/, '');
         if (animate && !reduceMotion) {
-          inner.style.animationDelay = (0.36 + i * 0.11).toFixed(2) + 's';
+          inner.style.animationDelay = (baseDelay + i * step).toFixed(2) + 's';
         } else {
           inner.style.animation = 'none';
           inner.style.transform = 'none';
         }
         mask.appendChild(inner);
-        sub.appendChild(mask);
+        el.appendChild(mask);
       });
     }
     build(true);
@@ -168,7 +169,10 @@
       clearTimeout(rt);
       rt = setTimeout(function () { build(false); }, 160);
     }, { passive: true });
-  })();
+  }
+  revealLines(document.querySelector('.hero-sub'), 0.36, 0.11);               // homepage hero sub
+  revealLines(document.querySelector('.page-hero h1'), 0.12, 0.12);           // inner-page heading
+  revealLines(document.querySelector('.page-hero p:not(.eyebrow)'), 0.40, 0.10); // inner-page sub
 
   /* ---- Scroll-spy nav highlighting ---- */
   var navLinks = [].slice.call(document.querySelectorAll('.nav-link'));

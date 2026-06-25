@@ -212,9 +212,10 @@ img, svg { display: block; }
 .hero-title .title-line:nth-child(1) .title-line-in { animation-delay: .12s; }
 .hero-title .title-line:nth-child(2) .title-line-in { animation-delay: .30s; }
 @keyframes titleLineUp { from { transform: translateY(115%); } to { transform: translateY(0); } }
-/* sub paragraph reveals line-by-line — lines are built by JS */
-.hero-sub .line-reveal { display: block; overflow: hidden; }
-.hero-sub .line-reveal-in { display: block; transform: translateY(110%); animation: titleLineUp .75s var(--ease) both; }
+/* line-by-line reveal (lines built by JS) — used by the hero sub and the
+   inner-page hero heading/sub-heading */
+.line-reveal { display: block; overflow: hidden; padding-bottom: .08em; }
+.line-reveal-in { display: block; transform: translateY(110%); animation: titleLineUp .75s var(--ease) both; }
 .hero-sub {
   font-size: clamp(18px, 2.1vw, 22px);
   line-height: 1.7;
