@@ -413,6 +413,39 @@ img, svg { display: block; }
 .section { padding: var(--section-y) 0; position: relative; }
 .section-light { background: radial-gradient(55% 60% at 100% 0%, rgba(29,158,117,.05), transparent 60%), var(--white); }
 .section-offwhite { background: radial-gradient(55% 60% at 0% 100%, rgba(47,120,194,.07), transparent 60%), radial-gradient(50% 55% at 100% 0%, rgba(43,189,142,.05), transparent 60%), var(--offwhite); }
+
+/* ---- Dark sections (tonal variation between the light sections) ---- */
+.section-dark {
+  background:
+    radial-gradient(60% 70% at 100% 0%, rgba(29,158,117,.15), transparent 62%),
+    radial-gradient(55% 62% at 0% 100%, rgba(47,120,194,.13), transparent 60%),
+    #1a2422;
+  color: var(--white);
+}
+.section-dark .eyebrow { background: rgba(63,169,138,.18); color: #6fd0ad; }
+.section-dark .section-title { color: var(--white); }
+.section-dark .section-sub { color: rgba(255,255,255,.74); }
+/* flow diagram on dark */
+.section-dark .flow-step { background: rgba(255,255,255,.045); border-color: rgba(255,255,255,.1); }
+.section-dark .flow-step:hover { box-shadow: 0 18px 36px -20px rgba(0,0,0,.55); border-color: var(--mint); }
+.section-dark .flow-step h3 { color: var(--white); }
+.section-dark .flow-step p { color: rgba(255,255,255,.66); }
+.section-dark .flow-num { background: rgba(63,169,138,.2); color: #6fd0ad; }
+.section-dark .flow-ic { background: rgba(63,169,138,.16); color: #6fd0ad; }
+.section-dark .flow-step:hover .flow-ic { background: var(--primary); color: #fff; }
+.section-dark .flow-loop { background: rgba(255,255,255,.05); border-color: rgba(255,255,255,.12); color: #6fd0ad; }
+/* case study on dark */
+.section-dark .case-study { background: rgba(255,255,255,.04); border-color: rgba(255,255,255,.1); }
+.section-dark .cs-quote blockquote { color: var(--white); }
+.section-dark .cs-name { color: var(--white); }
+.section-dark .cs-role, .section-dark .cs-label { color: rgba(255,255,255,.6); }
+.section-dark .cs-metrics { border-left-color: rgba(255,255,255,.14); border-top-color: rgba(255,255,255,.14); }
+.section-dark .cs-num { color: #6fd0ad; }
+
+/* background-attachment: fixed janks on mobile — fall back to scroll there */
+@media (max-width: 768px) {
+  .hero, .page-hero { background-attachment: scroll; }
+}
 .section-head { text-align: center; max-width: 780px; margin: 0 auto 48px; display: flex; flex-direction: column; gap: 16px; align-items: center; }
 .eyebrow { display: inline-flex; align-items: center; width: fit-content; gap: 6px; font-weight: 700; font-size: 12px; letter-spacing: .8px; text-transform: uppercase; margin: 0; padding: 6px 13px; border-radius: 99px; background: var(--teal-50); color: var(--primary); }
 .eyebrow::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }

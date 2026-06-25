@@ -35,7 +35,28 @@
     toTop.classList.toggle('show', y > 600);
     updateSpy();
   }
-  window.addEventListener('scroll', onScroll, { passive: true });
+  // rAF-throttle: coalesce burst scroll events into one update per frame
+  var scrollTicking = false;
+  function onScrollRaf() {
+    if (scrollTicking) return;
+    scrollTicking = true;
+    requestAnimationFrame(function () { onScroll(); scrollTicking = false; });
+  }
+  window.addEventListener('scroll', onScrollRaf, { passive: true });
+
+  // Only run the idle gradient animation while its section is on-screen, so
+  // off-screen gradients aren't repainted every frame (saves CPU/GPU + battery).
+  if ('IntersectionObserver' in window && !reduceMotion) {
+    var gradAnimObs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        en.target.style.animationPlayState = en.isIntersecting ? 'running' : 'paused';
+      });
+    }, { rootMargin: '120px' });
+    topGrads.concat(midGrads).forEach(function (el) {
+      el.style.animationPlayState = 'paused';
+      gradAnimObs.observe(el);
+    });
+  }
 
   toTop.addEventListener('click', function () {
     window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
