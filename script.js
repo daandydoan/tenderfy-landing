@@ -227,6 +227,34 @@
     });
   });
 
+  /* ---- Mega-menu dropdowns (hover via CSS; click/keyboard/Esc here) ---- */
+  var navItems = [].slice.call(document.querySelectorAll('.nav-item'));
+  function closeMenus(except) {
+    navItems.forEach(function (it) {
+      if (it === except) return;
+      it.classList.remove('open');
+      var t = it.querySelector('.nav-trigger');
+      if (t) t.setAttribute('aria-expanded', 'false');
+    });
+  }
+  navItems.forEach(function (it) {
+    var trigger = it.querySelector('.nav-trigger');
+    if (!trigger) return;
+    trigger.addEventListener('click', function (e) {
+      e.preventDefault();
+      var willOpen = !it.classList.contains('open');
+      closeMenus(it);
+      it.classList.toggle('open', willOpen);
+      trigger.setAttribute('aria-expanded', String(willOpen));
+    });
+  });
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest('.nav-item')) closeMenus();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeMenus();
+  });
+
   /* ---- Toast helper ---- */
   var toast = document.getElementById('toast');
   var toastTimer;

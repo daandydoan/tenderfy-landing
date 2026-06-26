@@ -18,18 +18,63 @@
 
   var ARROW = '<svg class="arrow" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 
-  var NAV = [
-    ['Product', 'product.html', 'product'],
-    ['Solution', 'solutions.html', 'solutions'],
-    ['Pricing', 'pricing.html', 'pricing'],
-    ['About', 'about.html', 'about'],
-    ['Insights', 'insights.html', 'insights']
+  var CARET = '<svg class="caret" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5 6 7.5l3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  function ic(p) { return '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true">' + p + '</svg>'; }
+  var ICONS = {
+    grid: ic('<rect x="3" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.8"/><rect x="14" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.8"/><rect x="3" y="14" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.8"/><rect x="14" y="14" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.8"/>'),
+    layers: ic('<path d="M12 3 3 8l9 5 9-5-9-5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="m3 13 9 5 9-5" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>'),
+    play: ic('<circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M10 8.5v7l6-3.5-6-3.5Z" fill="currentColor"/>'),
+    book: ic('<path d="M5 4h11a2 2 0 0 1 2 2v14H7a2 2 0 0 0-2 2V4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>'),
+    doc: ic('<path d="M6 3h8l4 4v14H6V3Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 12h6M9 16h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>'),
+    shield: ic('<path d="M12 3 5 5.5V11c0 4.5 3 7.5 7 9 4-1.5 7-4.5 7-9V5.5L12 3Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>'),
+    flag: ic('<path d="M6 21V4M6 4h11l-2 4 2 4H6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>'),
+    lock: ic('<rect x="4" y="10" width="16" height="10" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M8 10V7a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="1.8"/>'),
+    chat: ic('<path d="M4 5h16v11H8l-4 4V5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>')
+  };
+  var MENUS = [
+    { label: 'Product', key: 'product', items: [
+      ['Overview', 'product.html', 'The full AI tendering workflow', ICONS.grid],
+      ['Solutions', 'solutions.html', 'Built for your trade & sector', ICONS.layers],
+      ['Product tour', 'guides.html', 'Watch 2-min video walkthroughs', ICONS.play]
+    ]},
+    { label: 'Resources', key: 'resources', items: [
+      ['Guides', 'guides.html', 'Tutorials & how-to videos', ICONS.book],
+      ['Insights', 'insights.html', 'Articles on AI & tendering', ICONS.doc],
+      ['AI Policy', 'ai-policy.html', 'How Ray uses AI, in plain English', ICONS.shield]
+    ]},
+    { label: 'Company', key: 'company', items: [
+      ['About', 'about.html', 'Our story & mission', ICONS.flag],
+      ['Trust Centre', 'trust.html', 'Security, privacy & compliance', ICONS.lock],
+      ['Contact', 'about.html#contact', 'Get in touch with the team', ICONS.chat]
+    ]}
   ];
+  var PAGE_GROUP = { product:'product', solutions:'product', guides:'resources', insights:'resources', 'ai-policy':'resources', about:'company', trust:'company' };
 
-  function navLinks(active, mobile) {
-    return NAV.map(function (n) {
-      var cls = mobile ? '' : 'nav-link' + (n[2] === active ? ' active' : '');
-      return '<a href="' + n[1] + '"' + (cls ? ' class="' + cls + '"' : '') + '>' + n[0] + '</a>';
+  function megaNav(active) {
+    var groups = MENUS.map(function (m) {
+      var on = PAGE_GROUP[active] === m.key;
+      var links = m.items.map(function (it) {
+        return '<a class="mega-link" href="' + it[1] + '" role="menuitem">'
+          + '<span class="mega-ic">' + it[3] + '</span>'
+          + '<span class="mega-txt"><span class="mega-title">' + it[0] + '</span>'
+          + '<span class="mega-desc">' + it[2] + '</span></span></a>';
+      }).join('');
+      return '<div class="nav-item" data-menu="' + m.key + '">'
+        + '<button class="nav-trigger' + (on ? ' active' : '') + '" aria-haspopup="true" aria-expanded="false">' + m.label + ' ' + CARET + '</button>'
+        + '<div class="mega-panel" role="menu">' + links + '</div></div>';
+    }).join('');
+    return groups + '<a href="pricing.html" class="nav-link' + (active === 'pricing' ? ' active' : '') + '">Pricing</a>';
+  }
+
+  var MOBILE = [
+    ['Product','product.html','product'],['Solutions','solutions.html','solutions'],
+    ['Pricing','pricing.html','pricing'],['Guides','guides.html','guides'],
+    ['Insights','insights.html','insights'],['About','about.html','about'],
+    ['Trust Centre','trust.html','trust'],['AI Policy','ai-policy.html','ai-policy']
+  ];
+  function mobileNav(active) {
+    return MOBILE.map(function (n) {
+      return '<a href="' + n[1] + '"' + (n[2] === active ? ' class="active"' : '') + '>' + n[0] + '</a>';
     }).join('');
   }
 
@@ -39,7 +84,7 @@
       + '<header class="site-header" id="siteHeader"><div class="header-inner">'
       +   '<div class="header-left">'
       +     '<a href="index.html" class="logo" aria-label="Tenderfy home">' + LOGO + '</a>'
-      +     '<nav class="nav-links" aria-label="Primary">' + navLinks(active, false) + '</nav>'
+      +     '<nav class="nav-links" aria-label="Primary">' + megaNav(active) + '</nav>'
       +   '</div>'
       +   '<div class="header-right">'
       +     '<a href="#" class="btn btn-ghost-light" data-action="login">Log in</a>'
@@ -47,7 +92,7 @@
       +   '</div>'
       +   '<button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>'
       + '</div>'
-      + '<div class="mobile-menu" id="mobileMenu">' + navLinks(active, true)
+      + '<div class="mobile-menu" id="mobileMenu">' + mobileNav(active)
       +   '<div class="mobile-menu-actions"><a href="#" class="btn btn-ghost-dark" data-action="login">Log in</a><a href="pricing.html" class="btn btn-secondary">Book a Demo</a></div>'
       + '</div></header>';
   }
@@ -64,7 +109,7 @@
       +   '<p class="footer-tag">AI-powered tendering for construction, civil, engineering, and trades across Australia &amp; New Zealand.</p></div>'
       + col('Product', [['Product', 'product.html'], ['Integrations', 'product.html#integrations'], ['Trust Centre', 'trust.html'], ['Pricing', 'pricing.html']])
       + col('Solutions', [['Construction', 'solutions.html#construction'], ['Civil', 'solutions.html#civil'], ['Engineering', 'solutions.html#engineering'], ['Infrastructure', 'solutions.html#infrastructure'], ['HVAC & Trades', 'solutions.html#hvac'], ['Government', 'solutions.html#government']])
-      + col('Resources', [['Insights', 'insights.html'], ['AI Policy', 'ai-policy.html'], ['Trust Centre', 'trust.html'], ['Terms & Privacy', '#']])
+      + col('Resources', [['Guides', 'guides.html'], ['Insights', 'insights.html'], ['AI Policy', 'ai-policy.html'], ['Trust Centre', 'trust.html'], ['Terms & Privacy', '#']])
       + col('Company', [['About Us', 'about.html'], ['Our Story', 'about.html#our-story'], ['Book a Demo', 'pricing.html']])
       + '</div>'
       + '<div class="container footer-bottom"><span>© 2026 Tenderfy. All rights reserved.</span><span>Made in Australia 🇦🇺 &amp; New Zealand 🇳🇿</span></div></footer>'

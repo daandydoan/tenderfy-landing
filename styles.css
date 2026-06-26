@@ -128,14 +128,46 @@ img, svg { display: block; }
 .header-left { display: flex; align-items: center; gap: 48px; }
 .logo { display: inline-flex; align-items: center; }
 .logo-svg { height: 30px; width: auto; display: block; }
-.nav-links { display: flex; gap: 32px; }
+.nav-links { display: flex; align-items: center; gap: 2px; }
 .nav-link {
   display: inline-flex; align-items: center; gap: 4px;
   font-size: 14px; font-weight: 500; color: var(--white); opacity: .92;
+  padding: 9px 14px; border-radius: 9px;
   transition: opacity .15s ease;
 }
 .nav-link:hover { opacity: 1; }
-.nav-link .caret { width: 16px; height: 16px; opacity: .8; }
+/* mega-menu dropdowns */
+.nav-item { position: relative; }
+.nav-trigger {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-family: inherit; font-size: 14px; font-weight: 500; color: var(--white); opacity: .92;
+  background: none; border: 0; cursor: pointer; padding: 9px 14px; border-radius: 9px;
+  transition: opacity .15s ease, background .15s ease;
+}
+.nav-trigger:hover, .nav-item.open .nav-trigger, .nav-trigger.active { opacity: 1; }
+.nav-trigger:hover, .nav-item.open .nav-trigger { background: rgba(255,255,255,.12); }
+.nav-trigger .caret { width: 12px; height: 12px; transition: transform .2s ease; }
+.nav-item:hover .nav-trigger .caret, .nav-item.open .nav-trigger .caret { transform: rotate(180deg); }
+.mega-panel {
+  position: absolute; top: 100%; left: 0; margin-top: 12px; width: 344px;
+  background: var(--white); border: 1px solid var(--lighter); border-radius: 16px;
+  box-shadow: 0 28px 70px -24px rgba(20,40,38,.45); padding: 10px;
+  display: grid; gap: 2px; z-index: 200;
+  opacity: 0; visibility: hidden; transform: translateY(8px) scale(.99);
+  transition: opacity .18s ease, transform .18s ease, visibility .18s;
+}
+.mega-panel::before { content: ""; position: absolute; top: -14px; left: 0; right: 0; height: 14px; }
+.nav-item:hover .mega-panel, .nav-item:focus-within .mega-panel, .nav-item.open .mega-panel {
+  opacity: 1; visibility: visible; transform: translateY(0) scale(1);
+}
+.mega-link { display: flex; gap: 13px; align-items: flex-start; padding: 11px 13px; border-radius: 11px; text-decoration: none; transition: background .14s ease; }
+.mega-link:hover { background: var(--teal-50); }
+.mega-ic { flex: 0 0 auto; width: 40px; height: 40px; border-radius: 11px; background: var(--teal-50); color: var(--primary); display: flex; align-items: center; justify-content: center; transition: background .14s ease, color .14s ease; }
+.mega-ic svg { width: 21px; height: 21px; }
+.mega-link:hover .mega-ic { background: var(--primary); color: #fff; }
+.mega-txt { display: flex; flex-direction: column; gap: 2px; }
+.mega-title { font-size: 15px; font-weight: 700; color: var(--black); }
+.mega-desc { font-size: 12.5px; line-height: 1.4; color: var(--gray); }
 .header-right { display: flex; align-items: center; gap: 8px; }
 
 .hamburger {
@@ -1144,4 +1176,36 @@ img, svg { display: block; }
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 28px; }
   .footer-brand { grid-column: 1 / -1; }
   .hero-cta .btn { flex: 1; }
+}
+
+/* ============ GUIDES (video tutorials) ============ */
+.guide-filters { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin: 0 0 44px; }
+.guide-filter { font-size: 14px; font-weight: 600; color: var(--gray); background: var(--white); border: 1px solid var(--lighter); padding: 9px 18px; border-radius: 99px; cursor: pointer; font-family: inherit; transition: color .15s, background .15s, border-color .15s; }
+.guide-filter.active, .guide-filter:hover { color: #fff; background: var(--primary); border-color: var(--primary); }
+.guide-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 28px; }
+.guide-card { display: block; border: 1px solid var(--lighter); border-radius: 18px; overflow: hidden; background: var(--white); text-decoration: none; transition: transform .25s var(--ease), box-shadow .25s var(--ease); }
+.guide-card:hover { transform: translateY(-5px); box-shadow: 0 24px 48px -28px rgba(46,60,59,.4); }
+.guide-thumb { position: relative; aspect-ratio: 16 / 9; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.guide-thumb-a { background: linear-gradient(135deg, #1D9E75, #124580); }
+.guide-thumb-b { background: linear-gradient(135deg, #256E85, #1D9E75); }
+.guide-thumb-c { background: linear-gradient(135deg, #2E3C3B, #256E85); }
+.guide-thumb-d { background: linear-gradient(135deg, #439AA3, #8084BE); }
+.guide-play { width: 56px; height: 56px; border-radius: 50%; background: rgba(255,255,255,.94); display: flex; align-items: center; justify-content: center; color: var(--primary); transition: transform .2s var(--ease); }
+.guide-card:hover .guide-play { transform: scale(1.08); }
+.guide-play svg { width: 22px; height: 22px; margin-left: 3px; }
+.guide-time { position: absolute; bottom: 10px; right: 10px; background: rgba(0,0,0,.6); color: #fff; font-size: 12px; font-weight: 600; padding: 3px 8px; border-radius: 6px; }
+.guide-body { padding: 18px 20px 22px; }
+.guide-tag { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; color: var(--primary); background: var(--teal-50); padding: 4px 10px; border-radius: 99px; margin-bottom: 12px; }
+.guide-body h3 { font-size: 17px; font-weight: 700; color: var(--black); margin: 0; line-height: 1.32; }
+.guide-featured { display: grid; grid-template-columns: 1.25fr 1fr; border: 1px solid var(--lighter); border-radius: 22px; overflow: hidden; background: var(--white); margin-bottom: 48px; }
+.guide-featured .guide-thumb { aspect-ratio: auto; min-height: 340px; }
+.guide-featured-body { padding: clamp(32px, 4vw, 56px); display: flex; flex-direction: column; justify-content: center; gap: 14px; }
+.guide-featured-body h2 { font-size: clamp(24px, 3vw, 34px); font-weight: 700; color: var(--black); margin: 0; line-height: 1.15; }
+.guide-featured-body p { font-size: 16px; line-height: 1.7; color: var(--gray); margin: 0; }
+@media (max-width: 760px) {
+  .guide-featured { grid-template-columns: 1fr; }
+  .guide-featured .guide-thumb { min-height: 220px; }
+}
+@media (max-width: 560px) {
+  .guide-grid { grid-template-columns: 1fr; }
 }
