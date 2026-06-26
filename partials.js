@@ -59,7 +59,7 @@
           + '<span class="mega-txt"><span class="mega-title">' + it[0] + '</span>'
           + '<span class="mega-desc">' + it[2] + '</span></span></a>';
       }).join('');
-      return '<div class="nav-item" data-menu="' + m.key + '">'
+      return '<div class="nav-group" data-menu="' + m.key + '">'
         + '<button class="nav-trigger' + (on ? ' active' : '') + '" aria-haspopup="true" aria-expanded="false">' + m.label + ' ' + CARET + '</button>'
         + '<div class="mega-panel" role="menu">' + links + '</div></div>';
     }).join('');

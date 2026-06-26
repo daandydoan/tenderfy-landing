@@ -228,7 +228,7 @@
   });
 
   /* ---- Mega-menu dropdowns (hover via CSS; click/keyboard/Esc here) ---- */
-  var navItems = [].slice.call(document.querySelectorAll('.nav-item'));
+  var navItems = [].slice.call(document.querySelectorAll('.nav-group'));
   function closeMenus(except) {
     navItems.forEach(function (it) {
       if (it === except) return;
@@ -249,7 +249,7 @@
     });
   });
   document.addEventListener('click', function (e) {
-    if (!e.target.closest('.nav-item')) closeMenus();
+    if (!e.target.closest('.nav-group')) closeMenus();
   });
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') closeMenus();
