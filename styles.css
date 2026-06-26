@@ -135,7 +135,8 @@ img, svg { display: block; }
   padding: 9px 14px; border-radius: 9px;
   transition: opacity .15s ease;
 }
-.nav-link:hover { opacity: 1; }
+.nav-link:hover { opacity: 1; background: rgba(255,255,255,.12); }
+.nav-link.active { opacity: 1; }
 /* mega-menu dropdowns */
 .nav-group { position: relative; }
 .nav-trigger {
@@ -833,12 +834,6 @@ img, svg { display: block; }
 @keyframes heroIn { to { opacity: 1; transform: none; } }
 
 /* nav active (scroll-spy) */
-.nav-link { position: relative; }
-.nav-link::after {
-  content: ""; position: absolute; left: 0; right: 100%; bottom: -4px; height: 2px;
-  background: var(--secondary); border-radius: 4px; transition: right .3s var(--ease);
-}
-.nav-link:hover::after, .nav-link.active::after { right: 0; }
 
 /* scroll progress bar */
 .scroll-progress {
