@@ -20,10 +20,10 @@
   var parallaxItems = [];
   if (!reduceMotion) {
     var heroAside = document.querySelector('.hero-aside');
-    if (heroAside) parallaxItems.push({ el: heroAside, speed: 0.10, max: 64 });
+    if (heroAside) parallaxItems.push({ el: heroAside, speed: 0.065, max: 42 });
     [].slice.call(document.querySelectorAll(
       '#trust > .container, #problem > .container, #flywheel > .container, #showcase > .container, #meet-ray > .container, #proof > .container, #pricing > .container, #get-started > .container'
-    )).forEach(function (c) { parallaxItems.push({ el: c, speed: 0.035, max: 20 }); });
+    )).forEach(function (c) { parallaxItems.push({ el: c, speed: 0.02, max: 12 }); });
   }
   // highlighter sweep: light a marked keyword each time it scrolls into the
   // comfortable middle of the viewport (re-triggers on every scroll-in)
@@ -120,7 +120,7 @@
     ls.src = 'https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js';
     ls.onload = function () {
       if (!window.Lenis) return;
-      var lenis = new Lenis({ duration: 1.1, smoothWheel: true, touchMultiplier: 1.6 });
+      var lenis = new Lenis({ duration: 0.8, smoothWheel: true, touchMultiplier: 1.6 });
       window.__lenis = lenis;
       function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
       requestAnimationFrame(raf);
