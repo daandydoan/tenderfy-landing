@@ -240,6 +240,16 @@
   navItems.forEach(function (it) {
     var trigger = it.querySelector('.nav-trigger');
     if (!trigger) return;
+    // hover is JS-driven so entering one dropdown closes the others (panels overlap neighbours)
+    it.addEventListener('mouseenter', function () {
+      closeMenus(it);
+      it.classList.add('open');
+      trigger.setAttribute('aria-expanded', 'true');
+    });
+    it.addEventListener('mouseleave', function () {
+      it.classList.remove('open');
+      trigger.setAttribute('aria-expanded', 'false');
+    });
     trigger.addEventListener('click', function (e) {
       e.preventDefault();
       var willOpen = !it.classList.contains('open');
