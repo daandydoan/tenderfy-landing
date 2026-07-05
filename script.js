@@ -453,62 +453,160 @@
     if (next) next.addEventListener('click', function () { rail.scrollBy({ left: railStep(), behavior: 'smooth' }); });
   }
 
-  /* ---- Ray chat ---- */
+  /* ---- Ray chat: quick replies + auto-played production-style demo ---- */
   var chatForm = document.getElementById('chatForm');
   var chatInput = document.getElementById('chatInput');
   var chatBody = document.getElementById('chatBody');
+  var quickReplies = document.getElementById('quickReplies');
+  var RAY_FACE = '<span class="msg-avatar"><img class="ray-face" src="assets/ray-avatar.svg" alt=""></span>';
+  var COPY_SVG = '<svg viewBox="0 0 16 16" fill="none"><rect x="5.5" y="5.5" width="8" height="8" rx="1.6" stroke="currentColor" stroke-width="1.3"/><path d="M3.5 10.5H2.8A1.3 1.3 0 0 1 1.5 9.2V2.8A1.3 1.3 0 0 1 2.8 1.5H9.2A1.3 1.3 0 0 1 10.5 2.8V3.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>';
 
-  var rayReplies = [
-    "On it. I'll draft that from your Westgate Bridge methodology and flag anything that needs a human review.",
-    "Done — I've pulled matching content from your library. Want me to insert it into the submission?",
-    "Good question. Based on the RFT, that section maps to ISO 45001. I've pre-filled 4 of 6 requirements.",
-    "I'd recommend BID. Capability fit is strong; the only watch-item is the bond requirement in clause 14.3.",
-    "I've scheduled that task and assigned it to the tender lead. Nothing will slip past the deadline."
+  // Rich, production-shaped answers (intro + bold feature list + optional sources)
+  var RICH_ABOUT =
+    '<p>Tenderfy is an AI-powered tender management platform designed to streamline the bid preparation process for small-to-medium enterprises and built-environment firms. Founded in 2024 and headquartered in Australia, Tenderfy replaces manual, Word-based tendering with automated workflows, significantly reducing submission times.</p>' +
+    '<p class="rich-h">Key Features:</p>' +
+    '<ul class="rich-list">' +
+      '<li><strong>AI-Assisted Drafting:</strong> The platform\'s AI, known as "Ray," helps generate responses and ensures professional content.</li>' +
+      '<li><strong>Centralized Knowledge Library:</strong> Stores documents such as resumes and case studies securely for easy access.</li>' +
+      '<li><strong>Auto-fill Schedules:</strong> Automatically populates response schedules using stored company data.</li>' +
+      '<li><strong>Visual Presentation:</strong> Transforms responses into high-quality, designer-grade presentations.</li>' +
+      '<li><strong>Team Collaboration:</strong> Manages workflows, approvals, and compliance requirements to maintain team alignment.</li>' +
+    '</ul>' +
+    '<p class="rich-h">Sources:</p>' +
+    '<div class="rich-sources"><span>Tender Management Software | Streamline Bids &amp; Win More …</span><span>Tenderfy Software Pricing, Alternatives &amp; More 2026</span><span>Tenderfy is an AI-driven platform designed to streamline …</span></div>';
+  var RICH_HELP =
+    '<p>I can help you manage and enhance your tendering process through Tenderfy. Specifically, I can:</p>' +
+    '<ul class="rich-list">' +
+      '<li><strong>Create and analyze tender responses:</strong> Generate, refine, and structure bid documents professionally.</li>' +
+      '<li><strong>Store and retrieve documents:</strong> Manage resumes, case studies, policies, and templates securely.</li>' +
+      '<li><strong>Automate responses:</strong> Populate schedules, compliance matrices, and submission forms using your stored data.</li>' +
+      '<li><strong>Review and improve content:</strong> Edit, rewrite, or summarize tender content for clarity and compliance.</li>' +
+      '<li><strong>Provide real-time insights:</strong> Analyze tender performance, winning ratios, and track upcoming deadlines.</li>' +
+      '<li><strong>Prepare supporting materials:</strong> Build capability statements, executive summaries, and company overviews.</li>' +
+    '</ul>' +
+    '<p>Would you like me to focus on a specific area — like creating a tender, improving a submission, or analyzing your tender metrics?</p>';
+
+  var responses = {
+    "What is Tenderfy about?": { html: RICH_ABOUT, analyze: true },
+    "How can you help me?": { html: RICH_HELP, analyze: true },
+    "Draft a methodology section": { analyze: true, text: "On it. I'll draft section 4.2 from your Westgate Bridge methodology and flag anything that needs a human review before you submit." },
+    "Should we bid on this tender?": { analyze: true, text: "I'd recommend BID. Capability fit is strong (82/100) — the only watch-item is the bond requirement in clause 14.3." }
+  };
+  var fallbackReplies = [
+    "Good question. Based on the RFT, that maps to ISO 45001 — I've pre-filled 4 of 6 requirements from your library.",
+    "Done — I've pulled matching content from your past submissions. Want me to insert it into the pack?",
+    "I've scheduled that task and assigned it to the tender lead so nothing slips past the deadline."
   ];
-  var replyIndex = 0;
+  var fbIndex = 0;
   function scrollChat() { chatBody.scrollTop = chatBody.scrollHeight; }
 
   function addUserMessage(text) {
     var wrap = document.createElement('div');
     wrap.className = 'msg msg-user';
-    wrap.innerHTML =
-      '<div class="msg-col msg-col-right"><div class="msg-bubble msg-bubble-user"></div></div>' +
-      '<span class="msg-avatar msg-avatar-user">Y</span>';
+    wrap.innerHTML = '<div class="msg-col msg-col-right"><div class="msg-bubble msg-bubble-user"></div></div>';
     wrap.querySelector('.msg-bubble-user').textContent = text;
+    chatBody.appendChild(wrap); scrollChat();
+  }
+  function addAnalyzing() {
+    var wrap = document.createElement('div');
+    wrap.className = 'msg msg-ray'; wrap.id = 'analyzingCard';
+    wrap.innerHTML =
+      '<div class="analyzing"><span class="an-dots">•••</span>' + RAY_FACE +
+      '<div><div class="an-title">Analyzing</div><div class="an-sub">Ray found 10 sources and is now analyzing the information…</div></div></div>';
     chatBody.appendChild(wrap); scrollChat();
   }
   function addTyping() {
     var wrap = document.createElement('div');
     wrap.className = 'msg msg-ray'; wrap.id = 'typingIndicator';
-    wrap.innerHTML =
-      '<span class="msg-avatar">R</span>' +
-      '<div class="msg-col"><div class="typing-bubble"><span></span><span></span><span></span></div></div>';
+    wrap.innerHTML = RAY_FACE + '<div class="msg-col"><div class="typing-bubble"><span></span><span></span><span></span></div></div>';
     chatBody.appendChild(wrap); scrollChat();
   }
-  function addRayMessage(text) {
+  function removeById(id) { var n = document.getElementById(id); if (n) n.remove(); }
+  function addRayMessage(content, isHtml) {
     var wrap = document.createElement('div');
     wrap.className = 'msg msg-ray';
-    wrap.innerHTML =
-      '<span class="msg-avatar">R</span>' +
-      '<div class="msg-col"><span class="msg-name">Ray</span>' +
-      '<div class="msg-bubble msg-bubble-ray"><p></p></div></div>';
-    wrap.querySelector('p').textContent = text;
+    wrap.innerHTML = RAY_FACE +
+      '<div class="msg-col"><div class="msg-bubble msg-bubble-ray">' + (isHtml ? content : '<p></p>') + '</div>' +
+      '<button class="msg-copy" type="button" aria-label="Copy message">' + COPY_SVG + '</button></div>';
+    if (!isHtml) wrap.querySelector('p').textContent = content;
     chatBody.appendChild(wrap); scrollChat();
   }
-  if (chatForm) chatForm.addEventListener('submit', function (e) {
-    e.preventDefault();
-    var text = chatInput.value.trim();
-    if (!text) return;
+  function renderRay(r) {
+    if (r && r.html) addRayMessage(r.html, true);
+    else addRayMessage(r ? r.text : fallbackReplies[fbIndex++ % fallbackReplies.length], false);
+  }
+  function send(text) {
+    if (quickReplies) { quickReplies.remove(); quickReplies = null; }
     addUserMessage(text);
-    chatInput.value = '';
-    addTyping();
-    setTimeout(function () {
-      var t = document.getElementById('typingIndicator');
-      if (t) t.remove();
-      addRayMessage(rayReplies[replyIndex % rayReplies.length]);
-      replyIndex++;
-    }, 1100);
+    var r = responses[text];
+    if (r && r.analyze) {
+      addAnalyzing();
+      setTimeout(function () { removeById('analyzingCard'); renderRay(r); }, 2100);
+    } else {
+      addTyping();
+      setTimeout(function () { removeById('typingIndicator'); renderRay(r); }, 1100);
+    }
+  }
+
+  // click a Ray message's copy icon → copy its text
+  if (chatBody) chatBody.addEventListener('click', function (e) {
+    var btn = e.target.closest('.msg-copy'); if (!btn) return;
+    var bubble = btn.parentNode.querySelector('.msg-bubble');
+    if (bubble && navigator.clipboard) navigator.clipboard.writeText(bubble.innerText).catch(function () {});
+    btn.classList.add('copied'); setTimeout(function () { btn.classList.remove('copied'); }, 1200);
   });
+
+  if (quickReplies) quickReplies.addEventListener('click', function (e) {
+    var chip = e.target.closest('.quick-chip');
+    if (chip) send(chip.textContent.trim());
+  });
+  // The reply bar is demo-only — it can't be typed into. Clicking it plays the
+  // demo once, then the bar is disabled. No free-text chat outside the demo.
+  if (chatForm) chatForm.addEventListener('submit', function (e) { e.preventDefault(); });
+
+  var demoPlayed = false;
+  function autoType(text, cb) {
+    var i = 0;
+    (function step() {
+      chatInput.value = text.slice(0, i);
+      if (i++ <= text.length) { setTimeout(step, 42); }
+      else { setTimeout(cb, 320); }
+    })();
+  }
+  function playDemo() {
+    if (demoPlayed) return; demoPlayed = true;
+    var q = "What is Tenderfy about?";
+    autoType(q, function () {
+      chatInput.value = '';
+      if (chatForm) chatForm.classList.add('is-done'); // disable bar after the demo
+      send(q);
+    });
+  }
+  if (chatForm) chatForm.addEventListener('click', playDemo);
+
+  /* ---- Task Checklist card video: start it slightly AFTER the hero/dashboard
+     mockup finishes its entrance animation (heroIn on .hero-shot), so the card
+     settles into place before the checklist starts playing. ---- */
+  (function () {
+    var tcVideo = document.querySelector('.tc-video');
+    var heroShot = document.querySelector('.hero-shot');
+    if (!tcVideo) return;
+    var started = false;
+    function startVideo() {
+      if (started) return;
+      started = true;
+      var p = tcVideo.play();
+      if (p && p.catch) p.catch(function () {});
+    }
+    // preferred: fire ~350ms after the dashboard mockup's entrance animation ends
+    if (heroShot) {
+      heroShot.addEventListener('animationend', function (e) {
+        if (e.animationName === 'heroIn') setTimeout(startVideo, 350);
+      });
+    }
+    // fallback in case animationend never fires (reduced motion edge cases, etc.)
+    setTimeout(startVideo, 1800);
+  })();
 
   onScroll();
 })();

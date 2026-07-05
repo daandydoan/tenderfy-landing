@@ -76,30 +76,11 @@
         <div class="tender-card hero-float" id="tenderCard">
           <div class="tender-card-bar">
             <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-            <span class="tender-card-title">Active Tender</span>
+            <span class="tender-card-title">Task Checklist</span>
           </div>
-          <div class="tender-card-body">
-            <div class="tc-head">
-              <div>
-                <div class="tc-h1">Civil Infrastructure — Stage 3</div>
-                <div class="tc-h2">RFT-2026-0441 · Due in 6 days</div>
-              </div>
-              <span class="tc-badge">In Progress</span>
-            </div>
-            <div class="tc-progress">
-              <div class="tc-progress-row"><span>Completion</span><span class="stat-num" data-count="72" data-suffix="%">0%</span></div>
-              <div class="tc-bar"><div class="tc-bar-fill" data-fill="72" style="width:0%"></div></div>
-            </div>
-            <div class="tc-ray">
-              <div class="tc-ray-head">
-                <span class="tc-avatar">R</span>
-                <span class="tc-ray-name">Ray AI Co-Pilot</span>
-                <span class="tc-ray-active">Active</span>
-              </div>
-              <p class="tc-ray-msg">"Pre-filled your methodology from a past project — 94% complete."</p>
-              <button class="tc-ray-btn" data-toast="Suggestions accepted ✓">Accept suggestions</button>
-            </div>
-          </div>
+          <video class="tc-video" muted playsinline preload="auto">
+            <source src="assets/task-checklist.webm" type="video/webm" />
+          </video>
         </div>
       </div>
     </div>
@@ -256,12 +237,12 @@
       <svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </button>
     <div class="showcase-rail" id="showcaseRail">
-      <article class="doc-page"><div class="doc-head"><span class="doc-logo"></span><span class="doc-head-line"></span></div><div class="doc-body"><span class="sk sk-title"></span><span class="sk sk-line"></span><span class="sk sk-line sk-w80"></span><span class="sk sk-block"></span><span class="sk sk-line"></span><span class="sk sk-line sk-w60"></span></div><span class="doc-foot">Cover · 01</span></article>
-      <article class="doc-page"><div class="doc-head doc-head-alt"><span class="doc-logo"></span><span class="doc-head-line"></span></div><div class="doc-body"><span class="sk sk-title sk-w60"></span><span class="sk sk-line"></span><span class="sk sk-line"></span><span class="sk sk-line sk-w80"></span><span class="sk sk-twocol"><span></span><span></span></span></div><span class="doc-foot">Methodology · 04</span></article>
-      <article class="doc-page"><div class="doc-head"><span class="doc-logo"></span><span class="doc-head-line"></span></div><div class="doc-body"><span class="sk sk-title sk-w80"></span><span class="sk sk-chart"></span><span class="sk sk-line"></span><span class="sk sk-line sk-w60"></span></div><span class="doc-foot">Pricing · 09</span></article>
-      <article class="doc-page"><div class="doc-head doc-head-alt"><span class="doc-logo"></span><span class="doc-head-line"></span></div><div class="doc-body"><span class="sk sk-title"></span><span class="sk sk-line sk-w80"></span><span class="sk sk-block"></span><span class="sk sk-line"></span><span class="sk sk-line sk-w60"></span></div><span class="doc-foot">Safety Plan · 12</span></article>
-      <article class="doc-page"><div class="doc-head"><span class="doc-logo"></span><span class="doc-head-line"></span></div><div class="doc-body"><span class="sk sk-title sk-w60"></span><span class="sk sk-line"></span><span class="sk sk-twocol"><span></span><span></span></span><span class="sk sk-line sk-w80"></span></div><span class="doc-foot">Team · 18</span></article>
-      <article class="doc-page"><div class="doc-head doc-head-alt"><span class="doc-logo"></span><span class="doc-head-line"></span></div><div class="doc-body"><span class="sk sk-title"></span><span class="sk sk-line"></span><span class="sk sk-line sk-w80"></span><span class="sk sk-block"></span><span class="sk sk-line sk-w60"></span></div><span class="doc-foot">Appendix · 27</span></article>
+      <article class="doc-page"><img class="doc-img" src="assets/output/construction.png" alt="Construction &amp; engineering tender case study" loading="lazy" /><span class="doc-foot">Construction · Case Study</span></article>
+      <article class="doc-page"><img class="doc-img" src="assets/output/consulting.png" alt="Consulting &amp; professional services policy document" loading="lazy" /><span class="doc-foot">Consulting · Policy</span></article>
+      <article class="doc-page"><img class="doc-img" src="assets/output/it-creative.png" alt="IT &amp; creative agency staff résumé" loading="lazy" /><span class="doc-foot">IT &amp; Creative · Resume</span></article>
+      <article class="doc-page"><img class="doc-img" src="assets/output/facilities.png" alt="Facilities management policy document" loading="lazy" /><span class="doc-foot">Facilities · Policy</span></article>
+      <article class="doc-page"><img class="doc-img" src="assets/output/non-profit.png" alt="Non-profit &amp; community services case study" loading="lazy" /><span class="doc-foot">Non-Profit · Case Study</span></article>
+      <article class="doc-page"><img class="doc-img" src="assets/output/construction-cv.png" alt="Construction project manager résumé" loading="lazy" /><span class="doc-foot">Construction · Resume</span></article>
     </div>
     <button class="rail-btn rail-next" id="railNext" aria-label="Next">
       <svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -284,38 +265,32 @@
       <!-- Chat window -->
       <div class="chat" id="chatWindow">
         <div class="chat-bar">
-          <span class="chat-avatar">R</span>
+          <span class="chat-avatar"><img class="ray-face" src="assets/ray-avatar.svg" alt="" /></span>
           <div class="chat-bar-meta">
             <div class="chat-bar-name">Ray</div>
-            <div class="chat-bar-status">AI Tendering Co-Pilot · Active</div>
+            <div class="chat-bar-status">Tenderfy Co-Pilot</div>
           </div>
-          <div class="chat-bar-live"><span class="live-dot"></span> Analysing RFT…</div>
+          <div class="chat-bar-controls" aria-hidden="true">
+            <svg viewBox="0 0 16 16" fill="none"><path d="M6 2H2v4M10 14h4v-4M14 6V2h-4M2 10v4h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg viewBox="0 0 16 16" fill="none"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
         </div>
         <div class="chat-body" id="chatBody">
           <div class="msg msg-ray">
-            <span class="msg-avatar">R</span>
+            <span class="msg-avatar"><img class="ray-face" src="assets/ray-avatar.svg" alt="" /></span>
             <div class="msg-col">
-              <span class="msg-name">Ray</span>
-              <div class="msg-bubble msg-bubble-ray">
-                <p>I've reviewed the Stage 3 RFT (87 pages). Here's my analysis:</p>
-                <ul class="analysis">
-                  <li><span>Methodology sections</span><strong>6 required · 4 pre-filled ✓</strong></li>
-                  <li><span>Safety requirements</span><strong>ISO 45001 · matched ✓</strong></li>
-                  <li><span>Go/No-Go score</span><strong>82 / 100 — Recommend BID</strong></li>
-                  <li><span>Key risk</span><strong>Bond requirement — review clause 14.3</strong></li>
-                </ul>
-              </div>
+              <div class="msg-bubble msg-bubble-ray"><p>👋 Hi there! How can I help?</p></div>
+              <button class="msg-copy" type="button" aria-label="Copy message"><svg viewBox="0 0 16 16" fill="none"><rect x="5.5" y="5.5" width="8" height="8" rx="1.6" stroke="currentColor" stroke-width="1.3"/><path d="M3.5 10.5H2.8A1.3 1.3 0 0 1 1.5 9.2V2.8A1.3 1.3 0 0 1 2.8 1.5H9.2A1.3 1.3 0 0 1 10.5 2.8V3.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></button>
             </div>
           </div>
-          <div class="msg msg-user">
-            <div class="msg-col msg-col-right">
-              <div class="msg-bubble msg-bubble-user">Draft the methodology for section 4.2.</div>
-            </div>
-            <span class="msg-avatar msg-avatar-user">Y</span>
+          <div class="quick-replies" id="quickReplies">
+            <button class="quick-chip" type="button">How can you help me?</button>
+            <button class="quick-chip" type="button">Draft a methodology section</button>
+            <button class="quick-chip" type="button">Should we bid on this tender?</button>
           </div>
         </div>
         <form class="chat-input" id="chatForm">
-          <input type="text" id="chatInput" placeholder="Ask Ray anything about this tender…" autocomplete="off" />
+          <input type="text" id="chatInput" placeholder="Type a reply…" autocomplete="off" readonly />
           <button type="submit" class="chat-send">Send</button>
         </form>
       </div>
