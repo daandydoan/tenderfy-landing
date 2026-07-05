@@ -67,6 +67,11 @@
 
       <!-- One composition: app screenshot (skeleton) with the tender card floating as an accent -->
       <div class="hero-shot hero-anim d4">
+        <span class="hero-rings" aria-hidden="true"></span>
+        <span class="hero-dots" aria-hidden="true"></span>
+        <span class="hero-orb hero-orb-1" aria-hidden="true"></span>
+        <span class="hero-orb hero-orb-2" aria-hidden="true"></span>
+        <span class="hero-orb hero-orb-3" aria-hidden="true"></span>
         <div class="app-skeleton" aria-hidden="true">
           <div class="app-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="app-title">Tenderfy — Dashboard</span></div>
           <video class="app-video" autoplay muted playsinline preload="auto">
@@ -233,20 +238,16 @@
     </div>
   </div>
   <div class="showcase-wrap">
-    <button class="rail-btn rail-prev" id="railPrev" aria-label="Previous">
-      <svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </button>
     <div class="showcase-rail" id="showcaseRail">
-      <article class="doc-page"><img class="doc-img" src="assets/output/construction.png" alt="Construction &amp; engineering tender case study" loading="lazy" /><span class="doc-foot">Construction · Case Study</span></article>
-      <article class="doc-page"><img class="doc-img" src="assets/output/consulting.png" alt="Consulting &amp; professional services policy document" loading="lazy" /><span class="doc-foot">Consulting · Policy</span></article>
-      <article class="doc-page"><img class="doc-img" src="assets/output/it-creative.png" alt="IT &amp; creative agency staff résumé" loading="lazy" /><span class="doc-foot">IT &amp; Creative · Resume</span></article>
-      <article class="doc-page"><img class="doc-img" src="assets/output/facilities.png" alt="Facilities management policy document" loading="lazy" /><span class="doc-foot">Facilities · Policy</span></article>
-      <article class="doc-page"><img class="doc-img" src="assets/output/non-profit.png" alt="Non-profit &amp; community services case study" loading="lazy" /><span class="doc-foot">Non-Profit · Case Study</span></article>
-      <article class="doc-page"><img class="doc-img" src="assets/output/construction-cv.png" alt="Construction project manager résumé" loading="lazy" /><span class="doc-foot">Construction · Resume</span></article>
+      <div class="showcase-track" id="showcaseTrack">
+        <article class="doc-page"><img class="doc-img" src="assets/output/construction.png" alt="Construction &amp; engineering tender case study" loading="lazy" /><span class="doc-foot">Construction · Case Study</span></article>
+        <article class="doc-page"><img class="doc-img" src="assets/output/consulting.png" alt="Consulting &amp; professional services policy document" loading="lazy" /><span class="doc-foot">Consulting · Policy</span></article>
+        <article class="doc-page"><img class="doc-img" src="assets/output/it-creative.png" alt="IT &amp; creative agency staff résumé" loading="lazy" /><span class="doc-foot">IT &amp; Creative · Resume</span></article>
+        <article class="doc-page"><img class="doc-img" src="assets/output/facilities.png" alt="Facilities management policy document" loading="lazy" /><span class="doc-foot">Facilities · Policy</span></article>
+        <article class="doc-page"><img class="doc-img" src="assets/output/non-profit.png" alt="Non-profit &amp; community services case study" loading="lazy" /><span class="doc-foot">Non-Profit · Case Study</span></article>
+        <article class="doc-page"><img class="doc-img" src="assets/output/construction-cv.png" alt="Construction project manager résumé" loading="lazy" /><span class="doc-foot">Construction · Resume</span></article>
+      </div>
     </div>
-    <button class="rail-btn rail-next" id="railNext" aria-label="Next">
-      <svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </button>
   </div>
   <div class="container showcase-actions">
     <a href="#meet-ray" class="btn btn-secondary">Book a Demo <svg class="arrow" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
@@ -262,7 +263,15 @@
       <p class="section-sub section-sub-light">Ray works from your content library, not the internet. Every response is grounded in your firm's actual capability.</p>
     </div>
     <div class="ray-grid">
-      <!-- Chat window -->
+      <!-- Chat window with decorative Ray flair -->
+      <div class="ray-chat-wrap">
+        <span class="ray-glow" aria-hidden="true"></span>
+        <img class="ray-watermark" src="assets/ray-avatar.svg" alt="" aria-hidden="true" />
+        <span class="ray-pulse" aria-hidden="true"></span>
+        <span class="ray-dots" aria-hidden="true"></span>
+        <span class="ray-bit ray-bit-1" aria-hidden="true"></span>
+        <span class="ray-bit ray-bit-2" aria-hidden="true"></span>
+        <span class="ray-bit ray-bit-3" aria-hidden="true"></span>
       <div class="chat" id="chatWindow">
         <div class="chat-bar">
           <span class="chat-avatar"><img class="ray-face" src="assets/ray-avatar.svg" alt="" /></span>
@@ -293,6 +302,7 @@
           <input type="text" id="chatInput" placeholder="Type a reply…" autocomplete="off" readonly />
           <button type="submit" class="chat-send">Send</button>
         </form>
+      </div>
       </div>
 
       <!-- Lean summary — full feature detail lives on the Product page -->

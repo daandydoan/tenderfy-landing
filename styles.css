@@ -436,13 +436,26 @@ img, svg { display: block; }
 /* ============ OUTPUT SHOWCASE (S06) ============ */
 .showcase-wrap { position: relative; margin-top: 56px; display: flex; align-items: center; }
 .showcase-rail {
-  display: flex; gap: 28px; overflow-x: auto; scroll-snap-type: x mandatory;
-  padding: 16px clamp(22px, 6.5vw, 140px) 28px; width: 100%;
-  scrollbar-width: none; scroll-behavior: smooth;
+  display: flex; overflow: hidden; width: 100%;
+  /* vertical padding leaves room for the lifted card's hover shadow (0 32px 56px);
+     horizontal edges are faded with a mask instead of padding. */
+  padding: 30px 0 58px;
+  -webkit-mask: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%);
+          mask: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%);
 }
-.showcase-rail::-webkit-scrollbar { display: none; }
+.showcase-track {
+  display: flex; width: max-content;
+  animation: showcaseScroll 40s linear infinite;
+}
+.showcase-track:hover { animation-play-state: paused; }
+@keyframes showcaseScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) {
+  .showcase-track { animation: none; }
+  .showcase-rail { overflow-x: auto; scrollbar-width: none; }
+  .showcase-rail::-webkit-scrollbar { display: none; }
+}
 .doc-page {
-  flex: 0 0 auto; width: 272px; height: 366px; scroll-snap-align: center;
+  flex: 0 0 auto; width: 272px; height: 366px; margin-right: 28px;
   background: var(--white); border: 1px solid var(--lighter); border-radius: 16px;
   box-shadow: 0 22px 44px -22px rgba(46,60,59,.4);
   display: flex; flex-direction: column; overflow: hidden;
@@ -614,6 +627,68 @@ img, svg { display: block; }
   color: var(--white);
 }
 .ray-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 43px; align-items: stretch; }
+
+/* Decorative stage behind the Ray chat: glow, mascot watermark, floating orbs */
+.ray-chat-wrap { position: relative; display: flex; width: 100%; max-width: 384px; justify-self: center; }
+.ray-chat-wrap .chat { position: relative; z-index: 2; flex: 1; }
+/* glowing rounded gradient border hugging the chat box */
+.ray-chat-wrap::before {
+  content: ""; position: absolute; z-index: 1; inset: -3px;
+  border-radius: 21px;
+  background: linear-gradient(135deg, #2bbd8e 0%, #6addb5 42%, #FFBC4A 100%);
+  filter: blur(9px); opacity: .9;
+}
+.ray-chat-wrap::after {
+  content: ""; position: absolute; z-index: 1; inset: -1px;
+  border-radius: 19px;
+  padding: 1.5px; /* crisp gradient hairline on top of the soft glow */
+  background: linear-gradient(135deg, #63e0b6, #FFBC4A);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude;
+  opacity: .9;
+}
+.ray-glow {
+  position: absolute; z-index: 0; pointer-events: none; inset: -24% -26%;
+  background:
+    radial-gradient(52% 48% at 46% 40%, rgba(43,189,142,.85), rgba(43,189,142,0) 70%),
+    radial-gradient(40% 40% at 74% 78%, rgba(255,188,74,.35), rgba(255,188,74,0) 72%);
+  filter: blur(44px);
+}
+.ray-watermark {
+  position: absolute; z-index: 1; pointer-events: none;
+  width: 250px; height: auto; top: 24px; left: -104px; opacity: .28;
+  filter: brightness(0) invert(1); /* white silhouette on the dark section */
+  transform: rotate(-8deg);
+}
+/* static concentric target rings */
+.ray-pulse {
+  position: absolute; z-index: 0; pointer-events: none;
+  width: 96px; height: 96px; border-radius: 50%; top: -10px; right: -54px;
+  border: 2px solid rgba(106,221,181,.5);
+}
+.ray-pulse::before {
+  content: ""; position: absolute; inset: 17px; border-radius: 50%;
+  border: 2px solid rgba(106,221,181,.4);
+}
+.ray-pulse::after {
+  content: ""; position: absolute; inset: 38px; border-radius: 50%;
+  background: rgba(106,221,181,.65);
+}
+/* dotted grid patch (tech texture) */
+.ray-dots {
+  position: absolute; z-index: 0; pointer-events: none;
+  width: 108px; height: 92px; bottom: -30px; right: -46px; opacity: .5;
+  background-image: radial-gradient(rgba(255,255,255,.55) 1.6px, transparent 1.6px);
+  background-size: 15px 15px;
+  -webkit-mask: radial-gradient(70% 70% at 70% 70%, #000, transparent 75%);
+          mask: radial-gradient(70% 70% at 70% 70%, #000, transparent 75%);
+}
+/* soft accent dots */
+.ray-bit { position: absolute; z-index: 1; border-radius: 50%; pointer-events: none; }
+.ray-bit-1 { width: 16px; height: 16px; top: -22px; left: 44px; background: var(--secondary); box-shadow: 0 0 15px 1px rgba(255,188,74,.5); }
+.ray-bit-2 { width: 11px; height: 11px; bottom: -16px; left: 24px; background: #6addb5; box-shadow: 0 0 14px 1px rgba(106,221,181,.55); }
+.ray-bit-3 { width: 8px; height: 8px; bottom: 70px; right: -26px; background: rgba(255,255,255,.85); box-shadow: 0 0 12px 1px rgba(255,255,255,.4); }
+@keyframes rayFloat { 0%, 100% { transform: translateY(0) rotate(var(--r, 0deg)); } 50% { transform: translateY(-10px) rotate(var(--r, 0deg)); } }
 
 .chat {
   background: var(--white);
@@ -1109,7 +1184,18 @@ img, svg { display: block; }
 /* ============ RESTRAINT PASS ============ */
 /* hero — single composition: app skeleton + floating tender card */
 .hero-shot { position: relative; }
-.app-skeleton { background: var(--white); border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,.25); box-shadow: var(--shadow-card); }
+.app-skeleton { position: relative; z-index: 1; background: var(--white); border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,.25); box-shadow: var(--shadow-card); }
+/* decorative accents around the hero mockup (behind it) */
+.hero-rings { position: absolute; z-index: 0; pointer-events: none; width: 118px; height: 118px; border-radius: 50%; border: 2px solid rgba(255,255,255,.32); bottom: -70px; right: -46px; }
+.hero-rings::before { content: ""; position: absolute; inset: 22px; border-radius: 50%; border: 2px solid rgba(255,255,255,.22); }
+.hero-rings::after { content: ""; position: absolute; inset: 48px; border-radius: 50%; background: rgba(255,255,255,.4); }
+.hero-dots { position: absolute; z-index: 0; pointer-events: none; width: 132px; height: 100px; bottom: -34px; left: -42px; opacity: .5;
+  background-image: radial-gradient(rgba(255,255,255,.6) 1.6px, transparent 1.6px); background-size: 15px 15px;
+  -webkit-mask: radial-gradient(70% 70% at 28% 68%, #000, transparent 74%); mask: radial-gradient(70% 70% at 28% 68%, #000, transparent 74%); }
+.hero-orb { position: absolute; z-index: 0; border-radius: 50%; pointer-events: none; }
+.hero-orb-1 { width: 18px; height: 18px; top: -30px; right: 74px; background: var(--secondary); box-shadow: 0 0 16px 1px rgba(255,188,74,.5); }
+.hero-orb-2 { width: 12px; height: 12px; top: 46px; left: -30px; background: #6addb5; box-shadow: 0 0 14px 1px rgba(106,221,181,.55); }
+.hero-orb-3 { width: 9px; height: 9px; top: -14px; left: 128px; background: rgba(255,255,255,.85); box-shadow: 0 0 12px 1px rgba(255,255,255,.4); }
 .app-bar { background: #f4f5f4; display: flex; align-items: center; gap: 7px; padding: 13px 16px; border-bottom: 1px solid var(--lighter); }
 .app-video { display: block; width: 100%; height: auto; background: var(--white); }
 .app-bar .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--lighter); }

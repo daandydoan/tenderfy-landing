@@ -439,18 +439,16 @@
     });
   });
 
-  /* ---- Output showcase rail ---- */
-  var rail = document.getElementById('showcaseRail');
-  if (rail) {
-    var prev = document.getElementById('railPrev');
-    var next = document.getElementById('railNext');
-    function railStep() {
-      var card = rail.querySelector('.doc-page');
-      var w = card ? card.getBoundingClientRect().width : 320;
-      return w + 28; // card + gap
-    }
-    if (prev) prev.addEventListener('click', function () { rail.scrollBy({ left: -railStep(), behavior: 'smooth' }); });
-    if (next) next.addEventListener('click', function () { rail.scrollBy({ left: railStep(), behavior: 'smooth' }); });
+  /* ---- Output showcase: seamless auto-scrolling marquee ---- */
+  var showcaseTrack = document.getElementById('showcaseTrack');
+  if (showcaseTrack) {
+    // duplicate the cards once so the -50% translate loops seamlessly
+    var originals = Array.prototype.slice.call(showcaseTrack.children);
+    originals.forEach(function (node) {
+      var clone = node.cloneNode(true);
+      clone.setAttribute('aria-hidden', 'true');
+      showcaseTrack.appendChild(clone);
+    });
   }
 
   /* ---- Ray chat: quick replies + auto-played production-style demo ---- */
