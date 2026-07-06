@@ -422,7 +422,11 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 
 /* ============ S5 · LIBRARY ============ */
 .stage-lib { height: clamp(320px, 54vh, 580px); }
-.lib-card { position: absolute; width: 72%; left: 8%; top: 4%; transform-origin: 50% 80%; }
+.lib-card { position: absolute; width: 72%; left: 8%; top: 4%; transform-origin: 50% 80%; opacity: 0; }
+/* the window clips its content (overflow:hidden for rounded corners), so the
+   name tag lives on this wrapper — never inside the window — to stay unclipped */
+.lib-card > .win { opacity: 1; transform: none; }
+.active .lib-card > .win { animation: none; }
 .lib-card .tag {
   position: absolute; z-index: 3; top: -14px; left: -14px;
   background: var(--dark-2); color: #F4F2EC; font-size: 12px; font-weight: 600;
@@ -920,10 +924,10 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
       <p class="sub fx" style="--d:.85s">Case studies, resumes, policies, cover pages — versioned, tagged, and one drag away from any tender. Your content stays yours: never shared, never used to train public models, hosted in AWS Sydney.</p>
     </div>
     <div class="stage stage-lib">
-      <div class="win lib-card lib-c1"><span class="tag">Case Studies</span><div class="win-bar"><span></span><span></span><span></span><span class="win-url">library/case-studies</span></div><img class="shot" src="assets/app/fm-case-studies.png" alt="Case studies library" /></div>
-      <div class="win lib-card lib-c2"><span class="tag">Resumes</span><div class="win-bar"><span></span><span></span><span></span><span class="win-url">library/resumes</span></div><img class="shot" src="assets/app/fm-resumes.png" alt="Resumes library" /></div>
-      <div class="win lib-card lib-c3"><span class="tag">Policies</span><div class="win-bar"><span></span><span></span><span></span><span class="win-url">library/policies</span></div><img class="shot" src="assets/app/fm-policies.png" alt="Policies library" /></div>
-      <div class="win lib-card lib-c4"><span class="tag">Cover Pages</span><div class="win-bar"><span></span><span></span><span></span><span class="win-url">library/cover-pages</span></div><img class="shot" src="assets/app/fm-cover-pages.png" alt="Cover pages library" /></div>
+      <div class="lib-card lib-c1"><span class="tag">Case Studies</span><div class="win"><div class="win-bar"><span></span><span></span><span></span><span class="win-url">library/case-studies</span></div><img class="shot" src="assets/app/fm-case-studies.png" alt="Case studies library" /></div></div>
+      <div class="lib-card lib-c2"><span class="tag">Resumes</span><div class="win"><div class="win-bar"><span></span><span></span><span></span><span class="win-url">library/resumes</span></div><img class="shot" src="assets/app/fm-resumes.png" alt="Resumes library" /></div></div>
+      <div class="lib-card lib-c3"><span class="tag">Policies</span><div class="win"><div class="win-bar"><span></span><span></span><span></span><span class="win-url">library/policies</span></div><img class="shot" src="assets/app/fm-policies.png" alt="Policies library" /></div></div>
+      <div class="lib-card lib-c4"><span class="tag">Cover Pages</span><div class="win"><div class="win-bar"><span></span><span></span><span></span><span class="win-url">library/cover-pages</span></div><img class="shot" src="assets/app/fm-cover-pages.png" alt="Cover pages library" /></div></div>
       <div class="pack-slot">
         <span class="ps-ic"><svg viewBox="0 0 24 24"><path d="M7 3h7l4 4v14H7z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M10 13l2 2 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
         <span><b>Westgate Bridge — tender pack</b><small>Drop content here · <span class="pack-added">Added ✓</span></small></span>
