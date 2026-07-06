@@ -193,12 +193,6 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 }
 .win-bar span { width: 9px; height: 9px; border-radius: 50%; background: #CBD5D3; }
 .win-bar span:first-child { background: var(--teal); }
-.win-url {
-  margin-left: 10px; flex: 1; max-width: 320px;
-  background: #fff; border-radius: 999px; padding: 4px 14px;
-  font-size: 11px; font-weight: 500; color: var(--ink-dim); text-align: left;
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-}
 .win img.shot { width: 100%; height: auto; }
 .float { animation: floatY 7s ease-in-out infinite; }
 @keyframes floatY { 0%, 100% { translate: 0 0; rotate: -.35deg; } 50% { translate: 0 -12px; rotate: .35deg; } }
@@ -743,13 +737,13 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
     </div>
     <div class="stage stage-go">
       <div class="win win-list">
-        <div class="win-bar"><span></span><span></span><span></span><span class="win-url">app.tenderfy.org/tenders</span></div>
+        <div class="win-bar"><span></span><span></span><span></span></div>
         <img class="shot" src="assets/app/tenders.png" alt="Tenders list" />
       </div>
       <span class="ripple" aria-hidden="true"></span>
       <span class="cursor" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 3l14 8-6.5 1.5L9 19 5 3z" fill="#fff" stroke="#2E3C3B" stroke-width="1.6" stroke-linejoin="round"/></svg></span>
       <div class="win win-modal">
-        <div class="win-bar"><span></span><span></span><span></span><span class="win-url">app.tenderfy.org/tenders/new — upload pack</span></div>
+        <div class="win-bar"><span></span><span></span><span></span></div>
         <img class="shot" src="assets/app/modal-create-tender.png" alt="Upload tender pack" />
       </div>
       <div class="gauge">
@@ -789,12 +783,12 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
     </div>
     <div class="stage stage-platform">
       <div class="win win-back" aria-hidden="true">
-        <div class="win-bar"><span></span><span></span><span></span><span class="win-url">app.tenderfy.org/dashboard — my tasks</span></div>
+        <div class="win-bar"><span></span><span></span><span></span></div>
         <img class="shot" src="assets/app/dashboard.png" alt="" />
       </div>
       <div class="float">
         <div class="win win-front" style="--d:.5s">
-          <div class="win-bar"><span></span><span></span><span></span><span class="win-url">app.tenderfy.org/tasks/new</span></div>
+          <div class="win-bar"><span></span><span></span><span></span></div>
           <img class="shot" src="assets/app/modal-add-task.png" alt="Add task modal" />
         </div>
       </div>
@@ -833,12 +827,12 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
     </div>
     <div class="stage stage-platform">
       <div class="win win-back" aria-hidden="true">
-        <div class="win-bar"><span></span><span></span><span></span><span class="win-url">app.tenderfy.org/tenders — unsuccessful</span></div>
+        <div class="win-bar"><span></span><span></span><span></span></div>
         <img class="shot" src="assets/app/tenders-unsuccessful.png" alt="" />
       </div>
       <div class="float">
         <div class="win win-front" style="--d:.5s">
-          <div class="win-bar"><span></span><span></span><span></span><span class="win-url">app.tenderfy.org/tenders — awarded</span></div>
+          <div class="win-bar"><span></span><span></span><span></span></div>
           <img class="shot" src="assets/app/tenders-awarded.png" alt="Awarded tenders with feedback" />
         </div>
       </div>
@@ -881,7 +875,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
       <div class="ray-glow-wrap" aria-hidden="true"></div>
       <span class="prompt-pill" aria-hidden="true"><i>You:</i>"Create a methodology based on this programme."</span>
       <div class="win win-ray">
-        <div class="win-bar"><span></span><span></span><span></span><span class="win-url">app.tenderfy.org/tenders/westgate — Ask Ray</span></div>
+        <div class="win-bar"><span></span><span></span><span></span></div>
         <img class="shot" src="assets/app/tender-ray.png" alt="Ray drafting a tender response" />
       </div>
       <div class="ray-bubble">
@@ -894,7 +888,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
       <span class="enhance-btn" aria-hidden="true">✦ Enhance</span>
       <span class="cursor" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 3l14 8-6.5 1.5L9 19 5 3z" fill="#fff" stroke="#2E3C3B" stroke-width="1.6" stroke-linejoin="round"/></svg></span>
       <div class="win win-enhance">
-        <div class="win-bar"><span></span><span></span><span></span><span class="win-url">app.tenderfy.org — AI Enhancement</span></div>
+        <div class="win-bar"><span></span><span></span><span></span></div>
         <img class="shot" src="assets/app/modal-ai-enhancement.png" alt="AI enhancement modal" />
       </div>
       <span class="chip" style="--d:5.4s; left:-2%; top:0"><span class="dot"></span>Drafted in a fraction of the time</span>
@@ -924,10 +918,10 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
       <p class="sub fx" style="--d:.85s">Case studies, resumes, policies, cover pages — versioned, tagged, and one drag away from any tender. Your content stays yours: never shared, never used to train public models, hosted in AWS Sydney.</p>
     </div>
     <div class="stage stage-lib">
-      <div class="lib-card lib-c1"><span class="tag">Case Studies</span><div class="win"><div class="win-bar"><span></span><span></span><span></span><span class="win-url">library/case-studies</span></div><img class="shot" src="assets/app/fm-case-studies.png" alt="Case studies library" /></div></div>
-      <div class="lib-card lib-c2"><span class="tag">Resumes</span><div class="win"><div class="win-bar"><span></span><span></span><span></span><span class="win-url">library/resumes</span></div><img class="shot" src="assets/app/fm-resumes.png" alt="Resumes library" /></div></div>
-      <div class="lib-card lib-c3"><span class="tag">Policies</span><div class="win"><div class="win-bar"><span></span><span></span><span></span><span class="win-url">library/policies</span></div><img class="shot" src="assets/app/fm-policies.png" alt="Policies library" /></div></div>
-      <div class="lib-card lib-c4"><span class="tag">Cover Pages</span><div class="win"><div class="win-bar"><span></span><span></span><span></span><span class="win-url">library/cover-pages</span></div><img class="shot" src="assets/app/fm-cover-pages.png" alt="Cover pages library" /></div></div>
+      <div class="lib-card lib-c1"><span class="tag">Case Studies</span><div class="win"><div class="win-bar"><span></span><span></span><span></span></div><img class="shot" src="assets/app/fm-case-studies.png" alt="Case studies library" /></div></div>
+      <div class="lib-card lib-c2"><span class="tag">Resumes</span><div class="win"><div class="win-bar"><span></span><span></span><span></span></div><img class="shot" src="assets/app/fm-resumes.png" alt="Resumes library" /></div></div>
+      <div class="lib-card lib-c3"><span class="tag">Policies</span><div class="win"><div class="win-bar"><span></span><span></span><span></span></div><img class="shot" src="assets/app/fm-policies.png" alt="Policies library" /></div></div>
+      <div class="lib-card lib-c4"><span class="tag">Cover Pages</span><div class="win"><div class="win-bar"><span></span><span></span><span></span></div><img class="shot" src="assets/app/fm-cover-pages.png" alt="Cover pages library" /></div></div>
       <div class="pack-slot">
         <span class="ps-ic"><svg viewBox="0 0 24 24"><path d="M7 3h7l4 4v14H7z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M10 13l2 2 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
         <span><b>Westgate Bridge — tender pack</b><small>Drop content here · <span class="pack-added">Added ✓</span></small></span>
@@ -967,7 +961,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
     <div class="stage stage-toc">
       <div class="float">
         <div class="win win-toc" style="--d:.4s">
-          <div class="win-bar"><span></span><span></span><span></span><span class="win-url">app.tenderfy.org — table of contents</span></div>
+          <div class="win-bar"><span></span><span></span><span></span></div>
           <img class="shot" src="assets/app/fm-toc.png" alt="Submission table of contents" />
         </div>
       </div>
@@ -1009,7 +1003,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
     <div class="stage stage-qa">
       <div class="float">
         <div class="win win-qa" style="--d:.4s">
-          <div class="win-bar"><span></span><span></span><span></span><span class="win-url">app.tenderfy.org — build tender · final pack</span></div>
+          <div class="win-bar"><span></span><span></span><span></span></div>
           <img class="shot" src="assets/app/tender-build.png" alt="Final tender pack, ready to download" />
         </div>
       </div>
