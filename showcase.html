@@ -60,8 +60,8 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   mix-blend-mode: difference; color: #fff;
 }
 .chrome-top, .chrome-bot { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-.chrome .wordmark { font-weight: 800; font-size: 19px; letter-spacing: -.01em; pointer-events: auto; }
-.chrome .wordmark sup { font-size: 10px; font-weight: 500; margin-left: 2px; }
+.chrome .wordmark { pointer-events: auto; }
+.chrome .wordmark img { height: 27px; width: auto; display: block; }
 .chrome-label { font-size: 11px; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; opacity: .75; }
 .chrome-bot { align-items: flex-end; }
 .hud { display: flex; align-items: center; gap: 14px; pointer-events: auto; }
@@ -630,8 +630,8 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
 <!-- ============ CHROME ============ -->
 <div class="chrome">
   <div class="chrome-top">
-    <a class="wordmark" href="index.html">Tenderfy<sup>®</sup></a>
-    <span class="chrome-label mid-label">Product Film — 95 sec</span>
+    <a class="wordmark" href="index.html"><img src="assets/tenderfy-wordmark-mono.svg" alt="Tenderfy" /></a>
+    <span class="chrome-label mid-label">Product Explainer</span>
     <span class="chrome-label" id="sceneLabel">Intro</span>
   </div>
   <div class="chrome-bot">
