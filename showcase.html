@@ -308,7 +308,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 /* ============ S4 · RAY (hero) ============ */
 .stage-ray { height: clamp(320px, 54vh, 580px); }
 .stage-ray .win-ray { position: absolute; width: 88%; left: 1%; top: 4%; }
-.active .stage-ray .win-ray { animation: winIn 1.25s var(--ease-out) forwards, dimBack .7s var(--ease-out) forwards; animation-delay: .5s, 9.3s; }
+.active .stage-ray .win-ray { animation: winIn 1.25s var(--ease-out) forwards, dimBack .7s var(--ease-out) forwards; animation-delay: .5s, 8.9s; }
 /* the landing site's glowing gradient border, wrapped around the hero window */
 .ray-glow-wrap { position: absolute; inset: 0; }
 .ray-glow-wrap::before {
@@ -343,10 +343,10 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   box-shadow: 0 18px 40px -10px rgba(0,0,0,.45);
   opacity: 0; transform: scale(.8);
 }
-.active .enhance-btn { animation: popIn .55s var(--ease-out) forwards, pressIt .5s var(--ease-out) forwards; animation-delay: 6.6s, 8.9s; }
+.active .enhance-btn { animation: popIn .55s var(--ease-out) forwards, pressIt .5s var(--ease-out) forwards; animation-delay: 6.4s, 8.5s; }
 @keyframes pressIt { 0% { transform: scale(1); } 40% { transform: scale(.88); } 100% { transform: scale(1); } }
 .stage-ray .cursor { right: calc(4% + 30px); bottom: calc(12% + 4px); }
-.active .stage-ray .cursor { animation: cur4 2.6s var(--ease-out) forwards; animation-delay: 7s; }
+.active .stage-ray .cursor { animation: cur4 2.6s var(--ease-out) forwards; animation-delay: 6.8s; }
 @keyframes cur4 {
   0% { opacity: 0; transform: translate(-18vw, -18vh); }
   18% { opacity: 1; }
@@ -356,7 +356,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   100% { opacity: 1; transform: translate(0, 0); }
 }
 .stage-ray .win-enhance { position: absolute; width: 78%; right: -2%; top: 12%; z-index: 6; }
-.active .stage-ray .win-enhance { animation: winIn 1s var(--ease-out) forwards; animation-delay: 9.5s; }
+.active .stage-ray .win-enhance { animation: winIn 1s var(--ease-out) forwards; animation-delay: 9.1s; }
 .stage-ray .chip-sharp { right: 2%; top: 8%; z-index: 8; }
 
 /* ============ S5 · LIBRARY ============ */
@@ -371,7 +371,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .active .lib-c1 { animation: libIn 1s var(--ease-out) forwards; animation-delay: 1s; }
 .active .lib-c2 { animation: libIn 1s var(--ease-out) forwards; animation-delay: 2.2s; }
 .active .lib-c3 { animation: libIn 1s var(--ease-out) forwards; animation-delay: 3.4s; }
-.active .lib-c4 { animation: libIn 1s var(--ease-out) forwards, libFly 1.3s var(--ease-curve) forwards; animation-delay: 4.4s, 5.8s; }
+.active .lib-c4 { animation: libIn 1s var(--ease-out) forwards, libFly 1.3s var(--ease-curve) forwards; animation-delay: 4.2s, 5.4s; }
 .lib-c1 { --rot: -5deg; --ox: -3%; --oy: 3%; }
 .lib-c2 { --rot: 3deg; --ox: 3%; --oy: 0%; }
 .lib-c3 { --rot: -2deg; --ox: -1%; --oy: -2%; }
@@ -392,22 +392,44 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   box-shadow: 0 20px 44px -14px rgba(18,45,40,.28);
   opacity: 0; transform: translateY(18px);
 }
-.active .pack-slot { animation: blockIn .8s var(--ease-out) forwards, packPulse .6s var(--ease-out) forwards; animation-delay: 4.8s, 6.8s; }
+.active .pack-slot { animation: blockIn .8s var(--ease-out) forwards, packPulse .6s var(--ease-out) forwards; animation-delay: 4.6s, 6.2s; }
 @keyframes packPulse { 0% { transform: scale(1); border-style: dashed; } 45% { transform: scale(1.06); } 100% { transform: scale(1); border-style: solid; } }
 .pack-slot .ps-ic { width: 34px; height: 34px; border-radius: 9px; background: var(--teal-50); color: var(--teal-dark); display: grid; place-items: center; flex: none; }
 .pack-slot .ps-ic svg { width: 17px; height: 17px; }
 .pack-slot b { display: block; font-size: 13px; }
 .pack-slot small { font-size: 11px; color: var(--ink-dim); }
 .pack-added { display: none; color: var(--teal-dark); font-weight: 700; }
-.active .pack-added { display: inline; opacity: 0; animation: blockIn .4s var(--ease-out) forwards; animation-delay: 6.9s; }
+.active .pack-added { display: inline; opacity: 0; animation: blockIn .4s var(--ease-out) forwards; animation-delay: 6.3s; }
 
 /* ============ S8 · FINAL QA (Method step 8) ============ */
 .stage-qa { height: clamp(300px, 52vh, 560px); }
 .stage-qa .win-qa { position: absolute; width: 92%; right: -1%; top: 8%; }
-.scene-dark .toc-list { border-color: var(--line-cream); }
-.scene-dark .toc-item { border-color: var(--line-cream); }
-.scene-dark .toc-item .ti-n { color: #6fd0ad; }
-.scene-dark .toc-item .ti-ok { color: #6fd0ad; }
+.scene-dark .toc-list, .scene-deep .toc-list { border-color: var(--line-cream); }
+.scene-dark .toc-item, .scene-deep .toc-item { border-color: var(--line-cream); }
+.scene-dark .toc-item .ti-n, .scene-deep .toc-item .ti-n { color: #6fd0ad; }
+.scene-dark .toc-item .ti-ok, .scene-deep .toc-item .ti-ok { color: #6fd0ad; }
+
+/* ============ S2 · METHOD OVERVIEW (8-step grid) ============ */
+.m-grid {
+  margin-top: clamp(18px, 3vh, 30px);
+  display: grid; grid-template-columns: 1fr 1fr;
+  column-gap: clamp(20px, 3vw, 48px);
+  width: min(820px, 100%); text-align: left;
+}
+@media (max-width: 700px) { .m-grid { grid-template-columns: 1fr; width: min(420px, 100%); } }
+
+/* user prompt pill on the Ray scene (deck's "Targeted Ray Prompts") */
+.prompt-pill {
+  position: absolute; z-index: 7; right: 2%; top: -4%;
+  background: #fff; color: var(--ink);
+  border-radius: 999px; padding: 10px 16px;
+  font-size: 12.5px; font-weight: 600;
+  box-shadow: 0 18px 40px -12px rgba(0,0,0,.4);
+  opacity: 0; transform: translateY(-12px);
+  max-width: 86%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.prompt-pill i { font-style: normal; color: var(--teal-dark); font-weight: 700; margin-right: 6px; }
+.active .prompt-pill { animation: blockIn .6s var(--ease-out) forwards; animation-delay: 1.5s; }
 
 /* ============ S7 · ASSEMBLE ============ */
 .stage-toc { height: clamp(320px, 54vh, 580px); }
@@ -549,7 +571,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
 <div class="chrome">
   <div class="chrome-top">
     <a class="wordmark" href="index.html">Tenderfy<sup>®</sup></a>
-    <span class="chrome-label mid-label">Product Film — 90 sec</span>
+    <span class="chrome-label mid-label">Product Film — 95 sec</span>
     <span class="chrome-label" id="sceneLabel">Intro</span>
   </div>
   <div class="chrome-bot">
@@ -567,7 +589,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
 </div>
 
 <!-- ============ S1 · HOOK ============ -->
-<section class="scene scene-dark" data-label="The Old Way" data-dur="8000">
+<section class="scene scene-dark" data-label="The Old Way" data-dur="7500">
   <svg class="clip-mark" viewBox="0 0 32 65" aria-hidden="true"><use href="#clipSym"/></svg>
   <div class="hook-docs" aria-hidden="true">
     <div class="hook-doc" style="--d:.2s; --r:-7deg; --sx:-70vw; --sy:-20vh; left:12%; top:16%"><span class="fn">Tender_FINAL_v7.docx</span><span class="ln"></span><span class="ln w80"></span><span class="ln w60"></span></div>
@@ -591,37 +613,30 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
 </section>
 
 <!-- ============ S2 · THE PLATFORM ============ -->
-<section class="scene scene-offwhite" data-label="The Platform" data-dur="7500">
-  <div class="split">
-    <div>
-      <p class="eyebrow fx" style="--d:.05s">The Tenderfy Method — in one platform</p>
-      <h2 class="cap">
-        <span class="rw"><span style="--d:.15s">Your</span></span>
-        <span class="rw"><span class="tl" style="--d:.24s">tendering</span></span><br>
-        <span class="rw"><span style="--d:.33s">command</span></span>
-        <span class="rw"><span style="--d:.42s">centre.</span></span>
-      </h2>
-      <p class="sub fx" style="--d:.7s">Every live tender, deadline and status — at a glance, in one place.</p>
-    </div>
-    <div class="stage stage-platform">
-      <div class="win win-back" aria-hidden="true">
-        <div class="win-bar"><span></span><span></span><span></span><span class="win-url">app.tenderfy.org/tenders</span></div>
-        <img class="shot" src="assets/app/tenders.png" alt="" />
-      </div>
-      <div class="float">
-        <div class="win win-front" style="--d:.5s">
-          <div class="win-bar"><span></span><span></span><span></span><span class="win-url">app.tenderfy.org/dashboard</span></div>
-          <img class="shot" src="assets/app/dashboard.png" alt="Tenderfy dashboard" />
-        </div>
-      </div>
-      <span class="chip chip-tl" style="--d:2s; left:-2%; top:6%"><span class="dot"></span>5 tenders in progress</span>
-      <span class="chip" style="--d:2.4s; right:0; bottom:4%"><span class="dot"></span>Next deadline · 6 days</span>
-    </div>
+<section class="scene scene-deep" data-label="The Method" data-dur="8000">
+  <svg class="clip-mark" viewBox="0 0 32 65" aria-hidden="true"><use href="#clipSym"/></svg>
+  <p class="eyebrow">The Tenderfy Method</p>
+  <h2 class="cap">
+    <span class="rw"><span style="--d:.1s">One</span></span>
+    <span class="rw"><span style="--d:.18s">method.</span></span>
+    <span class="rw"><span class="tl-bright" style="--d:.3s">Eight</span></span>
+    <span class="rw"><span class="tl-bright" style="--d:.38s">steps.</span></span>
+  </h2>
+  <p class="sub fx" style="--d:.65s">The modern tendering SOP used by high-performing teams — executed end-to-end in your Tenderfy command centre.</p>
+  <div class="toc-list m-grid" aria-label="The eight Method steps">
+    <div class="toc-item" style="--d:1.05s"><span class="ti-n">01</span>Go / No-Go review<span class="ti-ok"><svg viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+    <div class="toc-item" style="--d:1.3s"><span class="ti-n">02</span>Task list &amp; delivery plan<span class="ti-ok"><svg viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+    <div class="toc-item" style="--d:1.55s"><span class="ti-n">03</span>Understand the buyer<span class="ti-ok"><svg viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+    <div class="toc-item" style="--d:1.8s"><span class="ti-n">04</span>Learn from feedback<span class="ti-ok"><svg viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+    <div class="toc-item" style="--d:2.05s"><span class="ti-n">05</span>Tailor your responses<span class="ti-ok"><svg viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+    <div class="toc-item" style="--d:2.3s"><span class="ti-n">06</span>Methodologies &amp; technical content<span class="ti-ok"><svg viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+    <div class="toc-item" style="--d:2.55s"><span class="ti-n">07</span>Presentation matters<span class="ti-ok"><svg viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+    <div class="toc-item" style="--d:2.8s"><span class="ti-n">08</span>Final review &amp; quality check<span class="ti-ok"><svg viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
   </div>
 </section>
 
 <!-- ============ S3 · GO / NO-GO REVIEW (Method step 1) ============ -->
-<section class="scene scene-light" data-label="Go / No-Go" data-dur="10500" id="sceneGo">
+<section class="scene scene-light" data-label="Go / No-Go" data-dur="9500" id="sceneGo">
   <div class="split">
     <div>
       <p class="eyebrow fx" style="--d:.05s">The Method · 01 — Go / No-Go review</p>
@@ -656,13 +671,13 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
         <div class="gauge-track"><div class="gauge-fill"></div></div>
         <span class="gauge-badge">Recommend BID ✓</span>
       </div>
-      <span class="chip chip-amber" style="--d:8.3s; right:2%; top:0"><span class="dot"></span>A clear Go / No-Go decision</span>
+      <span class="chip chip-amber" style="--d:8s; right:2%; top:0"><span class="dot"></span>A clear Go / No-Go decision</span>
     </div>
   </div>
 </section>
 
 <!-- ============ S4 · DELIVERY PLAN (Method step 2) ============ -->
-<section class="scene scene-offwhite" data-label="The Delivery Plan" data-dur="7500">
+<section class="scene scene-offwhite" data-label="The Delivery Plan" data-dur="7000">
   <div class="split">
     <div>
       <p class="eyebrow fx" style="--d:.05s">The Method · 02 — Task list &amp; delivery plan</p>
@@ -698,12 +713,51 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
   </div>
 </section>
 
-<!-- ============ S4 · RAY DRAFTS (hero — hold longest) ============ -->
-<section class="scene scene-deep" data-label="Ray — AI Co-Pilot" data-dur="12000" id="sceneRay">
+<!-- ============ S5 · BUYER & FEEDBACK (Method steps 3–4) ============ -->
+<section class="scene scene-light" data-label="Buyer & Feedback" data-dur="8000">
+  <div class="split">
+    <div>
+      <p class="eyebrow fx" style="--d:.05s">The Method · 03–04 — Understand the buyer, learn from feedback</p>
+      <h2 class="cap">
+        <span class="rw"><span style="--d:.15s">Speak</span></span>
+        <span class="rw"><span style="--d:.22s">to</span></span>
+        <span class="rw"><span style="--d:.29s">what</span></span>
+        <span class="rw"><span class="tl" style="--d:.36s">matters.</span></span><br>
+        <span class="rw"><span style="--d:.48s">Learn</span></span>
+        <span class="rw"><span style="--d:.55s">from</span></span>
+        <span class="rw"><span style="--d:.62s">every</span></span>
+        <span class="rw"><span class="tl" style="--d:.69s">bid.</span></span>
+      </h2>
+      <p class="sub fx" style="--d:.95s">Every buyer has its own goals and pain points. Ray researches them — and mines the feedback stored from your won and lost tenders.</p>
+      <ul class="pts">
+        <li style="--d:1.3s">Challenges &amp; strategic initiatives</li>
+        <li style="--d:1.55s">Local priorities &amp; social goals</li>
+        <li style="--d:1.8s">Feedback from won and lost bids</li>
+      </ul>
+    </div>
+    <div class="stage stage-platform">
+      <div class="win win-back" aria-hidden="true">
+        <div class="win-bar"><span></span><span></span><span></span><span class="win-url">app.tenderfy.org/tenders — unsuccessful</span></div>
+        <img class="shot" src="assets/app/tenders-unsuccessful.png" alt="" />
+      </div>
+      <div class="float">
+        <div class="win win-front" style="--d:.5s">
+          <div class="win-bar"><span></span><span></span><span></span><span class="win-url">app.tenderfy.org/tenders — awarded</span></div>
+          <img class="shot" src="assets/app/tenders-awarded.png" alt="Awarded tenders with feedback" />
+        </div>
+      </div>
+      <span class="chip chip-tl" style="--d:2.2s; left:-2%; top:6%"><span class="dot"></span>Won — what worked · Lost — what to fix</span>
+      <span class="chip chip-amber" style="--d:5s; right:0; bottom:4%"><span class="dot"></span>Shows the buyer you understand them ✓</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ S6 · RAY DRAFTS (hero — hold longest) ============ -->
+<section class="scene scene-deep" data-label="Ray — AI Co-Pilot" data-dur="11500" id="sceneRay">
   <svg class="clip-mark" viewBox="0 0 32 65" aria-hidden="true"><use href="#clipSym"/></svg>
   <div class="split">
     <div>
-      <p class="eyebrow fx" style="--d:.05s">The Method · 03–06 — Ray, your AI co-pilot</p>
+      <p class="eyebrow fx" style="--d:.05s">The Method · 05–06 — Tailor &amp; draft with Ray</p>
       <h2 class="cap">
         <span class="rw"><span style="--d:.15s">Ray</span></span>
         <span class="rw"><span style="--d:.23s">drafts</span></span>
@@ -719,6 +773,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
     </div>
     <div class="stage stage-ray">
       <div class="ray-glow-wrap" aria-hidden="true"></div>
+      <span class="prompt-pill" aria-hidden="true"><i>You:</i>"Create a methodology based on this programme."</span>
       <div class="win win-ray">
         <div class="win-bar"><span></span><span></span><span></span><span class="win-url">app.tenderfy.org/tenders/westgate — Ask Ray</span></div>
         <img class="shot" src="assets/app/tender-ray.png" alt="Ray drafting a tender response" />
@@ -736,14 +791,14 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
         <div class="win-bar"><span></span><span></span><span></span><span class="win-url">app.tenderfy.org — AI Enhancement</span></div>
         <img class="shot" src="assets/app/modal-ai-enhancement.png" alt="AI enhancement modal" />
       </div>
-      <span class="chip" style="--d:5.4s; left:-2%; top:0"><span class="dot"></span>Aligned to this buyer's priorities</span>
-      <span class="chip chip-amber chip-sharp" style="--d:10.6s"><span class="dot"></span>Tailored — not copied &amp; pasted ✓</span>
+      <span class="chip" style="--d:5.4s; left:-2%; top:0"><span class="dot"></span>Drafted in a fraction of the time</span>
+      <span class="chip chip-amber chip-sharp" style="--d:10s"><span class="dot"></span>Tailored — not copied &amp; pasted ✓</span>
     </div>
   </div>
 </section>
 
 <!-- ============ S6 · CONTENT LIBRARY + YOUR DATA (merged) ============ -->
-<section class="scene scene-offwhite" data-label="Your Library, Your Data" data-dur="10000">
+<section class="scene scene-offwhite" data-label="Your Library, Your Data" data-dur="8500">
   <div class="split">
     <div>
       <p class="eyebrow fx" style="--d:.05s">Knowledge Hub — yours only</p>
@@ -766,13 +821,13 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
         <span class="ps-ic"><svg viewBox="0 0 24 24"><path d="M7 3h7l4 4v14H7z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M10 13l2 2 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
         <span><b>Westgate Bridge — tender pack</b><small>Drop content here · <span class="pack-added">Added ✓</span></small></span>
       </div>
-      <span class="chip" style="--d:7.6s; left:-2%; top:2%"><span class="dot"></span>Never used to train AI</span>
+      <span class="chip" style="--d:6.9s; left:-2%; top:2%"><span class="dot"></span>Never used to train AI</span>
     </div>
   </div>
 </section>
 
 <!-- ============ S7 · ASSEMBLE THE PACK (Method step 7) ============ -->
-<section class="scene scene-light" data-label="Assemble the Pack" data-dur="9000">
+<section class="scene scene-light" data-label="Assemble the Pack" data-dur="8500">
   <div class="split">
     <div>
       <p class="eyebrow fx" style="--d:.05s">The Method · 07 — Presentation matters</p>
@@ -809,7 +864,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
 </section>
 
 <!-- ============ S8 · FINAL REVIEW & QA (Method step 8) ============ -->
-<section class="scene scene-dark" data-label="Final Quality Check" data-dur="8500">
+<section class="scene scene-dark" data-label="Final Quality Check" data-dur="8000">
   <svg class="clip-mark" viewBox="0 0 32 65" aria-hidden="true"><use href="#clipSym"/></svg>
   <div class="split">
     <div>
@@ -842,7 +897,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
 </section>
 
 <!-- ============ S9 · PAYOFF ============ -->
-<section class="scene scene-ramp" data-label="The Payoff" data-dur="7500" id="sceneStats">
+<section class="scene scene-ramp" data-label="The Payoff" data-dur="7000" id="sceneStats">
   <p class="eyebrow">The payoff</p>
   <h2 class="cap">
     <span class="rw"><span style="--d:.05s">Faster</span></span>
@@ -859,7 +914,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
 </section>
 
 <!-- ============ S9 · BRAND END CARD ============ -->
-<section class="scene scene-end" data-label="Tenderfy" data-dur="11500">
+<section class="scene scene-end" data-label="Tenderfy" data-dur="11000">
   <span class="end-dots end-dots-1" aria-hidden="true"></span>
   <span class="end-dots end-dots-2" aria-hidden="true"></span>
   <svg class="end-clip" viewBox="0 0 32 65" fill="none" aria-hidden="true">
