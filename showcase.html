@@ -342,18 +342,18 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   opacity: 0; transform: translateY(20px) scale(.94);
 }
 .active .gauge { animation: popIn .7s var(--ease-out) forwards, floatT 7s ease-in-out infinite; animation-delay: 4.2s, 5.2s; }
-.gauge-row { display: flex; justify-content: space-between; font-size: 12.5px; font-weight: 600; }
-.gauge-row b { color: var(--teal-dark); font-size: 16px; font-variant-numeric: tabular-nums; }
-.gauge-track { height: 8px; border-radius: 99px; background: #ECEFEE; margin: 10px 0; overflow: hidden; }
-.gauge-fill { height: 100%; width: 0; border-radius: 99px; background: linear-gradient(90deg, var(--teal), var(--teal-dark)); box-shadow: 0 0 12px rgba(29,158,117,.7); }
-.active .gauge-fill { animation: gaugeGo 1.5s var(--ease-out) forwards; animation-delay: 4.7s; }
-@keyframes gaugeGo { to { width: 82%; } }
+.gauge-head { display: flex; align-items: center; gap: 9px; margin-bottom: 10px; }
+.gauge-av { width: 26px; height: 26px; border-radius: 50%; background: var(--teal-50); display: grid; place-items: center; overflow: hidden; flex: none; }
+.gauge-av img { width: 19px; height: 19px; }
+.gauge-name { font-size: 12px; font-weight: 700; }
+.gauge-name small { display: block; font-size: 10px; font-weight: 500; color: var(--ink-dim); }
+.gauge-note { margin-top: 8px; font-size: 11.5px; color: var(--ink-dim); }
 .gauge-badge {
   display: inline-flex; gap: 7px; align-items: center;
   background: var(--teal-50); color: var(--teal-dark); font-size: 12px; font-weight: 700;
   border-radius: 999px; padding: 6px 13px; opacity: 0; transform: scale(.8);
 }
-.active .gauge-badge { animation: popIn .5s var(--ease-out) forwards; animation-delay: 6.3s; }
+.active .gauge-badge { animation: popIn .5s var(--ease-out) forwards; animation-delay: 5.3s; }
 
 /* ============ S4 · RAY (hero) ============ */
 .stage-ray { height: clamp(320px, 54vh, 580px); }
@@ -710,8 +710,42 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
   </div>
 </section>
 
+<!-- ============ S3 · THE FOUNDATION — LIBRARY + YOUR DATA ============ -->
+<section class="scene scene-offwhite" data-label="Your Library, Your Data" data-dur="8500">
+  <div class="deco" aria-hidden="true">
+    <span class="orb orb-teal" style="width:30vw;height:30vw;right:-8vw;bottom:-10vh"></span>
+    <span class="dots" style="width:180px;height:140px;left:5%;bottom:14%"></span>
+    <span class="bit" style="left:11%;top:20%;--bd:6.5s"></span>
+  </div>
+  <div class="split">
+    <div>
+      <p class="eyebrow fx" style="--d:.05s">The foundation — Knowledge Hub</p>
+      <h2 class="cap">
+        <span class="rw"><span style="--d:.15s">Pull</span></span>
+        <span class="rw"><span class="tl" style="--d:.23s">proven</span></span>
+        <span class="rw"><span class="tl" style="--d:.31s">content</span></span><br>
+        <span class="rw"><span style="--d:.42s">from</span></span>
+        <span class="rw"><span style="--d:.5s">your</span></span>
+        <span class="rw"><span style="--d:.58s">library.</span></span>
+      </h2>
+      <p class="sub fx" style="--d:.85s">Set up once: case studies, resumes, policies, cover pages — versioned, tagged, and one drag away from any tender. Yours only: never shared, never used to train public models, hosted in AWS Sydney.</p>
+    </div>
+    <div class="stage stage-lib">
+      <div class="lib-card lib-c1"><span class="tag">Case Studies</span><div class="win"><div class="win-bar"><span></span><span></span><span></span></div><img class="shot" src="assets/app/fm-case-studies.png" alt="Case studies library" /></div></div>
+      <div class="lib-card lib-c2"><span class="tag">Resumes</span><div class="win"><div class="win-bar"><span></span><span></span><span></span></div><img class="shot" src="assets/app/fm-resumes.png" alt="Resumes library" /></div></div>
+      <div class="lib-card lib-c3"><span class="tag">Policies</span><div class="win"><div class="win-bar"><span></span><span></span><span></span></div><img class="shot" src="assets/app/fm-policies.png" alt="Policies library" /></div></div>
+      <div class="lib-card lib-c4"><span class="tag">Cover Pages</span><div class="win"><div class="win-bar"><span></span><span></span><span></span></div><img class="shot" src="assets/app/fm-cover-pages.png" alt="Cover pages library" /></div></div>
+      <div class="pack-slot">
+        <span class="ps-ic"><svg viewBox="0 0 24 24"><path d="M7 3h7l4 4v14H7z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M10 13l2 2 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span><b>Westgate Bridge — tender pack</b><small>Drop content here · <span class="pack-added">Added ✓</span></small></span>
+      </div>
+      <span class="chip" style="--d:6.9s; left:-2%; top:2%"><span class="dot"></span>Never used to train AI</span>
+    </div>
+  </div>
+</section>
+
 <!-- ============ S3 · GO / NO-GO REVIEW (Method step 1) ============ -->
-<section class="scene scene-light" data-label="Go / No-Go" data-dur="9500" id="sceneGo">
+<section class="scene scene-light" data-label="Go / No-Go" data-dur="9500">
   <div class="deco" aria-hidden="true">
     <span class="orb orb-teal" style="width:34vw;height:34vw;right:-9vw;top:-12vh"></span>
     <span class="dots" style="width:190px;height:150px;left:4%;top:12%"></span>
@@ -747,9 +781,12 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
         <img class="shot" src="assets/app/modal-create-tender.png" alt="Upload tender pack" />
       </div>
       <div class="gauge">
-        <div class="gauge-row"><span>Go / No-Go score</span><b id="goNum">0</b></div>
-        <div class="gauge-track"><div class="gauge-fill"></div></div>
+        <div class="gauge-head">
+          <span class="gauge-av"><img src="assets/ray-avatar.svg" alt="" onerror="this.parentNode.textContent='R'" /></span>
+          <span class="gauge-name">Ray <small>Go / No-Go review</small></span>
+        </div>
         <span class="gauge-badge">Recommend BID ✓</span>
+        <p class="gauge-note">Based on scope, capability, alignment &amp; risk</p>
       </div>
       <span class="chip chip-amber" style="--d:8s; right:2%; top:0"><span class="dot"></span>A clear Go / No-Go decision</span>
     </div>
@@ -778,7 +815,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
       <ul class="pts">
         <li style="--d:1.15s">One nominated Tender Lead</li>
         <li style="--d:1.4s">Every task on one board</li>
-        <li style="--d:1.65s">Automated deadline reminders</li>
+        <li style="--d:1.65s">Due dates &amp; priority levels</li>
       </ul>
     </div>
     <div class="stage stage-platform">
@@ -793,7 +830,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
         </div>
       </div>
       <span class="chip chip-tl" style="--d:2s; left:-2%; top:6%"><span class="dot"></span>Assigned · due in 6 days</span>
-      <span class="chip chip-amber" style="--d:4.8s; right:0; bottom:4%"><span class="dot"></span>A delivery plan — before writing begins</span>
+      <span class="chip chip-amber" style="--d:4.8s; right:0; bottom:4%"><span class="dot"></span>A cross-department plan — before writing begins</span>
     </div>
   </div>
 </section>
@@ -869,7 +906,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
         <span class="rw"><span class="am" style="--d:.76s">sharpens</span></span>
         <span class="rw"><span style="--d:.84s">it.</span></span>
       </h2>
-      <p class="sub fx" style="--d:1.1s">A tender question appears. Ray answers it from your library — grounded in your firm's real capability. One tap on Enhance refines the draft.</p>
+      <p class="sub fx" style="--d:1.1s">Give Ray a targeted prompt. It drafts from your library — grounded in your firm's real capability. One tap on Enhance sharpens the draft.</p>
     </div>
     <div class="stage stage-ray">
       <div class="ray-glow-wrap" aria-hidden="true"></div>
@@ -893,40 +930,6 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
       </div>
       <span class="chip" style="--d:5.4s; left:-2%; top:0"><span class="dot"></span>Drafted in a fraction of the time</span>
       <span class="chip chip-amber chip-sharp" style="--d:10s"><span class="dot"></span>Tailored — not copied &amp; pasted ✓</span>
-    </div>
-  </div>
-</section>
-
-<!-- ============ S6 · CONTENT LIBRARY + YOUR DATA (merged) ============ -->
-<section class="scene scene-offwhite" data-label="Your Library, Your Data" data-dur="8500">
-  <div class="deco" aria-hidden="true">
-    <span class="orb orb-teal" style="width:30vw;height:30vw;right:-8vw;bottom:-10vh"></span>
-    <span class="dots" style="width:180px;height:140px;left:5%;bottom:14%"></span>
-    <span class="bit" style="left:11%;top:20%;--bd:6.5s"></span>
-  </div>
-  <div class="split">
-    <div>
-      <p class="eyebrow fx" style="--d:.05s">Knowledge Hub — yours only</p>
-      <h2 class="cap">
-        <span class="rw"><span style="--d:.15s">Pull</span></span>
-        <span class="rw"><span class="tl" style="--d:.23s">proven</span></span>
-        <span class="rw"><span class="tl" style="--d:.31s">content</span></span><br>
-        <span class="rw"><span style="--d:.42s">from</span></span>
-        <span class="rw"><span style="--d:.5s">your</span></span>
-        <span class="rw"><span style="--d:.58s">library.</span></span>
-      </h2>
-      <p class="sub fx" style="--d:.85s">Case studies, resumes, policies, cover pages — versioned, tagged, and one drag away from any tender. Your content stays yours: never shared, never used to train public models, hosted in AWS Sydney.</p>
-    </div>
-    <div class="stage stage-lib">
-      <div class="lib-card lib-c1"><span class="tag">Case Studies</span><div class="win"><div class="win-bar"><span></span><span></span><span></span></div><img class="shot" src="assets/app/fm-case-studies.png" alt="Case studies library" /></div></div>
-      <div class="lib-card lib-c2"><span class="tag">Resumes</span><div class="win"><div class="win-bar"><span></span><span></span><span></span></div><img class="shot" src="assets/app/fm-resumes.png" alt="Resumes library" /></div></div>
-      <div class="lib-card lib-c3"><span class="tag">Policies</span><div class="win"><div class="win-bar"><span></span><span></span><span></span></div><img class="shot" src="assets/app/fm-policies.png" alt="Policies library" /></div></div>
-      <div class="lib-card lib-c4"><span class="tag">Cover Pages</span><div class="win"><div class="win-bar"><span></span><span></span><span></span></div><img class="shot" src="assets/app/fm-cover-pages.png" alt="Cover pages library" /></div></div>
-      <div class="pack-slot">
-        <span class="ps-ic"><svg viewBox="0 0 24 24"><path d="M7 3h7l4 4v14H7z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M10 13l2 2 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-        <span><b>Westgate Bridge — tender pack</b><small>Drop content here · <span class="pack-added">Added ✓</span></small></span>
-      </div>
-      <span class="chip" style="--d:6.9s; left:-2%; top:2%"><span class="dot"></span>Never used to train AI</span>
     </div>
   </div>
 </section>
@@ -994,8 +997,8 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
         <span class="rw"><span style="--d:.56s">everything.</span></span>
       </h2>
       <div class="toc-list" aria-label="Quality checks">
-        <div class="toc-item" style="--d:1.2s"><span class="ti-n">01</span>Spelling &amp; grammar<span class="ti-ok"><svg viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
-        <div class="toc-item" style="--d:1.5s"><span class="ti-n">02</span>Formatting &amp; consistency<span class="ti-ok"><svg viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+        <div class="toc-item" style="--d:1.2s"><span class="ti-n">01</span>Spelling, grammar &amp; formatting<span class="ti-ok"><svg viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+        <div class="toc-item" style="--d:1.5s"><span class="ti-n">02</span>Tone of voice &amp; consistency<span class="ti-ok"><svg viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
         <div class="toc-item" style="--d:1.8s"><span class="ti-n">03</span>Compliance with mandatory requirements<span class="ti-ok"><svg viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
         <div class="toc-item" style="--d:2.1s"><span class="ti-n">04</span>Alignment with buyer priorities<span class="ti-ok"><svg viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
       </div>
@@ -1168,16 +1171,11 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
   }
 
   var hooks = {
-    sceneGo: function () {
-      var n = document.getElementById('goNum');
-      n.textContent = '0';
-      later(function () { countUp(n, 82, 1400); }, 4700);
-    },
     sceneRay: function () {
       var t = document.getElementById('rayTyped');
       t.textContent = '';
       later(function () {
-        typeInto(t, 'Drafting from 12 comparable projects in your library — rewritten for a government audience in concise, compliance-focused language…', 34);
+        typeInto(t, 'Methodology drafted from your programme — sequencing, staging and risk mitigations, grounded in 12 comparable projects from your library…', 34);
       }, 2900);
     },
     sceneStats: function () {
