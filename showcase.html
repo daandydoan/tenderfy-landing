@@ -235,15 +235,15 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   position: absolute; right: -4vw; top: -6vh; z-index: -1;
   width: clamp(280px, 30vw, 520px); height: auto;
   color: #6fd0ad; opacity: .12; pointer-events: none;
-  translate: calc(var(--mx, 0) * -22px) calc(var(--my, 0) * -16px);
+  animation: clipSway 24s ease-in-out infinite;
 }
+@keyframes clipSway { 0%, 100% { translate: 0 0; rotate: 0deg; } 50% { translate: -9px 7px; rotate: -1.2deg; } }
 
 /* ============ AMBIENT DECOR (orbs, dots, rings, bits, sparks) ============ */
 .deco { position: absolute; inset: 0; pointer-events: none; z-index: -1; }
 .orb {
   position: absolute; border-radius: 50%; filter: blur(48px); opacity: .5;
   animation: orbDrift var(--od, 14s) ease-in-out infinite alternate;
-  translate: calc(var(--mx, 0) * var(--pf, 24px)) calc(var(--my, 0) * var(--pf, 24px));
 }
 .orb-teal  { background: radial-gradient(circle, rgba(43,189,142,.7), transparent 70%); }
 .orb-amber { background: radial-gradient(circle, rgba(255,188,74,.5), transparent 70%); }
@@ -256,7 +256,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   background-size: 16px 16px;
   -webkit-mask: radial-gradient(60% 60% at 50% 50%, #000, transparent 78%);
           mask: radial-gradient(60% 60% at 50% 50%, #000, transparent 78%);
-  translate: calc(var(--mx, 0) * -12px) calc(var(--my, 0) * -10px);
+  animation: driftB 18s ease-in-out infinite;
 }
 .scene-light .dots, .scene-offwhite .dots { color: var(--teal-dark); opacity: .16; }
 .ring { position: absolute; border-radius: 50%; border: 1.5px dashed rgba(111,208,173,.42); animation: ringSpin 30s linear infinite; }
@@ -269,7 +269,6 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   position: absolute; width: 10px; height: 10px; border-radius: 50%;
   background: var(--amber); box-shadow: 0 0 16px 3px rgba(255,188,74,.55);
   animation: bitFloat var(--bd, 6s) ease-in-out infinite alternate;
-  translate: calc(var(--mx, 0) * 16px) calc(var(--my, 0) * 12px);
 }
 .bit-mint { background: #6addb5; box-shadow: 0 0 16px 3px rgba(106,221,181,.55); }
 @keyframes bitFloat { from { transform: translate(0, 0); } to { transform: translate(var(--bx, 12px), var(--by, -18px)); } }
@@ -281,10 +280,11 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .spark::before { content: '✦'; }
 @keyframes sparkle { 0%, 100% { opacity: 0; transform: scale(.3) rotate(0deg); } 50% { opacity: 1; transform: scale(1) rotate(45deg); } }
 
-/* pointer parallax targets (values lerped in JS for inertia) */
-.stage { translate: calc(var(--mx, 0) * 10px) calc(var(--my, 0) * 8px); }
-.hook-docs { translate: calc(var(--mx, 0) * 16px) calc(var(--my, 0) * 12px); }
-.end-dots { translate: calc(var(--mx, 0) * -14px) calc(var(--my, 0) * -10px); }
+/* gentle autonomous drift — subtle, slow, no pointer dependency */
+@keyframes driftA { 0%, 100% { translate: 0 0; } 50% { translate: 5px -7px; } }
+@keyframes driftB { 0%, 100% { translate: 0 0; } 50% { translate: -6px 5px; } }
+.stage { animation: driftA 16s ease-in-out infinite; }
+.end-dots { animation: driftA 20s ease-in-out infinite; }
 
 /* ============ S1 · HOOK ============ */
 .hook-docs { position: absolute; inset: 0; pointer-events: none; }
@@ -1082,22 +1082,6 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (reduced) document.documentElement.classList.add('rm');
 
-  // pointer parallax with inertia — target follows the mouse, the scene
-  // lags behind via lerp (CSS consumes --mx/--my at different depths)
-  if (!reduced) {
-    var ptx = 0, pty = 0, pcx = 0, pcy = 0;
-    document.addEventListener('pointermove', function (e) {
-      ptx = (e.clientX / window.innerWidth) * 2 - 1;
-      pty = (e.clientY / window.innerHeight) * 2 - 1;
-    });
-    (function plax() {
-      pcx += (ptx - pcx) * 0.055;
-      pcy += (pty - pcy) * 0.055;
-      document.body.style.setProperty('--mx', pcx.toFixed(4));
-      document.body.style.setProperty('--my', pcy.toFixed(4));
-      requestAnimationFrame(plax);
-    })();
-  }
 
   var scenes = Array.prototype.slice.call(document.querySelectorAll('.scene'));
   var curtain = document.getElementById('curtain');
