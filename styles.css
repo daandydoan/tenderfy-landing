@@ -354,6 +354,23 @@ img, svg { display: block; }
 .hero-screenshot-wrap { margin-top: 8px; }
 .placeholder-hero { height: clamp(280px, 38vw, 560px); }
 
+/* ============ EMBEDDED PRODUCT EXPLAINER (showcase.html) ============ */
+.film-embed {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #141c1a;
+  box-shadow: var(--shadow-card);
+}
+.film-embed iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; }
+.film-embed-foot {
+  display: flex; justify-content: center; gap: 8px;
+  margin-top: 14px; font-size: 13px; color: var(--muted);
+}
+.film-embed-foot a { color: var(--primary); font-weight: 600; }
+.film-embed-foot a:hover { text-decoration: underline; }
+
 /* ============ PLACEHOLDERS ============ */
 /* PROTOTYPE MOCKUPS — desaturated so they're clearly placeholder demo UI,
    not real product screenshots. Remove this rule once real assets land. */
