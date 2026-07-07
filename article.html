@@ -19,12 +19,18 @@
 <main>
   <section class="page-hero article-hero">
     <span class="art-dots" aria-hidden="true"></span>
-    <span class="art-ring" aria-hidden="true"></span>
-    <div class="container article-container">
-      <a class="art-crumb" href="insights.html">← All insights</a>
-      <p class="eyebrow" id="artTag">Insights</p>
-      <h1 id="artTitle">Loading article…</h1>
-      <p class="article-meta article-meta-light" id="artMeta"></p>
+    <div class="container article-wide">
+      <div class="article-hero-grid">
+        <div class="article-hero-copy">
+          <a class="art-crumb" href="insights.html">← All insights</a>
+          <p class="eyebrow" id="artTag">Insights</p>
+          <h1 id="artTitle">Loading article…</h1>
+          <p class="article-meta article-meta-light" id="artMeta"></p>
+        </div>
+        <figure class="article-hero-figure">
+          <img id="artHero" alt="" hidden />
+        </figure>
+      </div>
     </div>
   </section>
 
@@ -36,7 +42,6 @@
           <nav id="artTocList" aria-label="Article sections"></nav>
         </aside>
         <div class="article-main">
-          <img class="article-hero-img" id="artHero" alt="" hidden />
           <article class="article-content" id="artContent">
             <p class="art-loading">Loading…</p>
           </article>
