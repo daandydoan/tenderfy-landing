@@ -439,17 +439,6 @@
     });
   });
 
-  /* ---- Output showcase: seamless auto-scrolling marquee ---- */
-  var showcaseTrack = document.getElementById('showcaseTrack');
-  if (showcaseTrack) {
-    // duplicate the cards once so the -50% translate loops seamlessly
-    var originals = Array.prototype.slice.call(showcaseTrack.children);
-    originals.forEach(function (node) {
-      var clone = node.cloneNode(true);
-      clone.setAttribute('aria-hidden', 'true');
-      showcaseTrack.appendChild(clone);
-    });
-  }
 
   /* ---- Ray chat: quick replies + auto-played production-style demo ---- */
   var chatForm = document.getElementById('chatForm');

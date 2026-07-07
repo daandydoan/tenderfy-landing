@@ -451,26 +451,32 @@ img, svg { display: block; }
 .cs-label { font-size: 14px; color: var(--gray); }
 
 /* ============ OUTPUT SHOWCASE (S06) ============ */
-.showcase-wrap { position: relative; margin-top: 56px; display: flex; align-items: center; }
-.showcase-rail {
-  display: flex; overflow: hidden; width: 100%;
-  /* vertical padding leaves room for the lifted card's hover shadow (0 32px 56px);
-     horizontal edges are faded with a mask instead of padding. */
-  padding: 30px 0 58px;
-  -webkit-mask: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%);
-          mask: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%);
+/* The Output: scrollable document-package preview (framed viewer, page-by-page) */
+/* size the columns to their content and centre the pair, so the viewer and copy
+   sit close together instead of drifting to the container edges */
+.showcase .split { grid-template-columns: minmax(0, 430px) minmax(0, 530px); justify-content: center; }
+@media (max-width: 980px) { .showcase .split { grid-template-columns: 1fr; } }
+.output-visual { display: flex; align-items: center; justify-content: center; padding: 10px 0; }
+.doc-preview { display: flex; flex-direction: column; align-items: center; gap: 16px; width: 100%; max-width: 400px; }
+.doc-viewer-frame {
+  width: 100%; background: #78828b; border-radius: 18px; padding: 12px;
+  box-shadow: inset 0 1px 4px rgba(0,0,0,.25), 0 30px 60px -25px rgba(20,40,38,.45);
 }
-.showcase-track {
-  display: flex; width: max-content;
-  animation: showcaseScroll 40s linear infinite;
+.doc-viewer {
+  height: 500px; overflow-y: auto;
+  background: #e8eaed; border-radius: 8px; padding: 12px 12px 12px 12px;
+  scrollbar-width: thin; scrollbar-color: #9aa3ab transparent;
 }
-.showcase-track:hover { animation-play-state: paused; }
-@keyframes showcaseScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-@media (prefers-reduced-motion: reduce) {
-  .showcase-track { animation: none; }
-  .showcase-rail { overflow-x: auto; scrollbar-width: none; }
-  .showcase-rail::-webkit-scrollbar { display: none; }
-}
+.doc-viewer::-webkit-scrollbar { width: 8px; }
+.doc-viewer::-webkit-scrollbar-track { background: transparent; }
+.doc-viewer::-webkit-scrollbar-thumb { background: #9aa3ab; border-radius: 99px; }
+.doc-viewer::-webkit-scrollbar-thumb:hover { background: #7f8990; }
+.dv-page { width: 100%; display: block; border-radius: 4px; box-shadow: 0 4px 14px rgba(0,0,0,.16); background: var(--white); }
+.dv-page + .dv-page { margin-top: 12px; }
+.doc-hint { display: flex; align-items: center; gap: 9px; font-weight: 600; font-size: 14px; color: var(--gray); }
+.doc-hint svg { width: 15px; height: 15px; }
+.split-cta { margin-top: 28px; display: flex; gap: 14px; }
+
 .doc-page {
   flex: 0 0 auto; width: 272px; height: 366px; margin-right: 28px;
   background: var(--white); border: 1px solid var(--lighter); border-radius: 16px;
