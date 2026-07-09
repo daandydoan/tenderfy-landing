@@ -1,0 +1,41 @@
+# ─────────────────────────────────────────────────────────────
+# Tenderfy — go-live redirect / rewrite map
+# Format: Netlify / Cloudflare Pages. See GO-LIVE-SEO.md for Apache/Nginx.
+# Goal: serve the prototype's .html files at production's existing slugs,
+# so every main page keeps its exact current URL (zero ranking loss, no
+# redirect on the URLs that matter). Only the .html aliases 301 away.
+# ─────────────────────────────────────────────────────────────
+
+# 1) SLUG REWRITES  (200 = internal rewrite, URL bar stays on the clean slug)
+/product         /product.html      200
+/solution        /solutions.html    200
+/pricing         /pricing.html      200
+/about-us        /about.html        200
+/trust-centre    /trust.html        200
+/our-insights    /insights.html     200
+/ai-policy       /ai-policy.html    200
+/guides          /guides.html       200
+/showcase        /showcase.html     200
+
+# 2) RETIRE .html ALIASES  (301 so they never compete as duplicate URLs)
+/product.html    /product/          301!
+/solutions.html  /solution/         301!
+/pricing.html    /pricing/          301!
+/about.html      /about-us/         301!
+/trust.html      /trust-centre/     301!
+/insights.html   /our-insights/     301!
+/ai-policy.html  /ai-policy/        301!
+/guides.html     /guides/           301!
+/showcase.html   /showcase/         301!
+
+# 3) LEGACY SAFETY NETS  (production plural / old paths -> current slug)
+/solutions/      /solution/         301
+/solutions       /solution/         301
+/about/          /about-us/         301
+/trust/          /trust-centre/     301
+/insights/       /our-insights/     301
+
+# 4) BLOG  — see GO-LIVE-SEO.md §5. Recommended: WordPress keeps serving the
+#    articles at their EXISTING root slugs, so NO redirect is needed here.
+#    Only if the blog moves to a subdomain, add per-post lines, e.g.:
+# /welcome-to-the-new-era-of-tendering/  https://blog.tenderfy.org/welcome-to-the-new-era-of-tendering/  301

@@ -1,4 +1,7 @@
+# Production (tenderfy.org) is crawlable. The staging deploy on *.github.io
+# is de-indexed at runtime by a host-aware noindex guard in each page's <head>,
+# so this file is safe to ship as-is to both environments.
 User-agent: *
 Allow: /
 
-Sitemap: https://daandydoan.github.io/tenderfy-landing/sitemap.xml
+Sitemap: https://tenderfy.org/sitemap.xml

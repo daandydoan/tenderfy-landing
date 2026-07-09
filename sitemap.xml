@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://daandydoan.github.io/tenderfy-landing/</loc><priority>1.0</priority></url>
-  <url><loc>https://daandydoan.github.io/tenderfy-landing/product.html</loc><priority>0.9</priority></url>
-  <url><loc>https://daandydoan.github.io/tenderfy-landing/solutions.html</loc><priority>0.9</priority></url>
-  <url><loc>https://daandydoan.github.io/tenderfy-landing/pricing.html</loc><priority>0.9</priority></url>
-  <url><loc>https://daandydoan.github.io/tenderfy-landing/about.html</loc><priority>0.7</priority></url>
-  <url><loc>https://daandydoan.github.io/tenderfy-landing/trust.html</loc><priority>0.6</priority></url>
-  <url><loc>https://daandydoan.github.io/tenderfy-landing/ai-policy.html</loc><priority>0.5</priority></url>
-  <url><loc>https://daandydoan.github.io/tenderfy-landing/insights.html</loc><priority>0.7</priority></url>
-  <url><loc>https://daandydoan.github.io/tenderfy-landing/guides.html</loc><priority>0.7</priority></url>
+  <url><loc>https://tenderfy.org/</loc><priority>1.0</priority></url>
+  <url><loc>https://tenderfy.org/product/</loc><priority>0.9</priority></url>
+  <url><loc>https://tenderfy.org/solution/</loc><priority>0.9</priority></url>
+  <url><loc>https://tenderfy.org/pricing/</loc><priority>0.9</priority></url>
+  <url><loc>https://tenderfy.org/about-us/</loc><priority>0.7</priority></url>
+  <url><loc>https://tenderfy.org/trust-centre/</loc><priority>0.6</priority></url>
+  <url><loc>https://tenderfy.org/ai-policy/</loc><priority>0.5</priority></url>
+  <url><loc>https://tenderfy.org/our-insights/</loc><priority>0.7</priority></url>
+  <url><loc>https://tenderfy.org/guides/</loc><priority>0.7</priority></url>
 </urlset>
