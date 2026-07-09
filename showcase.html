@@ -546,6 +546,18 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 }
 .stage-toc .chip-ready { right: 3%; bottom: 6%; z-index: 8; }
 
+/* ===== Assemble: real tender pages stacking into a finished pack ===== */
+.stage-docs { height: clamp(300px, 50vh, 540px); display: flex; align-items: center; justify-content: center; }
+.doc-stack { position: relative; width: clamp(150px, 19vw, 234px); aspect-ratio: 595 / 842; }
+.doc-pg {
+  position: absolute; inset: 0; border-radius: 7px; overflow: hidden; background: #fff;
+  box-shadow: 0 20px 44px -16px rgba(18,45,40,.45);
+  opacity: 0; transform: translateY(64px) rotate(0deg) scale(.9);
+}
+.doc-pg img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.active .doc-pg { animation: docPageIn 1s var(--ease-out) forwards; animation-delay: var(--d, 0s); }
+@keyframes docPageIn { to { opacity: 1; transform: translate(var(--x, 0), var(--y, 0)) rotate(var(--r, 0deg)) scale(1); } }
+
 /* ============ S8 · PAYOFF ============ */
 .stats { margin-top: clamp(24px, 4vh, 44px); display: grid; grid-template-columns: repeat(4, auto); gap: clamp(20px, 3.8vw, 64px); }
 .pay-quote { margin-top: clamp(14px, 2.4vh, 22px); font-size: clamp(13px, 1.3vw, 17px); font-style: italic; color: rgba(255,255,255,.92); max-width: 56ch; }
@@ -614,7 +626,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   .split { grid-template-columns: 1fr; gap: 20px; text-align: center; }
   .split .cap { max-width: none; margin: 0 auto; }
   .split .sub { margin-left: auto; margin-right: auto; }
-  .stage-platform, .stage-go, .stage-ray, .stage-lib, .stage-qa, .stage-toc { height: clamp(220px, 38vh, 380px); width: min(560px, 94vw); margin: 0 auto; }
+  .stage-platform, .stage-go, .stage-ray, .stage-lib, .stage-qa, .stage-toc, .stage-docs { height: clamp(220px, 38vh, 380px); width: min(560px, 94vw); margin: 0 auto; }
   .pts { align-items: center; }
   .toc-list { margin-left: auto; margin-right: auto; }
   .toc-item { text-align: left; }
@@ -996,17 +1008,16 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
         <div class="toc-item" style="--d:3.15s"><span class="ti-n">06</span>Policies &amp; certifications<span class="ti-ok"><svg viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
       </div>
     </div>
-    <div class="stage stage-toc">
-      <div class="float">
-        <div class="win win-toc" style="--d:.4s">
-          <div class="win-bar"><span></span><span></span><span></span></div>
-          <img class="shot" src="assets/app/fm-toc.png" alt="Submission table of contents" />
-        </div>
+    <div class="stage stage-docs">
+      <div class="doc-stack">
+        <div class="doc-pg" style="--d:1.2s; --x:-34px; --y:10px; --r:-11deg"><img src="assets/output-pages/24.jpg" alt="Delivery section page" /></div>
+        <div class="doc-pg" style="--d:1.6s; --x:28px; --y:6px; --r:8deg"><img src="assets/output-pages/17.jpg" alt="Case study page" /></div>
+        <div class="doc-pg" style="--d:2s; --x:-18px; --y:3px; --r:-5deg"><img src="assets/output-pages/11.jpg" alt="Key personnel resume" /></div>
+        <div class="doc-pg" style="--d:2.4s; --x:15px; --y:1px; --r:4deg"><img src="assets/output-pages/3.jpg" alt="Section divider" /></div>
+        <div class="doc-pg" style="--d:2.8s; --x:-6px; --y:-1px; --r:-2deg"><img src="assets/output-pages/2.jpg" alt="Table of contents" /></div>
+        <div class="doc-pg" style="--d:3.2s; --x:0; --y:0; --r:0deg"><img src="assets/output-pages/1.jpg" alt="Branded cover page" /></div>
       </div>
-      <span class="fly-page" style="--d:2.2s; right:30%; top:30%" aria-hidden="true"></span>
-      <span class="fly-page p2" style="--d:3s; right:34%; top:42%" aria-hidden="true"></span>
-      <span class="fly-page p3" style="--d:3.8s; right:26%; top:52%" aria-hidden="true"></span>
-      <span class="chip chip-amber chip-ready" style="--d:5.2s"><span class="dot"></span>Designed by a professional bid team ✓</span>
+      <span class="chip chip-amber" style="--d:4.4s; right:5%; bottom:8%; z-index:8"><span class="dot"></span>One polished, on-brand PDF ✓</span>
     </div>
   </div>
 </section>
