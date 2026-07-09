@@ -193,9 +193,10 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 }
 .win-bar span { width: 9px; height: 9px; border-radius: 50%; background: #CBD5D3; }
 .win-bar span:first-child { background: var(--teal); }
-/* PLACEHOLDER STILLS — greyed out until animated .webm feature captures land.
-   Swap each <img class="shot"> for a muted, looping <video> when recorded. */
+/* PLACEHOLDER STILLS — greyed out until animated .webm feature captures land. */
 .win img.shot { width: 100%; height: auto; filter: grayscale(1) contrast(.96) opacity(.88); }
+/* live feature videos — full colour, fill the window width */
+.win video.shot { width: 100%; height: auto; display: block; background: #0d1210; }
 .float { animation: floatY 7s ease-in-out infinite; }
 @keyframes floatY { 0%, 100% { translate: 0 0; rotate: -.35deg; } 50% { translate: 0 -12px; rotate: .35deg; } }
 /* secondary idle float on `translate` so it can stack with transform entrances */
@@ -763,7 +764,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
 </section>
 
 <!-- ============ S3 · GO / NO-GO REVIEW (Method step 1) ============ -->
-<section class="scene scene-light" data-label="Go / No-Go" data-dur="9500">
+<section class="scene scene-light" data-label="Go / No-Go" data-dur="9500" id="sceneGo">
   <div class="deco" aria-hidden="true">
     <span class="orb orb-teal" style="width:34vw;height:34vw;right:-9vw;top:-12vh"></span>
     <span class="dots" style="width:190px;height:150px;left:4%;top:12%"></span>
@@ -790,29 +791,15 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
     <div class="stage stage-go">
       <div class="win win-list">
         <div class="win-bar"><span></span><span></span><span></span></div>
-        <img class="shot" src="assets/app/tenders.png" alt="Tenders list" />
+        <video class="shot vid" muted playsinline preload="auto"></video>
       </div>
-      <span class="ripple" aria-hidden="true"></span>
-      <span class="cursor" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 3l14 8-6.5 1.5L9 19 5 3z" fill="#fff" stroke="#2E3C3B" stroke-width="1.6" stroke-linejoin="round"/></svg></span>
-      <div class="win win-modal">
-        <div class="win-bar"><span></span><span></span><span></span></div>
-        <img class="shot" src="assets/app/modal-create-tender.png" alt="Upload tender pack" />
-      </div>
-      <div class="gauge">
-        <div class="gauge-head">
-          <span class="gauge-av"><img src="assets/ray-avatar.svg" alt="" onerror="this.parentNode.textContent='R'" /></span>
-          <span class="gauge-name">Ray <small>Go / No-Go review</small></span>
-        </div>
-        <span class="gauge-badge">Recommend BID ✓</span>
-        <p class="gauge-note">Based on scope, capability, alignment &amp; risk</p>
-      </div>
-      <span class="chip chip-amber" style="--d:8s; right:2%; top:0"><span class="dot"></span>A clear Go / No-Go decision</span>
+      <span class="chip chip-amber" style="--d:2s; right:2%; top:0"><span class="dot"></span>A clear Go / No-Go decision</span>
     </div>
   </div>
 </section>
 
 <!-- ============ S4 · DELIVERY PLAN (Method step 2) ============ -->
-<section class="scene scene-offwhite" data-label="The Delivery Plan" data-dur="7000">
+<section class="scene scene-offwhite" data-label="The Delivery Plan" data-dur="7000" id="sceneDeliver">
   <div class="deco" aria-hidden="true">
     <span class="orb orb-blue" style="width:32vw;height:32vw;left:-10vw;bottom:-12vh"></span>
     <span class="dots" style="width:180px;height:140px;right:5%;top:14%"></span>
@@ -838,25 +825,21 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
       </ul>
     </div>
     <div class="stage stage-platform">
-      <div class="win win-back" aria-hidden="true">
-        <div class="win-bar"><span></span><span></span><span></span></div>
-        <img class="shot" src="assets/app/dashboard.png" alt="" />
-      </div>
       <div class="float">
-        <div class="win win-front" style="--d:.5s">
+        <div class="win win-front" style="--d:.3s">
           <div class="win-bar"><span></span><span></span><span></span></div>
-          <img class="shot" src="assets/app/modal-add-task.png" alt="Add task modal" />
+          <video class="shot vid" muted playsinline preload="auto"></video>
         </div>
       </div>
-      <span class="chip chip-tl" style="--d:2s; left:-2%; top:6%"><span class="dot"></span>Assigned · due in 6 days</span>
-      <span class="chip" style="--d:3.2s; left:-2%; bottom:16%"><span class="dot"></span>3 SMEs editing live</span>
-      <span class="chip chip-amber" style="--d:4.8s; right:0; bottom:4%"><span class="dot"></span>A cross-department plan — before writing begins</span>
+      <span class="chip chip-tl" style="--d:1.6s; left:-2%; top:6%"><span class="dot"></span>Assigned · due in 6 days</span>
+      <span class="chip" style="--d:2.6s; left:-2%; bottom:16%"><span class="dot"></span>3 SMEs editing live</span>
+      <span class="chip chip-amber" style="--d:3.6s; right:0; bottom:4%"><span class="dot"></span>A cross-department plan — before writing begins</span>
     </div>
   </div>
 </section>
 
 <!-- ============ S5 · BUYER & FEEDBACK (Method steps 3–4) ============ -->
-<section class="scene scene-light" data-label="Buyer & Feedback" data-dur="8000">
+<section class="scene scene-light" data-label="Buyer & Feedback" data-dur="8000" id="sceneBuyer">
   <div class="deco" aria-hidden="true">
     <span class="orb orb-teal" style="width:32vw;height:32vw;left:-9vw;top:-10vh"></span>
     <span class="dots" style="width:180px;height:140px;right:6%;bottom:12%"></span>
@@ -883,18 +866,14 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
       </ul>
     </div>
     <div class="stage stage-platform">
-      <div class="win win-back" aria-hidden="true">
-        <div class="win-bar"><span></span><span></span><span></span></div>
-        <img class="shot" src="assets/app/tenders-unsuccessful.png" alt="" />
-      </div>
       <div class="float">
-        <div class="win win-front" style="--d:.5s">
+        <div class="win win-front" style="--d:.3s">
           <div class="win-bar"><span></span><span></span><span></span></div>
-          <img class="shot" src="assets/app/tenders-awarded.png" alt="Awarded tenders with feedback" />
+          <video class="shot vid" muted playsinline preload="auto"></video>
         </div>
       </div>
-      <span class="chip chip-tl" style="--d:2.2s; left:-2%; top:6%"><span class="dot"></span>Won — what worked · Lost — what to fix</span>
-      <span class="chip chip-amber" style="--d:5s; right:0; bottom:4%"><span class="dot"></span>Shows the buyer you understand them ✓</span>
+      <span class="chip chip-tl" style="--d:1.6s; left:-2%; top:6%"><span class="dot"></span>Won — what worked · Lost — what to fix</span>
+      <span class="chip chip-amber" style="--d:3.4s; right:0; bottom:4%"><span class="dot"></span>Shows the buyer you understand them ✓</span>
     </div>
   </div>
 </section>
@@ -930,32 +909,18 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
     </div>
     <div class="stage stage-ray">
       <div class="ray-glow-wrap" aria-hidden="true"></div>
-      <span class="prompt-pill" aria-hidden="true"><i>You:</i>"Create a methodology based on this programme."</span>
       <div class="win win-ray">
         <div class="win-bar"><span></span><span></span><span></span></div>
-        <img class="shot" src="assets/app/tender-ray.png" alt="Ray drafting a tender response" />
+        <video class="shot vid" muted playsinline preload="auto"></video>
       </div>
-      <div class="ray-bubble">
-        <div class="rb-head">
-          <span class="rb-av"><img src="assets/ray-avatar.svg" alt="" onerror="this.parentNode.textContent='R'" /></span>
-          <span class="rb-name">Ray <small>drafting from your library…</small></span>
-        </div>
-        <p class="rb-text"><span id="rayTyped"></span><span class="rb-caret"></span></p>
-      </div>
-      <span class="enhance-btn" aria-hidden="true">✦ Enhance</span>
-      <span class="cursor" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 3l14 8-6.5 1.5L9 19 5 3z" fill="#fff" stroke="#2E3C3B" stroke-width="1.6" stroke-linejoin="round"/></svg></span>
-      <div class="win win-enhance">
-        <div class="win-bar"><span></span><span></span><span></span></div>
-        <img class="shot" src="assets/app/modal-ai-enhancement.png" alt="AI enhancement modal" />
-      </div>
-      <span class="chip" style="--d:5.4s; left:-2%; top:0"><span class="dot"></span>Drafted in a fraction of the time</span>
-      <span class="chip chip-amber chip-sharp" style="--d:10s"><span class="dot"></span>Tailored — not copied &amp; pasted ✓</span>
+      <span class="chip" style="--d:1.8s; left:-2%; top:0"><span class="dot"></span>Drafted in a fraction of the time</span>
+      <span class="chip chip-amber chip-sharp" style="--d:3.4s"><span class="dot"></span>Tailored — not copied &amp; pasted ✓</span>
     </div>
   </div>
 </section>
 
 <!-- ============ S7 · COLLABORATE WITHOUT THE CHAOS (Method step 07) ============ -->
-<section class="scene scene-dark" data-label="Collaborate Without the Chaos" data-dur="8500">
+<section class="scene scene-dark" data-label="Collaborate Without the Chaos" data-dur="8500" id="sceneCollab">
   <svg class="clip-mark" viewBox="0 0 32 65" aria-hidden="true"><use href="#clipSym"/></svg>
   <div class="deco" aria-hidden="true">
     <span class="orb orb-teal" style="width:38vw;height:38vw;left:-12vw;top:-12vh"></span>
@@ -985,11 +950,11 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
       <div class="float">
         <div class="win win-qa" style="--d:.4s">
           <div class="win-bar"><span></span><span></span><span></span></div>
-          <img class="shot" src="assets/app/staff-management.png" alt="Assigning tender questions to team members" />
+          <video class="shot vid" muted playsinline preload="auto"></video>
         </div>
       </div>
-      <span class="chip" style="--d:3s; left:-2%; top:6%"><span class="dot"></span>Assigned to Sarah Reynolds</span>
-      <span class="chip chip-amber" style="--d:4.6s; right:2%; bottom:2%"><span class="dot"></span>Your team, notified instantly ✓</span>
+      <span class="chip" style="--d:1.6s; left:-2%; top:6%"><span class="dot"></span>Assigned to Sarah Reynolds</span>
+      <span class="chip chip-amber" style="--d:3s; right:2%; bottom:2%"><span class="dot"></span>Your team, notified instantly ✓</span>
     </div>
   </div>
 </section>
@@ -1196,13 +1161,6 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
   }
 
   var hooks = {
-    sceneRay: function () {
-      var t = document.getElementById('rayTyped');
-      t.textContent = '';
-      later(function () {
-        typeInto(t, 'Methodology drafted from your programme — sequencing, staging and risk mitigations, grounded in 12 comparable projects from your library…', 34);
-      }, 2900);
-    },
     sceneStats: function () {
       var nums = document.querySelectorAll('#sceneStats [data-count]');
       Array.prototype.forEach.call(nums, function (el, i) {
@@ -1212,13 +1170,97 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
     }
   };
 
+  // ---- feature videos: each listed scene plays its clip(s) to completion,
+  //      then advances. Two-clip scenes play in sequence. ----
+  var VIDS = {
+    sceneGo:      ['go-nogo.webm'],
+    sceneDeliver: ['delivery-plan-1.webm', 'delivery-plan-2.webm'],
+    sceneBuyer:   ['align-to-buyer.webm', 'continuous-improvement.webm'],
+    sceneRay:     ['develop-structured-responses.webm'],
+    sceneCollab:  ['collaborate.webm']
+  };
+  var activeVideo = null, videoRAF = 0, videoFallback = 0, playlistIdx = 0;
+
+  function stopActiveVideo() {
+    if (videoRAF) { cancelAnimationFrame(videoRAF); videoRAF = 0; }
+    clearTimeout(videoFallback);
+    if (activeVideo) {
+      var v = activeVideo; activeVideo = null;
+      v.onended = null; v.onerror = null; v.onloadedmetadata = null;
+      try { v.pause(); } catch (e) {}
+      try { v.removeAttribute('src'); v.load(); } catch (e) {}
+    }
+  }
+
+  function startVideoScene(scene, list) {
+    var v = scene.querySelector('video.vid');
+    if (!v) { scheduleAdvance(+scene.dataset.dur); return; }
+    activeVideo = v;
+    playlistIdx = 0;
+    var durs = list.map(function () { return 0; });
+    var seg = segs[current], bar = seg && seg.querySelector('i');
+    if (bar) { bar.style.animation = 'none'; bar.style.transform = 'scaleX(0)'; }
+
+    function frac() {
+      var total = 0, done = 0;
+      for (var k = 0; k < list.length; k++) {
+        var d = durs[k] || (k === playlistIdx ? (v.duration || 0) : 0);
+        total += d;
+        if (k < playlistIdx) done += d;
+      }
+      done += v.currentTime || 0;
+      return total ? Math.min(1, done / total) : 0;
+    }
+    function progress() {
+      if (activeVideo !== v) return;
+      if (bar) bar.style.transform = 'scaleX(' + frac() + ')';
+      videoRAF = requestAnimationFrame(progress);
+    }
+    function playAt(k) {
+      playlistIdx = k;
+      v.src = 'assets/app/' + list[k];
+      v.load();
+      var p = v.play();
+      if (p && p.catch) p.catch(function () {});
+    }
+    v.onloadedmetadata = function () { durs[playlistIdx] = v.duration || 0; };
+    v.onended = function () {
+      durs[playlistIdx] = v.duration || durs[playlistIdx];
+      if (playlistIdx < list.length - 1) { playAt(playlistIdx + 1); }
+      else {
+        if (bar) bar.style.transform = 'scaleX(1)';
+        clearTimeout(videoFallback);
+        advanceTimer = setTimeout(function () { goTo((current + 1) % scenes.length, false); }, 450);
+      }
+    };
+    v.onerror = function () {
+      advanceTimer = setTimeout(function () { goTo((current + 1) % scenes.length, false); }, 800);
+    };
+    playAt(0);
+    videoRAF = requestAnimationFrame(progress);
+    // safety net: never hang if a clip stalls or 'ended' never fires
+    videoFallback = setTimeout(function () { goTo((current + 1) % scenes.length, false); }, 120000);
+  }
+
   function activate(i) {
+    stopActiveVideo();
     clearHooks();
     scenes.forEach(function (s, j) { s.classList.toggle('active', j === i); });
     current = i;
     paintHud(i);
     if (scenes[i].id && hooks[scenes[i].id]) hooks[scenes[i].id]();
-    scheduleAdvance(+scenes[i].dataset.dur);
+    if (scenes[i].id && VIDS[scenes[i].id]) {
+      if (reduced) {
+        // reduced motion: show the first frame, advance on the fixed timer
+        var vr = scenes[i].querySelector('video.vid');
+        if (vr) { vr.src = 'assets/app/' + VIDS[scenes[i].id][0]; vr.load(); }
+        scheduleAdvance(+scenes[i].dataset.dur);
+      } else {
+        startVideoScene(scenes[i], VIDS[scenes[i].id]);
+      }
+    } else {
+      scheduleAdvance(+scenes[i].dataset.dur);
+    }
   }
 
   function scheduleAdvance(ms) {
@@ -1232,6 +1274,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
     if (transitioning || i === current) return;
     transitioning = true;
     clearTimeout(advanceTimer);
+    stopActiveVideo();
     curtainLabel.textContent = scenes[i].dataset.label;
     var dur = reduced ? 350 : 1100;
     curtain.animate(
@@ -1251,7 +1294,14 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
     icPause.style.display = p ? 'none' : 'block';
     icPlay.style.display = p ? 'block' : 'none';
     btnPlay.setAttribute('aria-label', p ? 'Play' : 'Pause');
-    if (p) {
+    if (activeVideo) {
+      // video-driven scene: advance is tied to playback, not the fixed timer
+      if (p) { clearTimeout(videoFallback); try { activeVideo.pause(); } catch (e) {} }
+      else {
+        var pr = activeVideo.play(); if (pr && pr.catch) pr.catch(function () {});
+        videoFallback = setTimeout(function () { goTo((current + 1) % scenes.length, false); }, 120000);
+      }
+    } else if (p) {
       remaining = Math.max(0, remaining - (performance.now() - sceneStart));
       clearTimeout(advanceTimer);
     } else {
