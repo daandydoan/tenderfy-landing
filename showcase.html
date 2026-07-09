@@ -193,10 +193,27 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 }
 .win-bar span { width: 9px; height: 9px; border-radius: 50%; background: #CBD5D3; }
 .win-bar span:first-child { background: var(--teal); }
-/* PLACEHOLDER STILLS — greyed out until animated .webm feature captures land. */
+/* PLACEHOLDER STILLS — greyed out until animated captures land. */
 .win img.shot { width: 100%; height: auto; filter: grayscale(1) contrast(.96) opacity(.88); }
-/* live feature videos — full colour, fill the window width */
-.win video.shot { width: 100%; height: auto; display: block; background: #0d1210; }
+/* the proven-content library shows real, full-colour screens */
+#sceneLibrary .win img.shot { filter: none; }
+
+/* ===== unified feature-video window: same size, centered, gentle float ===== */
+.stage.stage-vid { display: flex; align-items: center; justify-content: center; height: clamp(300px, 50vh, 540px); }
+/* the video window carries NO transform of its own — flex centring alone keeps
+   it exactly between the surrounding chips. Entrance is a fade + float via the
+   `translate`/`rotate` properties (never `transform`), so it always settles centred. */
+.stage-vid .winv { position: relative; width: 100%; opacity: 0; transform: none !important; }
+.winv video.shot {
+  width: 100%; aspect-ratio: 16 / 9; height: auto; display: block;
+  object-fit: contain; background: #0d1210;
+}
+.active .stage-vid .winv {
+  animation: winvFade .9s var(--ease-out) forwards, floatVW 9s ease-in-out infinite;
+  animation-delay: var(--d, .3s), 1.2s;
+}
+@keyframes winvFade { from { opacity: 0; translate: 0 22px; } to { opacity: 1; translate: 0 0; } }
+@keyframes floatVW { 0%, 100% { translate: 0 0; rotate: -.3deg; } 50% { translate: 0 -9px; rotate: .3deg; } }
 .float { animation: floatY 7s ease-in-out infinite; }
 @keyframes floatY { 0%, 100% { translate: 0 0; rotate: -.35deg; } 50% { translate: 0 -12px; rotate: .35deg; } }
 /* secondary idle float on `translate` so it can stack with transform entrances */
@@ -729,7 +746,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
 </section>
 
 <!-- ============ S3 · THE FOUNDATION — LIBRARY + YOUR DATA ============ -->
-<section class="scene scene-offwhite" data-label="Your Library, Your Data" data-dur="8500">
+<section class="scene scene-offwhite" data-label="Your Library, Your Data" data-dur="8500" id="sceneLibrary">
   <div class="deco" aria-hidden="true">
     <span class="orb orb-teal" style="width:30vw;height:30vw;right:-8vw;bottom:-10vh"></span>
     <span class="dots" style="width:180px;height:140px;left:5%;bottom:14%"></span>
@@ -788,8 +805,8 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
         <li style="--d:1.7s">A recommendation you can defend</li>
       </ul>
     </div>
-    <div class="stage stage-go">
-      <div class="win win-list">
+    <div class="stage stage-vid">
+      <div class="win winv" style="--d:.3s">
         <div class="win-bar"><span></span><span></span><span></span></div>
         <video class="shot vid" muted playsinline preload="auto"></video>
       </div>
@@ -824,12 +841,10 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
         <li style="--d:1.9s">Real-time inputs &amp; updates — no last-minute scramble</li>
       </ul>
     </div>
-    <div class="stage stage-platform">
-      <div class="float">
-        <div class="win win-front" style="--d:.3s">
-          <div class="win-bar"><span></span><span></span><span></span></div>
-          <video class="shot vid" muted playsinline preload="auto"></video>
-        </div>
+    <div class="stage stage-vid">
+      <div class="win winv" style="--d:.3s">
+        <div class="win-bar"><span></span><span></span><span></span></div>
+        <video class="shot vid" muted playsinline preload="auto"></video>
       </div>
       <span class="chip chip-tl" style="--d:1.6s; left:-2%; top:6%"><span class="dot"></span>Assigned · due in 6 days</span>
       <span class="chip" style="--d:2.6s; left:-2%; bottom:16%"><span class="dot"></span>3 SMEs editing live</span>
@@ -865,12 +880,10 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
         <li style="--d:1.8s">Feedback from won and lost bids</li>
       </ul>
     </div>
-    <div class="stage stage-platform">
-      <div class="float">
-        <div class="win win-front" style="--d:.3s">
-          <div class="win-bar"><span></span><span></span><span></span></div>
-          <video class="shot vid" muted playsinline preload="auto"></video>
-        </div>
+    <div class="stage stage-vid">
+      <div class="win winv" style="--d:.3s">
+        <div class="win-bar"><span></span><span></span><span></span></div>
+        <video class="shot vid" muted playsinline preload="auto"></video>
       </div>
       <span class="chip chip-tl" style="--d:1.6s; left:-2%; top:6%"><span class="dot"></span>Won — what worked · Lost — what to fix</span>
       <span class="chip chip-amber" style="--d:3.4s; right:0; bottom:4%"><span class="dot"></span>Shows the buyer you understand them ✓</span>
@@ -907,14 +920,13 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
       </h2>
       <p class="sub fx" style="--d:1.1s">Give Ray a targeted prompt. It drafts from your library — grounded in your firm's real capability. One tap on Enhance sharpens the draft.</p>
     </div>
-    <div class="stage stage-ray">
-      <div class="ray-glow-wrap" aria-hidden="true"></div>
-      <div class="win win-ray">
+    <div class="stage stage-vid">
+      <div class="win winv" style="--d:.3s">
         <div class="win-bar"><span></span><span></span><span></span></div>
         <video class="shot vid" muted playsinline preload="auto"></video>
       </div>
       <span class="chip" style="--d:1.8s; left:-2%; top:0"><span class="dot"></span>Drafted in a fraction of the time</span>
-      <span class="chip chip-amber chip-sharp" style="--d:3.4s"><span class="dot"></span>Tailored — not copied &amp; pasted ✓</span>
+      <span class="chip chip-amber" style="--d:3.4s; right:2%; bottom:2%"><span class="dot"></span>Tailored — not copied &amp; pasted ✓</span>
     </div>
   </div>
 </section>
@@ -946,12 +958,10 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
         <li style="--d:1.8s">One coordinated submission, no clashing drafts</li>
       </ul>
     </div>
-    <div class="stage stage-qa">
-      <div class="float">
-        <div class="win win-qa" style="--d:.4s">
-          <div class="win-bar"><span></span><span></span><span></span></div>
-          <video class="shot vid" muted playsinline preload="auto"></video>
-        </div>
+    <div class="stage stage-vid">
+      <div class="win winv" style="--d:.3s">
+        <div class="win-bar"><span></span><span></span><span></span></div>
+        <video class="shot vid" muted playsinline preload="auto"></video>
       </div>
       <span class="chip" style="--d:1.6s; left:-2%; top:6%"><span class="dot"></span>Assigned to Sarah Reynolds</span>
       <span class="chip chip-amber" style="--d:3s; right:2%; bottom:2%"><span class="dot"></span>Your team, notified instantly ✓</span>
@@ -1173,7 +1183,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
   // ---- feature videos: each listed scene plays its clip(s) to completion,
   //      then advances. Two-clip scenes play in sequence. ----
   var VIDS = {
-    sceneGo:      ['go-nogo.webm'],
+    sceneGo:      ['go-nogo.mp4'],
     sceneDeliver: ['delivery-plan-1.webm', 'delivery-plan-2.webm'],
     sceneBuyer:   ['align-to-buyer.webm', 'continuous-improvement.webm'],
     sceneRay:     ['develop-structured-responses.webm'],
@@ -1186,6 +1196,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
     clearTimeout(videoFallback);
     if (activeVideo) {
       var v = activeVideo; activeVideo = null;
+      clearInterval(v._retry);
       v.onended = null; v.onerror = null; v.onloadedmetadata = null;
       try { v.pause(); } catch (e) {}
       try { v.removeAttribute('src'); v.load(); } catch (e) {}
@@ -1197,6 +1208,8 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
     if (!v) { scheduleAdvance(+scene.dataset.dur); return; }
     activeVideo = v;
     playlistIdx = 0;
+    var sceneStartT = performance.now();
+    var minHold = +scene.dataset.dur || 0; // if clips finish early, hold on the last frame to here
     var durs = list.map(function () { return 0; });
     var seg = segs[current], bar = seg && seg.querySelector('i');
     if (bar) { bar.style.animation = 'none'; bar.style.transform = 'scaleX(0)'; }
@@ -1216,21 +1229,34 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
       if (bar) bar.style.transform = 'scaleX(' + frac() + ')';
       videoRAF = requestAnimationFrame(progress);
     }
+    function tryPlay() {
+      var p = v.play();
+      if (p && p.catch) p.catch(function () {});
+    }
     function playAt(k) {
       playlistIdx = k;
       v.src = 'assets/app/' + list[k];
       v.load();
-      var p = v.play();
-      if (p && p.catch) p.catch(function () {});
+      tryPlay();
+      // muted, video-only clips (no audio track) can be power-save-paused when the
+      // tab/iframe is backgrounded — keep nudging until it actually plays
+      clearInterval(v._retry);
+      v._retry = setInterval(function () {
+        if (activeVideo !== v) { clearInterval(v._retry); return; }
+        if (v.ended || (!v.paused && v.currentTime > 0)) { clearInterval(v._retry); return; }
+        if (!paused) tryPlay();
+      }, 500);
     }
     v.onloadedmetadata = function () { durs[playlistIdx] = v.duration || 0; };
     v.onended = function () {
       durs[playlistIdx] = v.duration || durs[playlistIdx];
       if (playlistIdx < list.length - 1) { playAt(playlistIdx + 1); }
       else {
+        // last clip done — freeze on its final frame, then advance (hold to minHold if it ended early)
         if (bar) bar.style.transform = 'scaleX(1)';
         clearTimeout(videoFallback);
-        advanceTimer = setTimeout(function () { goTo((current + 1) % scenes.length, false); }, 450);
+        var wait = Math.max(450, minHold - (performance.now() - sceneStartT));
+        advanceTimer = setTimeout(function () { goTo((current + 1) % scenes.length, false); }, wait);
       }
     };
     v.onerror = function () {
@@ -1296,8 +1322,11 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
     btnPlay.setAttribute('aria-label', p ? 'Play' : 'Pause');
     if (activeVideo) {
       // video-driven scene: advance is tied to playback, not the fixed timer
-      if (p) { clearTimeout(videoFallback); try { activeVideo.pause(); } catch (e) {} }
-      else {
+      if (p) { clearTimeout(videoFallback); clearTimeout(advanceTimer); try { activeVideo.pause(); } catch (e) {} }
+      else if (activeVideo.ended) {
+        // was frozen on the last frame — resume the short hold before advancing
+        advanceTimer = setTimeout(function () { goTo((current + 1) % scenes.length, false); }, 600);
+      } else {
         var pr = activeVideo.play(); if (pr && pr.catch) pr.catch(function () {});
         videoFallback = setTimeout(function () { goTo((current + 1) % scenes.length, false); }, 120000);
       }
