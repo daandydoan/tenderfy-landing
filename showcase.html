@@ -199,6 +199,9 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 #sceneLibrary .win img.shot { filter: none; }
 
 /* ===== unified feature-video window: same size, centered, gentle float ===== */
+/* video scenes give the clip a wider column and a taller stage so it dominates */
+.split.split-vid { grid-template-columns: minmax(250px, .6fr) 1.4fr; gap: clamp(20px, 3vw, 52px); }
+.split-vid .stage-vid { height: clamp(320px, 58vh, 640px); }
 .stage.stage-vid { display: flex; align-items: center; justify-content: center; height: clamp(300px, 50vh, 540px); }
 /* the video window carries NO transform of its own — flex centring alone keeps
    it exactly between the surrounding chips. Entrance is a fade + float via the
@@ -558,7 +561,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 
 /* task-assignment notification card (Delivery Plan scene) */
 .notif-card {
-  position: absolute; z-index: 9; right: -7%; bottom: 5%;
+  position: absolute; z-index: 9; right: 0; bottom: 5%;
   width: clamp(168px, 20vw, 268px);
   border-radius: 12px; overflow: hidden; background: #fff;
   box-shadow: 0 34px 68px -16px rgba(18,45,40,.58), 0 0 0 1px rgba(46,60,59,.08);
@@ -813,7 +816,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
     <span class="dots" style="width:190px;height:150px;left:4%;top:12%"></span>
     <span class="bit bit-mint" style="left:9%;bottom:22%;--bd:7.5s"></span>
   </div>
-  <div class="split">
+  <div class="split split-vid">
     <div>
       <p class="eyebrow fx" style="--d:.05s">The Method · 01 — Go / No-Go review</p>
       <h2 class="cap">
@@ -848,7 +851,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
     <span class="dots" style="width:180px;height:140px;right:5%;top:14%"></span>
     <span class="bit" style="right:11%;bottom:24%;--bx:-12px;--by:-14px"></span>
   </div>
-  <div class="split">
+  <div class="split split-vid">
     <div>
       <p class="eyebrow fx" style="--d:.05s">The Method · 02 — Task List &amp; Delivery Plan</p>
       <h2 class="cap">
@@ -888,7 +891,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
     <span class="dots" style="width:180px;height:140px;right:6%;bottom:12%"></span>
     <span class="bit bit-mint" style="right:26%;top:14%;--bd:8s"></span>
   </div>
-  <div class="split">
+  <div class="split split-vid">
     <div>
       <p class="eyebrow fx" style="--d:.05s">The Method · 03–04 — Add real value, learn from feedback</p>
       <h2 class="cap">
@@ -931,7 +934,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
     <span class="spark" style="left:30%;bottom:14%;--sd:2s"></span>
     <span class="bit bit-mint" style="left:8%;top:42%;--bd:7s"></span>
   </div>
-  <div class="split">
+  <div class="split split-vid">
     <div>
       <p class="eyebrow fx" style="--d:.05s">The Method — Tailor &amp; Draft with Ray</p>
       <h2 class="cap">
@@ -968,7 +971,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
     <span class="dots" style="width:180px;height:140px;right:4%;top:16%"></span>
     <span class="bit bit-mint" style="right:9%;bottom:32%;--bd:7s;--bx:-10px;--by:-16px"></span>
   </div>
-  <div class="split">
+  <div class="split split-vid">
     <div>
       <p class="eyebrow fx" style="--d:.05s">The Method · 07–08 — Presentation &amp; final review</p>
       <h2 class="cap">
