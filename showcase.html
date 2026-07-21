@@ -555,6 +555,17 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   opacity: 0; transform: translateY(64px) rotate(0deg) scale(.9);
 }
 .doc-pg img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* task-assignment notification card (Delivery Plan scene) */
+.notif-card {
+  position: absolute; z-index: 9; right: -5%; bottom: 4%;
+  width: clamp(110px, 12vw, 158px);
+  border-radius: 10px; overflow: hidden; background: #fff;
+  box-shadow: 0 22px 46px -14px rgba(18,45,40,.5);
+  opacity: 0; transform: translateY(18px) scale(.94);
+}
+.notif-card img { width: 100%; height: auto; display: block; }
+.active .notif-card { animation: popIn .7s var(--ease-out) forwards, floatVW 8s ease-in-out infinite; animation-delay: var(--d, 2s), 3s; }
 .active .doc-pg { animation: docPageIn 1s var(--ease-out) forwards; animation-delay: var(--d, 0s); }
 @keyframes docPageIn { to { opacity: 1; transform: translate(var(--x, 0), var(--y, 0)) rotate(var(--r, 0deg)) scale(1); } }
 
@@ -859,9 +870,12 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
         <div class="win-bar"><span></span><span></span><span></span></div>
         <video class="shot vid" muted playsinline preload="auto"></video>
       </div>
-      <span class="chip chip-tl" style="--d:1.6s; left:-2%; top:6%"><span class="dot"></span>Assigned · due in 6 days</span>
-      <span class="chip" style="--d:2.6s; left:-2%; bottom:16%"><span class="dot"></span>3 SMEs editing live</span>
-      <span class="chip chip-amber" style="--d:3.6s; right:0; bottom:4%"><span class="dot"></span>A cross-department plan — before writing begins</span>
+      <span class="chip chip-tl" style="--d:1.6s; left:-2%; top:6%"><span class="dot"></span>Assigned · due 22/07/2026</span>
+      <span class="chip" style="--d:2.6s; left:-2%; bottom:20%"><span class="dot"></span>SMEs notified instantly</span>
+      <span class="chip chip-amber" style="--d:3.6s; left:-2%; bottom:4%"><span class="dot"></span>A cross-department plan — before writing begins</span>
+      <figure class="notif-card" style="--d:2.2s" aria-label="Task assignment email sent to the assignee">
+        <img src="assets/app/task-assigned-email.png" alt="Email: Daniel Doan assigned you 'Create a Working Schedule' for Riverside Commercial Precinct — Stage 2" />
+      </figure>
     </div>
   </div>
 </section>
@@ -947,7 +961,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
 </section>
 
 <!-- ============ S8 · ASSEMBLE / DELIVER THE PACK (Method step 08) ============ -->
-<section class="scene scene-light" data-label="Assemble the Pack" data-dur="8500">
+<section class="scene scene-light" data-label="Assemble the Pack" data-dur="8500" id="sceneAssemble">
   <div class="deco" aria-hidden="true">
     <span class="orb orb-teal" style="width:32vw;height:32vw;left:-10vw;top:-12vh"></span>
     <span class="dots" style="width:180px;height:140px;right:4%;top:16%"></span>
@@ -972,15 +986,11 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
         <li style="--d:2.05s">Ready to review and submit</li>
       </ul>
     </div>
-    <!-- PLACEHOLDER: awaiting the recording of a resume edit in Build Tender
-         followed by a scroll-through of the finished pack (per client feedback,
-         replacing the earlier stack-of-paper treatment). -->
     <div class="stage stage-vid">
       <div class="win winv" style="--d:.3s">
         <div class="win-bar"><span></span><span></span><span></span></div>
-        <img class="shot" src="assets/app/tender-build.png" alt="Build tender — pack assembly (animated capture pending)" />
+        <video class="shot vid" muted playsinline preload="auto"></video>
       </div>
-      <span class="chip" style="--d:1.6s; left:-2%; top:4%; z-index:8"><span class="dot"></span>Placeholder — resume edit → pack scroll-through</span>
       <span class="chip chip-amber" style="--d:2.8s; right:5%; bottom:8%; z-index:8"><span class="dot"></span>One polished, on-brand PDF ✓</span>
     </div>
   </div>
@@ -1158,10 +1168,11 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
   // ---- feature videos: each listed scene plays its clip(s) to completion,
   //      then advances. Two-clip scenes play in sequence. ----
   var VIDS = {
-    sceneGo:      ['go-nogo.mp4'],
-    sceneDeliver: ['delivery-plan-1.webm', 'delivery-plan-2.webm'],
-    sceneBuyer:   ['buyer.mp4'],
-    sceneRay:     ['develop-structured-responses.webm'],
+    sceneGo:       ['go-nogo.mp4'],
+    sceneDeliver:  ['delivery-plan.mp4'],
+    sceneBuyer:    ['buyer.mp4'],
+    sceneRay:      ['ray.mp4'],
+    sceneAssemble: ['assemble.mp4'],
   };
   var activeVideo = null, videoRAF = 0, videoFallback = 0, playlistIdx = 0, preloadTimer = 0;
 
