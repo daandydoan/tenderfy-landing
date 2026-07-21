@@ -1175,7 +1175,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
     sceneAssemble: ['assemble.mp4'],
   };
   var activeVideo = null, videoRAF = 0, videoFallback = 0, playlistIdx = 0, preloadTimer = 0;
-  var PLAY_RATE = 1.2; // every scene clip runs 20% faster
+  var PLAY_RATE = 1.5; // every scene clip runs 50% faster
 
   // warm the next scene's first clip mid-scene so the curtain never waits on a download
   function preloadNextScene(i) {
