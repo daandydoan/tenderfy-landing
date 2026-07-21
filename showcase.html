@@ -60,8 +60,15 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   mix-blend-mode: difference; color: #fff;
 }
 .chrome-top, .chrome-bot { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-.chrome .wordmark { pointer-events: auto; }
-.chrome .wordmark img { height: 27px; width: auto; display: block; }
+/* the logo keeps its real brand colours — it sits OUTSIDE the difference-blended
+   chrome so it is never inverted. White text on dark scenes, green on light;
+   the paperclip mark stays #FFBC4A in both. */
+.brandmark {
+  position: fixed; z-index: 41; pointer-events: auto;
+  top: clamp(16px, 2.4vw, 30px); left: var(--pad);
+}
+.brandmark img { height: 27px; width: auto; display: block; }
+.chrome-spacer { height: 27px; }
 .chrome-label { font-size: 11px; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; opacity: .75; }
 .chrome-bot { align-items: flex-end; }
 .hud { display: flex; align-items: center; gap: 14px; pointer-events: auto; }
@@ -685,10 +692,13 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
   <span class="curtain-label" id="curtainLabel"></span>
 </div>
 
+<!-- logo lives outside .chrome so the difference blend never inverts its colours -->
+<a class="brandmark" href="index.html"><img id="brandLogo" src="assets/tenderfy-wordmark-white.svg" alt="Tenderfy" /></a>
+
 <!-- ============ CHROME ============ -->
 <div class="chrome">
   <div class="chrome-top">
-    <a class="wordmark" href="index.html"><img src="assets/tenderfy-wordmark-mono.svg" alt="Tenderfy" /></a>
+    <span class="chrome-spacer" aria-hidden="true"></span>
     <span class="chrome-label mid-label">Product Explainer</span>
     <span class="chrome-label" id="sceneLabel">Intro</span>
   </div>
@@ -1273,12 +1283,22 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
     videoFallback = setTimeout(function () { goTo((current + 1) % scenes.length, false); }, 120000);
   }
 
+  // white wordmark on dark scenes, green on light ones — mark stays amber in both
+  var brandLogo = document.getElementById('brandLogo');
+  function paintBrand(i) {
+    if (!brandLogo) return;
+    var light = scenes[i].classList.contains('scene-light') || scenes[i].classList.contains('scene-offwhite');
+    var want = 'assets/tenderfy-wordmark' + (light ? '' : '-white') + '.svg';
+    if (!brandLogo.getAttribute('src').endsWith(want.split('/').pop())) brandLogo.setAttribute('src', want);
+  }
+
   function activate(i) {
     stopActiveVideo();
     clearHooks();
     scenes.forEach(function (s, j) { s.classList.toggle('active', j === i); });
     current = i;
     paintHud(i);
+    paintBrand(i);
     if (scenes[i].id && hooks[scenes[i].id]) hooks[scenes[i].id]();
     if (scenes[i].id && VIDS[scenes[i].id]) {
       if (reduced) {
