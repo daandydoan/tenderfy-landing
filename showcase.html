@@ -558,10 +558,10 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 
 /* task-assignment notification card (Delivery Plan scene) */
 .notif-card {
-  position: absolute; z-index: 9; right: -5%; bottom: 4%;
-  width: clamp(110px, 12vw, 158px);
-  border-radius: 10px; overflow: hidden; background: #fff;
-  box-shadow: 0 22px 46px -14px rgba(18,45,40,.5);
+  position: absolute; z-index: 9; right: -7%; bottom: 5%;
+  width: clamp(168px, 20vw, 268px);
+  border-radius: 12px; overflow: hidden; background: #fff;
+  box-shadow: 0 34px 68px -16px rgba(18,45,40,.58), 0 0 0 1px rgba(46,60,59,.08);
   opacity: 0; transform: translateY(18px) scale(.94);
 }
 .notif-card img { width: 100%; height: auto; display: block; }
@@ -638,6 +638,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   .split .cap { max-width: none; margin: 0 auto; }
   .split .sub { margin-left: auto; margin-right: auto; }
   .stage-platform, .stage-go, .stage-ray, .stage-lib, .stage-qa, .stage-toc, .stage-docs { height: clamp(220px, 38vh, 380px); width: min(560px, 94vw); margin: 0 auto; }
+  .notif-card { width: clamp(120px, 28vw, 168px); right: -2%; bottom: 2%; }
   .pts { align-items: center; }
   .toc-list { margin-left: auto; margin-right: auto; }
   .toc-item { text-align: left; }
