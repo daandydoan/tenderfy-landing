@@ -1175,6 +1175,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
     sceneAssemble: ['assemble.mp4'],
   };
   var activeVideo = null, videoRAF = 0, videoFallback = 0, playlistIdx = 0, preloadTimer = 0;
+  var PLAY_RATE = 1.2; // every scene clip runs 20% faster
 
   // warm the next scene's first clip mid-scene so the curtain never waits on a download
   function preloadNextScene(i) {
@@ -1225,6 +1226,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
       videoRAF = requestAnimationFrame(progress);
     }
     function tryPlay() {
+      try { v.playbackRate = PLAY_RATE; } catch (e) {}
       var p = v.play();
       if (p && p.catch) p.catch(function () {});
     }
@@ -1243,7 +1245,8 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
         if (!paused) tryPlay();
       }, 500);
     }
-    v.onloadedmetadata = function () { durs[playlistIdx] = v.duration || 0; };
+    // playbackRate resets whenever a new source loads — reapply it
+    v.onloadedmetadata = function () { durs[playlistIdx] = v.duration || 0; try { v.playbackRate = PLAY_RATE; } catch (e) {} };
     v.onended = function () {
       durs[playlistIdx] = v.duration || durs[playlistIdx];
       if (playlistIdx < list.length - 1) { playAt(playlistIdx + 1); }
