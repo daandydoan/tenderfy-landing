@@ -65,54 +65,36 @@
     </div>
 
     <div class="hero-aside">
-      <!-- Layered Before / After stage (matches the approved hero mockup).
-           Left = BEFORE cluster (messy Word doc + task checklist).
-           Right = AFTER cluster (dashboard behind + fanned deck of real output pages).
-           Static layout only — motion to be designed later. -->
-      <div class="hero-stage hero-anim d4" aria-label="A messy Word tender transformed into a polished Tenderfy submission pack">
+      <!-- Before / After comparison card (Figma handoff spec).
+           White card, grey BEFORE panel (left) + golden AFTER panel (right),
+           each holding fanned document cards with real screenshots. -->
+      <div class="hero-compare hero-anim d4" aria-label="Before and after: a messy Word tender versus a designer-grade Tenderfy submission">
 
-        <!-- ===== AFTER (right) ===== -->
-        <span class="hs-label hs-label-after">After<small>Designer-grade tender</small></span>
-
-        <div class="win win-dash" aria-hidden="true">
-          <div class="win-bar"><span class="d"></span><span class="d"></span><span class="d"></span><span class="win-title">Tenderfy — Dashboard</span></div>
-          <video class="win-media" autoplay muted loop playsinline preload="none"><source src="assets/dashboard.webm" type="video/webm" /></video>
-        </div>
-
-        <div class="deck" aria-hidden="true">
-          <img class="deck-pg deck-pg-5" src="assets/output-pages/31.jpg" alt="" loading="lazy" />
-          <img class="deck-pg deck-pg-4" src="assets/output-pages/15.jpg" alt="" loading="lazy" />
-          <img class="deck-pg deck-pg-3" src="assets/output-pages/11.jpg" alt="" loading="lazy" />
-          <img class="deck-pg deck-pg-2" src="assets/output-pages/2.jpg" alt="" loading="lazy" />
-          <img class="deck-pg deck-pg-1" src="assets/output-pages/1.jpg" alt="Polished Tenderfy submission cover" loading="eager" />
-        </div>
-
-        <!-- ===== BEFORE (left) ===== -->
-        <span class="hs-label hs-label-before">Before<small>Messy Word doc</small></span>
-
-        <!-- Before 01 — messy Word doc (CSS mock; swap for final artwork later) -->
-        <div class="win win-doc">
-          <div class="win-bar"><span class="d"></span><span class="d"></span><span class="d"></span><span class="win-title">Tender response.docx</span></div>
-          <div class="doc-mess">
-            <div class="dm-h">[COMPANY NAME]</div>
-            <div class="dm-sub">Tender Response — Supply &amp; <span class="dm-err">instalation</span> of Civil Works</div>
-            <span class="dm-line w-90"></span>
-            <span class="dm-line w-80"></span>
-            <span class="dm-line w-60"></span>
-            <div class="dm-tbl">
-              <span></span><span></span><span class="dm-cell-warn"></span>
-              <span></span><span class="dm-cell-warn"></span><span></span>
-            </div>
-            <span class="dm-line w-70"></span>
-            <span class="dm-line w-50"></span>
-            <span class="dm-note">3 spelling errors — fix before submit!</span>
+        <!-- AFTER panel (right, golden, wider) -->
+        <div class="hc-panel hc-after">
+          <div class="hc-head">
+            <span class="hc-kicker">After</span>
+            <span class="hc-sub">Designer-grade tender</span>
+          </div>
+          <div class="hc-deck" aria-hidden="true">
+            <figure class="hc-page hc-page-1"><span class="hc-bar"><i></i><i></i><i></i><em>Tenderfy — submission pack</em></span><img src="assets/output-pages/31.jpg" alt="" loading="lazy" /></figure>
+            <figure class="hc-page hc-page-2"><span class="hc-bar"><i></i><i></i><i></i><em>Tenderfy — submission pack</em></span><img src="assets/output-pages/15.jpg" alt="" loading="lazy" /></figure>
+            <figure class="hc-page hc-page-3"><span class="hc-bar"><i></i><i></i><i></i><em>Tenderfy — submission pack</em></span><img src="assets/output-pages/11.jpg" alt="" loading="lazy" /></figure>
+            <figure class="hc-page hc-page-4"><span class="hc-bar"><i></i><i></i><i></i><em>Tenderfy — submission pack</em></span><img src="assets/output-pages/2.jpg" alt="" loading="lazy" /></figure>
+            <figure class="hc-page hc-page-5"><span class="hc-bar"><i></i><i></i><i></i><em>Tenderfy — submission pack</em></span><img src="assets/output-pages/1.jpg" alt="Polished Tenderfy submission cover" loading="eager" /></figure>
           </div>
         </div>
 
-        <!-- Before 02 — Task Checklist -->
-        <div class="win win-task">
-          <div class="win-bar"><span class="d"></span><span class="d"></span><span class="d"></span><span class="win-title">Task Checklist</span></div>
-          <video class="win-media" autoplay muted loop playsinline preload="none"><source src="assets/task-checklist.webm" type="video/webm" /></video>
+        <!-- BEFORE panel (left, grey, narrower) — sits in front, overlapping slightly -->
+        <div class="hc-panel hc-before">
+          <div class="hc-head">
+            <span class="hc-kicker">Before</span>
+            <span class="hc-sub">Messy Word doc</span>
+          </div>
+          <div class="hc-stack" aria-hidden="true">
+            <figure class="hc-doc hc-doc-back"><span class="hc-bar hc-bar-doc"><i></i><i></i><i></i><em>Tender response.docx</em></span><img src="assets/before-tender-light.png" alt="" loading="lazy" /></figure>
+            <figure class="hc-doc hc-doc-front"><span class="hc-bar hc-bar-doc"><i></i><i></i><i></i><em>Tender response.docx</em></span><img src="assets/before-tender-dark.png" alt="A messy Word tender full of errors and annotations" loading="eager" /></figure>
+          </div>
         </div>
 
       </div>

@@ -1622,3 +1622,56 @@ img, svg { display: block; }
   .win-task { width: 46%; }
   .hs-label small { display: none; }
 }
+
+/* ============================================================
+   HERO — Before/After comparison card (Figma handoff spec)
+   White card · grey BEFORE panel (left) + golden AFTER panel (right),
+   each holding fanned document cards with real screenshots.
+   Sizing via container-query units (cqw) so it scales with the column.
+   ============================================================ */
+.hero-compare {
+  position: relative; width: 100%; container-type: inline-size;
+  aspect-ratio: 800 / 555; background: #fff; border-radius: 4cqw;
+  box-shadow: 0 40px 80px -40px rgba(0,0,0,.55); overflow: hidden;
+}
+.hc-panel { position: absolute; }
+
+/* Panels */
+.hc-after  { top: .4%; right: .6%; width: 64.5%; height: 99.2%; background: #FCC642; border-radius: 4.5cqw; z-index: 1; }
+.hc-before { top: 6%;  left: 1.5%; width: 31.25%; height: 88.5%; background: #EDEDE2; border-radius: 3cqw; z-index: 3; box-shadow: 0 12px 30px -18px rgba(0,0,0,.35); }
+
+/* Panel heading */
+.hc-head { position: absolute; top: 4.5%; left: 8%; z-index: 5; }
+.hc-kicker { display: block; font-weight: 700; text-transform: uppercase; letter-spacing: .03em; line-height: 1; }
+.hc-sub { display: block; font-weight: 600; line-height: 1.15; margin-top: 1.4cqw; }
+.hc-after .hc-kicker { font-size: 2.9cqw; color: #1A1A1C; }
+.hc-after .hc-sub { font-size: 2.6cqw; color: #1A1A1C; }
+.hc-before .hc-kicker { font-size: 2.6cqw; color: #8A8A82; }
+.hc-before .hc-sub { font-size: 2.4cqw; color: #6E6E66; }
+
+/* Shared card chrome */
+.hc-page, .hc-doc { position: absolute; border-radius: 1.6cqw; overflow: hidden; background: #fff;
+  box-shadow: 0 3cqw 6cqw -3cqw rgba(0,0,0,.5); border: 1px solid rgba(0,0,0,.06); transform-origin: bottom center; }
+.hc-bar { display: flex; align-items: center; gap: .7cqw; height: 4cqw; padding: 0 1.4cqw; background: #F4F5F4; border-bottom: 1px solid #e9ecea; }
+.hc-bar i { width: 1cqw; height: 1cqw; border-radius: 50%; background: #CBD3D3; flex: 0 0 auto; }
+.hc-bar em { margin-left: .8cqw; font-style: normal; font-weight: 600; font-size: 1.35cqw; color: #8a908d; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.hc-bar-doc { background: #eceeec; }
+.hc-page img, .hc-doc img { display: block; width: 100%; height: auto; }
+
+/* AFTER — 5-card fan (front = cover). Widths are % of the golden panel. */
+.hc-deck { position: absolute; inset: 0; z-index: 2; }
+.hc-page-1 { width: 50%;   left: 42%; bottom: 12%; z-index: 1; transform: translateX(-50%) rotate(-22deg); }
+.hc-page-2 { width: 57%;   left: 47%; bottom:  9%; z-index: 2; transform: translateX(-50%) rotate(-16deg); }
+.hc-page-3 { width: 62%;   left: 53%; bottom:  6%; z-index: 3; transform: translateX(-50%) rotate(-11deg); }
+.hc-page-4 { width: 66%;   left: 59%; bottom:  4%; z-index: 4; transform: translateX(-50%) rotate(-7deg); }
+.hc-page-5 { width: 72%;   left: 66%; bottom:  2%; z-index: 5; transform: translateX(-50%) rotate(-2deg); }
+
+/* BEFORE — 2-card stack. Widths are % of the grey panel. */
+.hc-stack { position: absolute; inset: 0; z-index: 2; }
+.hc-doc-back  { width: 98%; left: 50%; bottom: 4%; z-index: 1; transform: translateX(-50%) rotate(9deg); }
+.hc-doc-front { width: 98%; left: 46%; bottom: 1%; z-index: 2; transform: translateX(-50%) rotate(2deg); }
+
+/* Responsive: keep the card readable when it drops below the copy */
+@media (max-width: 900px) {
+  .hero-compare { max-width: 620px; margin: 8px auto 0; }
+}
