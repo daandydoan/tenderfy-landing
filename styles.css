@@ -1658,22 +1658,43 @@ img, svg { display: block; }
 .hc-bar-doc { background: #eceeec; }
 .hc-page img, .hc-doc img { display: block; width: 100%; height: auto; }
 
-/* AFTER — 5-card fan (geometry derived from Figma node 52:426 bounding boxes).
-   Cards are bottom-aligned; centre-x + rotation increase from the front cover
-   (left, near-upright) out to the back-right. Widths/centres are % of golden panel. */
+/* ---- Interactive, animation-ready cards ----
+   Every card composes its transform from CSS custom properties, so motion can
+   be layered on later (scroll-driven "deal-in", auto-cycle, etc.) by animating
+   --x / --y / --r / --lift / --s — no structural change needed. Transitions +
+   hover states make it interactive today. */
+.hc-page, .hc-doc {
+  --x: 0%; --y: 0%; --r: 0deg; --lift: 0%; --s: 1;
+  transform-origin: bottom center;
+  transform: translateX(-50%) translate(var(--x), var(--y)) translateY(var(--lift)) rotate(var(--r)) scale(var(--s));
+  transition: transform .5s cubic-bezier(.22,1,.36,1), box-shadow .35s ease;
+  cursor: pointer;
+}
+@media (prefers-reduced-motion: reduce) { .hc-page, .hc-doc { transition: none; } }
+
+/* AFTER — 5-card fan (rest state ≈ Figma node 52:426). Back cards step up (--y)
+   and right so each page reads as a distinct card, not a clump. */
 .hc-deck { position: absolute; inset: 0; z-index: 2; }
-.hc-page { transform-origin: bottom center; }
-.hc-page-5 { width: 73%; left: 28%; bottom: -19%; z-index: 5; transform: translateX(-50%) rotate(2deg);  }
-.hc-page-4 { width: 67%; left: 51%; bottom: -19%; z-index: 4; transform: translateX(-50%) rotate(10deg); }
-.hc-page-3 { width: 65%; left: 64%; bottom: -19%; z-index: 3; transform: translateX(-50%) rotate(14deg); }
-.hc-page-2 { width: 61%; left: 75%; bottom: -19%; z-index: 2; transform: translateX(-50%) rotate(18deg); }
-.hc-page-1 { width: 54%; left: 86%; bottom: -19%; z-index: 1; transform: translateX(-50%) rotate(24deg); }
+.hc-page-5 { width: 68%; left: 30%; bottom: -18%; z-index: 5; --r: 0deg;  --y: 0%;  }
+.hc-page-4 { width: 66%; left: 48%; bottom: -18%; z-index: 4; --r: 8deg;  --y: -3%; }
+.hc-page-3 { width: 63%; left: 61%; bottom: -18%; z-index: 3; --r: 14deg; --y: -6%; }
+.hc-page-2 { width: 59%; left: 72%; bottom: -18%; z-index: 2; --r: 20deg; --y: -8%; }
+.hc-page-1 { width: 54%; left: 83%; bottom: -18%; z-index: 1; --r: 26deg; --y: -9%; }
+
+/* Interactive: hovering the AFTER panel fans the deck open a little wider */
+.hc-after:hover .hc-page-4 { --x: 3%;  }
+.hc-after:hover .hc-page-3 { --x: 7%;  }
+.hc-after:hover .hc-page-2 { --x: 11%; }
+.hc-after:hover .hc-page-1 { --x: 15%; }
 
 /* BEFORE — 2-card stack, layered ABOVE the golden panel's left edge (top-level, high z). */
-.hc-stack { position: absolute; top: 20%; left: 2%; width: 40%; height: 78%; z-index: 5; }
-.hc-doc { transform-origin: bottom center; }
-.hc-doc-back  { width: 80%; left: 40%; bottom: 8%; z-index: 1; transform: translateX(-50%) rotate(-16deg); }
-.hc-doc-front { width: 82%; left: 52%; bottom: 0;  z-index: 2; transform: translateX(-50%) rotate(-7deg);  }
+.hc-stack { position: absolute; top: 18%; left: 2%; width: 40%; height: 80%; z-index: 5; }
+.hc-doc-back  { width: 78%; left: 38%; bottom: 12%; z-index: 1; --r: -15deg; }
+.hc-doc-front { width: 80%; left: 50%; bottom: 6%;  z-index: 2; --r: -6deg;  }
+
+/* Interactive: lift + bring forward any card the user points at */
+.hc-page:hover, .hc-doc:hover { --lift: -5%; --s: 1.035; z-index: 30;
+  box-shadow: 0 6cqw 11cqw -4cqw rgba(0,0,0,.55); }
 
 /* Responsive: keep the card readable when it drops below the copy */
 @media (max-width: 900px) {
