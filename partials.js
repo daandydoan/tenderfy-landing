@@ -39,8 +39,7 @@
     ]},
     { label: 'Resources', key: 'resources', items: [
       ['Guides', 'guides.html', 'Tutorials & how-to videos', ICONS.book],
-      ['Insights', 'insights.html', 'Articles on AI & tendering', ICONS.doc],
-      ['AI Policy', 'ai-policy.html', 'How Ray uses AI, in plain English', ICONS.shield]
+      ['Insights', 'insights.html', 'Articles on AI & tendering', ICONS.doc]
     ]},
     { label: 'Company', key: 'company', items: [
       ['About', 'about.html', 'Our story & mission', ICONS.flag],
@@ -70,7 +69,7 @@
     ['Product','product.html','product'],['Solutions','solutions.html','solutions'],
     ['Pricing','pricing.html','pricing'],['Guides','guides.html','guides'],
     ['Insights','insights.html','insights'],['About','about.html','about'],
-    ['Trust Centre','trust.html','trust'],['AI Policy','ai-policy.html','ai-policy']
+    ['Trust Centre','trust.html','trust']
   ];
   function mobileNav(active) {
     return MOBILE.map(function (n) {

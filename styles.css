@@ -454,6 +454,9 @@ img, svg { display: block; }
 .cs-name { font-weight: 700; color: var(--black); }
 .cs-role { font-size: 14px; color: var(--gray); }
 .cs-metrics { display: flex; flex-direction: column; gap: 24px; border-left: 2px solid var(--teal-50); padding-left: clamp(32px, 4vw, 56px); }
+/* Solo metrics row (no testimonial alongside) — centred under the video */
+.cs-metrics-solo { flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 24px 56px; border-left: 0; padding-left: 0; margin-top: clamp(28px, 4vw, 44px); text-align: center; }
+.cs-metrics-solo .cs-metric { align-items: center; }
 .cs-metric { display: flex; flex-direction: column; gap: 2px; }
 .cs-num { font-size: clamp(34px, 4.5vw, 46px); font-weight: 700; letter-spacing: -.02em; color: var(--primary); line-height: 1; }
 .cs-label { font-size: 14px; color: var(--gray); }
