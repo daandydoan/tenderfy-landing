@@ -1624,80 +1624,83 @@ img, svg { display: block; }
 }
 
 /* ============================================================
-   HERO — Before/After comparison card (Figma handoff spec)
-   White card · grey BEFORE panel (left) + golden AFTER panel (right),
-   each holding fanned document cards with real screenshots.
-   Sizing via container-query units (cqw) so it scales with the column.
+   HERO — Before/After comparison card
+   Implemented from Figma node 52:386 (Social-Updates). Geometry is the exact
+   export: frame 798x556, panels/cards centre-anchored, every card is A4 ratio
+   (h = 1.414 x w) including its chrome bar.
+   Cards stay variable-driven (--x/--y/--r/--lift/--s) so motion can be layered
+   on later without restructuring.
    ============================================================ */
 .hero-compare {
   position: relative; width: 100%; container-type: inline-size;
-  aspect-ratio: 800 / 555; background: #fff; border-radius: 4cqw;
+  aspect-ratio: 798 / 556; background: #fff; border-radius: 4.01cqw;
   box-shadow: 0 40px 80px -40px rgba(0,0,0,.55); overflow: hidden;
 }
 .hc-panel { position: absolute; }
 
-/* Panels — grey BEFORE sits behind; golden AFTER overlaps its right edge */
-.hc-before { top: 6%;  left: 1%;  width: 33%;   height: 88.5%; background: #EDEDE2; border-radius: 3cqw; z-index: 1; }
-.hc-after  { top: .4%; right: .6%; width: 68%;   height: 99.2%; background: #FCC642; border-radius: 4.5cqw; z-index: 2; box-shadow: -10px 0 30px -18px rgba(0,0,0,.22); }
+/* Panels — Figma: BEFORE 250.383x491 @ (32,62); AFTER 516x553 @ (282,0) */
+.hc-before { left: 4.01%; top: 11.15%; width: 31.38%; height: 88.31%;
+  background: #EDEDEA; border-radius: 4.01cqw 4.01cqw 0 4.01cqw; z-index: 1; }
+.hc-after  { left: 35.34%; top: 0;     width: 64.66%; height: 99.46%;
+  background: #FCC642; border-radius: 4.51cqw; z-index: 2; }
 
-/* Panel heading */
-.hc-head { position: absolute; top: 4.5%; left: 8%; z-index: 5; }
-.hc-kicker { display: block; font-weight: 700; text-transform: uppercase; letter-spacing: .03em; line-height: 1; }
-.hc-sub { display: block; font-weight: 600; line-height: 1.15; margin-top: 1.4cqw; }
-.hc-after .hc-kicker { font-size: 2.9cqw; color: #1A1A1C; }
-.hc-after .hc-sub { font-size: 2.6cqw; color: #1A1A1C; }
-.hc-before .hc-kicker { font-size: 2.6cqw; color: #8A8A82; }
-.hc-before .hc-sub { font-size: 2.4cqw; color: #6E6E66; }
+/* Panel headings — Figma type ramp */
+.hc-head { position: absolute; z-index: 6; }
+.hc-before .hc-head { left: 8.46%; top: 5.55%; }
+.hc-after  .hc-head { left: 4.63%; top: 5.55%; }
+.hc-kicker { display: block; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .12em; line-height: 1.5; }
+.hc-sub { display: block; font-weight: 600; line-height: 1.3; }
+.hc-before .hc-kicker { font-size: 2.58cqw; color: #8A8A82; }
+.hc-before .hc-sub    { font-size: 2.35cqw; color: #6E6E66; }
+.hc-after  .hc-kicker { font-size: 2.91cqw; color: #1A1A1C; }
+.hc-after  .hc-sub    { font-size: 2.65cqw; color: #1A1A1C; }
 
-/* Shared card chrome */
-.hc-page, .hc-doc { position: absolute; border-radius: 1.6cqw; overflow: hidden; background: #fff;
-  box-shadow: 0 3cqw 6cqw -3cqw rgba(0,0,0,.5); border: 1px solid rgba(0,0,0,.06); transform-origin: bottom center; }
-.hc-bar { display: flex; align-items: center; gap: .7cqw; height: 4cqw; padding: 0 1.4cqw; background: #F4F5F4; border-bottom: 1px solid #e9ecea; }
-.hc-bar i { width: 1cqw; height: 1cqw; border-radius: 50%; background: #CBD3D3; flex: 0 0 auto; }
-.hc-bar em { margin-left: .8cqw; font-style: normal; font-weight: 600; font-size: 1.35cqw; color: #8a908d; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.hc-bar-doc { background: #eceeec; }
-.hc-page img, .hc-doc img { display: block; width: 100%; height: auto; }
-
-/* ---- Interactive, animation-ready cards ----
-   Every card composes its transform from CSS custom properties, so motion can
-   be layered on later (scroll-driven "deal-in", auto-cycle, etc.) by animating
-   --x / --y / --r / --lift / --s — no structural change needed. Transitions +
-   hover states make it interactive today. */
+/* ---- Cards: A4 ratio incl. chrome; own container so chrome scales per card ---- */
 .hc-page, .hc-doc {
   --x: 0%; --y: 0%; --r: 0deg; --lift: 0%; --s: 1;
-  transform-origin: bottom center;
-  transform: translateX(-50%) translate(var(--x), var(--y)) translateY(var(--lift)) rotate(var(--r)) scale(var(--s));
+  position: absolute; container-type: inline-size;
+  aspect-ratio: 1 / 1.414;
+  display: flex; flex-direction: column; overflow: hidden;
+  background: #fff; border: 0.6cqw solid #CBD5D3; border-radius: 6.4% / 4.53%;
+  box-shadow: 0 7.5cqw 17cqw rgba(0,0,0,.16);
+  transform-origin: center;
+  transform: translate(-50%, -50%) translate(var(--x), var(--y))
+             translateY(var(--lift)) rotate(var(--r)) scale(var(--s));
   transition: transform .5s cubic-bezier(.22,1,.36,1), box-shadow .35s ease;
   cursor: pointer;
 }
 @media (prefers-reduced-motion: reduce) { .hc-page, .hc-doc { transition: none; } }
 
-/* AFTER — 5-card fan (rest state ≈ Figma node 52:426). Back cards step up (--y)
-   and right so each page reads as a distinct card, not a clump. */
+.hc-bar { flex: 0 0 6.3%; display: flex; align-items: center; gap: 1.28cqw;
+  padding: 0 2.77cqw; background: #F4F5F4; border-bottom: 0.6cqw solid #CBD5D3; }
+.hc-bar i { width: 1.87cqw; aspect-ratio: 1; border-radius: 50%; background: #CBD5D3; flex: 0 0 auto; }
+.hc-bar em { margin-left: 1.38cqw; font-style: normal; font-weight: 600;
+  font-size: 2.27cqw; color: #596262; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.hc-page img, .hc-doc img { flex: 1 1 auto; min-height: 0; width: 100%; object-fit: cover; object-position: top center; display: block; }
+
+/* AFTER — 5-card fan. Centres/widths/rotations straight from Figma 52:426. */
 .hc-deck { position: absolute; inset: 0; z-index: 2; }
-/* Smaller cover shifted left (#2); back cards step further up-and-right so every
-   page — including the maroon case-study (page-2) — reads as its own card (#1,#3). */
-.hc-page-5 { width: 75%; left: 35%; bottom: -26%; z-index: 5; --r: -2deg; --y: 0%;   }
-.hc-page-4 { width: 68%; left: 47%; bottom: -26%; z-index: 4; --r: 4deg;  --y: -4%;  }
-.hc-page-3 { width: 64%; left: 56%; bottom: -26%; z-index: 3; --r: 9deg;  --y: -6%;  }
-.hc-page-2 { width: 60%; left: 64%; bottom: -26%; z-index: 2; --r: 13deg; --y: -8%;  }
-.hc-page-1 { width: 56%; left: 73%; bottom: -26%; z-index: 1; --r: 18deg; --y: -9%;  }
+.hc-page-5 { width: 73.37%; left: 23.79%; top: 69.86%; z-index: 5; --r: 2.15deg;  }
+.hc-page-4 { width: 67.57%; left: 34.90%; top: 69.86%; z-index: 4; --r: 9.73deg;  }
+.hc-page-3 { width: 65.06%; left: 41.97%; top: 70.06%; z-index: 3; --r: 14.06deg; }
+.hc-page-2 { width: 61.20%; left: 47.58%; top: 73.22%; z-index: 2; --r: 18.30deg; }
+.hc-page-1 { width: 53.84%; left: 55.02%; top: 77.92%; z-index: 1; --r: 23.71deg; }
 
 /* Interactive: hovering the AFTER panel fans the deck open a little wider */
-.hc-after:hover .hc-page-4 { --x: 3%;  }
-.hc-after:hover .hc-page-3 { --x: 7%;  }
-.hc-after:hover .hc-page-2 { --x: 11%; }
-.hc-after:hover .hc-page-1 { --x: 15%; }
+.hc-after:hover .hc-page-4 { --x: 2%; }
+.hc-after:hover .hc-page-3 { --x: 5%; }
+.hc-after:hover .hc-page-2 { --x: 8%; }
+.hc-after:hover .hc-page-1 { --x: 11%; }
 
-/* BEFORE — 2-card stack, layered ABOVE the golden panel's left edge (top-level, high z).
-   Raised + slightly upright so the front doc no longer bleeds off the bottom (#4, #5). */
-.hc-stack { position: absolute; top: 18%; left: 1%; width: 44%; height: 80%; z-index: 5; }
-.hc-doc-back  { width: 74%; left: 38%; bottom: 2%;  z-index: 1; --r: -12deg; }
-.hc-doc-front { width: 76%; left: 47%; bottom: -4%; z-index: 2; --r: -5deg;  }
+/* BEFORE — 2 docs, centred on the whole card. Figma 52:395 / 52:407. */
+.hc-stack { position: absolute; inset: 0; z-index: 5; }
+.hc-doc-back  { width: 30.73%; left: 28.98%; top: 64.21%; z-index: 1; --r: -15.33deg; }
+.hc-doc-front { width: 30.73%; left: 34.99%; top: 58.79%; z-index: 2; --r: -5.66deg;  }
 
 /* Interactive: lift + bring forward any card the user points at */
-.hc-page:hover, .hc-doc:hover { --lift: -5%; --s: 1.035; z-index: 30;
-  box-shadow: 0 6cqw 11cqw -4cqw rgba(0,0,0,.55); }
+.hc-page:hover, .hc-doc:hover { --lift: -3%; --s: 1.03; z-index: 30;
+  box-shadow: 0 10cqw 20cqw rgba(0,0,0,.28); }
 
 /* Responsive: keep the card readable when it drops below the copy */
 @media (max-width: 900px) {
