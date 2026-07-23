@@ -1636,9 +1636,9 @@ img, svg { display: block; }
 }
 .hc-panel { position: absolute; }
 
-/* Panels */
-.hc-after  { top: .4%; right: .6%; width: 64.5%; height: 99.2%; background: #FCC642; border-radius: 4.5cqw; z-index: 1; }
-.hc-before { top: 6%;  left: 1.5%; width: 31.25%; height: 88.5%; background: #EDEDE2; border-radius: 3cqw; z-index: 3; box-shadow: 0 12px 30px -18px rgba(0,0,0,.35); }
+/* Panels — grey BEFORE sits behind; golden AFTER overlaps its right edge */
+.hc-before { top: 6%;  left: 1%;  width: 33%;   height: 88.5%; background: #EDEDE2; border-radius: 3cqw; z-index: 1; }
+.hc-after  { top: .4%; right: .6%; width: 68%;   height: 99.2%; background: #FCC642; border-radius: 4.5cqw; z-index: 2; box-shadow: -10px 0 30px -18px rgba(0,0,0,.22); }
 
 /* Panel heading */
 .hc-head { position: absolute; top: 4.5%; left: 8%; z-index: 5; }
@@ -1658,18 +1658,21 @@ img, svg { display: block; }
 .hc-bar-doc { background: #eceeec; }
 .hc-page img, .hc-doc img { display: block; width: 100%; height: auto; }
 
-/* AFTER — 5-card fan (front = cover). Widths are % of the golden panel. */
+/* AFTER — 5-card fan opening RIGHTWARD from a shared bottom-left pivot.
+   Front = cover (upright, left); back cards fan out to the right. Widths % of golden panel. */
 .hc-deck { position: absolute; inset: 0; z-index: 2; }
-.hc-page-1 { width: 50%;   left: 42%; bottom: 12%; z-index: 1; transform: translateX(-50%) rotate(-22deg); }
-.hc-page-2 { width: 57%;   left: 47%; bottom:  9%; z-index: 2; transform: translateX(-50%) rotate(-16deg); }
-.hc-page-3 { width: 62%;   left: 53%; bottom:  6%; z-index: 3; transform: translateX(-50%) rotate(-11deg); }
-.hc-page-4 { width: 66%;   left: 59%; bottom:  4%; z-index: 4; transform: translateX(-50%) rotate(-7deg); }
-.hc-page-5 { width: 72%;   left: 66%; bottom:  2%; z-index: 5; transform: translateX(-50%) rotate(-2deg); }
+.hc-page { transform-origin: bottom left; }
+.hc-page-5 { width: 72%; left: 17%; bottom: 4%; z-index: 5; transform: rotate(-1deg); }
+.hc-page-4 { width: 69%; left: 17%; bottom: 4%; z-index: 4; transform: rotate(7deg);  }
+.hc-page-3 { width: 66%; left: 17%; bottom: 4%; z-index: 3; transform: rotate(14deg); }
+.hc-page-2 { width: 63%; left: 17%; bottom: 4%; z-index: 2; transform: rotate(21deg); }
+.hc-page-1 { width: 60%; left: 17%; bottom: 4%; z-index: 1; transform: rotate(28deg); }
 
-/* BEFORE — 2-card stack. Widths are % of the grey panel. */
-.hc-stack { position: absolute; inset: 0; z-index: 2; }
-.hc-doc-back  { width: 98%; left: 50%; bottom: 4%; z-index: 1; transform: translateX(-50%) rotate(9deg); }
-.hc-doc-front { width: 98%; left: 46%; bottom: 1%; z-index: 2; transform: translateX(-50%) rotate(2deg); }
+/* BEFORE — 2-card stack, layered ABOVE the golden panel's left edge (top-level, high z). */
+.hc-stack { position: absolute; top: 20%; left: 2%; width: 38%; height: 78%; z-index: 5; }
+.hc-doc { transform-origin: bottom left; }
+.hc-doc-back  { width: 82%; left: 5%; bottom: 4%; z-index: 1; transform: rotate(7deg);  }
+.hc-doc-front { width: 82%; left: 0;  bottom: 0;  z-index: 2; transform: rotate(-2deg); }
 
 /* Responsive: keep the card readable when it drops below the copy */
 @media (max-width: 900px) {

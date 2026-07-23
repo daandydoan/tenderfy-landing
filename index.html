@@ -70,6 +70,14 @@
            each holding fanned document cards with real screenshots. -->
       <div class="hero-compare hero-anim d4" aria-label="Before and after: a messy Word tender versus a designer-grade Tenderfy submission">
 
+        <!-- BEETWEEN panels: grey BEFORE sits behind, golden AFTER overlaps its right edge -->
+        <div class="hc-panel hc-before">
+          <div class="hc-head">
+            <span class="hc-kicker">Before</span>
+            <span class="hc-sub">Messy Word doc</span>
+          </div>
+        </div>
+
         <!-- AFTER panel (right, golden, wider) -->
         <div class="hc-panel hc-after">
           <div class="hc-head">
@@ -85,16 +93,10 @@
           </div>
         </div>
 
-        <!-- BEFORE panel (left, grey, narrower) — sits in front, overlapping slightly -->
-        <div class="hc-panel hc-before">
-          <div class="hc-head">
-            <span class="hc-kicker">Before</span>
-            <span class="hc-sub">Messy Word doc</span>
-          </div>
-          <div class="hc-stack" aria-hidden="true">
-            <figure class="hc-doc hc-doc-back"><span class="hc-bar hc-bar-doc"><i></i><i></i><i></i><em>Tender response.docx</em></span><img src="assets/before-tender-light.png" alt="" loading="lazy" /></figure>
-            <figure class="hc-doc hc-doc-front"><span class="hc-bar hc-bar-doc"><i></i><i></i><i></i><em>Tender response.docx</em></span><img src="assets/before-tender-dark.png" alt="A messy Word tender full of errors and annotations" loading="eager" /></figure>
-          </div>
+        <!-- BEFORE document stack — top-level so it layers ABOVE the golden panel's left edge -->
+        <div class="hc-stack" aria-hidden="true">
+          <figure class="hc-doc hc-doc-back"><span class="hc-bar hc-bar-doc"><i></i><i></i><i></i><em>Tender response.docx</em></span><img src="assets/before-tender-light.png" alt="" loading="lazy" /></figure>
+          <figure class="hc-doc hc-doc-front"><span class="hc-bar hc-bar-doc"><i></i><i></i><i></i><em>Tender response.docx</em></span><img src="assets/before-tender-dark.png" alt="A messy Word tender full of errors and annotations" loading="eager" /></figure>
         </div>
 
       </div>
