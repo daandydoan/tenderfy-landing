@@ -66,27 +66,35 @@
         </div>
       </div>
 
-      <!-- One composition: app screenshot (skeleton) with the tender card floating as an accent -->
+      <!-- Before → After: the finished submission is the hero, not the dashboard.
+           TEMP: 'before' is a greyed placeholder and the whole panel will be replaced
+           by the final Before→After transformation video/GIF once produced. -->
       <div class="hero-shot hero-anim d4">
         <span class="hero-rings" aria-hidden="true"></span>
         <span class="hero-dots" aria-hidden="true"></span>
         <span class="hero-orb hero-orb-1" aria-hidden="true"></span>
         <span class="hero-orb hero-orb-2" aria-hidden="true"></span>
         <span class="hero-orb hero-orb-3" aria-hidden="true"></span>
-        <div class="app-skeleton" aria-hidden="true">
-          <div class="app-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="app-title">Tenderfy — Dashboard</span></div>
-          <video class="app-video" autoplay muted playsinline preload="auto">
-            <source src="assets/dashboard.webm" type="video/webm" />
-          </video>
-        </div>
-        <div class="tender-card hero-float" id="tenderCard">
-          <div class="tender-card-bar">
-            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-            <span class="tender-card-title">Task Checklist</span>
-          </div>
-          <video class="tc-video" muted playsinline preload="auto">
-            <source src="assets/task-checklist.webm" type="video/webm" />
-          </video>
+        <div class="hero-ba" aria-label="Before and after: a messy tender transformed into a polished Tenderfy submission">
+          <span class="ph-badge hero-ba-badge">Placeholder · final animation coming</span>
+          <!-- BEFORE — greyed placeholder for a messy, inconsistent tender -->
+          <figure class="hero-ba-panel hero-ba-before is-placeholder" aria-hidden="true">
+            <figcaption class="hero-ba-tag">Before</figcaption>
+            <div class="ph-doc">
+              <span class="ph-line w-70"></span><span class="ph-line w-90"></span>
+              <span class="ph-line w-50"></span><span class="ph-line w-80"></span>
+              <span class="ph-line w-40"></span><span class="ph-line w-65"></span>
+              <span class="ph-line w-85"></span><span class="ph-line w-55"></span>
+            </div>
+          </figure>
+          <span class="hero-ba-arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M4 12h14M12 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <!-- AFTER — a real, polished Tenderfy output page -->
+          <figure class="hero-ba-panel hero-ba-after">
+            <figcaption class="hero-ba-tag hero-ba-tag-after">After · Tenderfy</figcaption>
+            <img src="assets/output/construction.png" alt="A polished, on-brand Tenderfy tender submission" loading="eager" />
+          </figure>
         </div>
       </div>
     </div>
@@ -114,6 +122,11 @@
           <img class="logo-img" src="assets/logos/tp-aquatic.png" alt="TP Aquatic Constructions" loading="lazy" />
           <img class="logo-img" src="assets/logos/boodjera.png" alt="Boodjera Group" loading="lazy" />
           <img class="logo-img" src="assets/logos/taylor-builders.png" alt="Taylor Builders" loading="lazy" />
+          <!-- Incoming logos — greyed placeholders until artwork is supplied (feedback #2) -->
+          <span class="logo-img logo-ph" title="Bielby — logo coming">Bielby</span>
+          <span class="logo-img logo-ph" title="CPM — logo coming">CPM</span>
+          <span class="logo-img logo-ph" title="Iconic Property Services — logo coming">Iconic</span>
+          <span class="logo-img logo-ph" title="Environmental Industries — logo coming">Environmental</span>
         </div>
         <div class="logo-group" aria-hidden="true">
           <img class="logo-img" src="assets/logos/jwbs.png" alt="" loading="lazy" />
@@ -129,6 +142,10 @@
           <img class="logo-img" src="assets/logos/tp-aquatic.png" alt="" loading="lazy" />
           <img class="logo-img" src="assets/logos/boodjera.png" alt="" loading="lazy" />
           <img class="logo-img" src="assets/logos/taylor-builders.png" alt="" loading="lazy" />
+          <span class="logo-img logo-ph" aria-hidden="true">Bielby</span>
+          <span class="logo-img logo-ph" aria-hidden="true">CPM</span>
+          <span class="logo-img logo-ph" aria-hidden="true">Iconic</span>
+          <span class="logo-img logo-ph" aria-hidden="true">Environmental</span>
         </div>
       </div>
     </div>
@@ -148,47 +165,29 @@
       <p class="eyebrow eyebrow-primary">See it in action</p>
       <h2 class="section-title">What Tenderfy does, in <span class="mark">95 seconds</span>.</h2>
     </div>
-    <div class="film-embed">
+    <!-- Two headliners: Tenderfy (live) + Subbie RFQ (placeholder until launch) -->
+    <div class="film-tabs" role="tablist" aria-label="Explainer videos">
+      <button class="film-tab active" role="tab" aria-selected="true" data-film="tenderfy">Tenderfy</button>
+      <button class="film-tab is-placeholder" role="tab" aria-selected="false" data-film="rfq" disabled>Subbie RFQ <span class="ph-pill">Coming soon</span></button>
+    </div>
+    <div class="film-embed" data-film-panel="tenderfy">
       <iframe src="showcase.html" loading="lazy" title="Tenderfy product explainer — a 95-second auto-playing tour"></iframe>
+    </div>
+    <div class="film-embed is-placeholder" data-film-panel="rfq" hidden>
+      <div class="ph-film">
+        <span class="ph-badge">Placeholder</span>
+        <span class="ph-play"><svg viewBox="0 0 16 16"><path d="M5 3.5l8 4.5-8 4.5z" fill="currentColor"/></svg></span>
+        <span class="ph-film-label">Subbie RFQ explainer — video coming at launch</span>
+      </div>
     </div>
     <p class="film-embed-foot">The Tenderfy Method in 95 seconds · <a href="showcase.html" target="_blank" rel="noopener">Watch full-screen ↗</a></p>
   </div>
 </section>
 
-<!-- ============ THE PROBLEM → TENDERFY ============ -->
-<section class="section" id="problem" style="background:var(--teal-tint);">
-  <div class="container">
-    <div class="section-head">
-      <p class="eyebrow eyebrow-primary">The Problem</p>
-      <h2 class="section-title">Tendering is still <span class="mark">harder</span> than it should be.</h2>
-      <p class="section-sub">The same manual, disconnected workflow that slows you down today is the one costing you the bid tomorrow. Here's the difference.</p>
-    </div>
-    <div class="compare">
-      <div class="compare-col compare-col-old">
-        <h3>The old way</h3>
-        <ul class="compare-list">
-          <li><span class="compare-ic"><svg viewBox="0 0 16 16"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span> Inconsistent, generic submissions</li>
-          <li><span class="compare-ic"><svg viewBox="0 0 16 16"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span> A last-minute scramble before every deadline</li>
-          <li><span class="compare-ic"><svg viewBox="0 0 16 16"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span> Avoidable mistakes slipping through</li>
-          <li><span class="compare-ic"><svg viewBox="0 0 16 16"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span> No single source of truth</li>
-          <li><span class="compare-ic"><svg viewBox="0 0 16 16"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span> Constant rework on every tender</li>
-        </ul>
-      </div>
-      <div class="compare-col compare-col-new">
-        <h3>With Tenderfy</h3>
-        <ul class="compare-list">
-          <li><span class="compare-ic"><svg viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Structured, submission-ready responses</li>
-          <li><span class="compare-ic"><svg viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Real-time collaboration and updates</li>
-          <li><span class="compare-ic"><svg viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Built-in consistency and control</li>
-          <li><span class="compare-ic"><svg viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span> One centralised content library</li>
-          <li><span class="compare-ic"><svg viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span> Reuse and refine content instantly</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
+<!-- Problem/compare section removed per feedback #4 — the Output showcase below
+     now sits directly after the explainer as the first scroll beat. -->
 
-<!-- ============ OUTPUT SHOWCASE (S06) ============ -->
+<!-- ============ OUTPUT SHOWCASE (S06) — replaces the old problem section ============ -->
 <section class="section section-light showcase" id="showcase">
   <div class="container">
     <div class="section-head">
@@ -259,66 +258,98 @@
 <section class="section section-gradient" id="meet-ray">
   <div class="container">
     <div class="section-head">
-      <p class="eyebrow eyebrow-secondary">Meet Ray · Your AI Co-Pilot</p>
+      <p class="eyebrow eyebrow-secondary">Key features</p>
       <h2 class="section-title section-title-light">Stop prompting. Start <span class="mark">partnering</span>.</h2>
-      <p class="section-sub section-sub-light">Most AI tools stop at the first draft. Ray keeps going — refining responses, aligning documents, and making sure everything fits the structure and requirements of your tender, from first draft to final submission.</p>
+      <p class="section-sub section-sub-light">Tenderfy handles the whole tender — from the first Go/No-Go call to a polished, submission-ready pack. Swipe through the features that do the heavy lifting.</p>
     </div>
-    <div class="ray-grid">
-      <!-- Chat window with decorative Ray flair -->
-      <div class="ray-chat-wrap">
-        <span class="ray-glow" aria-hidden="true"></span>
-        <img class="ray-watermark" src="assets/ray-avatar.svg" alt="" aria-hidden="true" />
-        <span class="ray-pulse" aria-hidden="true"></span>
-        <span class="ray-dots" aria-hidden="true"></span>
-        <span class="ray-bit ray-bit-1" aria-hidden="true"></span>
-        <span class="ray-bit ray-bit-2" aria-hidden="true"></span>
-        <span class="ray-bit ray-bit-3" aria-hidden="true"></span>
-      <div class="chat" id="chatWindow">
-        <div class="chat-bar">
-          <span class="chat-avatar"><img class="ray-face" src="assets/ray-avatar.svg" alt="" /></span>
-          <div class="chat-bar-meta">
-            <div class="chat-bar-name">Ray</div>
-            <div class="chat-bar-status">Tenderfy Co-Pilot</div>
+
+    <!-- Feature carousel — reuses existing product recordings; only the active slide plays.
+         TEMP: swap the reused clips for updated product GIFs as the platform evolves (feedback #6). -->
+    <div class="feat-carousel" id="featCarousel" aria-roledescription="carousel" aria-label="Tenderfy key features">
+      <div class="feat-track" id="featTrack">
+
+        <article class="feat-slide" aria-label="1 of 6">
+          <div class="feat-visual"><div class="device-frame">
+            <div class="device-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+            <video class="feat-video" muted loop playsinline preload="none"><source src="assets/app/go-nogo.mp4" type="video/mp4" /></video>
+          </div></div>
+          <div class="feat-copy">
+            <p class="eyebrow eyebrow-secondary">01 · Go / No-Go</p>
+            <h3 class="feat-title">Know which tenders are worth winning.</h3>
+            <p class="feat-body">Weigh scope, risk and fit before you commit. Ray reads the whole pack and gives you a recommendation you can stand behind.</p>
           </div>
-          <div class="chat-bar-controls" aria-hidden="true">
-            <svg viewBox="0 0 16 16" fill="none"><path d="M6 2H2v4M10 14h4v-4M14 6V2h-4M2 10v4h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <svg viewBox="0 0 16 16" fill="none"><path d="M4 4l8 8M12 4l-8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </article>
+
+        <article class="feat-slide" aria-label="2 of 6">
+          <div class="feat-visual"><div class="device-frame">
+            <div class="device-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+            <video class="feat-video" muted loop playsinline preload="none"><source src="assets/app/delivery-plan-2.webm" type="video/webm" /></video>
+          </div></div>
+          <div class="feat-copy">
+            <p class="eyebrow eyebrow-secondary">02 · Delivery Plan</p>
+            <h3 class="feat-title">Turn the tender into a plan from day one.</h3>
+            <p class="feat-body">Break the tender into tasks, owners and due dates on one shared board — so nothing gets missed and everyone knows their part.</p>
           </div>
-        </div>
-        <div class="chat-body" id="chatBody">
-          <div class="msg msg-ray">
-            <span class="msg-avatar"><img class="ray-face" src="assets/ray-avatar.svg" alt="" /></span>
-            <div class="msg-col">
-              <div class="msg-bubble msg-bubble-ray"><p>👋 Hi there! How can I help?</p></div>
-              <button class="msg-copy" type="button" aria-label="Copy message"><svg viewBox="0 0 16 16" fill="none"><rect x="5.5" y="5.5" width="8" height="8" rx="1.6" stroke="currentColor" stroke-width="1.3"/><path d="M3.5 10.5H2.8A1.3 1.3 0 0 1 1.5 9.2V2.8A1.3 1.3 0 0 1 2.8 1.5H9.2A1.3 1.3 0 0 1 10.5 2.8V3.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></button>
-            </div>
+        </article>
+
+        <article class="feat-slide" aria-label="3 of 6">
+          <div class="feat-visual"><div class="device-frame">
+            <div class="device-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+            <video class="feat-video" muted loop playsinline preload="none"><source src="assets/app/align-to-buyer.webm" type="video/webm" /></video>
+          </div></div>
+          <div class="feat-copy">
+            <p class="eyebrow eyebrow-secondary">03 · Align to the buyer</p>
+            <h3 class="feat-title">Tailor every response to what the client wants.</h3>
+            <p class="feat-body">Ray reviews the buyer's priorities and shapes your content to match — so your submission speaks directly to the evaluator.</p>
           </div>
-          <div class="quick-replies" id="quickReplies">
-            <button class="quick-chip" type="button">How can you help me?</button>
-            <button class="quick-chip" type="button">Draft a methodology section</button>
-            <button class="quick-chip" type="button">Should we bid on this tender?</button>
+        </article>
+
+        <article class="feat-slide" aria-label="4 of 6">
+          <div class="feat-visual"><div class="device-frame">
+            <div class="device-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+            <video class="feat-video" muted loop playsinline preload="none"><source src="assets/app/develop-structured-responses.webm" type="video/webm" /></video>
+          </div></div>
+          <div class="feat-copy">
+            <p class="eyebrow eyebrow-secondary">04 · Structured responses</p>
+            <h3 class="feat-title">Draft consistent, compliant responses fast.</h3>
+            <p class="feat-body">Pull from your resumes, policies and past wins to build structured answers that stay on-message across the whole pack.</p>
           </div>
-        </div>
-        <form class="chat-input" id="chatForm">
-          <input type="text" id="chatInput" placeholder="Type a reply…" autocomplete="off" readonly />
-          <button type="submit" class="chat-send">Send</button>
-        </form>
-      </div>
+        </article>
+
+        <article class="feat-slide" aria-label="5 of 6">
+          <div class="feat-visual"><div class="device-frame">
+            <div class="device-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+            <video class="feat-video" muted loop playsinline preload="none"><source src="assets/app/collaborate.webm" type="video/webm" /></video>
+          </div></div>
+          <div class="feat-copy">
+            <p class="eyebrow eyebrow-secondary">05 · Collaboration</p>
+            <h3 class="feat-title">Your whole team, working in one place.</h3>
+            <p class="feat-body">Assign sections, track progress and review together in real time — no more version chaos or last-minute email scrambles.</p>
+          </div>
+        </article>
+
+        <article class="feat-slide" aria-label="6 of 6">
+          <div class="feat-visual"><div class="device-frame">
+            <div class="device-bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+            <video class="feat-video" muted loop playsinline preload="none"><source src="assets/app/continuous-improvement.webm" type="video/webm" /></video>
+          </div></div>
+          <div class="feat-copy">
+            <p class="eyebrow eyebrow-secondary">06 · Continuous improvement</p>
+            <h3 class="feat-title">Every tender makes the next one stronger.</h3>
+            <p class="feat-body">Capture what worked, refine your library, and compound your win rate — Tenderfy learns your best content as you go.</p>
+          </div>
+        </article>
+
       </div>
 
-      <!-- Lean summary — full feature detail lives on the Product page -->
-      <div class="ray-lean">
-        <p class="ray-lead">From blank page to winning bid, Ray works alongside your team — refining every response until it's consistent, compliant and ready to submit.</p>
-        <ul class="fb-list">
-          <li><strong>Generate high-quality responses</strong> — tailored to tender requirements, fast.</li>
-          <li><strong>Refine &amp; strengthen content</strong> — clarity, structure and impact across key personnel, project profiles and responses.</li>
-          <li><strong>Real-time tender support</strong> — refine responses, ensure compliance, and get instant guidance.</li>
-          <li><strong>Automatically align your content</strong> — pull from resumes, policies and case studies for submission-ready tenders.</li>
-        </ul>
-        <div class="ray-lean-cta">
-          <a href="pricing.html" class="btn btn-secondary">See Ray in action <svg class="arrow" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-          <a href="product.html" class="btn btn-outline-light">Explore Ray</a>
-        </div>
+      <div class="feat-controls">
+        <button class="feat-arrow" type="button" data-dir="-1" aria-label="Previous feature"><svg viewBox="0 0 16 16"><path d="M10 3L5 8l5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="feat-dots" id="featDots" role="tablist" aria-label="Choose feature"></div>
+        <button class="feat-arrow" type="button" data-dir="1" aria-label="Next feature"><svg viewBox="0 0 16 16"><path d="M6 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+
+      <div class="feat-cta">
+        <a href="product.html" class="btn btn-secondary">Explore all features <svg class="arrow" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       </div>
     </div>
   </div>
@@ -331,12 +362,36 @@
       <p class="eyebrow eyebrow-primary">What our customers say</p>
       <h2 class="section-title">Teams winning <span class="mark">great work</span> with Tenderfy.</h2>
     </div>
-    <div class="center-narrow" style="text-align:center;">
-      <blockquote class="pull-quote" style="border:0;padding:0;text-align:center;font-size:clamp(20px,2.6vw,28px);">"Tenderfy has been a game changer for us — streamlining the tendering process and making it easy to update documents. The AI has been a big help preparing submissions."</blockquote>
-      <div class="cs-person" style="justify-content:center;margin-top:22px;">
-        <span class="cs-avatar">S</span>
-        <div style="text-align:left;"><div class="cs-name">Shahn</div><div class="cs-role">Managing Director · Bragg Building &amp; Design</div></div>
-      </div>
+    <div class="tq-grid">
+      <figure class="tq-card">
+        <blockquote>"Tenderfy has been a game changer for us — streamlining the tendering process and making it easy to update documents. The AI has been a big help preparing submissions."</blockquote>
+        <figcaption class="cs-person">
+          <span class="cs-avatar">S</span>
+          <div><div class="cs-name">Shahn</div><div class="cs-role">Managing Director · Bragg Building &amp; Design</div></div>
+        </figcaption>
+      </figure>
+      <figure class="tq-card">
+        <blockquote>"Before Tenderfy, I couldn't be bothered with tenders — reinventing the same wheel over and over. Since we started, we've slashed our time preparing tenders by more than half!"</blockquote>
+        <figcaption class="cs-person">
+          <span class="cs-avatar">L</span>
+          <div><div class="cs-name">Leigh</div><div class="cs-role">MinRes Training Institute</div></div>
+        </figcaption>
+      </figure>
+      <figure class="tq-card">
+        <blockquote>"We're submitting more tenders, with better quality, in less time. It's changed how our whole team works."</blockquote>
+        <figcaption class="cs-person">
+          <span class="cs-avatar">C</span>
+          <div><div class="cs-name">Cameron</div><div class="cs-role">Taylor Builders</div></div>
+        </figcaption>
+      </figure>
+      <figure class="tq-card tq-card-ph is-placeholder" aria-hidden="true">
+        <span class="ph-badge">Placeholder</span>
+        <blockquote>"Your approved customer quote goes here — swap in a real testimonial before launch."</blockquote>
+        <figcaption class="cs-person">
+          <span class="cs-avatar ph-avatar"></span>
+          <div><div class="cs-name ph-line w-50"></div><div class="cs-role ph-line w-70"></div></div>
+        </figcaption>
+      </figure>
     </div>
   </div>
 </section>

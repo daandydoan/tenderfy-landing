@@ -597,3 +597,85 @@
 
   onScroll();
 })();
+
+/* ============================================================
+   Feature carousel (homepage) — scroll-snap track + dots/arrows,
+   plays only the active slide's video to keep it light.
+   ============================================================ */
+(function () {
+  var carousel = document.getElementById('featCarousel');
+  if (!carousel) return;
+  var track = document.getElementById('featTrack');
+  var dotsWrap = document.getElementById('featDots');
+  var slides = [].slice.call(track.querySelectorAll('.feat-slide'));
+  var videos = [].slice.call(track.querySelectorAll('.feat-video'));
+  if (!slides.length) return;
+  var current = 0;
+
+  // build dots
+  slides.forEach(function (s, i) {
+    var d = document.createElement('button');
+    d.className = 'feat-dot' + (i === 0 ? ' active' : '');
+    d.type = 'button';
+    d.setAttribute('role', 'tab');
+    d.setAttribute('aria-label', 'Feature ' + (i + 1));
+    d.addEventListener('click', function () { goTo(i); });
+    dotsWrap.appendChild(d);
+  });
+  var dots = [].slice.call(dotsWrap.children);
+
+  function playActive() {
+    videos.forEach(function (v, i) {
+      if (i === current) {
+        if (v.preload === 'none') v.preload = 'auto';
+        var p = v.play(); if (p && p.catch) p.catch(function () {});
+      } else {
+        v.pause();
+      }
+    });
+  }
+
+  function setActive(i) {
+    current = i;
+    dots.forEach(function (d, di) { d.classList.toggle('active', di === i); });
+    playActive();
+  }
+
+  function goTo(i) {
+    i = Math.max(0, Math.min(slides.length - 1, i));
+    slides[i].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    setActive(i);
+  }
+
+  carousel.querySelectorAll('.feat-arrow').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      goTo(current + parseInt(btn.getAttribute('data-dir'), 10));
+    });
+  });
+
+  // keep dots in sync when the user swipes/scrolls the track directly
+  var scrollTimer = null;
+  track.addEventListener('scroll', function () {
+    if (scrollTimer) clearTimeout(scrollTimer);
+    scrollTimer = setTimeout(function () {
+      var mid = track.scrollLeft + track.clientWidth / 2;
+      var nearest = 0, best = Infinity;
+      slides.forEach(function (s, i) {
+        var c = s.offsetLeft + s.offsetWidth / 2;
+        var dist = Math.abs(c - mid);
+        if (dist < best) { best = dist; nearest = i; }
+      });
+      if (nearest !== current) setActive(nearest);
+    }, 120);
+  }, { passive: true });
+
+  // start the first video once it scrolls into view
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) { playActive(); io.disconnect(); } });
+    }, { threshold: 0.35 });
+    io.observe(carousel);
+  } else {
+    playActive();
+  }
+})();
