@@ -36,13 +36,6 @@
     <div class="hero-grid">
     <div class="hero-copy">
       <p class="hero-sub">Tenderfy is a tender management platform that centralises your content, strengthens your responses, and helps your team deliver polished tenders with ease.</p>
-      <div class="hero-cta">
-        <a href="pricing.html" class="btn btn-secondary btn-lg">Try Tenderfy for Free <svg class="arrow" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-        <a href="#meet-ray" class="btn btn-outline-light btn-lg">Book a Demo <svg class="arrow" viewBox="0 0 16 16"><path d="M8 3v10M4 9l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-      </div>
-    </div>
-
-    <div class="hero-aside">
       <div class="chips hero-anim d3" aria-label="Industries we serve">
         <div class="chips-track">
           <div class="chip-group">
@@ -65,37 +58,63 @@
           </div>
         </div>
       </div>
+      <div class="hero-cta">
+        <a href="pricing.html" class="btn btn-secondary btn-lg">Try Tenderfy for Free <svg class="arrow" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <a href="#meet-ray" class="btn btn-outline-light btn-lg">Book a Demo <svg class="arrow" viewBox="0 0 16 16"><path d="M8 3v10M4 9l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+    </div>
 
-      <!-- Before → After: the finished submission is the hero, not the dashboard.
-           TEMP: 'before' is a greyed placeholder and the whole panel will be replaced
-           by the final Before→After transformation video/GIF once produced. -->
-      <div class="hero-shot hero-anim d4">
-        <span class="hero-rings" aria-hidden="true"></span>
-        <span class="hero-dots" aria-hidden="true"></span>
-        <span class="hero-orb hero-orb-1" aria-hidden="true"></span>
-        <span class="hero-orb hero-orb-2" aria-hidden="true"></span>
-        <span class="hero-orb hero-orb-3" aria-hidden="true"></span>
-        <div class="hero-ba" aria-label="Before and after: a messy tender transformed into a polished Tenderfy submission">
-          <span class="ph-badge hero-ba-badge">Placeholder · final animation coming</span>
-          <!-- BEFORE — greyed placeholder for a messy, inconsistent tender -->
-          <figure class="hero-ba-panel hero-ba-before is-placeholder" aria-hidden="true">
-            <figcaption class="hero-ba-tag">Before</figcaption>
-            <div class="ph-doc">
-              <span class="ph-line w-70"></span><span class="ph-line w-90"></span>
-              <span class="ph-line w-50"></span><span class="ph-line w-80"></span>
-              <span class="ph-line w-40"></span><span class="ph-line w-65"></span>
-              <span class="ph-line w-85"></span><span class="ph-line w-55"></span>
-            </div>
-          </figure>
-          <span class="hero-ba-arrow" aria-hidden="true">
-            <svg viewBox="0 0 24 24"><path d="M4 12h14M12 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </span>
-          <!-- AFTER — a real, polished Tenderfy output page -->
-          <figure class="hero-ba-panel hero-ba-after">
-            <figcaption class="hero-ba-tag hero-ba-tag-after">After · Tenderfy</figcaption>
-            <img src="assets/output/construction.png" alt="A polished, on-brand Tenderfy tender submission" loading="eager" />
-          </figure>
+    <div class="hero-aside">
+      <!-- Layered Before / After stage (matches the approved hero mockup).
+           Left = BEFORE cluster (messy Word doc + task checklist).
+           Right = AFTER cluster (dashboard behind + fanned deck of real output pages).
+           Static layout only — motion to be designed later. -->
+      <div class="hero-stage hero-anim d4" aria-label="A messy Word tender transformed into a polished Tenderfy submission pack">
+
+        <!-- ===== AFTER (right) ===== -->
+        <span class="hs-label hs-label-after">After<small>Designer-grade tender</small></span>
+
+        <div class="win win-dash" aria-hidden="true">
+          <div class="win-bar"><span class="d"></span><span class="d"></span><span class="d"></span><span class="win-title">Tenderfy — Dashboard</span></div>
+          <video class="win-media" autoplay muted loop playsinline preload="none"><source src="assets/dashboard.webm" type="video/webm" /></video>
         </div>
+
+        <div class="deck" aria-hidden="true">
+          <img class="deck-pg deck-pg-5" src="assets/output-pages/31.jpg" alt="" loading="lazy" />
+          <img class="deck-pg deck-pg-4" src="assets/output-pages/15.jpg" alt="" loading="lazy" />
+          <img class="deck-pg deck-pg-3" src="assets/output-pages/11.jpg" alt="" loading="lazy" />
+          <img class="deck-pg deck-pg-2" src="assets/output-pages/2.jpg" alt="" loading="lazy" />
+          <img class="deck-pg deck-pg-1" src="assets/output-pages/1.jpg" alt="Polished Tenderfy submission cover" loading="eager" />
+        </div>
+
+        <!-- ===== BEFORE (left) ===== -->
+        <span class="hs-label hs-label-before">Before<small>Messy Word doc</small></span>
+
+        <!-- Before 01 — messy Word doc (CSS mock; swap for final artwork later) -->
+        <div class="win win-doc">
+          <div class="win-bar"><span class="d"></span><span class="d"></span><span class="d"></span><span class="win-title">Tender response.docx</span></div>
+          <div class="doc-mess">
+            <div class="dm-h">[COMPANY NAME]</div>
+            <div class="dm-sub">Tender Response — Supply &amp; <span class="dm-err">instalation</span> of Civil Works</div>
+            <span class="dm-line w-90"></span>
+            <span class="dm-line w-80"></span>
+            <span class="dm-line w-60"></span>
+            <div class="dm-tbl">
+              <span></span><span></span><span class="dm-cell-warn"></span>
+              <span></span><span class="dm-cell-warn"></span><span></span>
+            </div>
+            <span class="dm-line w-70"></span>
+            <span class="dm-line w-50"></span>
+            <span class="dm-note">3 spelling errors — fix before submit!</span>
+          </div>
+        </div>
+
+        <!-- Before 02 — Task Checklist -->
+        <div class="win win-task">
+          <div class="win-bar"><span class="d"></span><span class="d"></span><span class="d"></span><span class="win-title">Task Checklist</span></div>
+          <video class="win-media" autoplay muted loop playsinline preload="none"><source src="assets/task-checklist.webm" type="video/webm" /></video>
+        </div>
+
       </div>
     </div>
     </div>

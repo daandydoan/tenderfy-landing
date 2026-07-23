@@ -1559,3 +1559,66 @@ img, svg { display: block; }
   .hero-ba-arrow { transform: rotate(90deg); }
   .tq-grid { grid-template-columns: 1fr; }
 }
+
+/* ============================================================
+   HERO — layered Before/After stage (approved mockup layout)
+   Left: messy Word doc + task checklist. Right: dashboard + fanned deck.
+   Absolute positioning by % so the whole stage scales with the column.
+   ============================================================ */
+.hero-stage { position: relative; width: 100%; aspect-ratio: 4 / 3.35; min-height: 300px; }
+.hero-stage .win, .hero-stage .deck, .hero-stage .hs-label { position: absolute; }
+
+/* Window chrome shared by doc / task / dashboard */
+.hero-stage .win { border-radius: 12px; overflow: hidden; background: #fff; box-shadow: 0 26px 60px -26px rgba(0,0,0,.6); border: 1px solid rgba(255,255,255,.5); }
+.hero-stage .win-bar { display: flex; align-items: center; gap: 6px; padding: 8px 12px; background: #f3f5f4; border-bottom: 1px solid #e7ebe9; }
+.hero-stage .win-bar .d { width: 8px; height: 8px; border-radius: 50%; background: #cfd6d3; }
+.hero-stage .win-bar .d:nth-child(1){ background:#f0a; background:#ff6f6f;} .hero-stage .win-bar .d:nth-child(2){ background:#ffce55;} .hero-stage .win-bar .d:nth-child(3){ background:#5fd07f;}
+.hero-stage .win-title { margin-left: 8px; font-size: 11px; font-weight: 600; color: #7a8582; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.hero-stage .win-media { display: block; width: 100%; height: calc(100% - 33px); object-fit: cover; background: #0e1a19; }
+
+/* Cluster labels */
+.hs-label { z-index: 20; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: #fff; line-height: 1.1; text-shadow: 0 1px 6px rgba(0,0,0,.3); }
+.hs-label small { display: block; font-size: 11px; font-weight: 600; text-transform: none; letter-spacing: 0; color: rgba(255,255,255,.82); margin-top: 3px; }
+.hs-label-before { top: 2%; left: 0; }
+.hs-label-after  { top: -3%; right: 10%; text-align: right; }
+
+/* AFTER — dashboard window (sits behind the deck, upper right) */
+.win-dash { top: 6%; right: 0; width: 55%; z-index: 4; aspect-ratio: 16/10.5; }
+
+/* AFTER — fanned deck of real output pages (front = cover) */
+.deck { right: 12%; bottom: 0; width: 39%; aspect-ratio: 3/4; z-index: 8; }
+.deck-pg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top center; border-radius: 8px; box-shadow: 0 16px 34px -18px rgba(0,0,0,.55); background: #fff; transform-origin: bottom left; border: 1px solid rgba(0,0,0,.05); }
+.deck-pg-1 { z-index: 5; transform: rotate(-5deg); }
+.deck-pg-2 { z-index: 4; transform: rotate(1deg)  translate(7%, -2%); }
+.deck-pg-3 { z-index: 3; transform: rotate(5deg)  translate(13%, -3%); }
+.deck-pg-4 { z-index: 2; transform: rotate(9deg)  translate(19%, -3%); }
+.deck-pg-5 { z-index: 1; transform: rotate(13deg) translate(24%, -2%); }
+
+/* BEFORE — messy Word doc (CSS mock, dark theme like the reference) */
+.win-doc { top: 12%; left: -3%; width: 43%; z-index: 10; aspect-ratio: 3/4; }
+.win-doc .win-bar { background: #eceeec; }
+.doc-mess { position: relative; height: calc(100% - 33px); background: #1c231f; color: #cfd8d1; padding: 14px 15px; box-sizing: border-box; overflow: hidden; }
+.dm-h { font-size: 12px; font-weight: 700; color: #7fd0a8; letter-spacing: .04em; }
+.dm-sub { font-size: 12px; font-weight: 700; color: #fff; line-height: 1.35; margin: 7px 0 12px; }
+.dm-err { color: #ff8a8a; text-decoration: underline wavy #ff5c5c; }
+.dm-line { display: block; height: 7px; border-radius: 4px; background: #33403a; margin: 7px 0; }
+.dm-line.w-90{width:90%;} .dm-line.w-80{width:80%;} .dm-line.w-70{width:70%;} .dm-line.w-60{width:60%;} .dm-line.w-50{width:50%;}
+.dm-tbl { display: grid; grid-template-columns: repeat(3,1fr); gap: 4px; margin: 12px 0; }
+.dm-tbl span { height: 12px; border-radius: 3px; background: #2c3832; }
+.dm-cell-warn { background: #6e2f2f !important; }
+.dm-note { position: absolute; right: 10px; bottom: 12px; max-width: 55%; font-size: 10px; font-weight: 600; line-height: 1.3; color: #4a3d12; background: #ffd84d; border-radius: 3px; padding: 6px 8px; transform: rotate(3deg); box-shadow: 0 6px 14px -6px rgba(0,0,0,.5); }
+
+/* BEFORE — task checklist window (overlaps below the doc) */
+.win-task { bottom: -2%; left: 12%; width: 38%; z-index: 12; aspect-ratio: 4/3.2; }
+
+/* Responsive: stack the stage sensibly on small screens */
+@media (max-width: 900px) {
+  .hero-stage { aspect-ratio: 4 / 3.1; max-width: 560px; margin: 8px auto 0; }
+}
+@media (max-width: 560px) {
+  .hero-stage { aspect-ratio: 3 / 3; }
+  .win-dash { width: 66%; }
+  .win-doc { width: 50%; }
+  .win-task { width: 46%; }
+  .hs-label small { display: none; }
+}
