@@ -76,6 +76,12 @@
             <span class="hc-kicker">Before</span>
             <span class="hc-sub">Messy Word doc</span>
           </div>
+          <!-- Doc stack lives INSIDE the panel so it's clipped by it (Figma: overflow-clip)
+               and stays behind the AFTER panel. -->
+          <div class="hc-stack" aria-hidden="true">
+            <figure class="hc-doc hc-doc-back"><span class="hc-bar hc-bar-doc"><i></i><i></i><i></i><em>Tender response.docx</em></span><img src="assets/before-tender-dark.png" alt="" loading="lazy" /></figure>
+            <figure class="hc-doc hc-doc-front"><span class="hc-bar hc-bar-doc"><i></i><i></i><i></i><em>Tender response.docx</em></span><img src="assets/before-tender-light.png" alt="A messy Word tender full of errors and annotations" loading="eager" /></figure>
+          </div>
         </div>
 
         <!-- AFTER panel (right, golden, wider) -->
@@ -91,12 +97,6 @@
             <figure class="hc-page hc-page-4"><span class="hc-bar"><i></i><i></i><i></i><em>Tenderfy — submission pack</em></span><img src="assets/output-pages/2.jpg" alt="" loading="lazy" /></figure>
             <figure class="hc-page hc-page-5"><span class="hc-bar"><i></i><i></i><i></i><em>Tenderfy — submission pack</em></span><img src="assets/output-pages/1.jpg" alt="Polished Tenderfy submission cover" loading="eager" /></figure>
           </div>
-        </div>
-
-        <!-- BEFORE document stack — top-level so it layers ABOVE the golden panel's left edge -->
-        <div class="hc-stack" aria-hidden="true">
-          <figure class="hc-doc hc-doc-back"><span class="hc-bar hc-bar-doc"><i></i><i></i><i></i><em>Tender response.docx</em></span><img src="assets/before-tender-dark.png" alt="" loading="lazy" /></figure>
-          <figure class="hc-doc hc-doc-front"><span class="hc-bar hc-bar-doc"><i></i><i></i><i></i><em>Tender response.docx</em></span><img src="assets/before-tender-light.png" alt="A messy Word tender full of errors and annotations" loading="eager" /></figure>
         </div>
 
       </div>
@@ -207,12 +207,17 @@
         <div class="doc-preview">
           <div class="doc-viewer-frame">
           <div class="doc-viewer" data-lenis-prevent aria-label="Preview of a complete Tenderfy tender submission">
-            <img class="dv-page" src="assets/output/construction.png" alt="Tender submission — cover and case study page" loading="lazy" />
-            <img class="dv-page" src="assets/output/consulting.png" alt="Tender submission — policy page" loading="lazy" />
-            <img class="dv-page" src="assets/output/it-creative.png" alt="Tender submission — team resume page" loading="lazy" />
-            <img class="dv-page" src="assets/output/facilities.png" alt="Tender submission — compliance policy page" loading="lazy" />
-            <img class="dv-page" src="assets/output/non-profit.png" alt="Tender submission — community case study page" loading="lazy" />
-            <img class="dv-page" src="assets/output/construction-cv.png" alt="Tender submission — project manager resume page" loading="lazy" />
+            <img class="dv-page" src="assets/output-pages/1.jpg" alt="Tender submission — branded cover page" loading="lazy" />
+            <img class="dv-page" src="assets/output-pages/2.jpg" alt="Tender submission — table of contents" loading="lazy" />
+            <img class="dv-page" src="assets/output-pages/3.jpg" alt="Tender submission — section divider" loading="lazy" />
+            <img class="dv-page" src="assets/output-pages/5.jpg" alt="Tender submission — executive summary" loading="lazy" />
+            <img class="dv-page" src="assets/output-pages/11.jpg" alt="Tender submission — key personnel resume" loading="lazy" />
+            <img class="dv-page" src="assets/output-pages/12.jpg" alt="Tender submission — key personnel resume" loading="lazy" />
+            <img class="dv-page" src="assets/output-pages/15.jpg" alt="Tender submission — project case study" loading="lazy" />
+            <img class="dv-page" src="assets/output-pages/20.jpg" alt="Tender submission — governance and compliance" loading="lazy" />
+            <img class="dv-page" src="assets/output-pages/25.jpg" alt="Tender submission — delivery methodology" loading="lazy" />
+            <img class="dv-page" src="assets/output-pages/28.jpg" alt="Tender submission — programme and schedule" loading="lazy" />
+            <img class="dv-page" src="assets/output-pages/31.jpg" alt="Tender submission — closing page" loading="lazy" />
           </div>
           </div>
           <div class="doc-hint"><svg viewBox="0 0 16 16" fill="none"><path d="M8 2v11M3.5 8.5L8 13l4.5-4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> Scroll Down to View</div>

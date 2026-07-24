@@ -1633,16 +1633,17 @@ img, svg { display: block; }
    ============================================================ */
 .hero-compare {
   position: relative; width: 100%; container-type: inline-size;
-  aspect-ratio: 798 / 556; background: #fff; border-radius: 4.01cqw;
-  box-shadow: 0 40px 80px -40px rgba(0,0,0,.55); overflow: hidden;
+  aspect-ratio: 798 / 556; background: transparent;
+  overflow: hidden;                    /* Figma clips the composition at 798x556 */
 }
 .hc-panel { position: absolute; }
 
 /* Panels — Figma: BEFORE 250.383x491 @ (32,62); AFTER 516x553 @ (282,0) */
 .hc-before { left: 4.01%; top: 11.15%; width: 31.38%; height: 88.31%;
-  background: #EDEDEA; border-radius: 4.01cqw 4.01cqw 0 4.01cqw; z-index: 1; }
+  background: #EDEDEA; border-radius: 4.01cqw 4.01cqw 0 4.01cqw; z-index: 1;
+  overflow: hidden; }                       /* Figma: overflow-clip — docs clip to the panel */
 .hc-after  { left: 35.34%; top: 0;     width: 64.66%; height: 99.46%;
-  background: #FCC642; border-radius: 4.51cqw; z-index: 2; }
+  background: #FCC642; border-radius: 4.51cqw; z-index: 2; }  /* renders ABOVE the before panel */
 
 /* Panel headings — Figma type ramp */
 .hc-head { position: absolute; z-index: 6; }
@@ -1693,10 +1694,12 @@ img, svg { display: block; }
 .hc-after:hover .hc-page-2 { --x: 8%; }
 .hc-after:hover .hc-page-1 { --x: 11%; }
 
-/* BEFORE — 2 docs, centred on the whole card. Figma 52:395 / 52:407. */
-.hc-stack { position: absolute; inset: 0; z-index: 5; }
-.hc-doc-back  { width: 30.73%; left: 28.98%; top: 64.21%; z-index: 1; --r: -15.33deg; }
-.hc-doc-front { width: 30.73%; left: 34.99%; top: 58.79%; z-index: 2; --r: -5.66deg;  }
+/* BEFORE — 2 docs, positioned relative to the grey panel (Figma 52:395 / 52:407).
+   Card 245.26 wide in a 250.383 panel = 97.95%; centres sit near the panel's
+   right edge and are clipped by it. */
+.hc-stack { position: absolute; inset: 0; z-index: 2; }
+.hc-doc-back  { width: 97.95%; left: 79.60%; top: 60.08%; z-index: 1; --r: -15.33deg; }
+.hc-doc-front { width: 97.95%; left: 98.72%; top: 53.94%; z-index: 2; --r: -5.66deg;  }
 
 /* Interactive: lift + bring forward any card the user points at */
 .hc-page:hover, .hc-doc:hover { --lift: -3%; --s: 1.03; z-index: 30;
