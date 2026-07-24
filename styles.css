@@ -1544,8 +1544,22 @@ img, svg { display: block; }
 .feat-cta { text-align: center; margin-top: clamp(22px,3vw,30px); }
 
 /* ---- TESTIMONIAL GRID ---- */
-.tq-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(16px,2vw,22px); }
-.tq-card { position: relative; margin: 0; display: flex; flex-direction: column; gap: 18px; background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: clamp(20px,2.4vw,28px); box-shadow: 0 14px 34px -26px rgba(0,0,0,.4); }
+/* Auto-scrolling testimonial marquee (same pattern as the logo strip) */
+.tq-wall { overflow: hidden;
+  -webkit-mask: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%);
+          mask: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%); }
+.tq-track { display: flex; width: max-content; animation: tqScroll 48s linear infinite; }
+.tq-wall:hover .tq-track { animation-play-state: paused; }
+.tq-group { display: flex; align-items: stretch; gap: clamp(16px,2vw,22px);
+  padding-right: clamp(16px,2vw,22px); flex-shrink: 0; }
+@keyframes tqScroll { to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) {
+  .tq-track { animation: none; width: 100%; }
+  .tq-track .tq-group:last-child { display: none; }
+  .tq-group { flex-wrap: wrap; justify-content: center; }
+}
+.tq-card { position: relative; margin: 0; flex: 0 0 auto; width: clamp(270px, 25vw, 340px);
+  display: flex; flex-direction: column; gap: 18px; background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: clamp(20px,2.4vw,28px); box-shadow: 0 14px 34px -26px rgba(0,0,0,.4); }
 .tq-card blockquote { margin: 0; font-size: clamp(15px,1.5vw,17px); line-height: 1.55; color: var(--ink); font-weight: 500; }
 .tq-card .cs-person { margin-top: auto; }
 .tq-card-ph { background: #f6f8f7; border-style: dashed; box-shadow: none; }
@@ -1559,11 +1573,9 @@ img, svg { display: block; }
   .feat-slide { grid-template-columns: 1fr; gap: 20px; }
   .feat-copy { text-align: center; }
   .feat-copy .feat-body { margin-inline: auto; }
-  .tq-grid { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 560px) {
   .hero-ba-arrow { transform: rotate(90deg); }
-  .tq-grid { grid-template-columns: 1fr; }
 }
 
 /* ============================================================
