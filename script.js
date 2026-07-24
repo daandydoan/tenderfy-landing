@@ -626,12 +626,12 @@
 
   function playActive() {
     videos.forEach(function (v, i) {
-      if (i === current) {
-        if (v.preload === 'none') v.preload = 'auto';
-        var p = v.play(); if (p && p.catch) p.catch(function () {});
-      } else {
-        v.pause();
-      }
+      if (i !== current) { v.pause(); return; }
+      if (v.preload === 'none') v.preload = 'auto';
+      var tryPlay = function () { var p = v.play(); if (p && p.catch) p.catch(function () {}); };
+      // If the clip hasn't buffered yet, play() is a no-op — wait for canplay.
+      if (v.readyState >= 2) tryPlay();
+      else { v.addEventListener('canplay', tryPlay, { once: true }); v.load(); }
     });
   }
 
