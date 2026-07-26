@@ -679,3 +679,37 @@
     playActive();
   }
 })();
+
+/* ============================================================
+   Hero Before/After deal-in: arm each card (offset + hidden), then reveal
+   on its --deal timeout so it slides from the centre. Transition-driven, so
+   hover interactivity on the same transform keeps working afterwards.
+   ============================================================ */
+(function () {
+  var comp = document.querySelector('.hero-compare');
+  if (!comp) return;
+  var cards = [].slice.call(comp.querySelectorAll('.hc-page, .hc-doc'));
+  if (!cards.length) return;
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  // Arm up-front (start-state applied with no transition).
+  cards.forEach(function (c) { c.classList.add('hc-armed'); });
+
+  function deal() {
+    // two frames so the armed start-state is committed before we transition out
+    requestAnimationFrame(function () { requestAnimationFrame(function () {
+      cards.forEach(function (c) {
+        var d = parseFloat(getComputedStyle(c).getPropertyValue('--deal')) || 0;
+        setTimeout(function () { c.classList.remove('hc-armed'); }, d * 1000);
+      });
+    }); });
+  }
+
+  // Play when the card first enters view (it's above the fold, so effectively on load).
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) { deal(); io.disconnect(); } });
+    }, { threshold: 0.2 });
+    io.observe(comp);
+  } else { deal(); }
+})();

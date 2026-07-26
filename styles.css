@@ -1687,22 +1687,25 @@ img, svg { display: block; }
   background: #fff; border: 0.6cqw solid #CBD5D3; border-radius: 6.4% / 4.53%;
   box-shadow: 0 7.5cqw 17cqw rgba(0,0,0,.16);
   transform-origin: center;
-  transform: translate(-50%, -50%) translate(var(--x), var(--y))
-             translateY(var(--lift)) rotate(var(--r)) scale(var(--s));
-  transition: transform .5s cubic-bezier(.22,1,.36,1), box-shadow .35s ease;
+  /* --ix/--iy are the entrance slide offset (page-space, outermost); they sit in
+     the SAME transform property as the rest/hover vars, and the slide is driven by
+     a transition — no separate `translate` property — so nothing freezes the
+     transform and hover keeps working. */
+  transform: translate(var(--ix, 0%), var(--iy, 0%)) translate(-50%, -50%)
+             translate(var(--x), var(--y)) translateY(var(--lift))
+             rotate(var(--r)) scale(var(--s));
+  transition: transform .55s cubic-bezier(.22,1,.36,1), opacity .5s ease, box-shadow .35s ease;
   cursor: pointer;
-  /* Entrance "deal-in": the individual `translate`/opacity animate here and
-     compose with the rest `transform` above, so geometry is untouched.
-     --deal (delay) sequences the cards: before docs first, then after deck. */
-  animation: hcDeal .62s cubic-bezier(.22,1,.36,1) both;
-  animation-delay: var(--deal, 0s);
 }
-@keyframes hcDeal {
-  from { opacity: 0; translate: var(--dfx, 0%) var(--dfy, 16%); }
-  to   { opacity: 1; translate: 0 0; }
+/* Entrance start-state: JS adds .hc-armed to every card up-front (offset + hidden,
+   no transition), then removes it per-card on a --deal-based timeout, so each card
+   slides from the centre to rest. Sequence: before docs first, then after deck. */
+.hc-page.hc-armed, .hc-doc.hc-armed {
+  opacity: 0; --ix: var(--dfx, 0%); --iy: var(--dfy, 8%); transition: none;
 }
 @media (prefers-reduced-motion: reduce) {
-  .hc-page, .hc-doc { transition: none; animation: none; }
+  .hc-page, .hc-doc { transition: none; }
+  .hc-page.hc-armed, .hc-doc.hc-armed { opacity: 1; --ix: 0%; --iy: 0%; }
 }
 
 .hc-bar { flex: 0 0 6.3%; display: flex; align-items: center; gap: 1.28cqw;
@@ -1714,12 +1717,17 @@ img, svg { display: block; }
 
 /* AFTER — 5-card fan. Centres/widths/rotations straight from Figma 52:426. */
 .hc-deck { position: absolute; inset: 0; z-index: 2; }
-/* AFTER cards emerge from the centre and fan out to the right (negative --dfx). */
-.hc-page-5 { width: 73.37%; left: 23.79%; top: 69.86%; z-index: 5; --r: 2.15deg;  --dfx: -14%; --dfy: 8%; --deal: 1.16s; }
-.hc-page-4 { width: 67.57%; left: 34.90%; top: 69.86%; z-index: 4; --r: 9.73deg;  --dfx: -20%; --dfy: 8%; --deal: 1.02s; }
-.hc-page-3 { width: 65.06%; left: 41.97%; top: 70.06%; z-index: 3; --r: 14.06deg; --dfx: -24%; --dfy: 8%; --deal: 0.90s; }
-.hc-page-2 { width: 61.20%; left: 47.58%; top: 73.22%; z-index: 2; --r: 18.30deg; --dfx: -28%; --dfy: 8%; --deal: 0.78s; }
-.hc-page-1 { width: 53.84%; left: 55.02%; top: 77.92%; z-index: 1; --r: 23.71deg; --dfx: -32%; --dfy: 8%; --deal: 0.66s; }
+/* AFTER cards emerge from the composition centre and fan out to the right.
+   --dfx values are measured so each card's START centre == the card's centre
+   (offset = (compCentre - restCentre) / cardWidth), which varies per card. */
+/* Dealt cover-first, then fanning out to the back. --dfx measured against each
+   card's layout (offsetWidth) so the START centre lands on the composition centre
+   (rotated cards have a larger AABB, so this differs from a naive %). */
+.hc-page-5 { width: 73.37%; left: 23.79%; top: 69.86%; z-index: 5; --r: 2.15deg;  --dfx: -15%; --dfy: 8%; --deal: 0.66s; }
+.hc-page-4 { width: 67.57%; left: 34.90%; top: 69.86%; z-index: 4; --r: 9.73deg;  --dfx: -33%; --dfy: 8%; --deal: 0.80s; }
+.hc-page-3 { width: 65.06%; left: 41.97%; top: 70.06%; z-index: 3; --r: 14.06deg; --dfx: -45%; --dfy: 8%; --deal: 0.94s; }
+.hc-page-2 { width: 61.20%; left: 47.58%; top: 73.22%; z-index: 2; --r: 18.30deg; --dfx: -57%; --dfy: 8%; --deal: 1.08s; }
+.hc-page-1 { width: 53.84%; left: 55.02%; top: 77.92%; z-index: 1; --r: 23.71deg; --dfx: -79%; --dfy: 8%; --deal: 1.22s; }
 
 /* Interactive: hovering the AFTER panel fans the deck open a little wider */
 .hc-after:hover .hc-page-4 { --x: 2%; }
@@ -1727,13 +1735,19 @@ img, svg { display: block; }
 .hc-after:hover .hc-page-2 { --x: 8%; }
 .hc-after:hover .hc-page-1 { --x: 11%; }
 
+/* Interactive: hovering the BEFORE (grey) panel highlights its docs the same way —
+   lift them and fan the two apart. */
+.hc-before:hover .hc-doc { --lift: -3%; }
+.hc-before:hover .hc-doc-back  { --x: -6%; }
+.hc-before:hover .hc-doc-front { --x: 4%; }
+
 /* BEFORE — 2 docs, positioned relative to the grey panel (Figma 52:395 / 52:407).
    Card 245.26 wide in a 250.383 panel = 97.95%; centres sit near the panel's
    right edge and are clipped by it. */
 .hc-stack { position: absolute; inset: 0; z-index: 2; }
 /* BEFORE docs emerge from the centre and slide out to the left (positive --dfx). */
-.hc-doc-back  { width: 97.95%; left: 79.60%; top: 60.08%; z-index: 1; --r: -15.33deg; --dfx: 26%; --dfy: 8%; --deal: 0.20s; }
-.hc-doc-front { width: 97.95%; left: 98.72%; top: 53.94%; z-index: 2; --r: -5.66deg;  --dfx: 22%; --dfy: 8%; --deal: 0.36s; }
+.hc-doc-back  { width: 97.95%; left: 79.60%; top: 60.08%; z-index: 1; --r: -15.33deg; --dfx: 47%; --dfy: 8%; --deal: 0.20s; }
+.hc-doc-front { width: 97.95%; left: 98.72%; top: 53.94%; z-index: 2; --r: -5.66deg;  --dfx: 28%; --dfy: 8%; --deal: 0.36s; }
 
 /* Interactive: lift + bring forward any card the user points at */
 .hc-page:hover, .hc-doc:hover { --lift: -3%; --s: 1.03; z-index: 30;
