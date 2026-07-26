@@ -1714,11 +1714,12 @@ img, svg { display: block; }
 
 /* AFTER — 5-card fan. Centres/widths/rotations straight from Figma 52:426. */
 .hc-deck { position: absolute; inset: 0; z-index: 2; }
-.hc-page-5 { width: 73.37%; left: 23.79%; top: 69.86%; z-index: 5; --r: 2.15deg;  --dfx: 16%; --dfy: 14%; --deal: 1.16s; }
-.hc-page-4 { width: 67.57%; left: 34.90%; top: 69.86%; z-index: 4; --r: 9.73deg;  --dfx: 18%; --dfy: 14%; --deal: 1.02s; }
-.hc-page-3 { width: 65.06%; left: 41.97%; top: 70.06%; z-index: 3; --r: 14.06deg; --dfx: 20%; --dfy: 14%; --deal: 0.90s; }
-.hc-page-2 { width: 61.20%; left: 47.58%; top: 73.22%; z-index: 2; --r: 18.30deg; --dfx: 22%; --dfy: 14%; --deal: 0.78s; }
-.hc-page-1 { width: 53.84%; left: 55.02%; top: 77.92%; z-index: 1; --r: 23.71deg; --dfx: 24%; --dfy: 14%; --deal: 0.66s; }
+/* AFTER cards emerge from the centre and fan out to the right (negative --dfx). */
+.hc-page-5 { width: 73.37%; left: 23.79%; top: 69.86%; z-index: 5; --r: 2.15deg;  --dfx: -14%; --dfy: 8%; --deal: 1.16s; }
+.hc-page-4 { width: 67.57%; left: 34.90%; top: 69.86%; z-index: 4; --r: 9.73deg;  --dfx: -20%; --dfy: 8%; --deal: 1.02s; }
+.hc-page-3 { width: 65.06%; left: 41.97%; top: 70.06%; z-index: 3; --r: 14.06deg; --dfx: -24%; --dfy: 8%; --deal: 0.90s; }
+.hc-page-2 { width: 61.20%; left: 47.58%; top: 73.22%; z-index: 2; --r: 18.30deg; --dfx: -28%; --dfy: 8%; --deal: 0.78s; }
+.hc-page-1 { width: 53.84%; left: 55.02%; top: 77.92%; z-index: 1; --r: 23.71deg; --dfx: -32%; --dfy: 8%; --deal: 0.66s; }
 
 /* Interactive: hovering the AFTER panel fans the deck open a little wider */
 .hc-after:hover .hc-page-4 { --x: 2%; }
@@ -1730,8 +1731,9 @@ img, svg { display: block; }
    Card 245.26 wide in a 250.383 panel = 97.95%; centres sit near the panel's
    right edge and are clipped by it. */
 .hc-stack { position: absolute; inset: 0; z-index: 2; }
-.hc-doc-back  { width: 97.95%; left: 79.60%; top: 60.08%; z-index: 1; --r: -15.33deg; --dfx: -18%; --dfy: 16%; --deal: 0.20s; }
-.hc-doc-front { width: 97.95%; left: 98.72%; top: 53.94%; z-index: 2; --r: -5.66deg;  --dfx: -16%; --dfy: 16%; --deal: 0.36s; }
+/* BEFORE docs emerge from the centre and slide out to the left (positive --dfx). */
+.hc-doc-back  { width: 97.95%; left: 79.60%; top: 60.08%; z-index: 1; --r: -15.33deg; --dfx: 26%; --dfy: 8%; --deal: 0.20s; }
+.hc-doc-front { width: 97.95%; left: 98.72%; top: 53.94%; z-index: 2; --r: -5.66deg;  --dfx: 22%; --dfy: 8%; --deal: 0.36s; }
 
 /* Interactive: lift + bring forward any card the user points at */
 .hc-page:hover, .hc-doc:hover { --lift: -3%; --s: 1.03; z-index: 30;
