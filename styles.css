@@ -1715,14 +1715,18 @@ img, svg { display: block; }
   font-size: 2.27cqw; color: #596262; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .hc-page img, .hc-doc img { flex: 1 1 auto; min-height: 0; width: 100%; object-fit: cover; object-position: top center; display: block; }
 
-/* AFTER cards are pre-rendered images (browser chrome + frame + shadow baked
-   in), so strip the CSS card styling and let the image be the whole card. */
+/* AFTER cards are pre-rendered images (browser chrome + frame baked in, no
+   padding), so strip the CSS card styling and let the image be the whole card.
+   The frame has no shadow of its own, so a drop-shadow on the image gives depth
+   and follows the frame's rounded corners (respects alpha). */
 .hc-page {
-  aspect-ratio: 820 / 1072;            /* native ratio of the exported PNGs */
+  aspect-ratio: 820 / 1160;            /* native A4 ratio of the no-padding PNGs */
   background: transparent; border: 0; border-radius: 0; box-shadow: none;
 }
-.hc-page img { width: 100%; height: 100%; object-fit: contain; }
-.hc-page:hover { box-shadow: none; }   /* baked-in shadow already lifts on hover via scale */
+.hc-page img { width: 100%; height: 100%; object-fit: contain;
+  filter: drop-shadow(0 4cqw 7cqw rgba(0,0,0,.30)); }
+.hc-page:hover { box-shadow: none; }
+.hc-page:hover img { filter: drop-shadow(0 7cqw 12cqw rgba(0,0,0,.38)); }
 
 /* AFTER — 5-card fan. Centres/widths/rotations straight from Figma 52:426. */
 .hc-deck { position: absolute; inset: 0; z-index: 2; }
