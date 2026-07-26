@@ -1691,7 +1691,7 @@ img, svg { display: block; }
      the SAME transform property as the rest/hover vars, and the slide is driven by
      a transition — no separate `translate` property — so nothing freezes the
      transform and hover keeps working. */
-  transform: translate(var(--ix, 0%), var(--iy, 0%)) translate(-50%, -50%)
+  transform: translate(var(--sx, 0%), var(--sy, 0%)) translate(-50%, -50%)
              translate(var(--x), var(--y)) translateY(var(--lift))
              rotate(var(--r)) scale(var(--s));
   transition: transform .55s cubic-bezier(.22,1,.36,1), opacity .5s ease, box-shadow .35s ease;
@@ -1701,11 +1701,11 @@ img, svg { display: block; }
    no transition), then removes it per-card on a --deal-based timeout, so each card
    slides from the centre to rest. Sequence: before docs first, then after deck. */
 .hc-page.hc-armed, .hc-doc.hc-armed {
-  opacity: 0; --ix: var(--dfx, 0%); --iy: var(--dfy, 8%); transition: none;
+  opacity: 0; --sx: var(--dfx, 0%); --sy: var(--dfy, 8%); transition: none;
 }
 @media (prefers-reduced-motion: reduce) {
   .hc-page, .hc-doc { transition: none; }
-  .hc-page.hc-armed, .hc-doc.hc-armed { opacity: 1; --ix: 0%; --iy: 0%; }
+  .hc-page.hc-armed, .hc-doc.hc-armed { opacity: 1; --sx: 0%; --sy: 0%; }
 }
 
 .hc-bar { flex: 0 0 6.3%; display: flex; align-items: center; gap: 1.28cqw;
