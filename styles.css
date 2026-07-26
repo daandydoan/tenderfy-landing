@@ -1715,6 +1715,15 @@ img, svg { display: block; }
   font-size: 2.27cqw; color: #596262; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .hc-page img, .hc-doc img { flex: 1 1 auto; min-height: 0; width: 100%; object-fit: cover; object-position: top center; display: block; }
 
+/* AFTER cards are pre-rendered images (browser chrome + frame + shadow baked
+   in), so strip the CSS card styling and let the image be the whole card. */
+.hc-page {
+  aspect-ratio: 820 / 1072;            /* native ratio of the exported PNGs */
+  background: transparent; border: 0; border-radius: 0; box-shadow: none;
+}
+.hc-page img { width: 100%; height: 100%; object-fit: contain; }
+.hc-page:hover { box-shadow: none; }   /* baked-in shadow already lifts on hover via scale */
+
 /* AFTER — 5-card fan. Centres/widths/rotations straight from Figma 52:426. */
 .hc-deck { position: absolute; inset: 0; z-index: 2; }
 /* AFTER cards emerge from the composition centre and fan out to the right.
