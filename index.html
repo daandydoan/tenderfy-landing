@@ -90,13 +90,53 @@
             <span class="hc-kicker">After</span>
             <span class="hc-sub">Designer-grade tender</span>
           </div>
-          <!-- Pre-rendered submission-pack pages (chrome + shadow baked in) -->
+          <!-- Full submission pack — every page cycles through the highlighted
+               front position (chrome + shadow baked into each image). -->
           <div class="hc-deck" aria-hidden="true">
-            <figure class="hc-page hc-page-1"><img src="assets/hero-after/page-1.png" alt="" loading="lazy" /></figure>
-            <figure class="hc-page hc-page-2"><img src="assets/hero-after/page-2.png" alt="" loading="lazy" /></figure>
-            <figure class="hc-page hc-page-3"><img src="assets/hero-after/page-3.png" alt="" loading="lazy" /></figure>
-            <figure class="hc-page hc-page-4"><img src="assets/hero-after/page-4.png" alt="" loading="lazy" /></figure>
-            <figure class="hc-page hc-page-5"><img src="assets/hero-after/page-5.png" alt="A designer-grade Tenderfy submission pack" loading="eager" /></figure>
+            <figure class="hc-page"><img src="assets/submission/01.jpg" alt="A designer-grade Tenderfy submission pack" loading="eager" /></figure>
+            <figure class="hc-page"><img src="assets/submission/02.jpg" alt="" loading="eager" /></figure>
+            <figure class="hc-page"><img src="assets/submission/03.jpg" alt="" loading="eager" /></figure>
+            <figure class="hc-page"><img src="assets/submission/04.jpg" alt="" loading="lazy" /></figure>
+            <figure class="hc-page"><img src="assets/submission/05.jpg" alt="" loading="lazy" /></figure>
+            <figure class="hc-page"><img src="assets/submission/06.jpg" alt="" loading="lazy" /></figure>
+            <figure class="hc-page"><img src="assets/submission/07.jpg" alt="" loading="lazy" /></figure>
+            <figure class="hc-page"><img src="assets/submission/08.jpg" alt="" loading="lazy" /></figure>
+            <figure class="hc-page"><img src="assets/submission/09.jpg" alt="" loading="lazy" /></figure>
+            <figure class="hc-page"><img src="assets/submission/10.jpg" alt="" loading="lazy" /></figure>
+            <figure class="hc-page"><img src="assets/submission/11.jpg" alt="" loading="lazy" /></figure>
+            <figure class="hc-page"><img src="assets/submission/12.jpg" alt="" loading="lazy" /></figure>
+            <figure class="hc-page"><img src="assets/submission/13.jpg" alt="" loading="lazy" /></figure>
+            <figure class="hc-page"><img src="assets/submission/14.jpg" alt="" loading="lazy" /></figure>
+            <figure class="hc-page"><img src="assets/submission/15.jpg" alt="" loading="lazy" /></figure>
+            <figure class="hc-page"><img src="assets/submission/16.jpg" alt="" loading="lazy" /></figure>
+            <figure class="hc-page"><img src="assets/submission/17.jpg" alt="" loading="lazy" /></figure>
+            <figure class="hc-page"><img src="assets/submission/18.jpg" alt="" loading="lazy" /></figure>
+            <figure class="hc-page"><img src="assets/submission/19.jpg" alt="" loading="lazy" /></figure>
+            <figure class="hc-page"><img src="assets/submission/20.jpg" alt="" loading="lazy" /></figure>
+            <figure class="hc-page"><img src="assets/submission/21.jpg" alt="" loading="lazy" /></figure>
+            <figure class="hc-page"><img src="assets/submission/22.jpg" alt="" loading="lazy" /></figure>
+            <figure class="hc-page"><img src="assets/submission/23.jpg" alt="" loading="lazy" /></figure>
+            <figure class="hc-page"><img src="assets/submission/24.jpg" alt="" loading="lazy" /></figure>
+            <figure class="hc-page"><img src="assets/submission/25.jpg" alt="" loading="lazy" /></figure>
+          </div>
+
+          <!-- Ambient visual noise: sparkles drifting up through the panel -->
+          <div class="hc-fx" aria-hidden="true">
+            <span class="hc-dot" style="--px:14%;--py:82%;--dur:7s;--dl:0s"></span>
+            <span class="hc-dot amber" style="--px:30%;--py:90%;--dur:8.5s;--dl:1.2s"></span>
+            <span class="hc-dot" style="--px:52%;--py:86%;--dur:7.8s;--dl:.6s"></span>
+            <span class="hc-dot" style="--px:71%;--py:92%;--dur:9s;--dl:2s"></span>
+            <span class="hc-dot amber" style="--px:85%;--py:80%;--dur:8s;--dl:.9s"></span>
+            <span class="hc-dot" style="--px:40%;--py:95%;--dur:9.5s;--dl:2.6s"></span>
+            <span class="hc-dot" style="--px:62%;--py:88%;--dur:7.4s;--dl:1.6s"></span>
+          </div>
+
+          <!-- Floating status-chip callouts drifting over the pack -->
+          <div class="hc-chips" aria-hidden="true">
+            <span class="hc-chip hc-chip-1"><svg viewBox="0 0 16 16"><path d="M3 8l3 3 7-7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> On-brand</span>
+            <span class="hc-chip hc-chip-2">Auto-formatted</span>
+            <span class="hc-chip hc-chip-3"><svg viewBox="0 0 16 16"><path d="M3 8l3 3 7-7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> Submission-ready</span>
+            <span class="hc-chip hc-chip-4">Ray drafted</span>
           </div>
         </div>
 
@@ -168,9 +208,29 @@
       <p class="eyebrow eyebrow-primary">See it in action</p>
       <h2 class="section-title">What Tenderfy does, in <span class="mark">95 seconds</span>.</h2>
     </div>
+    <div class="film-tabs" role="tablist" aria-label="Choose an explainer">
+      <button class="film-tab active" type="button" role="tab" aria-selected="true" data-film="tenderfy">Tenderfy explainer</button>
+      <button class="film-tab" type="button" role="tab" aria-selected="false" data-film="subbie">Subbie explainer</button>
+    </div>
+
     <div class="film-embed" data-film-panel="tenderfy">
       <iframe src="showcase.html" loading="lazy" title="Tenderfy product explainer — a 95-second auto-playing tour"></iframe>
     </div>
+
+    <!-- Subbie explainer: lead-capture while the video is in production -->
+    <div class="film-signup" data-film-panel="subbie" hidden>
+      <div class="film-signup-inner">
+        <span class="film-signup-badge">Coming soon</span>
+        <h3>The Subbie explainer is on its way.</h3>
+        <p>A short walkthrough for subcontractors receiving RFQs through Tenderfy. Leave your email and we&rsquo;ll send it the moment it&rsquo;s live.</p>
+        <form class="film-signup-form" id="subbieSignup" novalidate>
+          <input type="email" name="email" placeholder="you@company.com" autocomplete="email" required aria-label="Email address" />
+          <button type="submit" class="btn btn-secondary">Sign up <svg class="arrow" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        </form>
+        <p class="film-signup-note" id="subbieSignupNote" hidden>Thanks — you&rsquo;re on the list. We&rsquo;ll email you when the Subbie explainer is ready.</p>
+      </div>
+    </div>
+
     <p class="film-embed-foot">The Tenderfy Method in 95 seconds · <a href="showcase.html" target="_blank" rel="noopener">Watch full-screen ↗</a></p>
   </div>
 </section>
@@ -250,10 +310,8 @@
       <p class="section-sub section-sub-light">Hear firsthand how we helped Taylor Builders streamline their operations and deliver record-breaking results — press play to see the full story.</p>
     </div>
     <div class="cs-video">
-      <!-- TEMP: placeholder for the Taylor Builders customer-story video -->
-      <div class="cs-video-slot" aria-hidden="true">
-        <span class="cs-play"><svg viewBox="0 0 16 16"><path d="M5 3.5l8 4.5-8 4.5z" fill="currentColor"/></svg></span>
-        <span class="cs-video-label">Taylor Builders — customer story</span>
+      <div class="cs-video-embed">
+        <iframe src="https://www.youtube-nocookie.com/embed/bJIFOy6r7S0?rel=0&amp;modestbranding=1" title="Tenderfy customer story" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
       </div>
     </div>
     <div class="cs-metrics cs-metrics-solo">
@@ -354,63 +412,61 @@
       <div class="tq-track">
         <div class="tq-group">
           <figure class="tq-card">
-            <blockquote>"Tenderfy has been a game changer for us — streamlining the tendering process and making it easy to update documents. The AI has been a big help preparing submissions."</blockquote>
+            <blockquote>"Tenderfy has been a game changer for us, helping streamline the tendering process and making it easy to update tender documents when needed. The AI component has also been a big help when preparing submissions."</blockquote>
             <figcaption class="cs-person">
-              <span class="cs-avatar">S</span>
-              <div><div class="cs-name">Shahn</div><div class="cs-role">Managing Director · Bragg Building &amp; Design</div></div>
+              <span class="cs-avatar has-logo"><img src="assets/logos/bragg.png" alt="Bragg Building &amp; Design" /></span>
+              <div><div class="cs-name">Shahn</div><div class="cs-role">Managing Director · Bragg Building &amp; Design Ltd</div></div>
             </figcaption>
           </figure>
           <figure class="tq-card">
-            <blockquote>"Before Tenderfy, I couldn't be bothered with tenders — reinventing the same wheel over and over. Since we started, we've slashed our time preparing tenders by more than half!"</blockquote>
+            <blockquote>"Tenderfy has streamlined our tendering process significantly. The platform is easy to use, highly logical, and ensures more consistent, professional submissions every time."</blockquote>
+            <figcaption class="cs-person">
+              <span class="cs-avatar has-logo"><img src="assets/logos/seamer-civil.png" alt="Seamer Civil Group" /></span>
+              <div><div class="cs-name">Bevan</div><div class="cs-role">Project Manager · Seamer Civil Group</div></div>
+            </figcaption>
+          </figure>
+          <figure class="tq-card">
+            <blockquote>"Before Tenderfy, I couldn't be bothered with tenders, repeating the same stuff, reinventing the same wheel over and over. Since we started using Tenderfy we've slashed our time spent preparing tenders by more than half!"</blockquote>
             <figcaption class="cs-person">
               <span class="cs-avatar">L</span>
               <div><div class="cs-name">Leigh</div><div class="cs-role">MinRes Training Institute</div></div>
             </figcaption>
           </figure>
           <figure class="tq-card">
-            <blockquote>"We're submitting more tenders, with better quality, in less time. It's changed how our whole team works."</blockquote>
+            <blockquote>"We're submitting more tenders, with better quality, in less time."</blockquote>
             <figcaption class="cs-person">
-              <span class="cs-avatar">C</span>
+              <span class="cs-avatar has-logo"><img src="assets/logos/taylor-builders.png" alt="Taylor Builders" /></span>
               <div><div class="cs-name">Cameron</div><div class="cs-role">Taylor Builders</div></div>
-            </figcaption>
-          </figure>
-          <figure class="tq-card tq-card-ph is-placeholder">
-            <span class="ph-badge">Placeholder</span>
-            <blockquote>"Your approved customer quote goes here — swap in a real testimonial before launch."</blockquote>
-            <figcaption class="cs-person">
-              <span class="cs-avatar ph-avatar"></span>
-              <div><div class="cs-name ph-line w-50"></div><div class="cs-role ph-line w-70"></div></div>
             </figcaption>
           </figure>
         </div>
         <div class="tq-group" aria-hidden="true">
           <figure class="tq-card">
-            <blockquote>"Tenderfy has been a game changer for us — streamlining the tendering process and making it easy to update documents. The AI has been a big help preparing submissions."</blockquote>
+            <blockquote>"Tenderfy has been a game changer for us, helping streamline the tendering process and making it easy to update tender documents when needed. The AI component has also been a big help when preparing submissions."</blockquote>
             <figcaption class="cs-person">
-              <span class="cs-avatar">S</span>
-              <div><div class="cs-name">Shahn</div><div class="cs-role">Managing Director · Bragg Building &amp; Design</div></div>
+              <span class="cs-avatar has-logo"><img src="assets/logos/bragg.png" alt="Bragg Building &amp; Design" /></span>
+              <div><div class="cs-name">Shahn</div><div class="cs-role">Managing Director · Bragg Building &amp; Design Ltd</div></div>
             </figcaption>
           </figure>
           <figure class="tq-card">
-            <blockquote>"Before Tenderfy, I couldn't be bothered with tenders — reinventing the same wheel over and over. Since we started, we've slashed our time preparing tenders by more than half!"</blockquote>
+            <blockquote>"Tenderfy has streamlined our tendering process significantly. The platform is easy to use, highly logical, and ensures more consistent, professional submissions every time."</blockquote>
+            <figcaption class="cs-person">
+              <span class="cs-avatar has-logo"><img src="assets/logos/seamer-civil.png" alt="Seamer Civil Group" /></span>
+              <div><div class="cs-name">Bevan</div><div class="cs-role">Project Manager · Seamer Civil Group</div></div>
+            </figcaption>
+          </figure>
+          <figure class="tq-card">
+            <blockquote>"Before Tenderfy, I couldn't be bothered with tenders, repeating the same stuff, reinventing the same wheel over and over. Since we started using Tenderfy we've slashed our time spent preparing tenders by more than half!"</blockquote>
             <figcaption class="cs-person">
               <span class="cs-avatar">L</span>
               <div><div class="cs-name">Leigh</div><div class="cs-role">MinRes Training Institute</div></div>
             </figcaption>
           </figure>
           <figure class="tq-card">
-            <blockquote>"We're submitting more tenders, with better quality, in less time. It's changed how our whole team works."</blockquote>
+            <blockquote>"We're submitting more tenders, with better quality, in less time."</blockquote>
             <figcaption class="cs-person">
-              <span class="cs-avatar">C</span>
+              <span class="cs-avatar has-logo"><img src="assets/logos/taylor-builders.png" alt="Taylor Builders" /></span>
               <div><div class="cs-name">Cameron</div><div class="cs-role">Taylor Builders</div></div>
-            </figcaption>
-          </figure>
-          <figure class="tq-card tq-card-ph is-placeholder">
-            <span class="ph-badge">Placeholder</span>
-            <blockquote>"Your approved customer quote goes here — swap in a real testimonial before launch."</blockquote>
-            <figcaption class="cs-person">
-              <span class="cs-avatar ph-avatar"></span>
-              <div><div class="cs-name ph-line w-50"></div><div class="cs-role ph-line w-70"></div></div>
             </figcaption>
           </figure>
         </div>

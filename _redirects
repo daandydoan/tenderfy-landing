@@ -14,7 +14,6 @@
 /trust-centre    /trust.html        200
 /our-insights    /insights.html     200
 /ai-policy       /ai-policy.html    200
-/guides          /guides.html       200
 /showcase        /showcase.html     200
 
 # 2) RETIRE .html ALIASES  (301 so they never compete as duplicate URLs)
@@ -25,7 +24,6 @@
 /trust.html      /trust-centre/     301!
 /insights.html   /our-insights/     301!
 /ai-policy.html  /ai-policy/        301!
-/guides.html     /guides/           301!
 /showcase.html   /showcase/         301!
 
 # 3) LEGACY SAFETY NETS  (production plural / old paths -> current slug)

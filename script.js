@@ -681,6 +681,95 @@
 })();
 
 /* ============================================================
+   Showcase film fit — the explainer iframe renders at a fixed 1280×720
+   design canvas; scale it to the embed's actual width so the film stays
+   consistently proportioned and never cramps on small screens.
+   ============================================================ */
+(function () {
+  var FILM_W = 1280;
+  var embeds = [].slice.call(document.querySelectorAll('.film-embed'));
+  if (!embeds.length) return;
+  function fit(el) { el.style.setProperty('--film-scale', el.clientWidth / FILM_W); }
+  embeds.forEach(function (el) {
+    fit(el);
+    if ('ResizeObserver' in window) {
+      new ResizeObserver(function () { fit(el); }).observe(el);
+    }
+  });
+  if (!('ResizeObserver' in window)) {
+    window.addEventListener('resize', function () { embeds.forEach(fit); });
+  }
+})();
+
+/* ============================================================
+   "See it in action" tabs — switch between the Tenderfy explainer video
+   and the Subbie explainer email sign-up (lead capture, no backend).
+   ============================================================ */
+(function () {
+  var wrap = document.getElementById('explainer');
+  if (!wrap) return;
+  var tabs = [].slice.call(wrap.querySelectorAll('.film-tab'));
+  var panels = [].slice.call(wrap.querySelectorAll('[data-film-panel]'));
+  var foot = wrap.querySelector('.film-embed-foot');
+  if (!tabs.length) return;
+
+  function activate(key) {
+    tabs.forEach(function (t) {
+      var on = t.getAttribute('data-film') === key;
+      t.classList.toggle('active', on);
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+    });
+    panels.forEach(function (p) { p.hidden = p.getAttribute('data-film-panel') !== key; });
+    if (foot) foot.hidden = key !== 'tenderfy';   // the caption only applies to the video
+  }
+  tabs.forEach(function (t) {
+    t.addEventListener('click', function () { activate(t.getAttribute('data-film')); });
+  });
+
+  // Subbie email sign-up — prototype: acknowledge client-side, no backend.
+  var form = document.getElementById('subbieSignup');
+  if (form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var input = form.querySelector('input[type="email"]');
+      if (!input || !input.checkValidity()) { if (input) input.reportValidity(); return; }
+      form.hidden = true;
+      var note = document.getElementById('subbieSignupNote');
+      if (note) note.hidden = false;
+    });
+  }
+})();
+
+/* ============================================================
+   Feature-block product clips (product page) — play each recording only
+   while it's on screen; pause when it scrolls away. Sources are preload="none"
+   so nothing downloads until the block is reached.
+   ============================================================ */
+(function () {
+  var vids = [].slice.call(document.querySelectorAll('.fb-video'));
+  if (!vids.length) return;
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (!('IntersectionObserver' in window)) {
+    vids.forEach(function (v) { var p = v.play(); if (p && p.catch) p.catch(function () {}); });
+    return;
+  }
+  function play(v) { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      var v = e.target;
+      if (e.isIntersecting) {
+        if (v.preload === 'none') { v.preload = 'auto'; v.load(); }
+        if (v.readyState >= 2) play(v);
+        else v.addEventListener('canplay', function () { play(v); }, { once: true });
+      } else {
+        v.pause();
+      }
+    });
+  }, { threshold: 0.35 });
+  vids.forEach(function (v) { io.observe(v); });
+})();
+
+/* ============================================================
    Hero Before/After deal-in: arm each card (offset + hidden), then reveal
    on its --deal timeout so it slides from the centre. Transition-driven, so
    hover interactivity on the same transform keeps working afterwards.
@@ -688,28 +777,75 @@
 (function () {
   var comp = document.querySelector('.hero-compare');
   if (!comp) return;
-  var cards = [].slice.call(comp.querySelectorAll('.hc-page, .hc-doc'));
-  if (!cards.length) return;
   if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-  // Arm up-front (start-state applied with no transition).
-  cards.forEach(function (c) { c.classList.add('hc-armed'); });
-
-  function deal() {
-    // two frames so the armed start-state is committed before we transition out
-    requestAnimationFrame(function () { requestAnimationFrame(function () {
-      cards.forEach(function (c) {
-        var d = parseFloat(getComputedStyle(c).getPropertyValue('--deal')) || 0;
-        setTimeout(function () { c.classList.remove('hc-armed'); }, d * 1000);
-      });
-    }); });
+  /* ---- BEFORE docs: deal-in entrance (unchanged) ---- */
+  var docs = [].slice.call(comp.querySelectorAll('.hc-doc'));
+  docs.forEach(function (c) { c.classList.add('hc-armed'); });
+  function dealDocs() {
+    // armed state was committed when the class was added above; reveal each on its delay
+    docs.forEach(function (c) {
+      var d = parseFloat(getComputedStyle(c).getPropertyValue('--deal')) || 0;
+      setTimeout(function () { c.classList.remove('hc-armed'); }, d * 1000);
+    });
   }
 
-  // Play when the card first enters view (it's above the fold, so effectively on load).
+  /* ---- AFTER pages: rotating stack over the whole submission pack ----
+     Every page is the same size. The highlighted page sits front-left; the next
+     few cascade to the right; the rest wait hidden behind the deepest visible
+     card. A loop rotates every page through the front, so all documents show in
+     turn. Pauses while the user hovers, or when the tab is hidden. */
+  var pages = [].slice.call(comp.querySelectorAll('.hc-page')); // reading order
+  var n = pages.length;
+  var HOLD = 2000;       // ms each page holds the front
+  var MAX = 5;           // how many cards are visible at once (front + 4 behind)
+  var SLOT_X = 19;       // per-slot rightward offset (% of card width)
+  var SLOT_Y = 4;        // per-slot downward offset
+  var SLOT_SCALE = 0.045; // per-slot shrink for depth
+  var FRONT_SCALE = 1.1; // highlighted card is a touch larger than the rest
+  var BASE_TILT = 3;     // front card tilt (deg)
+  var TILT_STEP = 2.5;   // each card behind tilts a little more
+  var step = 0, timer = null, paused = false, started = false;
+
+  function applySlot(el, slot) {
+    var visible = slot < MAX;
+    var eff = visible ? slot : (MAX - 1);   // hidden cards park behind the deepest visible one
+    el.style.setProperty('--x', (eff * SLOT_X) + '%');
+    el.style.setProperty('--y', (eff * SLOT_Y) + '%');
+    el.style.setProperty('--s', (slot === 0 ? FRONT_SCALE : (1 - eff * SLOT_SCALE)).toFixed(3));
+    el.style.setProperty('--r', (BASE_TILT + eff * TILT_STEP) + 'deg');
+    el.style.opacity = visible ? '1' : '0';
+    el.style.zIndex = String(n - slot);      // slot 0 = front-most
+  }
+  function render() {
+    for (var i = 0; i < n; i++) {
+      applySlot(pages[i], (((i - step) % n) + n) % n); // 0 = highlighted (front-left)
+    }
+  }
+  function advance() { step = (step + 1) % n; render(); }
+  function startCarouselSoon() {
+    if (started || n < 2) return;
+    started = true;
+    render();
+    setTimeout(function () {
+      timer = setInterval(function () { if (!paused) advance(); }, HOLD);
+    }, HOLD);
+  }
+
+  comp.addEventListener('mouseenter', function () { paused = true; });
+  comp.addEventListener('mouseleave', function () { paused = false; });
+  document.addEventListener('visibilitychange', function () { paused = document.hidden; });
+
+  var played = false;
+  function play() { if (played) return; played = true; dealDocs(); startCarouselSoon(); }
+
+  // Play when the card first enters view; the hero is above the fold, so also
+  // fall back to a short timer in case the observer never fires.
   if ('IntersectionObserver' in window) {
     var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) { if (e.isIntersecting) { deal(); io.disconnect(); } });
+      entries.forEach(function (e) { if (e.isIntersecting) { play(); io.disconnect(); } });
     }, { threshold: 0.2 });
     io.observe(comp);
-  } else { deal(); }
+  }
+  setTimeout(play, 600);
 })();

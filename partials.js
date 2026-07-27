@@ -34,12 +34,7 @@
   var MENUS = [
     { label: 'Product', key: 'product', items: [
       ['Overview', 'product.html', 'The full AI tendering workflow', ICONS.grid],
-      ['Solutions', 'solutions.html', 'Built for your trade & sector', ICONS.layers],
-      ['Product tour', 'guides.html', 'Watch 2-min video walkthroughs', ICONS.play]
-    ]},
-    { label: 'Resources', key: 'resources', items: [
-      ['Guides', 'guides.html', 'Tutorials & how-to videos', ICONS.book],
-      ['Insights', 'insights.html', 'Articles on AI & tendering', ICONS.doc]
+      ['Solutions', 'solutions.html', 'Built for your trade & sector', ICONS.layers]
     ]},
     { label: 'Company', key: 'company', items: [
       ['About', 'about.html', 'Our story & mission', ICONS.flag],
@@ -47,7 +42,7 @@
       ['Contact', 'about.html#contact', 'Get in touch with the team', ICONS.chat]
     ]}
   ];
-  var PAGE_GROUP = { product:'product', solutions:'product', guides:'resources', insights:'resources', 'ai-policy':'resources', about:'company', trust:'company' };
+  var PAGE_GROUP = { product:'product', solutions:'product', about:'company', trust:'company' };
 
   function megaNav(active) {
     var groups = MENUS.map(function (m) {
@@ -62,12 +57,13 @@
         + '<button class="nav-trigger' + (on ? ' active' : '') + '" aria-haspopup="true" aria-expanded="false">' + m.label + ' ' + CARET + '</button>'
         + '<div class="mega-panel" role="menu">' + links + '</div></div>';
     }).join('');
-    return groups + '<a href="pricing.html" class="nav-link' + (active === 'pricing' ? ' active' : '') + '">Pricing</a>';
+    return '<a href="insights.html" class="nav-link' + (active === 'insights' ? ' active' : '') + '">Insights</a>'
+      + groups + '<a href="pricing.html" class="nav-link' + (active === 'pricing' ? ' active' : '') + '">Pricing</a>';
   }
 
   var MOBILE = [
     ['Product','product.html','product'],['Solutions','solutions.html','solutions'],
-    ['Pricing','pricing.html','pricing'],['Guides','guides.html','guides'],
+    ['Pricing','pricing.html','pricing'],
     ['Insights','insights.html','insights'],['About','about.html','about'],
     ['Trust Centre','trust.html','trust']
   ];
@@ -108,7 +104,7 @@
       +   '<p class="footer-tag">AI-powered tendering for construction, civil, engineering, and trades across Australia &amp; New Zealand.</p></div>'
       + col('Product', [['Product', 'product.html'], ['Integrations', 'product.html#integrations'], ['Trust Centre', 'trust.html'], ['Pricing', 'pricing.html']])
       + col('Solutions', [['Construction', 'solutions.html#construction'], ['Civil', 'solutions.html#civil'], ['Engineering', 'solutions.html#engineering'], ['Infrastructure', 'solutions.html#infrastructure'], ['HVAC & Trades', 'solutions.html#hvac'], ['Government', 'solutions.html#government']])
-      + col('Resources', [['Guides', 'guides.html'], ['Insights', 'insights.html'], ['AI Policy', 'ai-policy.html'], ['Trust Centre', 'trust.html'], ['Terms & Privacy', '#']])
+      + col('Resources', [['Insights', 'insights.html'], ['AI Policy', 'ai-policy.html'], ['Trust Centre', 'trust.html'], ['Terms & Privacy', '#']])
       + col('Company', [['About Us', 'about.html'], ['Our Story', 'about.html#our-story'], ['Book a Demo', 'pricing.html']])
       + '</div>'
       + '<div class="container footer-bottom"><span>© 2026 Tenderfy. All rights reserved.</span><span>Made in Australia 🇦🇺 &amp; New Zealand 🇳🇿</span></div></footer>'

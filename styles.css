@@ -371,13 +371,44 @@ img, svg { display: block; }
   background: #141c1a;
   box-shadow: var(--shadow-card);
 }
-.film-embed iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; }
+/* The film is a fixed-canvas animation (1280×720). Rather than let it reflow
+   and cramp at small widths, we render it at its design resolution and scale
+   the whole thing down uniformly (--film-scale set per-width by script.js), so
+   it looks identical at every screen size — just smaller. */
+.film-embed iframe {
+  position: absolute; top: 0; left: 0;
+  width: 1280px; height: 720px; border: 0; display: block;
+  transform-origin: top left;
+  transform: scale(var(--film-scale, 1));
+}
 .film-embed-foot {
   display: flex; justify-content: center; gap: 8px;
   margin-top: 14px; font-size: 13px; color: var(--muted);
 }
 .film-embed-foot a { color: var(--primary); font-weight: 600; }
 .film-embed-foot a:hover { text-decoration: underline; }
+
+/* Subbie explainer — email lead-capture panel (same footprint as the film) */
+.film-signup {
+  border-radius: 16px; overflow: hidden;
+  min-height: clamp(300px, 40vw, 500px);
+  display: grid; place-items: center; text-align: center;
+  padding: clamp(28px, 4vw, 56px);
+  background: linear-gradient(150deg, #24413C 0%, #17835F 60%, #1D9E75 130%);
+  box-shadow: var(--shadow-card); color: #fff;
+}
+.film-signup-inner { max-width: 480px; }
+.film-signup-badge { display: inline-block; font-size: 11.5px; font-weight: 700; letter-spacing: .6px; text-transform: uppercase; color: #2E3C3B; background: var(--secondary); border-radius: 99px; padding: 5px 13px; margin-bottom: 18px; }
+.film-signup h3 { font-size: clamp(22px, 3vw, 30px); font-weight: 700; letter-spacing: -.02em; margin: 0 0 12px; color: #fff; }
+.film-signup > .film-signup-inner > p { color: rgba(255,255,255,.85); font-size: clamp(15px, 1.6vw, 17px); line-height: 1.6; margin: 0 0 24px; }
+.film-signup-form { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+.film-signup-form input {
+  flex: 1 1 240px; min-width: 0; max-width: 320px; padding: 13px 16px; border-radius: 10px;
+  border: 1px solid rgba(255,255,255,.28); background: rgba(255,255,255,.1); color: #fff; font: inherit; font-size: 15px;
+}
+.film-signup-form input::placeholder { color: rgba(255,255,255,.6); }
+.film-signup-form input:focus { outline: 2px solid var(--secondary); outline-offset: 1px; border-color: transparent; }
+.film-signup-note { margin: 18px 0 0 !important; color: #fff !important; font-weight: 600; }
 
 /* ============ PLACEHOLDERS ============ */
 /* PROTOTYPE MOCKUPS — desaturated so they're clearly placeholder demo UI,
@@ -451,6 +482,9 @@ img, svg { display: block; }
   background: var(--primary); color: var(--white);
   display: inline-flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px;
 }
+/* company logo in place of the initial */
+.cs-avatar.has-logo { background: #fff; border: 1px solid var(--line); padding: 6px; overflow: hidden; }
+.cs-avatar.has-logo img { width: 100%; height: 100%; object-fit: contain; display: block; }
 .cs-name { font-weight: 700; color: var(--black); }
 .cs-role { font-size: 14px; color: var(--gray); }
 .cs-metrics { display: flex; flex-direction: column; gap: 24px; border-left: 2px solid var(--teal-50); padding-left: clamp(32px, 4vw, 56px); }
@@ -555,8 +589,63 @@ img, svg { display: block; }
 }
 .fb-mock-badge svg { width: 13px; height: 13px; color: var(--primary); }
 
+/* real product recording in a feature-block slot (replaces the mock placeholder) */
+.fb-media {
+  width: 100%; max-width: 500px; aspect-ratio: 16 / 9;
+  border-radius: 18px; position: relative; overflow: hidden;
+  background: #0e1a19;
+  border: 1px solid var(--lighter);
+  box-shadow: 0 30px 60px -32px rgba(46,60,59,.42);
+}
+.fb-video { display: block; width: 100%; height: 100%; object-fit: cover; background: #0e1a19; }
+
+/* Solutions — sector sample image with floating tags + drifting sparkles */
+/* give the image column more room so the sample reads as the hero of the panel */
+.tab-panel .feature-block { grid-template-columns: 0.92fr 1.08fr; align-items: center; }
+.sol-shot {
+  position: relative; width: 100%; max-width: 680px; aspect-ratio: 4 / 3;
+  margin-inline: auto; border-radius: 22px; overflow: hidden;
+  border: 1px solid var(--lighter); box-shadow: 0 44px 90px -38px rgba(46,60,59,.6);
+}
+.sol-shot img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.sol-shot::after { content: ""; position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(155deg, rgba(29,158,117,.14) 0%, rgba(46,60,59,.05) 42%, rgba(46,60,59,.34) 100%); }
+.sol-tag {
+  position: absolute; z-index: 3; display: inline-flex; align-items: center; gap: 7px;
+  padding: 7px 13px; border-radius: 99px; font-size: 12.5px; font-weight: 600; color: #23312F;
+  background: rgba(255,255,255,.95); box-shadow: 0 14px 30px -14px rgba(0,0,0,.5);
+  white-space: nowrap; animation: solFloat 5s ease-in-out infinite;
+}
+.sol-tag svg { width: 14px; height: 14px; color: var(--primary); }
+.sol-tag-tl { top: 16px; left: 16px; }
+.sol-tag-br { right: 16px; bottom: 16px; animation-duration: 5.8s; animation-delay: .6s; }
+.sol-noise { position: absolute; inset: 0; z-index: 2; pointer-events: none; overflow: hidden; }
+.sol-noise i {
+  position: absolute; width: 6px; height: 6px; border-radius: 50%;
+  background: rgba(255,255,255,.92); box-shadow: 0 0 10px rgba(255,255,255,.6);
+  opacity: 0; animation: solDrift 7.5s linear infinite;
+}
+.sol-noise i:nth-child(1) { left: 16%; top: 82%; animation-delay: 0s; }
+.sol-noise i:nth-child(2) { left: 38%; top: 90%; animation-delay: 1.5s; background: var(--secondary); box-shadow: 0 0 10px rgba(255,188,74,.7); }
+.sol-noise i:nth-child(3) { left: 60%; top: 85%; animation-delay: .8s; }
+.sol-noise i:nth-child(4) { left: 80%; top: 92%; animation-delay: 2.3s; }
+.sol-noise i:nth-child(5) { left: 28%; top: 94%; animation-delay: 3.1s; background: var(--secondary); box-shadow: 0 0 10px rgba(255,188,74,.7); }
+@keyframes solFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+@keyframes solDrift {
+  0% { transform: translateY(0) scale(.6); opacity: 0; }
+  14% { opacity: .85; } 80% { opacity: .55; }
+  100% { transform: translateY(-150%) scale(1); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) { .sol-tag { animation: none; } .sol-noise i { display: none; } }
+
 /* customer-story video placeholder (dark proof section) */
 .cs-video { max-width: 940px; margin: 0 auto clamp(40px, 5vw, 60px); }
+.cs-video-embed {
+  position: relative; aspect-ratio: 16 / 9; border-radius: 22px; overflow: hidden;
+  background: #0e1a19; box-shadow: 0 34px 80px -34px rgba(0,0,0,.65);
+  border: 1px solid rgba(255,255,255,.12);
+}
+.cs-video-embed iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; }
 .cs-video-slot {
   position: relative; aspect-ratio: 16 / 9; border-radius: 22px; overflow: hidden;
   display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px;
@@ -1522,11 +1611,10 @@ img, svg { display: block; }
 .feat-track { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; gap: clamp(16px,3vw,32px); -ms-overflow-style: none; scrollbar-width: none; padding: 4px; }
 .feat-track::-webkit-scrollbar { display: none; }
 .feat-slide { scroll-snap-align: center; flex: 0 0 100%; display: grid; grid-template-columns: 1.05fr .95fr; align-items: center; gap: clamp(20px,4vw,52px); }
-.feat-visual .device-frame { border-radius: 16px; overflow: hidden; background: #0e1a19; box-shadow: 0 26px 60px -30px rgba(0,0,0,.7); border: 1px solid rgba(255,255,255,.12); }
-.feat-visual .device-bar { display: flex; align-items: center; gap: 6px; padding: 10px 14px; background: rgba(255,255,255,.06); }
-.feat-visual .device-bar .dot { width: 9px; height: 9px; border-radius: 50%; background: rgba(255,255,255,.28); }
+.feat-visual .device-frame { border-radius: 16px; overflow: hidden; background: transparent; box-shadow: 0 22px 48px -28px rgba(0,0,0,.5); border: 0; max-width: 360px; margin-inline: auto; }
+.feat-visual .device-bar { display: none; }
 /* Source clips are 1920x1920 (square) — match it so nothing is cropped */
-.feat-video { display: block; width: 100%; aspect-ratio: 1/1; object-fit: contain; background: #0e1a19; }
+.feat-video { display: block; width: 100%; aspect-ratio: 1/1; object-fit: contain; background: transparent; }
 /* Greyed placeholder in place of the product recording — swap for real
    product GIFs/screens when they're ready. */
 .feat-mock { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -1723,8 +1811,8 @@ img, svg { display: block; }
   aspect-ratio: 820 / 1160;            /* native A4 ratio of the no-padding PNGs */
   background: transparent; border: 0; border-radius: 0; box-shadow: none;
 }
-.hc-page img { width: 100%; height: 100%; object-fit: contain;
-  filter: drop-shadow(0 4cqw 7cqw rgba(0,0,0,.30)); }
+.hc-page img { width: 100%; height: 100%; object-fit: contain; border-radius: 4cqw;
+  filter: drop-shadow(0 4cqw 7cqw rgba(0,0,0,.30)); transition: filter .4s ease; }
 .hc-page:hover { box-shadow: none; }
 .hc-page:hover img { filter: drop-shadow(0 7cqw 12cqw rgba(0,0,0,.38)); }
 
@@ -1733,20 +1821,64 @@ img, svg { display: block; }
 /* AFTER cards emerge from the composition centre and fan out to the right.
    --dfx values are measured so each card's START centre == the card's centre
    (offset = (compCentre - restCentre) / cardWidth), which varies per card. */
-/* Dealt cover-first, then fanning out to the back. --dfx measured against each
-   card's layout (offsetWidth) so the START centre lands on the composition centre
-   (rotated cards have a larger AABB, so this differs from a naive %). */
-.hc-page-5 { width: 73.37%; left: 23.79%; top: 69.86%; z-index: 5; --r: 2.15deg;  --dfx: -15%; --dfy: 8%; --deal: 0.66s; }
-.hc-page-4 { width: 67.57%; left: 34.90%; top: 69.86%; z-index: 4; --r: 9.73deg;  --dfx: -33%; --dfy: 8%; --deal: 0.80s; }
-.hc-page-3 { width: 65.06%; left: 41.97%; top: 70.06%; z-index: 3; --r: 14.06deg; --dfx: -45%; --dfy: 8%; --deal: 0.94s; }
-.hc-page-2 { width: 61.20%; left: 47.58%; top: 73.22%; z-index: 2; --r: 18.30deg; --dfx: -57%; --dfy: 8%; --deal: 1.08s; }
-.hc-page-1 { width: 53.84%; left: 55.02%; top: 77.92%; z-index: 1; --r: 23.71deg; --dfx: -79%; --dfy: 8%; --deal: 1.22s; }
+/* AFTER pages: equal size, overlapping stack of the whole submission pack. The
+   highlighted page sits front-left; a few cascade to the right behind it; the
+   rest wait hidden. A JS loop (script.js) rotates every page through the front.
+   Default (before JS / reduced motion): only the cover page shows. */
+.hc-deck .hc-page { width: 54%; left: 25%; top: 60%; --r: 3.5deg; opacity: 0; }
+.hc-deck .hc-page:first-child { opacity: 1; z-index: 50; }
 
-/* Interactive: hovering the AFTER panel fans the deck open a little wider */
-.hc-after:hover .hc-page-4 { --x: 2%; }
-.hc-after:hover .hc-page-3 { --x: 5%; }
-.hc-after:hover .hc-page-2 { --x: 8%; }
-.hc-after:hover .hc-page-1 { --x: 11%; }
+/* AFTER panel ambient motion — drifting sparkles (visual noise) + floating chips */
+.hc-fx { position: absolute; inset: 0; z-index: 3; pointer-events: none; overflow: hidden; }
+.hc-dot {
+  position: absolute; left: var(--px); top: var(--py);
+  width: 0.7cqw; height: 0.7cqw; border-radius: 50%;
+  background: rgba(255,255,255,.92); box-shadow: 0 0 1.4cqw rgba(255,255,255,.65);
+  opacity: 0; animation: hcDrift var(--dur, 7s) linear infinite; animation-delay: var(--dl, 0s);
+}
+.hc-dot.amber { background: var(--secondary); box-shadow: 0 0 1.6cqw rgba(255,188,74,.75); }
+
+.hc-chips { position: absolute; inset: 0; z-index: 60; pointer-events: none; }
+.hc-chip {
+  position: absolute; display: inline-flex; align-items: center; gap: 1cqw;
+  padding: 1cqw 1.9cqw; border-radius: 99px; font-size: 2.1cqw; font-weight: 600;
+  color: #23312F; background: rgba(255,255,255,.95); border: 1px solid rgba(0,0,0,.05);
+  box-shadow: 0 1.4cqw 3cqw rgba(28,40,38,.2); white-space: nowrap; opacity: 0;
+  /* reveal once (pop in), then float continuously — float is delayed to start
+     after the reveal so the two transforms never overlap */
+  animation: hcChipIn .55s var(--ease) both, hcFloat 5.6s ease-in-out infinite;
+}
+.hc-chip svg { width: 2.2cqw; height: 2.2cqw; color: var(--primary); }
+.hc-chip-1 { top: 16%;    right: 5%;  animation-delay: 1.00s, 1.55s; }
+.hc-chip-2 { top: 41%;    right: 2%;  animation-delay: 1.15s, 1.70s; }
+.hc-chip-3 { bottom: 16%; right: 9%;  animation-delay: 1.30s, 1.85s; }
+.hc-chip-4 { bottom: 8%;  left: 6%;   animation-delay: 1.45s, 2.00s; }
+
+/* the two comparison panels materialise in on load, before the deck deals */
+.hc-before, .hc-after { animation: hcPanelIn .8s var(--ease) both; }
+.hc-before { animation-delay: .10s; }
+.hc-after  { animation-delay: .24s; }
+
+@keyframes hcFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6%); } }
+@keyframes hcChipIn {
+  from { opacity: 0; transform: translateY(10px) scale(.9); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes hcPanelIn {
+  from { opacity: 0; transform: translateY(18px) scale(.985); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes hcDrift {
+  0%   { transform: translateY(0) scale(.6);   opacity: 0; }
+  12%  { opacity: .9; }
+  80%  { opacity: .7; }
+  100% { transform: translateY(-165%) scale(1); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hc-dot { display: none; }
+  .hc-chip { animation: none; opacity: 1; }
+  .hc-before, .hc-after { animation: none; opacity: 1; }
+}
 
 /* Interactive: hovering the BEFORE (grey) panel highlights its docs the same way —
    lift them and fan the two apart. */
@@ -1811,3 +1943,6 @@ img, svg { display: block; }
 /* Left-aligned section head (eyebrow + title + sub align to the left edge) */
 .section-head-left { text-align: left; max-width: none; margin-left: 0; margin-right: 0; align-items: flex-start; }
 .section-head-left .eyebrow { justify-content: flex-start; align-self: flex-start; margin-left: 0; }
+
+/* Implementation page — numbered phase cards */
+.step-card .step-num { font-weight: 800; font-size: 17px; letter-spacing: .02em; }
