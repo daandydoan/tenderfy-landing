@@ -1790,3 +1790,27 @@ img, svg { display: block; }
 
 /* Solutions — inline CTA under each industry feature block */
 .fb-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: clamp(20px, 2.4vw, 28px); }
+
+/* ============================================================
+   PRODUCT — Integrations showcase (cards + brand-tinted icons)
+   ============================================================ */
+.int-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(16px, 1.8vw, 22px); margin-top: clamp(24px, 3vw, 36px); }
+.int-card { display: flex; flex-direction: column; gap: 14px; background: #fff; border: 1px solid var(--line);
+  border-radius: 16px; padding: clamp(20px, 2.2vw, 26px); box-shadow: 0 14px 34px -28px rgba(0,0,0,.4); }
+.int-card h3 { font-size: clamp(16px, 1.6vw, 18px); font-weight: 700; color: var(--ink); }
+.int-card p { font-size: 14.5px; line-height: 1.6; color: var(--muted, #5b6664); }
+.int-logo { display: inline-grid; place-items: center; width: 44px; height: 44px; border-radius: 11px; }
+.int-logo svg { width: 22px; height: 22px; }
+/* brand-tinted chips (soft bg + brand-colour glyph) */
+.int-sharepoint { background: #e3f4f2; color: #038387; }
+.int-sso { background: #eaf0fb; color: #2b5bb0; }
+.int-dynamics { background: #ede9fb; color: #6b3fd4; }
+.int-salesforce { background: #e4f4fd; color: #00a1e0; }
+.int-foot { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; margin-top: clamp(22px, 2.6vw, 32px); }
+.int-foot p { font-weight: 600; color: var(--ink); }
+@media (max-width: 900px) { .int-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 520px) { .int-grid { grid-template-columns: 1fr; } .int-foot { flex-direction: column; align-items: flex-start; } }
+
+/* Left-aligned section head (eyebrow + title + sub align to the left edge) */
+.section-head-left { text-align: left; max-width: none; margin-left: 0; margin-right: 0; align-items: flex-start; }
+.section-head-left .eyebrow { justify-content: flex-start; align-self: flex-start; margin-left: 0; }
