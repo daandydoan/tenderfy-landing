@@ -1787,3 +1787,6 @@ img, svg { display: block; }
 .doc-embed-title { margin-left: 8px; font-size: 12px; font-weight: 600; color: #7a8582; }
 .doc-embed-frame { display: block; width: 100%; height: 560px; border: 0; background: #525659; }
 @media (max-width: 860px) { .doc-embed-frame { height: 420px; } }
+
+/* Solutions — inline CTA under each industry feature block */
+.fb-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: clamp(20px, 2.4vw, 28px); }
