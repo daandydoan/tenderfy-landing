@@ -29,10 +29,12 @@
     shield: ic('<path d="M12 3 5 5.5V11c0 4.5 3 7.5 7 9 4-1.5 7-4.5 7-9V5.5L12 3Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>'),
     flag: ic('<path d="M6 21V4M6 4h11l-2 4 2 4H6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>'),
     lock: ic('<rect x="4" y="10" width="16" height="10" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M8 10V7a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="1.8"/>'),
-    chat: ic('<path d="M4 5h16v11H8l-4 4V5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>')
+    chat: ic('<path d="M4 5h16v11H8l-4 4V5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>'),
+    spark: ic('<path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>')
   };
   var MENUS = [
     { label: 'Product', key: 'product', items: [
+      ['Ray Agent', 'ray.html', 'Your AI teammate, now in action', ICONS.spark],
       ['Overview', 'product.html', 'The full AI tendering workflow', ICONS.grid],
       ['Solutions', 'solutions.html', 'Built for your trade & sector', ICONS.layers]
     ]},
@@ -42,7 +44,7 @@
       ['Contact', 'about.html#contact', 'Get in touch with the team', ICONS.chat]
     ]}
   ];
-  var PAGE_GROUP = { product:'product', solutions:'product', about:'company', trust:'company' };
+  var PAGE_GROUP = { ray:'product', product:'product', solutions:'product', about:'company', trust:'company' };
 
   function megaNav(active) {
     var groups = MENUS.map(function (m) {
@@ -62,6 +64,7 @@
   }
 
   var MOBILE = [
+    ['Ray Agent','ray.html','ray'],
     ['Product','product.html','product'],['Solutions','solutions.html','solutions'],
     ['Pricing','pricing.html','pricing'],
     ['Insights','insights.html','insights'],['About','about.html','about'],
