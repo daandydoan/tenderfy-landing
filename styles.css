@@ -233,7 +233,8 @@ img, svg { display: block; }
 }
 /* Full-width, oversized headline (dapper-style) */
 .hero-title {
-  font-size: clamp(46px, 7.4vw, 100px);
+  font-size: clamp(30px, 7.4vw, 100px);
+  overflow-wrap: break-word;
   line-height: 1.06;
   font-weight: 400;
   letter-spacing: -.025em;
@@ -371,6 +372,12 @@ img, svg { display: block; }
   overflow: hidden;
   background: #141c1a;
   box-shadow: var(--shadow-card);
+  /* Promote to its own GPU layer so the scaled iframe doesn't shimmer/jitter
+     as the page glides past under smooth (Lenis) scrolling. */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  will-change: transform;
+  contain: paint;
 }
 /* The film is a fixed-canvas animation (1280×720). Rather than let it reflow
    and cramp at small widths, we render it at its design resolution and scale
@@ -380,7 +387,8 @@ img, svg { display: block; }
   position: absolute; top: 0; left: 0;
   width: 1280px; height: 720px; border: 0; display: block;
   transform-origin: top left;
-  transform: scale(var(--film-scale, 1));
+  transform: scale(var(--film-scale, 1)) translateZ(0);
+  backface-visibility: hidden;
 }
 .film-embed-foot {
   display: flex; justify-content: center; gap: 8px;
@@ -441,7 +449,7 @@ img, svg { display: block; }
 .ph-grid .placeholder { min-height: 200px; border-radius: 18px; }
 /* centered, infinite auto-scrolling logo marquee */
 .logo-wall { overflow: hidden; -webkit-mask: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%); mask: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%); }
-.logo-track { display: flex; width: max-content; animation: logoScroll 38s linear infinite; }
+.logo-track { display: flex; width: max-content; animation: logoScroll 100s linear infinite; }
 .logo-group { display: flex; align-items: center; gap: clamp(32px, 4.5vw, 60px); padding-right: clamp(32px, 4.5vw, 60px); flex-shrink: 0; }
 @keyframes logoScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 @media (prefers-reduced-motion: reduce) { .logo-track { animation: none; width: 100%; justify-content: center; flex-wrap: wrap; gap: 40px; } .logo-track .logo-group:last-child { display: none; } }
@@ -1599,7 +1607,7 @@ img, svg { display: block; }
 
 /* ---- EXPLAINER: two-headliner tabs ---- */
 .film-tabs { display: flex; justify-content: center; gap: 10px; margin-bottom: 18px; }
-.film-tab { font-family: inherit; font-size: 14px; font-weight: 600; color: var(--ink); background: #fff; border: 1px solid var(--line); border-radius: 999px; padding: 8px 18px; cursor: pointer; transition: background .15s, color .15s, border-color .15s; }
+.film-tab { font-family: inherit; font-size: 14px; font-weight: 600; color: var(--ink); background: #fff; border: 1px solid var(--line); border-radius: 999px; padding: 13px 18px; cursor: pointer; transition: background .15s, color .15s, border-color .15s; }
 .film-tab.active { background: var(--primary); color: #fff; border-color: var(--primary); }
 .film-tab.is-placeholder { color: #9aa5a2; cursor: not-allowed; background: #f5f7f6; }
 .ph-film { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; width: 100%; height: 100%; min-height: 320px; background: repeating-linear-gradient(135deg,#eef2f0,#eef2f0 12px,#e8edeb 12px,#e8edeb 24px); color: #8a9591; }
@@ -2120,3 +2128,12 @@ img, svg { display: block; }
 @media (max-width:960px){.ray-caps,.ray-arch{grid-template-columns:repeat(2,1fr)}.ray-road{grid-template-columns:repeat(2,1fr)}}
 @media (max-width:820px){.ray-action-grid{grid-template-columns:1fr}}
 @media (max-width:560px){.ray-caps,.ray-arch{grid-template-columns:1fr}.ray-road{grid-template-columns:1fr}.ray-road-step{padding-top:0;padding-left:26px}.ray-road-step::before{left:5px;right:auto;top:0;bottom:0;width:2px;height:auto}.ray-road-step::after{top:6px;left:0}.ray-road-when{position:static;margin-bottom:2px}}
+
+/* Tenderfy Lite — coming-soon banner below the pricing plans (ported from WP build) */
+.lite-banner { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; margin-top: 36px; padding: clamp(22px, 3vw, 34px); border-radius: 20px; border: 1px dashed var(--lighter); background: linear-gradient(135deg, var(--teal-50), var(--bg)); }
+.lite-banner-copy { max-width: 640px; }
+.lite-banner-badge { display: inline-block; background: #6b7280; color: #fff; font-size: 12px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; padding: 5px 13px; border-radius: 99px; margin-bottom: 12px; }
+.lite-banner h3 { font-size: clamp(20px, 2.4vw, 26px); font-weight: 800; margin: 0 0 6px; color: var(--black); }
+.lite-banner p { margin: 0; color: var(--gray); font-size: 15px; line-height: 1.6; }
+.lite-banner-cta { flex-shrink: 0; }
+@media (max-width: 560px) { .lite-banner { flex-direction: column; align-items: flex-start; } .lite-banner-cta { width: 100%; } }

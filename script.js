@@ -797,7 +797,7 @@
      turn. Pauses while the user hovers, or when the tab is hidden. */
   var pages = [].slice.call(comp.querySelectorAll('.hc-page')); // reading order
   var n = pages.length;
-  var HOLD = 2000;       // ms each page holds the front
+  var HOLD = 1200;       // ms each page holds the front
   var MAX = 5;           // how many cards are visible at once (front + 4 behind)
   var SLOT_X = 19;       // per-slot rightward offset (% of card width)
   var SLOT_Y = 4;        // per-slot downward offset
