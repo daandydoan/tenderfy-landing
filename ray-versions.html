@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ray Agent, four ways · Tenderfy</title>
+<meta name="description" content="Four design directions for the Ray Agent page, in the Tenderfy design style. Use the switch at the bottom to compare." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+<link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<meta name="theme-color" content="#1D9E75" />
+<script>if(location.hostname.indexOf("tenderfy.org")===-1){document.head.appendChild(Object.assign(document.createElement("meta"),{name:"robots",content:"noindex,nofollow"}));}</script>
+<style>
+  /* ---------------- floating version switch ---------------- */
+  .rv-switch{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);z-index:300;display:flex;align-items:center;gap:3px;background:rgba(28,38,37,.92);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.14);border-radius:99px;padding:5px;box-shadow:0 22px 55px -18px rgba(0,0,0,.55);max-width:calc(100vw - 20px)}
+  .rv-switch .lbl{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.45);padding:0 6px 0 11px;white-space:nowrap}
+  .rv-switch button{font-family:inherit;font-size:12.5px;font-weight:600;color:rgba(255,255,255,.72);background:transparent;border:0;padding:9px 15px;border-radius:99px;cursor:pointer;white-space:nowrap;transition:background .2s,color .2s}
+  .rv-switch button:hover{color:#fff}
+  .rv-switch button.on{background:var(--primary);color:#fff}
+  @media (max-width:660px){.rv-switch{overflow-x:auto;justify-content:flex-start;left:12px;right:12px;transform:none;max-width:none}.rv-switch .lbl{display:none}.rv-switch button{padding:9px 13px}}
+  .rv[hidden]{display:none}
+  body{padding-bottom:84px}
+
+  /* ---------------- V1 shared: reuses .ray-hero / .ar-console / .value-grid / .ar-cols ---------------- */
+  .rv1-result{max-width:560px;margin:0 auto}
+  .rv1-result .ray-msg-ray{width:100%;max-width:none}
+  .rv1-list{margin:10px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px}
+  .rv1-list li{display:flex;gap:10px;font-size:14.5px;line-height:1.45;color:var(--gray)}
+  .rv1-list li svg{width:17px;height:17px;flex:0 0 auto;margin-top:3px;color:var(--primary)}
+  .rv1-list strong{color:var(--black)}
+
+  /* ---------------- V2 Hire Ray (editorial) ---------------- */
+  .rv-hire-hero{position:relative;overflow:hidden;background:var(--offwhite,#F9F9F7);border-bottom:1px solid var(--lighter)}
+  .rv-hire-hero .container{position:relative;z-index:2;padding-top:clamp(56px,9vw,120px);padding-bottom:clamp(48px,7vw,96px)}
+  .rv-hire-kick{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--primary-dark)}
+  .rv-hire h1{font-size:clamp(56px,13vw,150px);line-height:.9;font-weight:800;letter-spacing:-.045em;color:var(--black);margin:16px 0 0}
+  .rv-hire h1 .u{position:relative;white-space:nowrap}
+  .rv-hire h1 .u::after{content:"";position:absolute;left:0;right:0;bottom:.08em;height:.11em;background:var(--secondary)}
+  .rv-hire-line{font-size:clamp(22px,3vw,34px);font-weight:700;color:var(--black);margin:6px 0 0;letter-spacing:-.02em}
+  .rv-hire-sub{font-size:clamp(16px,1.8vw,19px);line-height:1.6;color:var(--gray);max-width:52ch;margin:22px 0 0}
+  .rv-hire-cta{display:flex;gap:12px;flex-wrap:wrap;margin:30px 0 0}
+  .rv-hire-orb{position:absolute;right:-6%;top:50%;transform:translateY(-50%);width:clamp(220px,32vw,440px);height:clamp(220px,32vw,440px);border-radius:50%;background:radial-gradient(circle at 34% 30%,#ffd98f,#ffbc4a 52%,#f0972b);box-shadow:0 50px 100px -30px rgba(240,151,43,.55);display:grid;place-items:center;z-index:1}
+  .rv-hire-orb svg{width:44%;height:44%;fill:#fff;opacity:.94}
+  @media (max-width:800px){.rv-hire-orb{opacity:.16;right:-20%}}
+  .rv-reasons{display:grid;grid-template-columns:1fr 1fr;gap:0}
+  .rv-reason{display:flex;gap:20px;padding:30px 4px;border-top:1px solid var(--lighter)}
+  .rv-reason .n{font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:700;color:var(--primary);flex:0 0 auto;padding-top:3px}
+  .rv-reason p{margin:0;font-size:18px;line-height:1.5;color:var(--black);font-weight:500;letter-spacing:-.01em}
+  @media (max-width:720px){.rv-reasons{grid-template-columns:1fr}}
+
+  /* ---------------- V3 Ray in the Room (human) ---------------- */
+  .rv-room-hero{position:relative;overflow:hidden;color:#fff;background:linear-gradient(118deg,#c8a686 0%,#a07d5f 48%,#6f533d 100%)}
+  .rv-room-hero::before{content:"";position:absolute;inset:0;background:radial-gradient(130% 90% at 18% 12%,rgba(255,255,255,.28),transparent 55%)}
+  .rv-room-grid{position:relative;display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(28px,4vw,60px);align-items:center;padding-top:clamp(52px,7vw,96px);padding-bottom:clamp(52px,7vw,96px)}
+  .rv-room-kick{font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.85)}
+  .rv-room-hero h1{font-size:clamp(38px,5.6vw,66px);line-height:1.02;font-weight:800;letter-spacing:-.03em;margin:14px 0 0;text-shadow:0 3px 30px rgba(70,45,22,.35)}
+  .rv-room-sub{font-size:clamp(16px,1.8vw,19px);line-height:1.6;color:rgba(255,255,255,.9);max-width:46ch;margin:18px 0 0}
+  .rv-room-cta{display:flex;gap:12px;flex-wrap:wrap;margin:26px 0 0}
+  .rv-room-panel{position:relative;border-radius:22px;min-height:380px;background:linear-gradient(160deg,rgba(255,255,255,.16),rgba(255,255,255,.04));border:1px solid rgba(255,255,255,.28);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);box-shadow:0 40px 90px -34px rgba(60,40,20,.6);overflow:hidden}
+  .rv-room-photo-note{position:absolute;left:16px;top:16px;font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.06em;color:rgba(255,255,255,.8);border:1px dashed rgba(255,255,255,.5);padding:4px 8px;border-radius:6px}
+  .rv-room-conv{position:absolute;left:18px;right:18px;bottom:18px;display:flex;flex-direction:column;gap:9px}
+  .rv-room-conv .b{border-radius:14px;padding:11px 14px;font-size:13.5px;line-height:1.45;max-width:86%;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+  .rv-room-conv .b .who{display:block;font-size:9.5px;font-family:'JetBrains Mono',monospace;letter-spacing:.06em;text-transform:uppercase;opacity:.65;margin-bottom:4px}
+  .rv-room-conv .ray{background:rgba(255,255,255,.94);color:#2b2118;align-self:flex-start}
+  .rv-room-conv .usr{background:rgba(46,60,59,.86);color:#fff;align-self:flex-end}
+  @media (max-width:820px){.rv-room-grid{grid-template-columns:1fr;gap:30px}.rv-room-panel{min-height:340px}}
+
+  /* ---------------- V4 Ray OS (dark system) ---------------- */
+  .rv-os{background:#0d1412;color:#eaf1ee}
+  .rv-os-hero{position:relative;overflow:hidden;text-align:center;padding:clamp(56px,8vw,110px) 0 clamp(40px,6vw,72px)}
+  .rv-os-hero::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 50% 32%,rgba(29,158,117,.22),transparent 58%),repeating-linear-gradient(0deg,transparent,transparent 31px,rgba(255,255,255,.02) 31px,rgba(255,255,255,.02) 32px)}
+  .rv-os-hero .container{position:relative}
+  .rv-os-kick{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#37e0a3}
+  .rv-os-hero h1{font-size:clamp(34px,5.4vw,62px);line-height:1.02;font-weight:800;letter-spacing:-.03em;margin:14px auto 0;max-width:18ch;color:#fff}
+  .rv-os-sub{font-size:clamp(15px,1.7vw,18px);line-height:1.6;color:rgba(234,241,238,.72);max-width:56ch;margin:16px auto 0}
+  .rv-os-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:26px 0 0}
+  .rv-net{position:relative;width:min(620px,92vw);height:clamp(320px,44vw,430px);margin:clamp(34px,5vw,52px) auto 0;font-family:'JetBrains Mono',monospace}
+  .rv-net svg.wire{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+  .rv-net svg.wire line{stroke:rgba(55,224,163,.34);stroke-width:1;stroke-dasharray:3 5}
+  .rv-node{position:absolute;transform:translate(-50%,-50%);font-size:11px;letter-spacing:.03em;color:#a9c8bd;background:rgba(20,32,29,.92);border:1px solid rgba(55,224,163,.28);padding:7px 12px;border-radius:9px;white-space:nowrap}
+  .rv-hub{left:50%;top:50%;background:linear-gradient(135deg,#2bbd8e,#17835F);border:none;color:#fff;font-weight:700;font-size:15px;letter-spacing:.01em;padding:15px 20px;border-radius:15px;box-shadow:0 0 0 8px rgba(43,189,142,.12),0 0 60px rgba(43,189,142,.45);z-index:2;display:flex;align-items:center;gap:8px}
+  .rv-hub svg{width:18px;height:18px;fill:#fff}
+  .rv-n1{left:15%;top:12%}.rv-n2{left:50%;top:6%}.rv-n3{left:85%;top:14%}.rv-n4{left:7%;top:52%}.rv-n5{left:93%;top:54%}.rv-n6{left:24%;top:90%}.rv-n7{left:76%;top:90%}
+  .rv-os .section-title,.rv-os h2{color:#fff}
+  .rv-os .section-sub{color:rgba(234,241,238,.72)}
+  .rv-tools{display:flex;flex-wrap:wrap;gap:9px;max-width:760px;margin:6px auto 0;justify-content:center}
+  .rv-tool{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:#8fc7b4;background:rgba(20,32,29,.8);border:1px solid rgba(55,224,163,.22);border-radius:8px;padding:8px 12px}
+  .rv-tool b{color:#37e0a3;font-weight:500}
+  .rv-flow{display:flex;flex-wrap:wrap;align-items:stretch;justify-content:center;gap:10px;max-width:900px;margin:0 auto}
+  .rv-flow .step{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:16px 18px;flex:1 1 150px;min-width:140px}
+  .rv-flow .step .t{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#37e0a3}
+  .rv-flow .step p{margin:7px 0 0;font-size:13px;line-height:1.5;color:rgba(234,241,238,.82)}
+  .rv-flow .arw{display:grid;place-items:center;color:rgba(55,224,163,.6);font-weight:700;flex:0 0 auto}
+  .rv-os-band{display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:space-between;max-width:900px;margin:34px auto 0;padding:26px 28px;border-radius:18px;background:rgba(55,224,163,.07);border:1px solid rgba(55,224,163,.22)}
+  .rv-os-band h3{margin:0;font-size:19px;color:#fff}
+  .rv-os-band p{margin:8px 0 0;font-size:14px;color:rgba(234,241,238,.78);max-width:52ch}
+  .rv-os-models{display:flex;gap:8px;flex-wrap:wrap}
+  .rv-os-models span{font-family:'JetBrains Mono',monospace;font-size:12px;color:#a9c8bd;border:1px solid rgba(255,255,255,.14);border-radius:99px;padding:6px 12px}
+  .rv-os-models span.now{background:var(--secondary);color:#2E3C3B;border-color:transparent;font-weight:700}
+  @media (max-width:640px){.rv-flow .arw{transform:rotate(90deg)}}
+</style>
+</head>
+<body data-page="ray">
+<div id="mount-header"></div>
+
+<main>
+
+<!-- =================== V1 · THE AUTONOMOUS RUN =================== -->
+<div class="rv" id="v1">
+  <section class="ray-hero">
+    <div class="ray-hero-glow" aria-hidden="true"></div>
+    <div class="container ray-hero-inner">
+      <span class="ar-eyebrow"><span class="ar-live"></span> New in Tenderfy &middot; Ray Agent</span>
+      <h1 class="ray-hero-title">Meet <span class="ar-mark">Ray</span>, your AI teammate for the whole tender.</h1>
+      <p class="ray-hero-sub">We built the product and the tender workflow. Now Ray does the work inside it, alongside you. Point Ray at a tender and it operates Tenderfy for you: reading the pack, drafting responses, attaching the right content and raising tasks. <strong>You stay in control throughout.</strong></p>
+      <div class="ar-cta ray-hero-cta">
+        <a class="ar-btn ar-btn-amber" href="pricing.html">Try Tenderfy for Free</a>
+        <a class="ar-btn ar-btn-ghost" href="showcase.html">Watch it run</a>
+      </div>
+      <div class="ar-console ar-solo" role="img" aria-label="Ray completing tender tasks">
+        <div class="ar-con-bar">
+          <span class="ar-avatar"><svg viewBox="0 0 24 24"><path d="M13 2 4 13h6l-1 9 9-11h-6l1-9z" fill="currentColor"/></svg><span class="ar-avatar-pulse"></span></span>
+          <div class="ar-con-meta"><div class="ar-con-name">Ray</div><div class="ar-con-status"><span class="ar-dot"></span> Working on your tender</div></div>
+          <span class="ar-chip">AGENT</span>
+        </div>
+        <div class="ar-tasks">
+          <div class="ar-task t1"><span class="ar-tick"><span class="ar-spin"></span><svg class="ar-check" viewBox="0 0 16 16"><path d="M3 8l3.2 3.2L13 4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="ar-t-main">Reading the tender pack</span><span class="ar-t-sub">47 pages</span></div>
+          <div class="ar-task t2"><span class="ar-tick"><span class="ar-spin"></span><svg class="ar-check" viewBox="0 0 16 16"><path d="M3 8l3.2 3.2L13 4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="ar-t-main">Identifying requirements</span><span class="ar-t-sub ar-flag">48 found</span></div>
+          <div class="ar-task t3"><span class="ar-tick"><span class="ar-spin"></span><svg class="ar-check" viewBox="0 0 16 16"><path d="M3 8l3.2 3.2L13 4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="ar-t-main">Attaching projects and resumes</span><span class="ar-t-sub">4 + 3</span></div>
+          <div class="ar-task t4"><span class="ar-tick"><span class="ar-spin"></span><svg class="ar-check" viewBox="0 0 16 16"><path d="M3 8l3.2 3.2L13 4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="ar-t-main">Drafting responses</span><span class="ar-t-sub">22 from Library</span></div>
+          <div class="ar-task t5"><span class="ar-tick"><span class="ar-spin"></span><svg class="ar-check" viewBox="0 0 16 16"><path d="M3 8l3.2 3.2L13 4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="ar-t-main">Raising tasks for the team</span><span class="ar-t-sub">8 created</span></div>
+        </div>
+        <div class="ar-progress"><span class="ar-progress-fill"></span></div>
+        <div class="ar-done"><span class="ar-done-txt"><svg viewBox="0 0 16 16"><path d="M3 8l3.2 3.2L13 4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> 5 items need your input</span><span class="ar-done-cta">Review with Ray</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-offwhite">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow eyebrow-secondary">In action</p>
+        <h2 class="section-title">"Ray, get this tender <span class="mark">started</span>."</h2>
+        <p class="section-sub">Say the word, and Ray does a real amount of the work, then tells you exactly where things stand and what it needs from you.</p>
+      </div>
+      <div class="rv1-result">
+        <div class="ray-chat">
+          <div class="ray-chat-bar"><span class="ar-avatar ar-avatar-sm"><svg viewBox="0 0 24 24"><path d="M13 2 4 13h6l-1 9 9-11h-6l1-9z" fill="currentColor"/></svg></span><div><div class="ar-con-name">Ray</div><div class="ray-chat-status"><span class="ar-dot"></span> Online</div></div></div>
+          <div class="ray-chat-body">
+            <div class="ray-msg ray-msg-ray" style="max-width:none">
+              <p>On it. Here is where we are at:</p>
+              <ul class="rv1-list">
+                <li><svg viewBox="0 0 16 16"><path d="M3 8.5l3.2 3.2L13 4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> I have reviewed the tender pack and identified <strong>48 requirements</strong> and <strong>7 mandatory schedules</strong>.</li>
+                <li><svg viewBox="0 0 16 16"><path d="M3 8.5l3.2 3.2L13 4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> I have created the initial tender structure.</li>
+                <li><svg viewBox="0 0 16 16"><path d="M3 8.5l3.2 3.2L13 4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> I have selected and attached <strong>4 project profiles</strong> and <strong>3 resumes</strong>.</li>
+                <li><svg viewBox="0 0 16 16"><path d="M3 8.5l3.2 3.2L13 4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> I have drafted <strong>22 responses</strong> and created <strong>8 tasks</strong> for the team.</li>
+              </ul>
+              <p class="ray-msg-flag">There are <strong>5 items</strong> I need your input on before I can progress further.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-light">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow eyebrow-primary">Available now</p>
+        <h2 class="section-title">What Ray does <span class="mark">from day one</span>.</h2>
+        <p class="section-sub">Ray understands a real tender, holds the context, and takes real actions inside Tenderfy, using the same tools and content your team already relies on.</p>
+      </div>
+      <div class="value-grid">
+        <div class="value-card"><h3>Reviews the tender pack</h3><p>Reads every document and works out what the tender is actually asking for.</p></div>
+        <div class="value-card"><h3>Identifies requirements</h3><p>Surfaces the requirements, evaluation criteria and mandatory schedules.</p></div>
+        <div class="value-card"><h3>Searches your content</h3><p>Looks through your Library, past projects and resumes for what fits.</p></div>
+        <div class="value-card"><h3>Recommends and attaches</h3><p>Selects the most relevant projects and resumes and attaches them.</p></div>
+        <div class="value-card"><h3>Drafts responses</h3><p>Writes tender responses from your proven content, ready to refine.</p></div>
+        <div class="value-card"><h3>Remembers your decisions</h3><p>Creates real Tenderfy tasks and remembers the calls you make on this bid.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-offwhite">
+    <div class="container">
+      <div class="section-head">
+        <h2 class="section-title">You are <span class="mark">always in control</span>.</h2>
+        <p class="section-sub">Ray gets on with the safe, reversible work on its own, and checks with a person before anything that carries real risk. Automatic tender submission is deliberately not the goal.</p>
+      </div>
+      <div class="ar-cols">
+        <div class="ar-col ar-col-new">
+          <h3>Ray does automatically</h3>
+          <ul>
+            <li><svg viewBox="0 0 16 16"><path d="M3 8.5l3.2 3.2L13 4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Analyse tender documents</li>
+            <li><svg viewBox="0 0 16 16"><path d="M3 8.5l3.2 3.2L13 4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Create sections, cover and divider pages</li>
+            <li><svg viewBox="0 0 16 16"><path d="M3 8.5l3.2 3.2L13 4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Attach tender-specific projects and resumes</li>
+            <li><svg viewBox="0 0 16 16"><path d="M3 8.5l3.2 3.2L13 4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Draft responses and organise content</li>
+            <li><svg viewBox="0 0 16 16"><path d="M3 8.5l3.2 3.2L13 4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Create tasks for the team</li>
+          </ul>
+        </div>
+        <div class="ar-arrow ar-arrow-still"><svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3" fill="none" stroke="currentColor" stroke-width="2"/></svg></div>
+        <div class="ar-col ar-col-hold">
+          <h3>Ray checks with you first</h3>
+          <ul>
+            <li><svg viewBox="0 0 16 16"><path d="M8 2.5 14.5 13.5H1.5L8 2.5Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg> Changing master Library content</li>
+            <li><svg viewBox="0 0 16 16"><path d="M8 2.5 14.5 13.5H1.5L8 2.5Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg> Deleting master content</li>
+            <li><svg viewBox="0 0 16 16"><path d="M8 2.5 14.5 13.5H1.5L8 2.5Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg> Changing user permissions</li>
+            <li><svg viewBox="0 0 16 16"><path d="M8 2.5 14.5 13.5H1.5L8 2.5Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg> Sending information externally</li>
+            <li><svg viewBox="0 0 16 16"><path d="M8 2.5 14.5 13.5H1.5L8 2.5Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg> Submitting the tender</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="closing-cta"><div class="container closing-inner">
+    <h2 class="closing-title">Put Ray on your next tender.</h2>
+    <p class="closing-sub">See how much of the tender Ray can take on, with your team reviewing, deciding and staying in control the whole way.</p>
+    <div class="closing-actions"><a href="pricing.html" class="btn btn-secondary btn-lg">Try Tenderfy for Free</a><a href="pricing.html" class="btn btn-outline-light btn-lg">Book a Demo</a></div>
+  </div></section>
+</div>
+
+<!-- =================== V2 · HIRE RAY (editorial) =================== -->
+<div class="rv" id="v2" hidden>
+  <section class="rv-hire-hero">
+    <div class="rv-hire-orb" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M13 2 4 13h6l-1 9 9-11h-6l1-9z"/></svg></div>
+    <div class="container">
+      <p class="rv-hire-kick">Your newest team member</p>
+      <h1>Meet <span class="u">Ray</span>.</h1>
+      <p class="rv-hire-line">Put it on the bid.</p>
+      <p class="rv-hire-sub">Ray operates Tenderfy alongside your team. It does not just tell you what to do. Where it is safe and sensible, Ray does it, and leaves the decisions that matter to you.</p>
+      <div class="rv-hire-cta"><a class="btn btn-secondary btn-lg" href="pricing.html">Try Tenderfy for Free</a><a class="btn btn-outline-dark btn-lg" href="showcase.html">Watch Ray work</a></div>
+    </div>
+  </section>
+
+  <section class="section section-light">
+    <div class="container">
+      <div class="section-head section-head-left">
+        <p class="eyebrow eyebrow-primary">Reasons to put Ray on the tender</p>
+        <h2 class="section-title section-title-left">Six ways Ray earns its <span class="mark">seat</span>.</h2>
+      </div>
+      <div class="rv-reasons">
+        <div class="rv-reason"><span class="n">01</span><p>It reviews the whole tender pack and finds every requirement and evaluation criterion.</p></div>
+        <div class="rv-reason"><span class="n">02</span><p>It builds the tender structure, the cover page and the divider pages.</p></div>
+        <div class="rv-reason"><span class="n">03</span><p>It searches your Library, projects and resumes, and attaches the right ones.</p></div>
+        <div class="rv-reason"><span class="n">04</span><p>It drafts your responses from proven content, ready for your team to refine.</p></div>
+        <div class="rv-reason"><span class="n">05</span><p>It raises real Tenderfy tasks the moment something is missing.</p></div>
+        <div class="rv-reason"><span class="n">06</span><p>It remembers your decisions, so you never explain the tender twice.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-offwhite">
+    <div class="container">
+      <div class="section-head">
+        <h2 class="section-title">A teammate, not an autopilot.</h2>
+        <p class="section-sub">Ray does as much of the tender work as it safely can, while you stay in control. It never submits on its own.</p>
+      </div>
+      <div class="ar-cols">
+        <div class="ar-col ar-col-new">
+          <h3>Ray handles</h3>
+          <ul>
+            <li><svg viewBox="0 0 16 16"><path d="M3 8.5l3.2 3.2L13 4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Reading, structuring and drafting</li>
+            <li><svg viewBox="0 0 16 16"><path d="M3 8.5l3.2 3.2L13 4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Attaching the right projects and people</li>
+            <li><svg viewBox="0 0 16 16"><path d="M3 8.5l3.2 3.2L13 4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Raising tasks and organising content</li>
+          </ul>
+        </div>
+        <div class="ar-arrow ar-arrow-still"><svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3" fill="none" stroke="currentColor" stroke-width="2"/></svg></div>
+        <div class="ar-col ar-col-hold">
+          <h3>You decide</h3>
+          <ul>
+            <li><svg viewBox="0 0 16 16"><path d="M8 2.5 14.5 13.5H1.5L8 2.5Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg> Anything that changes master content</li>
+            <li><svg viewBox="0 0 16 16"><path d="M8 2.5 14.5 13.5H1.5L8 2.5Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg> Anything sent outside the business</li>
+            <li><svg viewBox="0 0 16 16"><path d="M8 2.5 14.5 13.5H1.5L8 2.5Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg> Submitting the tender</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="closing-cta"><div class="container closing-inner">
+    <h2 class="closing-title">Give Ray the next bid.</h2>
+    <p class="closing-sub">Hand Ray a tender and see how much of the build it takes on, while your team reviews and makes the calls.</p>
+    <div class="closing-actions"><a href="pricing.html" class="btn btn-secondary btn-lg">Try Tenderfy for Free</a><a href="pricing.html" class="btn btn-outline-light btn-lg">Book a Demo</a></div>
+  </div></section>
+</div>
+
+<!-- =================== V3 · RAY IN THE ROOM (human) =================== -->
+<div class="rv" id="v3" hidden>
+  <section class="rv-room-hero">
+    <div class="container rv-room-grid">
+      <div class="rv-room-copy">
+        <p class="rv-room-kick">Alongside your team</p>
+        <h1>Your bid team, plus Ray.</h1>
+        <p class="rv-room-sub">Ray works inside Tenderfy with the people who run your tenders. It handles the heavy lifting, and asks you when a call is yours to make. One Ray, holding one live picture of the tender.</p>
+        <div class="rv-room-cta"><a class="btn btn-secondary btn-lg" href="pricing.html">Try Tenderfy for Free</a><a class="btn btn-outline-light btn-lg" href="showcase.html">Watch it run</a></div>
+      </div>
+      <div class="rv-room-panel">
+        <span class="rv-room-photo-note">real team photo goes here</span>
+        <div class="rv-room-conv">
+          <div class="b ray"><span class="who">Ray</span>I have reviewed the pack: 48 requirements and 7 mandatory schedules. I have drafted 22 responses and created 8 tasks. There are 5 items I need your input on.</div>
+          <div class="b usr"><span class="who">Priya, Bid lead</span>Do not use Sarah as Project Manager. Use James.</div>
+          <div class="b ray"><span class="who">Ray</span>Done. I have swapped Sarah for James across the tender, attached his resume, updated the responses that named the PM, and I will remember Sarah is out for this bid.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-light">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow eyebrow-primary">One shared context</p>
+        <h2 class="section-title">You never explain the tender <span class="mark">twice</span>.</h2>
+        <p class="section-sub">Ray keeps one live picture of the tender: what is selected, what is rejected, what is outstanding, and what it is waiting on you for. Ask it where things stand at any time.</p>
+      </div>
+      <div class="value-grid">
+        <div class="value-card"><h3>Knows the requirements</h3><p>Requirements, evaluation criteria and tender structure, held in one place.</p></div>
+        <div class="value-card"><h3>Tracks every decision</h3><p>Selected and rejected projects and resumes, and the calls your team has made.</p></div>
+        <div class="value-card"><h3>Sees what is outstanding</h3><p>Completed actions, outstanding requirements, and the items waiting on a person.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-offwhite">
+    <div class="container">
+      <div class="section-head">
+        <h2 class="section-title">Ray does the work. <span class="mark">You make the calls</span>.</h2>
+        <p class="section-sub">Ray gets on with the safe, reversible work, and brings the higher-risk decisions back to you. It never submits a tender on its own.</p>
+      </div>
+      <div class="ar-cols">
+        <div class="ar-col ar-col-new">
+          <h3>Ray does automatically</h3>
+          <ul>
+            <li><svg viewBox="0 0 16 16"><path d="M3 8.5l3.2 3.2L13 4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Analyse documents and draft responses</li>
+            <li><svg viewBox="0 0 16 16"><path d="M3 8.5l3.2 3.2L13 4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Attach the right projects and resumes</li>
+            <li><svg viewBox="0 0 16 16"><path d="M3 8.5l3.2 3.2L13 4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Raise tasks and organise the tender</li>
+          </ul>
+        </div>
+        <div class="ar-arrow ar-arrow-still"><svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3" fill="none" stroke="currentColor" stroke-width="2"/></svg></div>
+        <div class="ar-col ar-col-hold">
+          <h3>Ray checks with you first</h3>
+          <ul>
+            <li><svg viewBox="0 0 16 16"><path d="M8 2.5 14.5 13.5H1.5L8 2.5Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg> Changing or deleting master content</li>
+            <li><svg viewBox="0 0 16 16"><path d="M8 2.5 14.5 13.5H1.5L8 2.5Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg> Sending anything externally</li>
+            <li><svg viewBox="0 0 16 16"><path d="M8 2.5 14.5 13.5H1.5L8 2.5Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg> Submitting the tender</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="closing-cta"><div class="container closing-inner">
+    <h2 class="closing-title">Bring Ray into the room.</h2>
+    <p class="closing-sub">Put Ray on a live tender and let your team focus on the decisions only they can make.</p>
+    <div class="closing-actions"><a href="pricing.html" class="btn btn-secondary btn-lg">Try Tenderfy for Free</a><a href="pricing.html" class="btn btn-outline-light btn-lg">Book a Demo</a></div>
+  </div></section>
+</div>
+
+<!-- =================== V4 · RAY OS (dark system) =================== -->
+<div class="rv rv-os" id="v4" hidden>
+  <section class="rv-os-hero">
+    <div class="container">
+      <p class="rv-os-kick">One Ray. Your whole tender.</p>
+      <h1>One persistent Ray, across Tenderfy.</h1>
+      <p class="rv-os-sub">No more separate AI experiences that lose track of where you are. Ray holds one live picture of the tender and operates the platform you already use.</p>
+      <div class="rv-os-cta"><a class="ar-btn ar-btn-amber" href="pricing.html">Try Tenderfy for Free</a><a class="ar-btn ar-btn-ghost" href="showcase.html">Watch it run</a></div>
+      <div class="rv-net">
+        <svg class="wire" viewBox="0 0 620 430" preserveAspectRatio="none">
+          <line x1="310" y1="215" x2="93" y2="52"/><line x1="310" y1="215" x2="310" y2="26"/><line x1="310" y1="215" x2="527" y2="60"/>
+          <line x1="310" y1="215" x2="43" y2="224"/><line x1="310" y1="215" x2="577" y2="232"/>
+          <line x1="310" y1="215" x2="149" y2="387"/><line x1="310" y1="215" x2="471" y2="387"/>
+        </svg>
+        <span class="rv-node rv-hub"><svg viewBox="0 0 24 24"><path d="M13 2 4 13h6l-1 9 9-11h-6l1-9z"/></svg>Ray</span>
+        <span class="rv-node rv-n1">Requirements</span>
+        <span class="rv-node rv-n2">Evaluation criteria</span>
+        <span class="rv-node rv-n3">Tender structure</span>
+        <span class="rv-node rv-n4">Projects</span>
+        <span class="rv-node rv-n5">Resumes</span>
+        <span class="rv-node rv-n6">Library</span>
+        <span class="rv-node rv-n7">Tasks</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background:#0d1412;padding-top:clamp(20px,3vw,32px)">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow eyebrow-secondary">Ray operates Tenderfy</p>
+        <h2 class="section-title">It uses the platform, it does not work around it.</h2>
+        <p class="section-sub">We are not rebuilding Tenderfy around AI. We are giving Ray controlled access to the functionality we already built. Ray uses Tenderfy features, rather than touching the underlying data.</p>
+      </div>
+      <div class="rv-tools">
+        <span class="rv-tool"><b>get</b>-tender</span><span class="rv-tool"><b>get</b>-tender-requirements</span><span class="rv-tool"><b>search</b>-projects</span><span class="rv-tool"><b>attach</b>-project</span><span class="rv-tool"><b>search</b>-resumes</span><span class="rv-tool"><b>attach</b>-resume</span><span class="rv-tool"><b>search</b>-library</span><span class="rv-tool"><b>draft</b>-response</span><span class="rv-tool"><b>create</b>-section</span><span class="rv-tool"><b>create</b>-cover-page</span><span class="rv-tool"><b>create</b>-task</span><span class="rv-tool"><b>assign</b>-task</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background:#0b110f">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow eyebrow-secondary">Secure by design</p>
+        <h2 class="section-title">Ray never touches the database directly.</h2>
+        <p class="section-sub">Every action passes through the Tenderfy Tool Service, which enforces tenant isolation and user permissions before any data reaches the model. Every action is logged.</p>
+      </div>
+      <div class="rv-flow">
+        <div class="step"><div class="t">Ray</div><p>Asks to run a Tenderfy action.</p></div>
+        <div class="arw">&rsaquo;</div>
+        <div class="step"><div class="t">Tool Service</div><p>Authentication, tenant check, permission check.</p></div>
+        <div class="arw">&rsaquo;</div>
+        <div class="step"><div class="t">Business logic</div><p>Existing Tenderfy rules run the action.</p></div>
+        <div class="arw">&rsaquo;</div>
+        <div class="step"><div class="t">Database</div><p>Data is read or written safely, and logged.</p></div>
+      </div>
+      <div class="rv-os-band">
+        <div>
+          <h3>Ray is the product. The model is replaceable.</h3>
+          <p>The architecture is not locked to any one provider. The model underneath is treated as replaceable infrastructure.</p>
+        </div>
+        <div class="rv-os-models"><span class="now">OpenAI, today</span><span>Claude</span><span>Gemini</span><span>DeepSeek</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="closing-cta" style="background:#0d1412"><div class="container closing-inner">
+    <h2 class="closing-title" style="color:#fff">One Ray, across your whole tender.</h2>
+    <p class="closing-sub" style="color:rgba(234,241,238,.72)">Give Ray a tender and let it operate Tenderfy for you, securely, with you in control.</p>
+    <div class="closing-actions"><a href="pricing.html" class="btn btn-secondary btn-lg">Try Tenderfy for Free</a><a href="pricing.html" class="btn btn-outline-light btn-lg">Book a Demo</a></div>
+  </div></section>
+</div>
+
+</main>
+
+<div id="mount-footer"></div>
+
+<div class="rv-switch" role="tablist" aria-label="Page version">
+  <span class="lbl">Version</span>
+  <button data-go="v1" class="on" role="tab">01 Autonomous</button>
+  <button data-go="v2" role="tab">02 Hire Ray</button>
+  <button data-go="v3" role="tab">03 In the Room</button>
+  <button data-go="v4" role="tab">04 Ray OS</button>
+</div>
+
+<script src="partials.js"></script>
+<script src="script.js"></script>
+<script>
+(function(){
+  var ids=['v1','v2','v3','v4'];
+  function show(id){
+    if(ids.indexOf(id)<0) id='v1';
+    ids.forEach(function(v){ document.getElementById(v).hidden = (v!==id); });
+    document.querySelectorAll('.rv-switch button').forEach(function(b){ b.classList.toggle('on', b.getAttribute('data-go')===id); });
+    try{ localStorage.setItem('rayVer', id); }catch(e){}
+    window.scrollTo(0,0);
+  }
+  document.querySelectorAll('.rv-switch button').forEach(function(b){
+    b.addEventListener('click', function(){ show(b.getAttribute('data-go')); });
+  });
+  var init='v1'; try{ init=localStorage.getItem('rayVer')||'v1'; }catch(e){}
+  show(init);
+})();
+</script>
+</body>
+</html>
