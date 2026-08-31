@@ -102,6 +102,38 @@
   .rv-os-models span{font-family:'JetBrains Mono',monospace;font-size:12px;color:#a9c8bd;border:1px solid rgba(255,255,255,.14);border-radius:99px;padding:6px 12px}
   .rv-os-models span.now{background:var(--secondary);color:#2E3C3B;border-color:transparent;font-weight:700}
   @media (max-width:640px){.rv-flow .arw{transform:rotate(90deg)}}
+
+  /* ---------------- Real Ray rail (rebuilt from the phase-1 app, landing colours) ---------------- */
+  .ray-rail{max-width:404px;margin:clamp(40px,5vw,56px) auto 0;text-align:left;background:#26302e;border:1px solid rgba(255,255,255,.1);border-radius:20px;overflow:hidden;box-shadow:0 42px 84px -34px rgba(0,0,0,.62);font-size:13.5px;color:#e7edeb}
+  .ray-rail-bar{display:flex;align-items:center;gap:10px;padding:13px 16px;border-bottom:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.02)}
+  .ray-rail-av{position:relative;width:34px;height:34px;border-radius:50%;background:radial-gradient(circle at 34% 30%,#2bbd8e,#17835F);display:grid;place-items:center;flex:0 0 auto}
+  .ray-rail-av svg{width:16px;height:16px;fill:#fff}
+  .ray-rail-meta .nm{font-weight:700;font-size:14px;color:#fff;line-height:1.1}
+  .ray-rail-meta .st{font-size:11px;color:#8fb3a6;display:flex;align-items:center;gap:5px}
+  .ray-rail-meta .st i{width:6px;height:6px;border-radius:50%;background:#37e0a3;display:inline-block;box-shadow:0 0 7px #37e0a3}
+  .ray-rail-tag{margin-left:auto;font-size:10px;font-weight:800;letter-spacing:.1em;color:#2E3C3B;background:var(--secondary);padding:3px 8px;border-radius:5px}
+  .ray-rail-body{padding:16px}
+  .ray-docs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+  .ray-doc{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:5px 9px;color:#cdd6d3}
+  .ray-doc .pg{color:#84a99c}
+  .ray-badge{font-size:9px;font-weight:800;letter-spacing:.03em;color:#0d1412;background:#37e0a3;border-radius:4px;padding:2px 5px}
+  .ray-h{font-weight:700;color:#fff;font-size:14px;margin:2px 0 11px}
+  .ray-points{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:11px}
+  .ray-points li{position:relative;padding-left:16px;line-height:1.5;color:#d5dedb}
+  .ray-points li::before{content:"";position:absolute;left:2px;top:8px;width:6px;height:6px;border-radius:50%;background:#37e0a3}
+  .ray-points b{color:#fff;font-weight:600}
+  .ray-cite{color:#57d7a9;font-weight:500;white-space:nowrap}
+  .ray-note{margin:13px 0 0;font-size:11.5px;color:#84a99c;display:flex;align-items:center;justify-content:space-between;gap:10px}
+  .ray-credit{display:flex;align-items:center;gap:8px;margin:13px 0 0;padding:9px 12px;border-radius:10px;background:rgba(255,188,74,.14);border:1px solid rgba(255,188,74,.3);font-size:11.5px;color:#f4d7a4}
+  .ray-credit b{color:var(--secondary)}
+  .ray-credit .top{margin-left:auto;color:var(--secondary);font-weight:700;white-space:nowrap}
+  .ray-refs{display:flex;flex-wrap:wrap;gap:6px;padding:12px 16px;border-top:1px solid rgba(255,255,255,.08)}
+  .ray-ref{display:inline-flex;align-items:center;gap:6px;font-size:11px;color:#bfeadd;background:rgba(29,158,117,.16);border:1px solid rgba(29,158,117,.35);border-radius:7px;padding:4px 9px}
+  .ray-ref x{font-style:normal;opacity:.6}
+  .ray-composer{display:flex;align-items:center;gap:8px;padding:12px 16px;border-top:1px solid rgba(255,255,255,.08)}
+  .ray-composer .field{flex:1;font-size:12.5px;color:#9fb0ac;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:10px 12px}
+  .ray-composer .send{width:36px;height:36px;border-radius:10px;background:var(--primary);display:grid;place-items:center;flex:0 0 auto}
+  .ray-composer .send svg{width:15px;height:15px;stroke:#fff;fill:none;stroke-width:2}
 </style>
 </head>
 <body data-page="ray">
@@ -121,21 +153,35 @@
         <a class="ar-btn ar-btn-amber" href="pricing.html">Try Tenderfy for Free</a>
         <a class="ar-btn ar-btn-ghost" href="showcase.html">Watch it run</a>
       </div>
-      <div class="ar-console ar-solo" role="img" aria-label="Ray completing tender tasks">
-        <div class="ar-con-bar">
-          <span class="ar-avatar"><svg viewBox="0 0 24 24"><path d="M13 2 4 13h6l-1 9 9-11h-6l1-9z" fill="currentColor"/></svg><span class="ar-avatar-pulse"></span></span>
-          <div class="ar-con-meta"><div class="ar-con-name">Ray</div><div class="ar-con-status"><span class="ar-dot"></span> Working on your tender</div></div>
-          <span class="ar-chip">AGENT</span>
+      <div class="ray-rail" role="img" aria-label="The Ray panel answering a question about the tender, with citations">
+        <div class="ray-rail-bar">
+          <span class="ray-rail-av"><svg viewBox="0 0 24 24"><path d="M13 2 4 13h6l-1 9 9-11h-6l1-9z"/></svg></span>
+          <div class="ray-rail-meta"><div class="nm">Ray</div><div class="st"><i></i> Working across your tender</div></div>
+          <span class="ray-rail-tag">AGENT</span>
         </div>
-        <div class="ar-tasks">
-          <div class="ar-task t1"><span class="ar-tick"><span class="ar-spin"></span><svg class="ar-check" viewBox="0 0 16 16"><path d="M3 8l3.2 3.2L13 4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="ar-t-main">Reading the tender pack</span><span class="ar-t-sub">47 pages</span></div>
-          <div class="ar-task t2"><span class="ar-tick"><span class="ar-spin"></span><svg class="ar-check" viewBox="0 0 16 16"><path d="M3 8l3.2 3.2L13 4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="ar-t-main">Identifying requirements</span><span class="ar-t-sub ar-flag">48 found</span></div>
-          <div class="ar-task t3"><span class="ar-tick"><span class="ar-spin"></span><svg class="ar-check" viewBox="0 0 16 16"><path d="M3 8l3.2 3.2L13 4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="ar-t-main">Attaching projects and resumes</span><span class="ar-t-sub">4 + 3</span></div>
-          <div class="ar-task t4"><span class="ar-tick"><span class="ar-spin"></span><svg class="ar-check" viewBox="0 0 16 16"><path d="M3 8l3.2 3.2L13 4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="ar-t-main">Drafting responses</span><span class="ar-t-sub">22 from Library</span></div>
-          <div class="ar-task t5"><span class="ar-tick"><span class="ar-spin"></span><svg class="ar-check" viewBox="0 0 16 16"><path d="M3 8l3.2 3.2L13 4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="ar-t-main">Raising tasks for the team</span><span class="ar-t-sub">8 created</span></div>
+        <div class="ray-rail-body">
+          <div class="ray-docs">
+            <span class="ray-doc">Request for Tender.pdf <span class="pg">97p</span></span>
+            <span class="ray-doc">Scope of Works, Addendum 2.docx <span class="pg">11p</span> <span class="ray-badge">Whole file</span></span>
+            <span class="ray-doc">Site Survey (scanned).pdf <span class="pg">34p</span> <span class="ray-badge">OCR</span></span>
+          </div>
+          <p class="ray-h">What matters most</p>
+          <ul class="ray-points">
+            <li>Evaluation is <b>40% price</b>, 25% technical, 20% experience, 10% environment and safety, 5% local content. A score under 2 on any criterion can make the bid non-conforming. <span class="ray-cite">Request for Tender p.91</span></li>
+            <li>Addendum 2 overrides the tender twice: Public Liability rises to <b>$25M</b>, and stem rates rise for zones 8 and C only. <span class="ray-cite">Scope of Works p.2</span></li>
+            <li>Liquidated damages are <b>$4,500 a day</b> past practical completion. <span class="ray-cite">Request for Tender p.131</span></li>
+          </ul>
+          <div class="ray-note"><span>I opened 6 reads across 5 documents, not 198 pages.</span><span>10:35</span></div>
+          <div class="ray-credit"><span>Ray credits running low. <b>61%</b> of this month used.</span><span class="top">Top up</span></div>
         </div>
-        <div class="ar-progress"><span class="ar-progress-fill"></span></div>
-        <div class="ar-done"><span class="ar-done-txt"><svg viewBox="0 0 16 16"><path d="M3 8l3.2 3.2L13 4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> 5 items need your input</span><span class="ar-done-cta">Review with Ray</span></div>
+        <div class="ray-refs">
+          <span class="ray-ref">Request for Tender.pdf <x>&times;</x></span>
+          <span class="ray-ref">Scope of Works, Addendum 2.docx <x>&times;</x></span>
+        </div>
+        <div class="ray-composer">
+          <span class="field">Ask Ray anything</span>
+          <span class="send"><svg viewBox="0 0 16 16"><path d="M3 8h9M8 4l4 4-4 4"/></svg></span>
+        </div>
       </div>
     </div>
   </section>
