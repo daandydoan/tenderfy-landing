@@ -253,39 +253,16 @@
   }
   @media (max-width:860px){.rv-hire-grid{grid-template-columns:1fr;gap:34px}.rv-ray-portrait{max-width:340px}}
 
-  /* ================= V4 RayOS: LIGHT THEME (scoped, keeps the systematic feel) ================= */
-  .rv-os{background:#F4F8F6;color:var(--black)}
-  .rv-os-hero{background:linear-gradient(180deg,#E6F2ED,#F4F8F6 72%)}
-  .rv-os-hero::before{background:radial-gradient(circle at 50% 30%,rgba(29,158,117,.13),transparent 60%),repeating-linear-gradient(0deg,transparent,transparent 31px,rgba(46,60,59,.028) 31px,rgba(46,60,59,.028) 32px)}
-  .rv-os-hero h1{color:var(--black)}
-  .rv-os-sub{color:var(--gray)}
-  .rv-os-kick{color:#b0791f}
-  .rv-net svg.wire line{stroke:rgba(29,158,117,.35)}
-  .rv-node{color:var(--black);background:#fff;border-color:var(--teal-50);box-shadow:0 10px 22px -14px rgba(46,60,59,.38)}
-  .rv-hub{background:#fff;border:2px solid var(--primary);color:var(--primary-dark);box-shadow:0 0 0 7px rgba(29,158,117,.1),0 18px 42px -14px rgba(29,158,117,.5);padding:10px 16px 10px 12px;gap:9px}
+  /* ================= V4 RayOS: dark page, LIGHT Ray-UI mockup only ================= */
+  /* hub keeps the Ray mascot (white chip pops on the dark map) */
+  .rv-hub{background:#fff;border:2px solid var(--primary);color:var(--primary-dark);box-shadow:0 0 0 7px rgba(29,158,117,.14),0 18px 42px -14px rgba(29,158,117,.5);padding:10px 16px 10px 12px;gap:9px}
   .rv-hub img{width:26px;height:auto}
-  .rv-os .section-title,.rv-os h2{color:var(--black)}
-  .rv-os .section-sub{color:var(--gray)}
-  .rv-tool{font-family:inherit;font-size:13.5px;font-weight:500;color:var(--black);background:#fff;border:1px solid var(--teal-50);border-radius:99px;padding:8px 15px 8px 12px;display:inline-flex;align-items:center;gap:8px}
-  .rv-tool::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--primary);flex:0 0 auto}
-  .rv-tool:hover{border-color:var(--primary);color:var(--primary-dark)}
-  .rv-flow .step{background:#fff;border-color:var(--lighter);box-shadow:0 14px 30px -22px rgba(46,60,59,.4)}
-  .rv-flow .step .t{color:var(--primary-dark)}
-  .rv-flow .step p{color:var(--gray)}
-  .rv-flow .arw{color:var(--primary)}
-  .rv-os-band{background:var(--teal-tint);border-color:var(--teal-50)}
-  .rv-os-band h3{color:var(--black)}
-  .rv-os-band p{color:var(--gray)}
-  .rv-os-models span{color:var(--gray);border-color:var(--lighter);background:#fff}
-  .rv-matrix{border-color:var(--teal-50);background:#fff;box-shadow:0 20px 46px -28px rgba(46,60,59,.4)}
-  .rv-mrow{border-bottom-color:#edf2f0;color:var(--black)}
-  .rv-mrow .g{color:var(--primary-dark)}
-  .rv-mrow .st.au{background:var(--teal-tint);color:var(--primary-dark)}
-  .rv-mrow .st.ak{background:rgba(255,188,74,.2);color:#9a6612}
-  .rv-mrow:hover{background:var(--teal-tint)}
-  .rv-os .eyebrow{background:rgba(255,188,74,.2);color:#95640e}
-  /* light Ray rail for V4 */
-  .rv-os .ray-rail{background:#fff;border-color:var(--lighter);color:var(--black);box-shadow:0 30px 60px -30px rgba(46,60,59,.42)}
+  /* tools: plain-language action pills, dark on the dark page */
+  .rv-tool{font-family:inherit;font-size:13px;font-weight:500;color:#d3e0da;background:rgba(20,32,29,.85);border:1px solid rgba(55,224,163,.26);border-radius:99px;padding:8px 15px 8px 12px;display:inline-flex;align-items:center;gap:8px}
+  .rv-tool::before{content:"";width:7px;height:7px;border-radius:50%;background:#37e0a3;flex:0 0 auto}
+  .rv-tool:hover{border-color:rgba(55,224,163,.5);color:#eaf1ee}
+  /* the Ray rail (the product mockup) is LIGHT, on the dark page */
+  .rv-os .ray-rail{background:#fff;border-color:var(--lighter);color:var(--black);box-shadow:0 34px 68px -26px rgba(0,0,0,.6)}
   .rv-os .ray-rail-bar{border-bottom-color:var(--line);background:var(--teal-tint)}
   .rv-os .ray-rail-meta .nm{color:var(--black)}
   .rv-os .ray-rail-meta .st{color:var(--gray)}
@@ -300,8 +277,6 @@
   .rv-os .ray-ref{background:var(--teal-tint);border-color:var(--teal-50);color:var(--primary-dark)}
   .rv-os .ray-composer{border-top-color:var(--line)}
   .rv-os .ray-composer .field{background:#f2f6f4;border-color:var(--lighter);color:#9aa4a1}
-  .rv-os .ar-btn-ghost{color:var(--black);border-color:var(--lighter)}
-  .rv-os .ar-btn-ghost:hover{background:rgba(46,60,59,.06)}
 </style>
 </head>
 <body data-page="ray">
@@ -659,7 +634,7 @@
     </div>
   </section>
 
-  <section class="section" style="padding-top:clamp(20px,3vw,32px)">
+  <section class="section" style="background:#0d1412;padding-top:clamp(20px,3vw,32px)">
     <div class="container rv-2col">
       <div>
         <div class="section-head section-head-left">
@@ -701,7 +676,7 @@
     </div>
   </section>
 
-  <section class="section" style="background:#ffffff">
+  <section class="section" style="background:#0b110f">
     <div class="container">
       <div class="section-head">
         <p class="eyebrow eyebrow-secondary">Human in the loop</p>
@@ -722,7 +697,7 @@
     </div>
   </section>
 
-  <section class="section" style="background:#EDF3F0">
+  <section class="section" style="background:#0b110f">
     <div class="container">
       <div class="section-head">
         <p class="eyebrow eyebrow-secondary">Secure by design</p>
@@ -776,7 +751,7 @@
     if(ids.indexOf(id)<0) id='v1';
     ids.forEach(function(v){ document.getElementById(v).hidden = (v!==id); });
     document.querySelectorAll('.rv-switch button').forEach(function(b){ b.classList.toggle('on', b.getAttribute('data-go')===id); });
-    document.body.classList.toggle('rv-solid-header', id==='v2'||id==='v4');
+    document.body.classList.toggle('rv-solid-header', id==='v2');
     try{ localStorage.setItem('rayVer', id); }catch(e){}
     window.scrollTo(0,0);
   }
