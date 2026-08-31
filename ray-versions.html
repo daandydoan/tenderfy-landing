@@ -106,8 +106,8 @@
   /* ---------------- Real Ray rail (rebuilt from the phase-1 app, landing colours) ---------------- */
   .ray-rail{max-width:404px;margin:clamp(40px,5vw,56px) auto 0;text-align:left;background:#26302e;border:1px solid rgba(255,255,255,.1);border-radius:20px;overflow:hidden;box-shadow:0 42px 84px -34px rgba(0,0,0,.62);font-size:13.5px;color:#e7edeb}
   .ray-rail-bar{display:flex;align-items:center;gap:10px;padding:13px 16px;border-bottom:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.02)}
-  .ray-rail-av{position:relative;width:34px;height:34px;border-radius:50%;background:radial-gradient(circle at 34% 30%,#2bbd8e,#17835F);display:grid;place-items:center;flex:0 0 auto}
-  .ray-rail-av svg{width:16px;height:16px;fill:#fff}
+  .ray-rail-av{position:relative;width:34px;height:34px;border-radius:50%;background:radial-gradient(circle at 40% 30%,#fbfdfc,#e9efec);border:1px solid rgba(255,255,255,.14);display:grid;place-items:center;flex:0 0 auto;overflow:hidden}
+  .ray-rail-av img{width:80%;height:auto;display:block}
   .ray-rail-meta .nm{font-weight:700;font-size:14px;color:#fff;line-height:1.1}
   .ray-rail-meta .st{font-size:11px;color:#8fb3a6;display:flex;align-items:center;gap:5px}
   .ray-rail-meta .st i{width:6px;height:6px;border-radius:50%;background:#37e0a3;display:inline-block;box-shadow:0 0 7px #37e0a3}
@@ -217,6 +217,91 @@
     @keyframes rvDotY{0%,100%{box-shadow:0 0 0 0 rgba(255,188,74,.6)}55%{box-shadow:0 0 0 5px rgba(255,188,74,0)}}
   }
   .rv-tool b{color:var(--secondary)}
+
+  /* ===== V2 hero: Ray portrait with visual elements ===== */
+  .rv-hire-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(30px,5vw,64px);align-items:center}
+  .rv-hire-grid .rv-hire-copy h1{font-size:clamp(48px,8vw,108px)}
+  .rv-ray-portrait{position:relative;width:100%;max-width:440px;aspect-ratio:1/1;margin:0 auto;display:grid;place-items:center}
+  .rp-glow{position:absolute;inset:5%;border-radius:50%;background:radial-gradient(circle at 42% 36%,rgba(255,209,120,.6),rgba(255,188,74,.2) 55%,transparent 72%);filter:blur(6px)}
+  .rp-ring{position:absolute;border-radius:50%;pointer-events:none}
+  .rp-ring-1{inset:7%;border:1.5px dashed rgba(255,188,74,.45)}
+  .rp-ring-2{inset:18%;border:1.5px solid rgba(255,188,74,.24)}
+  .rp-stage{position:relative;z-index:2;width:56%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 40% 32%,#ffffff,#fff5e3 72%);border:3px solid rgba(255,188,74,.6);box-shadow:0 26px 54px -18px rgba(240,151,43,.5),inset 0 -8px 22px rgba(255,188,74,.16);display:grid;place-items:center}
+  .rp-ray{width:64%;height:auto;filter:drop-shadow(0 7px 11px rgba(46,60,59,.22))}
+  .rp-badge{position:absolute;z-index:4;left:50%;bottom:3%;transform:translateX(-50%);background:#2E3C3B;color:#fff;font-size:12.5px;font-weight:600;padding:7px 15px;border-radius:99px;white-space:nowrap;box-shadow:0 14px 28px -12px rgba(0,0,0,.45)}
+  .rp-badge b{color:var(--secondary);font-weight:700}
+  .rp-chip{position:absolute;z-index:3;display:inline-flex;align-items:center;gap:7px;background:#fff;border:1px solid var(--lighter);border-radius:99px;padding:7px 13px;font-size:12.5px;font-weight:600;color:var(--black);box-shadow:0 14px 30px -16px rgba(46,60,59,.55)}
+  .rp-chip i{width:8px;height:8px;border-radius:50%;background:var(--primary);flex:0 0 auto}
+  .rp-chip-b i{background:var(--secondary)}
+  .rp-chip-c i{background:var(--mint)}
+  .rp-chip-a{top:5%;right:-1%}
+  .rp-chip-b{left:-3%;top:42%}
+  .rp-chip-c{right:-3%;bottom:24%}
+  .rp-spark{position:absolute;z-index:1;width:9px;height:9px;background:var(--secondary);border-radius:2px;transform:rotate(45deg);opacity:.8}
+  .rp-s1{top:11%;left:15%}.rp-s2{top:72%;left:9%}.rp-s3{top:16%;right:14%}.rp-s4{bottom:14%;right:22%}
+  @media (prefers-reduced-motion:no-preference){
+    .rp-ring-1{animation:rpSpin 42s linear infinite}
+    .rp-ring-2{animation:rpSpin 34s linear infinite reverse}
+    @keyframes rpSpin{to{transform:rotate(360deg)}}
+    .rp-chip-a{animation:rpFloat 5s ease-in-out infinite}
+    .rp-chip-b{animation:rpFloat 6s ease-in-out infinite .4s}
+    .rp-chip-c{animation:rpFloat 5.5s ease-in-out infinite .8s}
+    @keyframes rpFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+    .rp-spark{animation:rpTwinkle 3.2s ease-in-out infinite}
+    .rp-s2{animation-delay:.7s}.rp-s3{animation-delay:1.3s}.rp-s4{animation-delay:1.9s}
+    @keyframes rpTwinkle{0%,100%{opacity:.3;transform:rotate(45deg) scale(.8)}50%{opacity:.9;transform:rotate(45deg) scale(1.1)}}
+  }
+  @media (max-width:860px){.rv-hire-grid{grid-template-columns:1fr;gap:34px}.rv-ray-portrait{max-width:340px}}
+
+  /* ================= V4 RayOS: LIGHT THEME (scoped, keeps the systematic feel) ================= */
+  .rv-os{background:#F4F8F6;color:var(--black)}
+  .rv-os-hero{background:linear-gradient(180deg,#E6F2ED,#F4F8F6 72%)}
+  .rv-os-hero::before{background:radial-gradient(circle at 50% 30%,rgba(29,158,117,.13),transparent 60%),repeating-linear-gradient(0deg,transparent,transparent 31px,rgba(46,60,59,.028) 31px,rgba(46,60,59,.028) 32px)}
+  .rv-os-hero h1{color:var(--black)}
+  .rv-os-sub{color:var(--gray)}
+  .rv-os-kick{color:#b0791f}
+  .rv-net svg.wire line{stroke:rgba(29,158,117,.35)}
+  .rv-node{color:var(--black);background:#fff;border-color:var(--teal-50);box-shadow:0 10px 22px -14px rgba(46,60,59,.38)}
+  .rv-hub{background:#fff;border:2px solid var(--primary);color:var(--primary-dark);box-shadow:0 0 0 7px rgba(29,158,117,.1),0 18px 42px -14px rgba(29,158,117,.5);padding:10px 16px 10px 12px;gap:9px}
+  .rv-hub img{width:26px;height:auto}
+  .rv-os .section-title,.rv-os h2{color:var(--black)}
+  .rv-os .section-sub{color:var(--gray)}
+  .rv-tool{font-family:inherit;font-size:13.5px;font-weight:500;color:var(--black);background:#fff;border:1px solid var(--teal-50);border-radius:99px;padding:8px 15px 8px 12px;display:inline-flex;align-items:center;gap:8px}
+  .rv-tool::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--primary);flex:0 0 auto}
+  .rv-tool:hover{border-color:var(--primary);color:var(--primary-dark)}
+  .rv-flow .step{background:#fff;border-color:var(--lighter);box-shadow:0 14px 30px -22px rgba(46,60,59,.4)}
+  .rv-flow .step .t{color:var(--primary-dark)}
+  .rv-flow .step p{color:var(--gray)}
+  .rv-flow .arw{color:var(--primary)}
+  .rv-os-band{background:var(--teal-tint);border-color:var(--teal-50)}
+  .rv-os-band h3{color:var(--black)}
+  .rv-os-band p{color:var(--gray)}
+  .rv-os-models span{color:var(--gray);border-color:var(--lighter);background:#fff}
+  .rv-matrix{border-color:var(--teal-50);background:#fff;box-shadow:0 20px 46px -28px rgba(46,60,59,.4)}
+  .rv-mrow{border-bottom-color:#edf2f0;color:var(--black)}
+  .rv-mrow .g{color:var(--primary-dark)}
+  .rv-mrow .st.au{background:var(--teal-tint);color:var(--primary-dark)}
+  .rv-mrow .st.ak{background:rgba(255,188,74,.2);color:#9a6612}
+  .rv-mrow:hover{background:var(--teal-tint)}
+  .rv-os .eyebrow{background:rgba(255,188,74,.2);color:#95640e}
+  /* light Ray rail for V4 */
+  .rv-os .ray-rail{background:#fff;border-color:var(--lighter);color:var(--black);box-shadow:0 30px 60px -30px rgba(46,60,59,.42)}
+  .rv-os .ray-rail-bar{border-bottom-color:var(--line);background:var(--teal-tint)}
+  .rv-os .ray-rail-meta .nm{color:var(--black)}
+  .rv-os .ray-rail-meta .st{color:var(--gray)}
+  .rv-os .ray-doc{background:#f2f6f4;border-color:var(--lighter);color:var(--gray)}
+  .rv-os .ray-doc .pg{color:#8a9a95}
+  .rv-os .ray-h{color:var(--black)}
+  .rv-os .ray-points li{color:var(--gray)}
+  .rv-os .ray-points b{color:var(--black)}
+  .rv-os .ray-cite{color:var(--primary-dark)}
+  .rv-os .ray-note{color:#8a9a95}
+  .rv-os .ray-refs{border-top-color:var(--line)}
+  .rv-os .ray-ref{background:var(--teal-tint);border-color:var(--teal-50);color:var(--primary-dark)}
+  .rv-os .ray-composer{border-top-color:var(--line)}
+  .rv-os .ray-composer .field{background:#f2f6f4;border-color:var(--lighter);color:#9aa4a1}
+  .rv-os .ar-btn-ghost{color:var(--black);border-color:var(--lighter)}
+  .rv-os .ar-btn-ghost:hover{background:rgba(46,60,59,.06)}
 </style>
 </head>
 <body data-page="ray">
@@ -238,7 +323,7 @@
       </div>
       <div class="ray-rail" role="img" aria-label="The Ray panel answering a question about the tender, with citations">
         <div class="ray-rail-bar">
-          <span class="ray-rail-av"><svg viewBox="0 0 24 24"><path d="M13 2 4 13h6l-1 9 9-11h-6l1-9z"/></svg></span>
+          <span class="ray-rail-av"><img src="assets/ray-avatar.svg" alt="Ray" /></span>
           <div class="ray-rail-meta"><div class="nm">Ray</div><div class="st"><i></i> Working across your tender</div></div>
           <span class="ray-rail-tag">AGENT</span>
         </div>
@@ -275,7 +360,7 @@
       </div>
       <div class="ray-rail" role="img" aria-label="Ray reporting what it did after being asked to start the tender">
         <div class="ray-rail-bar">
-          <span class="ray-rail-av"><svg viewBox="0 0 24 24"><path d="M13 2 4 13h6l-1 9 9-11h-6l1-9z"/></svg></span>
+          <span class="ray-rail-av"><img src="assets/ray-avatar.svg" alt="Ray" /></span>
           <div class="ray-rail-meta"><div class="nm">Ray</div><div class="st"><i></i> Working across your tender</div></div>
           <span class="ray-rail-tag">AGENT</span>
         </div>
@@ -361,13 +446,25 @@
 <!-- =================== V2 · HIRE RAY (editorial) =================== -->
 <div class="rv" id="v2" hidden>
   <section class="rv-hire-hero">
-    <div class="rv-hire-orb" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M13 2 4 13h6l-1 9 9-11h-6l1-9z"/></svg></div>
-    <div class="container">
-      <p class="rv-hire-kick">Your newest team member</p>
-      <h1>Meet <span class="u">Ray</span>.</h1>
-      <p class="rv-hire-line">Put it on the bid.</p>
-      <p class="rv-hire-sub">Ray operates Tenderfy alongside your team. It does not just tell you what to do. Where it is safe and sensible, Ray does it, and leaves the decisions that matter to you.</p>
-      <div class="rv-hire-cta"><a class="btn btn-secondary btn-lg" href="pricing.html">Try Tenderfy for Free</a><a class="btn btn-outline-dark btn-lg" href="showcase.html">Watch Ray work</a></div>
+    <div class="container rv-hire-grid">
+      <div class="rv-hire-copy">
+        <p class="rv-hire-kick">Your newest team member</p>
+        <h1>Meet <span class="u">Ray</span>.</h1>
+        <p class="rv-hire-line">Put it on the bid.</p>
+        <p class="rv-hire-sub">Ray operates Tenderfy alongside your team. It does not just tell you what to do. Where it is safe and sensible, Ray does it, and leaves the decisions that matter to you.</p>
+        <div class="rv-hire-cta"><a class="btn btn-secondary btn-lg" href="pricing.html">Try Tenderfy for Free</a><a class="btn btn-outline-dark btn-lg" href="showcase.html">Watch Ray work</a></div>
+      </div>
+      <div class="rv-ray-portrait">
+        <span class="rp-glow" aria-hidden="true"></span>
+        <span class="rp-ring rp-ring-1" aria-hidden="true"></span>
+        <span class="rp-ring rp-ring-2" aria-hidden="true"></span>
+        <span class="rp-spark rp-s1" aria-hidden="true"></span><span class="rp-spark rp-s2" aria-hidden="true"></span><span class="rp-spark rp-s3" aria-hidden="true"></span><span class="rp-spark rp-s4" aria-hidden="true"></span>
+        <div class="rp-stage"><img class="rp-ray" src="assets/ray-avatar.svg" alt="Ray, the Tenderfy AI agent" /></div>
+        <span class="rp-chip rp-chip-a"><i></i> Reads the pack</span>
+        <span class="rp-chip rp-chip-b"><i></i> Drafts responses</span>
+        <span class="rp-chip rp-chip-c"><i></i> Cites its sources</span>
+        <span class="rp-badge">Ray &middot; your <b>AI teammate</b></span>
+      </div>
     </div>
   </section>
 
@@ -380,7 +477,7 @@
       </div>
       <div class="ray-rail rv-room-rail" role="img" aria-label="The Ray panel, ready with suggested questions">
         <div class="ray-rail-bar">
-          <span class="ray-rail-av"><svg viewBox="0 0 24 24"><path d="M13 2 4 13h6l-1 9 9-11h-6l1-9z"/></svg></span>
+          <span class="ray-rail-av"><img src="assets/ray-avatar.svg" alt="Ray" /></span>
           <div class="ray-rail-meta"><div class="nm">Ray</div><div class="st"><i></i> Ready when you are</div></div>
           <span class="ray-rail-tag">AGENT</span>
         </div>
@@ -470,7 +567,7 @@
       </div>
       <div class="ray-rail rv-room-rail" role="img" aria-label="Ray confirming a change you asked for, in the Ray panel">
         <div class="ray-rail-bar">
-          <span class="ray-rail-av"><svg viewBox="0 0 24 24"><path d="M13 2 4 13h6l-1 9 9-11h-6l1-9z"/></svg></span>
+          <span class="ray-rail-av"><img src="assets/ray-avatar.svg" alt="Ray" /></span>
           <div class="ray-rail-meta"><div class="nm">Ray</div><div class="st"><i></i> Alongside your team</div></div>
           <span class="ray-rail-tag">AGENT</span>
         </div>
@@ -550,7 +647,7 @@
           <line x1="310" y1="215" x2="43" y2="224"/><line x1="310" y1="215" x2="577" y2="232"/>
           <line x1="310" y1="215" x2="149" y2="387"/><line x1="310" y1="215" x2="471" y2="387"/>
         </svg>
-        <span class="rv-node rv-hub"><svg viewBox="0 0 24 24"><path d="M13 2 4 13h6l-1 9 9-11h-6l1-9z"/></svg>Ray</span>
+        <span class="rv-node rv-hub"><img src="assets/ray-avatar.svg" alt="Ray" />Ray</span>
         <span class="rv-node rv-n1">Requirements</span>
         <span class="rv-node rv-n2">Evaluation criteria</span>
         <span class="rv-node rv-n3">Tender structure</span>
@@ -562,7 +659,7 @@
     </div>
   </section>
 
-  <section class="section" style="background:#0d1412;padding-top:clamp(20px,3vw,32px)">
+  <section class="section" style="padding-top:clamp(20px,3vw,32px)">
     <div class="container rv-2col">
       <div>
         <div class="section-head section-head-left">
@@ -571,12 +668,12 @@
           <p class="section-sub section-sub-left">We are not rebuilding Tenderfy around AI. We are giving Ray controlled access to the functionality we already built. Ray uses Tenderfy features, rather than touching the underlying data.</p>
         </div>
         <div class="rv-tools" style="justify-content:flex-start;max-width:none;margin:16px 0 0">
-          <span class="rv-tool"><b>get</b>-tender</span><span class="rv-tool"><b>search</b>-projects</span><span class="rv-tool"><b>attach</b>-resume</span><span class="rv-tool"><b>search</b>-library</span><span class="rv-tool"><b>draft</b>-response</span><span class="rv-tool"><b>create</b>-section</span><span class="rv-tool"><b>create</b>-task</span><span class="rv-tool"><b>assign</b>-task</span>
+          <span class="rv-tool">Read the tender</span><span class="rv-tool">Find matching projects</span><span class="rv-tool">Attach a resume</span><span class="rv-tool">Search the library</span><span class="rv-tool">Draft a response</span><span class="rv-tool">Build a section</span><span class="rv-tool">Raise a task</span><span class="rv-tool">Assign it to a person</span>
         </div>
       </div>
       <div class="ray-rail rv-room-rail" role="img" aria-label="The Ray panel answering with citations">
         <div class="ray-rail-bar">
-          <span class="ray-rail-av"><svg viewBox="0 0 24 24"><path d="M13 2 4 13h6l-1 9 9-11h-6l1-9z"/></svg></span>
+          <span class="ray-rail-av"><img src="assets/ray-avatar.svg" alt="Ray" /></span>
           <div class="ray-rail-meta"><div class="nm">Ray</div><div class="st"><i></i> Working across your tender</div></div>
           <span class="ray-rail-tag">AGENT</span>
         </div>
@@ -604,7 +701,7 @@
     </div>
   </section>
 
-  <section class="section" style="background:#0b110f">
+  <section class="section" style="background:#ffffff">
     <div class="container">
       <div class="section-head">
         <p class="eyebrow eyebrow-secondary">Human in the loop</p>
@@ -625,7 +722,7 @@
     </div>
   </section>
 
-  <section class="section" style="background:#0b110f">
+  <section class="section" style="background:#EDF3F0">
     <div class="container">
       <div class="section-head">
         <p class="eyebrow eyebrow-secondary">Secure by design</p>
@@ -651,9 +748,9 @@
     </div>
   </section>
 
-  <section class="closing-cta" style="background:#0d1412"><div class="container closing-inner">
-    <h2 class="closing-title" style="color:#fff">One Ray, across your whole tender.</h2>
-    <p class="closing-sub" style="color:rgba(234,241,238,.72)">Give Ray a tender and let it operate Tenderfy for you, securely, with you in control.</p>
+  <section class="closing-cta"><div class="container closing-inner">
+    <h2 class="closing-title">One Ray, across your whole tender.</h2>
+    <p class="closing-sub">Give Ray a tender and let it operate Tenderfy for you, securely, with you in control.</p>
     <div class="closing-actions"><a href="pricing.html" class="btn btn-secondary btn-lg">Try Tenderfy for Free</a><a href="pricing.html" class="btn btn-outline-light btn-lg">Book a Demo</a></div>
   </div></section>
 </div>
@@ -679,7 +776,7 @@
     if(ids.indexOf(id)<0) id='v1';
     ids.forEach(function(v){ document.getElementById(v).hidden = (v!==id); });
     document.querySelectorAll('.rv-switch button').forEach(function(b){ b.classList.toggle('on', b.getAttribute('data-go')===id); });
-    document.body.classList.toggle('rv-solid-header', id==='v2');
+    document.body.classList.toggle('rv-solid-header', id==='v2'||id==='v4');
     try{ localStorage.setItem('rayVer', id); }catch(e){}
     window.scrollTo(0,0);
   }
