@@ -177,6 +177,31 @@
   .rv-mrow .st{margin-left:auto;font-size:10.5px;font-weight:700;letter-spacing:.06em;padding:4px 10px;border-radius:6px}
   .rv-mrow .st.au{background:rgba(55,224,163,.16);color:#37e0a3}
   .rv-mrow .st.ak{background:rgba(255,188,74,.16);color:var(--secondary)}
+
+  /* ===== refinements: tasteful motion + interactive affordances ===== */
+  @media (prefers-reduced-motion:no-preference){
+    .ray-rail-meta .st i{animation:rvDot 2.2s ease-in-out infinite}
+    @keyframes rvDot{0%,100%{box-shadow:0 0 0 0 rgba(55,224,163,.55)}55%{box-shadow:0 0 0 5px rgba(55,224,163,0)}}
+    .rv-hub{animation:rvHub 3.6s ease-in-out infinite}
+    @keyframes rvHub{0%,100%{box-shadow:0 0 0 6px rgba(43,189,142,.12),0 0 40px rgba(43,189,142,.38)}50%{box-shadow:0 0 0 10px rgba(43,189,142,.05),0 0 62px rgba(43,189,142,.55)}}
+    .rv-hire-orb{animation:rvOrb 7.5s ease-in-out infinite}
+    @keyframes rvOrb{0%,100%{transform:translateY(-50%)}50%{transform:translateY(calc(-50% - 14px))}}
+    .rv-net svg.wire line{animation:rvWire 26s linear infinite}
+    @keyframes rvWire{to{stroke-dashoffset:-240}}
+  }
+  .ray-suggest span,.ray-ref,.rv-tool,.rv-reason,.rv-tagrow,.rv-mrow,.rv-chip2{transition:background .16s ease,border-color .16s ease,transform .16s ease,color .16s ease}
+  .ray-suggest span:hover{background:rgba(255,255,255,.09);border-color:rgba(55,224,163,.32)}
+  .ray-ref:hover{background:rgba(29,158,117,.24)}
+  .rv-tool:hover{border-color:rgba(55,224,163,.45);color:#bfeadd}
+  .rv-reason:hover{background:var(--teal-tint)}
+  .rv-tagrow:hover{background:var(--teal-tint)}
+  .rv-mrow:hover{background:rgba(255,255,255,.035)}
+  .rv-band .rv-chip2:hover{transform:translateY(-2px)}
+  .ray-composer .send{transition:transform .12s ease,box-shadow .2s ease}
+  .ray-composer .send:hover{transform:translateY(-1px);box-shadow:0 8px 18px -6px rgba(29,158,117,.6)}
+  /* node map: scale down on mobile so edge labels fit and wires stay aligned */
+  @media (max-width:600px){.rv-net{height:290px;transform:scale(.78);transform-origin:top center}}
+  @media (max-width:380px){.rv-net{transform:scale(.68);height:250px}}
 </style>
 </head>
 <body data-page="ray">
