@@ -202,6 +202,21 @@
   /* node map: scale down on mobile so edge labels fit and wires stay aligned */
   @media (max-width:600px){.rv-net{height:290px;transform:scale(.78);transform-origin:top center}}
   @media (max-width:380px){.rv-net{transform:scale(.68);height:250px}}
+
+  /* ===== more Tenderfy Yellow (scoped to the Ray versions) ===== */
+  .rv .eyebrow{background:rgba(255,188,74,.2);color:#95640e}
+  .rv-os .eyebrow,.rv .section-dark .eyebrow{background:rgba(255,188,74,.15);color:var(--secondary)}
+  .ar-eyebrow{background:rgba(255,188,74,.16);border-color:rgba(255,188,74,.34)}
+  .rv-hire-kick{color:#b0791f}
+  .rv-os-kick{color:var(--secondary)}
+  .rv-reason .n{color:#dd8b1c}
+  .ray-badge{background:var(--secondary);color:#2b2118}
+  .ray-rail-meta .st i{background:var(--secondary);box-shadow:0 0 7px var(--secondary)}
+  @media (prefers-reduced-motion:no-preference){
+    .ray-rail-meta .st i{animation:rvDotY 2.2s ease-in-out infinite}
+    @keyframes rvDotY{0%,100%{box-shadow:0 0 0 0 rgba(255,188,74,.6)}55%{box-shadow:0 0 0 5px rgba(255,188,74,0)}}
+  }
+  .rv-tool b{color:var(--secondary)}
 </style>
 </head>
 <body data-page="ray">
