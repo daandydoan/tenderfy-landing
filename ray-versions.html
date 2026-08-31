@@ -51,9 +51,9 @@
   @media (max-width:720px){.rv-reasons{grid-template-columns:1fr}}
 
   /* ---------------- V3 Ray in the Room (human) ---------------- */
-  .rv-room-hero{position:relative;overflow:hidden;color:#fff;background:linear-gradient(118deg,#c8a686 0%,#a07d5f 48%,#6f533d 100%)}
+  .rv-room-hero{position:relative;overflow:hidden;color:#fff;margin-top:calc(-1 * var(--header-h));background:linear-gradient(118deg,#c8a686 0%,#a07d5f 48%,#6f533d 100%)}
   .rv-room-hero::before{content:"";position:absolute;inset:0;background:radial-gradient(130% 90% at 18% 12%,rgba(255,255,255,.28),transparent 55%)}
-  .rv-room-grid{position:relative;display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(28px,4vw,60px);align-items:center;padding-top:clamp(52px,7vw,96px);padding-bottom:clamp(52px,7vw,96px)}
+  .rv-room-grid{position:relative;display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(28px,4vw,60px);align-items:center;padding-top:calc(var(--header-h) + clamp(18px,3vw,40px));padding-bottom:clamp(52px,7vw,96px)}
   .rv-room-kick{font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.85)}
   .rv-room-hero h1{font-size:clamp(38px,5.6vw,66px);line-height:1.02;font-weight:800;letter-spacing:-.03em;margin:14px 0 0;text-shadow:0 3px 30px rgba(70,45,22,.35)}
   .rv-room-sub{font-size:clamp(16px,1.8vw,19px);line-height:1.6;color:rgba(255,255,255,.9);max-width:46ch;margin:18px 0 0}
@@ -69,7 +69,9 @@
 
   /* ---------------- V4 Ray OS (dark system) ---------------- */
   .rv-os{background:#0d1412;color:#eaf1ee}
-  .rv-os-hero{position:relative;overflow:hidden;text-align:center;padding:clamp(56px,8vw,110px) 0 clamp(40px,6vw,72px)}
+  .rv-os-hero{position:relative;overflow:hidden;text-align:center;background:#0d1412;margin-top:calc(-1 * var(--header-h));padding:calc(var(--header-h) + clamp(26px,4vw,54px)) 0 clamp(40px,6vw,72px)}
+  /* light V2 hero: force a solid header so the white logo/nav stay visible */
+  .rv-solid-header .site-header{background:rgba(46,60,59,.94)!important;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 1px 0 rgba(255,255,255,.06)}
   .rv-os-hero::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 50% 32%,rgba(29,158,117,.22),transparent 58%),repeating-linear-gradient(0deg,transparent,transparent 31px,rgba(255,255,255,.02) 31px,rgba(255,255,255,.02) 32px)}
   .rv-os-hero .container{position:relative}
   .rv-os-kick{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#37e0a3}
@@ -451,6 +453,7 @@
     if(ids.indexOf(id)<0) id='v1';
     ids.forEach(function(v){ document.getElementById(v).hidden = (v!==id); });
     document.querySelectorAll('.rv-switch button').forEach(function(b){ b.classList.toggle('on', b.getAttribute('data-go')===id); });
+    document.body.classList.toggle('rv-solid-header', id==='v2');
     try{ localStorage.setItem('rayVer', id); }catch(e){}
     window.scrollTo(0,0);
   }
