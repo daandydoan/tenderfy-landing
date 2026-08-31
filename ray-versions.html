@@ -51,7 +51,7 @@
   @media (max-width:720px){.rv-reasons{grid-template-columns:1fr}}
 
   /* ---------------- V3 Ray in the Room (human) ---------------- */
-  .rv-room-hero{position:relative;overflow:hidden;color:#fff;margin-top:calc(-1 * var(--header-h));background:linear-gradient(118deg,#c8a686 0%,#a07d5f 48%,#6f533d 100%)}
+  .rv-room-hero{position:relative;overflow:hidden;color:#fff;margin-top:calc(-1 * var(--header-h));background:linear-gradient(125deg,#1c6b54 0%,#155e51 46%,#123f47 100%)}
   .rv-room-hero::before{content:"";position:absolute;inset:0;background:radial-gradient(130% 90% at 18% 12%,rgba(255,255,255,.28),transparent 55%)}
   .rv-room-grid{position:relative;display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(28px,4vw,60px);align-items:center;padding-top:calc(var(--header-h) + clamp(18px,3vw,40px));padding-bottom:clamp(52px,7vw,96px)}
   .rv-room-kick{font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.85)}
@@ -134,6 +134,8 @@
   .ray-composer .field{flex:1;font-size:12.5px;color:#9fb0ac;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:10px 12px}
   .ray-composer .send{width:36px;height:36px;border-radius:10px;background:var(--primary);display:grid;place-items:center;flex:0 0 auto}
   .ray-composer .send svg{width:15px;height:15px;stroke:#fff;fill:none;stroke-width:2}
+  .ray-you{width:fit-content;max-width:86%;margin:0 0 14px auto;background:var(--primary);color:#fff;padding:9px 13px;border-radius:13px 13px 4px 13px;font-size:12.5px;line-height:1.4}
+  .rv-room-rail{margin:0;max-width:none;width:100%}
 </style>
 </head>
 <body data-page="ray">
@@ -345,12 +347,29 @@
         <p class="rv-room-sub">Ray works inside Tenderfy with the people who run your tenders. It handles the heavy lifting, and asks you when a call is yours to make. One Ray, holding one live picture of the tender.</p>
         <div class="rv-room-cta"><a class="btn btn-secondary btn-lg" href="pricing.html">Try Tenderfy for Free</a><a class="btn btn-outline-light btn-lg" href="showcase.html">Watch it run</a></div>
       </div>
-      <div class="rv-room-panel">
-        <span class="rv-room-photo-note">real team photo goes here</span>
-        <div class="rv-room-conv">
-          <div class="b ray"><span class="who">Ray</span>I have reviewed the pack: 48 requirements and 7 mandatory schedules. I have drafted 22 responses and created 8 tasks. There are 5 items I need your input on.</div>
-          <div class="b usr"><span class="who">Priya, Bid lead</span>Do not use Sarah as Project Manager. Use James.</div>
-          <div class="b ray"><span class="who">Ray</span>Done. I have swapped Sarah for James across the tender, attached his resume, updated the responses that named the PM, and I will remember Sarah is out for this bid.</div>
+      <div class="ray-rail rv-room-rail" role="img" aria-label="Ray confirming a change you asked for, in the Ray panel">
+        <div class="ray-rail-bar">
+          <span class="ray-rail-av"><svg viewBox="0 0 24 24"><path d="M13 2 4 13h6l-1 9 9-11h-6l1-9z"/></svg></span>
+          <div class="ray-rail-meta"><div class="nm">Ray</div><div class="st"><i></i> Alongside your team</div></div>
+          <span class="ray-rail-tag">AGENT</span>
+        </div>
+        <div class="ray-rail-body">
+          <div class="ray-you">Do not use Sarah as Project Manager. Use James.</div>
+          <p class="ray-h">Done. Updated across the tender.</p>
+          <ul class="ray-points">
+            <li>Removed Sarah, attached James and his resume. <span class="ray-cite">Resumes</span></li>
+            <li>Refreshed the <b>3 responses</b> that named the PM. <span class="ray-cite">Responses</span></li>
+            <li>I will remember Sarah is out for this bid.</li>
+          </ul>
+          <div class="ray-note"><span>3 actions, all reversible.</span><span>10:41</span></div>
+        </div>
+        <div class="ray-refs">
+          <span class="ray-ref">James Cole, resume.pdf <x>&times;</x></span>
+          <span class="ray-ref">Tender responses <x>&times;</x></span>
+        </div>
+        <div class="ray-composer">
+          <span class="field">Ask Ray anything</span>
+          <span class="send"><svg viewBox="0 0 16 16"><path d="M3 8h9M8 4l4 4-4 4"/></svg></span>
         </div>
       </div>
     </div>
