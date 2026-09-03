@@ -160,6 +160,10 @@
         if (top === null || t - top > 2) { cur = []; lines.push(cur); top = t; }
         cur.push(s.textContent);
       });
+      // Guard: if measurement ran before the element had its real width, every word
+      // lands on its own line (~one word per line). Fall back to plain text rather
+      // than render a broken vertical word stack.
+      if (lines.length > Math.max(3, words.length * 0.6)) { el.textContent = text; return; }
       // rebuild as one masked, sliding line per visual line
       el.textContent = '';
       lines.forEach(function (parts, i) {
@@ -179,6 +183,9 @@
       });
     }
     build(true);
+    // re-measure once fonts are ready — otherwise a slow font load (e.g. behind a
+    // gateway) can make the first pass wrap every word onto its own line
+    if (document.fonts && document.fonts.ready) { document.fonts.ready.then(function () { build(false); }); }
     // re-split (without re-animating) on resize so wrapping stays correct and never clips
     var rt;
     window.addEventListener('resize', function () {
