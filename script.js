@@ -180,6 +180,9 @@
         }
         mask.appendChild(inner);
         el.appendChild(mask);
+        // keep a real space between visual lines so the text reads correctly for
+        // copy-paste / screen readers (invisible between block-level line masks)
+        if (i < lines.length - 1) el.appendChild(document.createTextNode(' '));
       });
     }
     build(true);
