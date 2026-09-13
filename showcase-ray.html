@@ -1,0 +1,1620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Tenderfy — Meet Ray</title>
+<meta name="description" content="A 90-second auto-playing film about Ray — the AI teammate that works the Tenderfy Method with you, one step at a time." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<meta name="theme-color" content="#1a2422" />
+<style>
+/* ============================================================
+   TENDERFY — MEET RAY · a film through the eight steps
+   Hook → Meet Ray → Beside every screen → Steps 01…08 (five
+   scenes) → Your Method (AI Manager) → Payoff → Brand end card.
+   Built on the product-film engine below; only the scenes and
+   the Ray rail styling are new.
+   ------------------------------------------------------------
+   v2 (explainer-video script arc)
+   Sequence: Hook → Platform → Start a tender → Ray (hero) →
+   Library → Your data → Assemble → Payoff → Brand end card.
+   Visual language: landing-site gradients + real app screens
+   in floating browser windows; Snellenberg curtain/reveal
+   mechanics; calm Linear/Notion pacing (~90s loop).
+   ============================================================ */
+:root {
+  --teal: #1D9E75;
+  --teal-dark: #17835F;
+  --teal-50: #E1F5EE;
+  --amber: #FFBC4A;
+  --ink: #2E3C3B;
+  --dark: #1a2422;
+  --dark-2: #141c1a;
+  --offwhite: #F9F9F7;
+  --cream-dim: rgba(255,255,255,.72);
+  --ink-dim: rgba(46,60,59,.64);
+  --line-cream: rgba(255,255,255,.16);
+  --line-ink: rgba(46,60,59,.14);
+  --ease-out: cubic-bezier(.25,1,.3,1);
+  --ease-curve: cubic-bezier(.76,0,.24,1);
+  --pad: clamp(20px, 4.5vw, 72px);
+  /* the landing site's signature warm→cool gradient ramp */
+  --brand-ramp: #FFBC4A 4%, #B8B661 14%, #94B36D 19%, #71B178 24%, #54A481 36%, #1D9E75 49%, #256E85 70%, #124580 92%;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
+body {
+  font-family: 'Outfit', system-ui, -apple-system, sans-serif;
+  background: var(--dark);
+  color: #fff;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.5;
+}
+a { color: inherit; text-decoration: none; }
+img, svg { display: block; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+
+/* ============ FRAME CHROME ============ */
+.chrome {
+  position: fixed; inset: 0; z-index: 40; pointer-events: none;
+  display: flex; flex-direction: column; justify-content: space-between;
+  padding: clamp(16px, 2.4vw, 30px) var(--pad);
+  mix-blend-mode: difference; color: #fff;
+}
+.chrome-top, .chrome-bot { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+/* the logo keeps its real brand colours — it sits OUTSIDE the difference-blended
+   chrome so it is never inverted. White text on dark scenes, green on light;
+   the paperclip mark stays #FFBC4A in both. */
+.brandmark {
+  position: fixed; z-index: 41; pointer-events: auto;
+  top: clamp(16px, 2.4vw, 30px); left: var(--pad);
+}
+.brandmark img { height: 27px; width: auto; display: block; }
+.chrome-spacer { height: 27px; }
+.chrome-label { font-size: 11px; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; opacity: .75; }
+.chrome-bot { align-items: flex-end; }
+.hud { display: flex; align-items: center; gap: 14px; pointer-events: auto; }
+.hud-count { font-size: 12px; letter-spacing: .14em; font-variant-numeric: tabular-nums; opacity: .8; min-width: 58px; }
+.hud-btn {
+  width: 38px; height: 38px; border-radius: 50%;
+  border: 1px solid rgba(255,255,255,.35);
+  display: grid; place-items: center;
+  transition: background .3s, transform .3s;
+}
+.hud-btn:hover { background: rgba(255,255,255,.14); transform: scale(1.06); }
+.hud-btn svg { width: 13px; height: 13px; }
+.segs { display: flex; gap: 6px; pointer-events: auto; }
+.seg { width: clamp(16px, 3.2vw, 42px); height: 18px; display: flex; align-items: center; cursor: pointer; }
+.seg b { display: block; width: 100%; height: 2px; background: rgba(255,255,255,.25); position: relative; overflow: hidden; border-radius: 2px; }
+.seg b i { position: absolute; inset: 0; background: #fff; transform: scaleX(0); transform-origin: left; }
+.seg.done b i { transform: scaleX(1); }
+.seg.on b i { animation: fillX var(--dur, 9s) linear forwards; }
+@keyframes fillX { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+.paused .seg.on b i, .paused .scene * { animation-play-state: paused !important; }
+
+/* ===== the Ray rail, drawn in the film's own language ===== */
+.stage-rail { height: clamp(340px, 60vh, 640px); display: flex; align-items: center; justify-content: center; }
+.rail {
+  width: min(430px, 100%); background: #1F2927; color: #E7EBEA; border-radius: 18px; overflow: hidden;
+  font-size: 13px; line-height: 1.5; text-align: left; opacity: 0;
+  box-shadow: 0 60px 110px -30px rgba(18,45,40,.55), 0 24px 44px -20px rgba(18,45,40,.35);
+}
+.active .rail { animation: winvFade .9s var(--ease-out) forwards, floatVW 9s ease-in-out infinite; animation-delay: .3s, 1.2s; }
+.rail-head { display: flex; align-items: center; gap: 10px; padding: 12px 15px; border-bottom: 1px solid rgba(255,255,255,.08); }
+.rail-head img { width: 28px; height: 24px; }
+.rail-head b { flex: 1; font-weight: 600; font-size: 13.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.rail-beta { font-size: 9.5px; font-weight: 700; letter-spacing: .08em; background: var(--amber); color: var(--ink); border-radius: 999px; padding: 2px 7px; }
+.rail-body { padding: 14px 15px 8px; display: flex; flex-direction: column; gap: 11px; }
+.rail-msg { color: #C6CFCC; }
+.rail-msg b { color: #fff; font-weight: 600; }
+.rail-offer { border: 1px solid rgba(111,208,173,.55); background: rgba(111,208,173,.07); border-radius: 12px; padding: 12px 13px; }
+.rail-offer p { color: #E7EBEA; }
+.rail-offer .acts { display: flex; gap: 8px; margin-top: 10px; }
+.rail-btn { border-radius: 999px; padding: 6px 14px; font-size: 12px; font-weight: 600; background: var(--teal); color: #fff; }
+.rail-btn.ghost { background: none; color: #9FB3AD; }
+.rail-next { display: flex; align-items: center; gap: 10px; border: 1px solid rgba(111,208,173,.4); border-radius: 10px; padding: 8px 12px; font-size: 12px; color: #C6CFCC; }
+.rail-next b { color: #fff; font-weight: 600; }
+.rail-next .prog { flex: 1; height: 4px; border-radius: 2px; background: rgba(255,255,255,.1); overflow: hidden; }
+.rail-next .prog i { display: block; height: 100%; width: 12.5%; background: var(--teal); }
+.rail-refs { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.rail-lab { font-size: 9.5px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #7F8C89; width: 100%; }
+.rail-ref { font-size: 11px; background: rgba(255,255,255,.07); border-radius: 999px; padding: 4px 10px; color: #C6CFCC; }
+.rail-comp { display: flex; align-items: center; margin: 6px 15px 15px; padding: 10px 13px; background: #151D1A; border: 1px solid rgba(255,255,255,.08); border-radius: 12px; color: #7F8C89; font-size: 12.5px; }
+.rail-comp .send { margin-left: auto; width: 26px; height: 26px; border-radius: 50%; background: var(--teal); }
+/* the AI Manager still is a real screen, so it shows in colour like the library */
+#sceneManager .win img.shot { filter: none; }
+.stage-shot { display: flex; align-items: center; justify-content: center; height: clamp(320px, 56vh, 620px); }
+.stage-shot .win { width: 100%; }
+
+/* ============ SCENES ============ */
+.scene {
+  position: fixed; inset: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: clamp(70px, 9vh, 110px) var(--pad);
+  visibility: hidden; z-index: 1; text-align: center;
+  perspective: 1400px;
+}
+.scene.active { visibility: visible; z-index: 2; }
+/* backgrounds lifted from the landing site's section recipes */
+.scene-dark {
+  background:
+    radial-gradient(60% 70% at 100% 0%, rgba(29,158,117,.15), transparent 62%),
+    radial-gradient(55% 62% at 0% 100%, rgba(47,120,194,.13), transparent 60%),
+    var(--dark);
+  color: #fff;
+}
+.scene-deep {
+  background:
+    radial-gradient(110% 140% at 100% 0%, rgba(29,158,117,.4), transparent 58%),
+    radial-gradient(70% 80% at 0% 100%, rgba(18,69,128,.35), transparent 60%),
+    var(--dark-2);
+  color: #fff;
+}
+.scene-offwhite {
+  background:
+    radial-gradient(55% 60% at 0% 100%, rgba(47,120,194,.07), transparent 60%),
+    radial-gradient(50% 55% at 100% 0%, rgba(43,189,142,.08), transparent 60%),
+    var(--offwhite);
+  color: var(--ink);
+}
+.scene-light { background: radial-gradient(55% 60% at 100% 0%, rgba(29,158,117,.06), transparent 60%), #fff; color: var(--ink); }
+.scene-ramp { background: radial-gradient(120% 130% at 78% 0%, var(--brand-ramp)); color: #fff; }
+.scene-end  { background: radial-gradient(135% 150% at 94% -12%, #94B36D 0%, #71B178 13%, #54A481 28%, #1D9E75 47%, #256E85 71%, #124580 100%); color: #fff; }
+
+.eyebrow {
+  font-size: 11px; font-weight: 600; letter-spacing: .26em; text-transform: uppercase;
+  display: inline-flex; align-items: center; gap: 10px;
+  margin-bottom: clamp(14px, 2.4vh, 24px);
+}
+.eyebrow::before { content: ''; width: 26px; height: 1px; background: currentColor; opacity: .5; }
+.scene-dark .eyebrow, .scene-deep .eyebrow { color: #6fd0ad; }
+.scene-offwhite .eyebrow, .scene-light .eyebrow { color: var(--teal-dark); }
+.scene-ramp .eyebrow, .scene-end .eyebrow { color: var(--amber); }
+
+.big { font-weight: 700; letter-spacing: -.025em; line-height: 1.06; font-size: clamp(34px, 5.6vw, 84px); max-width: 18ch; }
+.cap { font-weight: 700; letter-spacing: -.02em; line-height: 1.08; font-size: clamp(26px, 3.4vw, 50px); }
+.sub { font-size: clamp(14px, 1.4vw, 19px); font-weight: 400; line-height: 1.55; max-width: 52ch; margin-top: clamp(14px, 2.4vh, 24px); }
+.scene-dark .sub, .scene-deep .sub { color: var(--cream-dim); }
+.scene-offwhite .sub, .scene-light .sub { color: var(--ink-dim); }
+.scene-ramp .sub, .scene-end .sub { color: rgba(255,255,255,.85); }
+.tl { color: var(--teal); }
+.tl-bright { color: #6fd0ad; }
+.am { color: var(--amber); }
+
+/* word-mask reveal */
+.rw { display: inline-block; overflow: hidden; vertical-align: bottom; padding-bottom: .1em; margin-bottom: -.1em; }
+.rw > span { display: inline-block; transform: translateY(115%); }
+.active .rw > span { animation: riseUp 1s var(--ease-out) forwards; animation-delay: var(--d, 0s); }
+/* slight overshoot on every entrance = inertia */
+@keyframes riseUp { 72% { transform: translateY(-4.5%); } 100% { transform: translateY(0); } }
+
+.fx { opacity: 0; transform: translateY(26px); }
+.active .fx { animation: blockIn .9s var(--ease-out) forwards; animation-delay: var(--d, 0s); }
+@keyframes blockIn { 70% { opacity: 1; transform: translateY(-3px); } 100% { opacity: 1; transform: translateY(0); } }
+.fxs { opacity: 0; transform: scale(.86); }
+.active .fxs { animation: popIn .6s var(--ease-out) forwards; animation-delay: var(--d, 0s); }
+@keyframes popIn { 65% { opacity: 1; transform: scale(1.07); } 100% { opacity: 1; transform: scale(1); } }
+
+/* ============ PRELOADER + CURTAIN ============ */
+.preloader {
+  position: fixed; inset: 0 0 -12vh 0; z-index: 60; background: var(--dark-2);
+  display: flex; align-items: center; justify-content: center;
+}
+.preloader::after { content: ''; position: absolute; left: -10%; bottom: -6vh; width: 120%; height: 12vh; background: inherit; border-radius: 50%; }
+.pre-word { font-size: clamp(28px, 4.4vw, 56px); font-weight: 600; letter-spacing: -.02em; display: inline-flex; align-items: center; gap: 18px; color: #F4F2EC; }
+.pre-word::before { content: ''; width: 11px; height: 11px; border-radius: 50%; background: var(--teal); flex: none; box-shadow: 0 0 18px 4px rgba(29,158,117,.55); }
+.preloader.out { animation: curtainUp 1s var(--ease-curve) forwards; }
+@keyframes curtainUp { to { transform: translateY(-118%); } }
+
+.curtain {
+  position: fixed; left: 0; width: 100%; top: 0; height: 100vh;
+  background: var(--dark-2); z-index: 50; transform: translateY(104%);
+  display: flex; align-items: center; justify-content: center; pointer-events: none;
+}
+.curtain::before, .curtain::after { content: ''; position: absolute; left: -10%; width: 120%; height: 12vh; background: inherit; border-radius: 50%; }
+.curtain::before { top: -6vh; }
+.curtain::after { bottom: -6vh; }
+.curtain-label { font-size: clamp(20px, 2.6vw, 34px); font-weight: 600; color: #F4F2EC; display: inline-flex; align-items: center; gap: 14px; letter-spacing: -.01em; }
+.curtain-label::before { content: ''; width: 9px; height: 9px; border-radius: 50%; background: var(--teal); flex: none; }
+
+/* ============ BROWSER WINDOW ============ */
+.win {
+  border-radius: 14px; overflow: hidden; position: relative;
+  background: #fff;
+  box-shadow: 0 60px 110px -30px rgba(18,45,40,.45), 0 24px 44px -20px rgba(18,45,40,.28);
+  opacity: 0; transform: translateY(46px) rotateX(7deg) scale(.96);
+  transform-style: preserve-3d;
+}
+.active .win { animation: winIn 1.35s var(--ease-out) forwards; animation-delay: var(--d, .3s); }
+@keyframes winIn {
+  70% { opacity: 1; transform: translateY(-7px) rotateX(-1deg) scale(1.004); }
+  100% { opacity: 1; transform: translateY(0) rotateX(0) scale(1); }
+}
+.win-bar {
+  display: flex; align-items: center; gap: 6px; padding: 10px 14px;
+  background: #EDF1EF; border-bottom: 1px solid #E2E8E5;
+}
+.win-bar span { width: 9px; height: 9px; border-radius: 50%; background: #CBD5D3; }
+.win-bar span:first-child { background: var(--teal); }
+/* PLACEHOLDER STILLS — greyed out until animated captures land. */
+.win img.shot { width: 100%; height: auto; filter: grayscale(1) contrast(.96) opacity(.88); }
+/* the proven-content library shows real, full-colour screens */
+#sceneLibrary .win img.shot { filter: none; }
+
+/* ===== unified feature-video window: same size, centered, gentle float ===== */
+/* video scenes give the clip a wider column and a taller stage so it dominates */
+.split.split-vid { grid-template-columns: minmax(250px, .6fr) 1.4fr; gap: clamp(20px, 3vw, 52px); }
+.split-vid .stage-vid { height: clamp(320px, 58vh, 640px); }
+.stage.stage-vid { display: flex; align-items: center; justify-content: center; height: clamp(300px, 50vh, 540px); }
+/* the video window carries NO transform of its own — flex centring alone keeps
+   it exactly between the surrounding chips. Entrance is a fade + float via the
+   `translate`/`rotate` properties (never `transform`), so it always settles centred. */
+.stage-vid .winv { position: relative; width: 100%; opacity: 0; transform: none !important; }
+.winv video.shot {
+  width: 100%; aspect-ratio: 16 / 9; height: auto; display: block;
+  object-fit: contain; background: #0d1210;
+}
+.active .stage-vid .winv {
+  animation: winvFade .9s var(--ease-out) forwards, floatVW 9s ease-in-out infinite;
+  animation-delay: var(--d, .3s), 1.2s;
+}
+@keyframes winvFade { from { opacity: 0; translate: 0 22px; } to { opacity: 1; translate: 0 0; } }
+@keyframes floatVW { 0%, 100% { translate: 0 0; rotate: -.3deg; } 50% { translate: 0 -9px; rotate: .3deg; } }
+.float { animation: floatY 7s ease-in-out infinite; }
+@keyframes floatY { 0%, 100% { translate: 0 0; rotate: -.35deg; } 50% { translate: 0 -12px; rotate: .35deg; } }
+/* secondary idle float on `translate` so it can stack with transform entrances */
+@keyframes floatT { 0%, 100% { translate: 0 0; } 50% { translate: 0 -7px; } }
+
+/* split layout: caption column + visual stage */
+.split { display: grid; grid-template-columns: minmax(300px, .8fr) 1.2fr; gap: clamp(28px, 4.5vw, 72px); align-items: center; width: min(1360px, 100%); text-align: left; }
+.split .cap { max-width: 14ch; }
+.stage { position: relative; }
+
+/* floating label chips */
+.chip {
+  position: absolute; z-index: 6;
+  background: var(--dark-2); color: #F4F2EC; border-radius: 999px;
+  font-size: 12px; font-weight: 600; padding: 9px 16px;
+  display: inline-flex; gap: 8px; align-items: center;
+  box-shadow: 0 16px 36px -10px rgba(0,0,0,.4);
+  opacity: 0; transform: scale(.8);
+}
+.active .chip { animation: popIn .6s var(--ease-out) forwards; animation-delay: var(--d, 1.6s); }
+.chip .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--amber); flex: none; }
+.chip-amber { background: var(--amber); color: var(--ink); box-shadow: 0 16px 36px -10px rgba(0,0,0,.4), 0 0 28px -4px rgba(255,188,74,.65); }
+.chip-amber .dot { background: var(--ink); }
+.scene-dark .chip, .scene-deep .chip { box-shadow: 0 16px 36px -10px rgba(0,0,0,.4), 0 0 24px -6px rgba(43,189,142,.5); }
+
+/* animated cursor */
+.cursor { position: absolute; z-index: 8; width: 22px; height: 22px; opacity: 0; filter: drop-shadow(0 3px 6px rgba(0,0,0,.35)); }
+.cursor svg { width: 100%; height: 100%; }
+.ripple { position: absolute; z-index: 7; width: 44px; height: 44px; border-radius: 50%; border: 2.5px solid var(--teal); opacity: 0; }
+
+/* deck-style checklist — amber square bullets, as in The Tenderfy Method */
+.pts { margin-top: 16px; list-style: none; display: flex; flex-direction: column; gap: 9px; text-align: left; }
+.pts li { display: flex; gap: 10px; align-items: center; font-size: clamp(13px, 1.25vw, 16px); font-weight: 500; opacity: 0; transform: translateY(14px); }
+.active .pts li { animation: blockIn .7s var(--ease-out) forwards; animation-delay: var(--d, 0s); }
+.pts li::before { content: ''; width: .55em; height: .55em; border-radius: 3px; background: var(--amber); flex: none; }
+
+/* integrations chip row */
+.integ { display: flex; flex-wrap: wrap; align-items: center; gap: 7px; margin-top: 16px; }
+.integ i { font-style: normal; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-dim); margin-right: 3px; }
+.integ span { font-size: 11.5px; font-weight: 600; border: 1px solid var(--line-ink); border-radius: 999px; padding: 6px 12px; color: var(--ink); background: #fff; }
+
+/* giant translucent paperclip watermark (deck motif) */
+.clip-mark {
+  position: absolute; right: -4vw; top: -6vh; z-index: -1;
+  width: clamp(280px, 30vw, 520px); height: auto;
+  color: #6fd0ad; opacity: .12; pointer-events: none;
+  animation: clipSway 24s ease-in-out infinite;
+}
+@keyframes clipSway { 0%, 100% { translate: 0 0; rotate: 0deg; } 50% { translate: -9px 7px; rotate: -1.2deg; } }
+
+/* ============ AMBIENT DECOR (orbs, dots, rings, bits, sparks) ============ */
+.deco { position: absolute; inset: 0; pointer-events: none; z-index: -1; }
+.orb {
+  position: absolute; border-radius: 50%; filter: blur(48px); opacity: .5;
+  animation: orbDrift var(--od, 14s) ease-in-out infinite alternate;
+}
+.orb-teal  { background: radial-gradient(circle, rgba(43,189,142,.7), transparent 70%); }
+.orb-amber { background: radial-gradient(circle, rgba(255,188,74,.5), transparent 70%); }
+.orb-blue  { background: radial-gradient(circle, rgba(90,134,176,.5), transparent 70%); }
+.scene-light .orb, .scene-offwhite .orb { opacity: .34; filter: blur(58px); }
+@keyframes orbDrift { from { transform: translate(0, 0) scale(1); } to { transform: translate(28px, -34px) scale(1.14); } }
+.dots {
+  position: absolute; color: #fff; opacity: .22;
+  background-image: radial-gradient(currentColor 1.5px, transparent 1.5px);
+  background-size: 16px 16px;
+  -webkit-mask: radial-gradient(60% 60% at 50% 50%, #000, transparent 78%);
+          mask: radial-gradient(60% 60% at 50% 50%, #000, transparent 78%);
+  animation: driftB 18s ease-in-out infinite;
+}
+.scene-light .dots, .scene-offwhite .dots { color: var(--teal-dark); opacity: .16; }
+.ring { position: absolute; border-radius: 50%; border: 1.5px dashed rgba(111,208,173,.42); animation: ringSpin 30s linear infinite; }
+.ring::before { content: ''; position: absolute; inset: 20%; border-radius: 50%; border: 1.5px dashed rgba(111,208,173,.3); }
+.ring::after { content: ''; position: absolute; inset: 43%; border-radius: 50%; background: rgba(111,208,173,.5); box-shadow: 0 0 14px 2px rgba(111,208,173,.4); }
+.scene-light .ring, .scene-offwhite .ring { border-color: rgba(29,158,117,.28); }
+.scene-light .ring::before, .scene-offwhite .ring::before { border-color: rgba(29,158,117,.2); }
+@keyframes ringSpin { to { rotate: 360deg; } }
+.bit {
+  position: absolute; width: 10px; height: 10px; border-radius: 50%;
+  background: var(--amber); box-shadow: 0 0 16px 3px rgba(255,188,74,.55);
+  animation: bitFloat var(--bd, 6s) ease-in-out infinite alternate;
+}
+.bit-mint { background: #6addb5; box-shadow: 0 0 16px 3px rgba(106,221,181,.55); }
+@keyframes bitFloat { from { transform: translate(0, 0); } to { transform: translate(var(--bx, 12px), var(--by, -18px)); } }
+.spark {
+  position: absolute; color: var(--amber); font-size: 17px; opacity: 0;
+  animation: sparkle 3s ease-in-out infinite; animation-delay: var(--sd, 0s);
+  filter: drop-shadow(0 0 6px rgba(255,188,74,.8));
+}
+.spark::before { content: '✦'; }
+@keyframes sparkle { 0%, 100% { opacity: 0; transform: scale(.3) rotate(0deg); } 50% { opacity: 1; transform: scale(1) rotate(45deg); } }
+
+/* gentle autonomous drift — subtle, slow, no pointer dependency */
+@keyframes driftA { 0%, 100% { translate: 0 0; } 50% { translate: 5px -7px; } }
+@keyframes driftB { 0%, 100% { translate: 0 0; } 50% { translate: -6px 5px; } }
+.stage { animation: driftA 16s ease-in-out infinite; }
+.end-dots { animation: driftA 20s ease-in-out infinite; }
+
+/* ============ S1 · HOOK ============ */
+.hook-docs { position: absolute; inset: 0; pointer-events: none; }
+.hook-doc {
+  position: absolute; width: clamp(120px, 12vw, 190px); border-radius: 10px;
+  background: #fff; color: var(--ink); padding: 12px;
+  box-shadow: 0 24px 48px -16px rgba(0,0,0,.5);
+  display: flex; flex-direction: column; gap: 7px;
+  opacity: 0;
+}
+.active .hook-doc { animation: docIn .7s var(--ease-out) forwards, docSweep 1.3s var(--ease-curve) forwards; animation-delay: var(--d, 0s), 3.1s; }
+@keyframes docIn { from { opacity: 0; transform: translateY(30px) rotate(var(--r, 0deg)) scale(.9); } to { opacity: 1; transform: translateY(0) rotate(var(--r, 0deg)) scale(1); } }
+@keyframes docSweep { to { opacity: 0; transform: translate(var(--sx, 60vw), var(--sy, -30vh)) rotate(calc(var(--r, 0deg) * 3)); } }
+.hook-doc .fn { font-size: 10px; font-weight: 700; color: #B4543F; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.hook-doc .ln { height: 7px; border-radius: 4px; background: #ECEFEE; }
+.hook-doc .ln.w60 { width: 60%; } .hook-doc .ln.w80 { width: 80%; }
+.hook-kicker { margin-top: clamp(20px, 3.6vh, 34px); font-size: clamp(14px, 1.4vw, 19px); color: var(--cream-dim); }
+
+/* ============ S2 · PLATFORM ============ */
+.stage-platform { height: clamp(300px, 52vh, 560px); }
+.stage-platform .win-back {
+  position: absolute; width: 74%; left: -4%; top: 6%;
+  filter: saturate(.8) brightness(.96);
+}
+.active .stage-platform .win-back { animation: winInBack 1.3s var(--ease-out) forwards, floatT 9s ease-in-out infinite; animation-delay: 1s, 2.8s; }
+@keyframes winInBack { to { opacity: .8; transform: translateY(0) rotateY(6deg) scale(.98); } }
+.stage-platform .win-front { position: absolute; width: 86%; right: -2%; top: 12%; }
+
+/* ============ S3 · GO / NO-GO (Method step 1) ============ */
+.stage-go { height: clamp(300px, 52vh, 560px); }
+.stage-go .win-list { position: absolute; width: 88%; left: 2%; top: 6%; }
+.active .stage-go .win-list { animation: winIn 1.2s var(--ease-out) forwards, dimBack .7s var(--ease-out) forwards; animation-delay: .3s, 2.9s; }
+@keyframes dimBack { to { filter: brightness(.82) saturate(.85); transform: scale(.985); } }
+.stage-go .win-modal { position: absolute; width: 74%; right: -2%; top: 12%; z-index: 6; }
+.active .stage-go .win-modal { animation: winIn 1s var(--ease-out) forwards, floatT 8s ease-in-out infinite; animation-delay: 3s, 4.4s; }
+.stage-go .cursor { top: 16%; right: 22%; }
+.active .stage-go .cursor { animation: cur3 2.4s var(--ease-out) forwards; animation-delay: .9s; }
+@keyframes cur3 {
+  0% { opacity: 0; transform: translate(-24vw, 26vh); }
+  16% { opacity: 1; }
+  55% { transform: translate(0, 0); }
+  66% { transform: translate(0, 0) scale(.8); }
+  76% { transform: translate(0, 0) scale(1); }
+  100% { opacity: 1; transform: translate(0, 0); }
+}
+.stage-go .ripple { top: calc(16% - 12px); right: calc(22% - 12px); }
+.active .stage-go .ripple { animation: rippleGo .7s ease-out forwards; animation-delay: 2.5s; }
+@keyframes rippleGo { 0% { opacity: .9; transform: scale(.3); } 100% { opacity: 0; transform: scale(1.5); } }
+/* Ray's Go/No-Go gauge */
+.gauge {
+  position: absolute; z-index: 7; left: -3%; bottom: 4%;
+  width: min(280px, 68%); background: #fff; color: var(--ink);
+  border-radius: 14px; padding: 14px 16px; text-align: left;
+  box-shadow: 0 30px 60px -18px rgba(0,0,0,.35);
+  opacity: 0; transform: translateY(20px) scale(.94);
+}
+.active .gauge { animation: popIn .7s var(--ease-out) forwards, floatT 7s ease-in-out infinite; animation-delay: 4.2s, 5.2s; }
+.gauge-head { display: flex; align-items: center; gap: 9px; margin-bottom: 10px; }
+.gauge-av { width: 26px; height: 26px; border-radius: 50%; background: var(--teal-50); display: grid; place-items: center; overflow: hidden; flex: none; }
+.gauge-av img { width: 19px; height: 19px; }
+.gauge-name { font-size: 12px; font-weight: 700; }
+.gauge-name small { display: block; font-size: 10px; font-weight: 500; color: var(--ink-dim); }
+.gauge-note { margin-top: 8px; font-size: 11.5px; color: var(--ink-dim); }
+.gauge-badge {
+  display: inline-flex; gap: 7px; align-items: center;
+  background: var(--teal-50); color: var(--teal-dark); font-size: 12px; font-weight: 700;
+  border-radius: 999px; padding: 6px 13px; opacity: 0; transform: scale(.8);
+}
+.active .gauge-badge { animation: popIn .5s var(--ease-out) forwards; animation-delay: 5.3s; }
+
+/* ============ S4 · RAY (hero) ============ */
+.stage-ray { height: clamp(320px, 54vh, 580px); }
+.stage-ray .win-ray { position: absolute; width: 88%; left: 1%; top: 4%; }
+.active .stage-ray .win-ray { animation: winIn 1.25s var(--ease-out) forwards, dimBack .7s var(--ease-out) forwards; animation-delay: .5s, 8.9s; }
+/* the landing site's glowing gradient border, wrapped around the hero window */
+.ray-glow-wrap { position: absolute; inset: 0; }
+.ray-glow-wrap::before {
+  content: ''; position: absolute; width: 88%; left: 1%; top: 4%; aspect-ratio: 1440/938;
+  border-radius: 18px; z-index: 0;
+  background: linear-gradient(135deg, #2bbd8e 0%, #6addb5 42%, #FFBC4A 100%);
+  filter: blur(14px); opacity: 0;
+}
+.active .ray-glow-wrap::before { animation: glowIn 1.4s var(--ease-out) forwards, glowPulse 4.5s ease-in-out 2.4s infinite; animation-delay: .8s, 2.4s; }
+@keyframes glowIn { to { opacity: .65; } }
+@keyframes glowPulse { 0%, 100% { opacity: .55; } 50% { opacity: .9; } }
+/* windows glow softly on dark scenes */
+.scene-dark .win, .scene-deep .win {
+  box-shadow: 0 60px 110px -30px rgba(0,0,0,.6), 0 24px 44px -20px rgba(0,0,0,.4), 0 0 70px -14px rgba(43,189,142,.35);
+}
+.ray-bubble {
+  position: absolute; z-index: 7; left: -3%; bottom: 6%;
+  width: min(330px, 72%); background: #fff; color: var(--ink);
+  border-radius: 16px; border-bottom-left-radius: 5px; padding: 14px 16px;
+  box-shadow: 0 30px 60px -18px rgba(0,0,0,.45);
+  text-align: left; opacity: 0; transform: translateY(20px) scale(.94);
+}
+.active .ray-bubble { animation: popIn .7s var(--ease-out) forwards; animation-delay: 2.2s; }
+.ray-bubble .rb-head { display: flex; align-items: center; gap: 9px; margin-bottom: 8px; }
+.ray-bubble .rb-av { width: 26px; height: 26px; border-radius: 50%; background: var(--teal-50); display: grid; place-items: center; overflow: hidden; flex: none; }
+.ray-bubble .rb-av img { width: 19px; height: 19px; }
+.ray-bubble .rb-name { font-size: 12px; font-weight: 700; }
+.ray-bubble .rb-name small { display: block; font-size: 10px; font-weight: 500; color: var(--ink-dim); }
+.ray-bubble .rb-text { font-size: 12.5px; line-height: 1.5; min-height: 3em; }
+.ray-bubble .rb-caret { display: inline-block; width: 2px; height: 13px; background: var(--teal); vertical-align: -2px; animation: blink 1s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+.enhance-btn {
+  position: absolute; z-index: 7; right: 4%; bottom: 12%;
+  background: var(--amber); color: var(--ink); font-size: 13px; font-weight: 700;
+  border-radius: 999px; padding: 11px 20px;
+  display: inline-flex; align-items: center; gap: 8px;
+  box-shadow: 0 18px 40px -10px rgba(0,0,0,.45), 0 0 30px -4px rgba(255,188,74,.7);
+  opacity: 0; transform: scale(.8);
+}
+.active .enhance-btn { animation: popIn .55s var(--ease-out) forwards, pressIt .5s var(--ease-out) forwards; animation-delay: 6.4s, 8.5s; }
+@keyframes pressIt { 0% { transform: scale(1); } 40% { transform: scale(.88); } 100% { transform: scale(1); } }
+.stage-ray .cursor { right: calc(4% + 30px); bottom: calc(12% + 4px); }
+.active .stage-ray .cursor { animation: cur4 2.6s var(--ease-out) forwards; animation-delay: 6.8s; }
+@keyframes cur4 {
+  0% { opacity: 0; transform: translate(-18vw, -18vh); }
+  18% { opacity: 1; }
+  62% { transform: translate(0, 0); }
+  74% { transform: translate(0, 0) scale(.8); }
+  86% { transform: translate(0, 0) scale(1); }
+  100% { opacity: 1; transform: translate(0, 0); }
+}
+.stage-ray .win-enhance { position: absolute; width: 78%; right: -2%; top: 12%; z-index: 6; }
+.active .stage-ray .win-enhance { animation: winIn 1s var(--ease-out) forwards; animation-delay: 9.1s; }
+.stage-ray .chip-sharp { right: 2%; top: 8%; z-index: 8; }
+
+/* ============ S5 · LIBRARY ============ */
+.stage-lib { height: clamp(320px, 54vh, 580px); }
+.lib-card { position: absolute; width: 72%; left: 8%; top: 4%; transform-origin: 50% 80%; opacity: 0; }
+/* the window clips its content (overflow:hidden for rounded corners), so the
+   name tag lives on this wrapper — never inside the window — to stay unclipped */
+.lib-card > .win { opacity: 1; transform: none; }
+.active .lib-card > .win { animation: none; }
+.lib-card .tag {
+  position: absolute; z-index: 3; top: -14px; left: -14px;
+  background: var(--dark-2); color: #F4F2EC; font-size: 12px; font-weight: 600;
+  border-radius: 999px; padding: 8px 15px;
+  box-shadow: 0 14px 30px -10px rgba(0,0,0,.4);
+}
+.active .lib-c1 { animation: libIn 1s var(--ease-out) forwards; animation-delay: 1s; }
+.active .lib-c2 { animation: libIn 1s var(--ease-out) forwards; animation-delay: 2.2s; }
+.active .lib-c3 { animation: libIn 1s var(--ease-out) forwards; animation-delay: 3.4s; }
+.active .lib-c4 { animation: libIn 1s var(--ease-out) forwards, libFly 1.3s var(--ease-curve) forwards; animation-delay: 4.2s, 5.4s; }
+.lib-c1 { --rot: -5deg; --ox: -3%; --oy: 3%; }
+.lib-c2 { --rot: 3deg; --ox: 3%; --oy: 0%; }
+.lib-c3 { --rot: -2deg; --ox: -1%; --oy: -2%; }
+.lib-c4 { --rot: 1.5deg; --ox: 1%; --oy: 1%; }
+@keyframes libIn {
+  from { opacity: 0; transform: translate(var(--ox), calc(var(--oy) + 44px)) rotate(var(--rot)) scale(.94); }
+  to { opacity: 1; transform: translate(var(--ox), var(--oy)) rotate(var(--rot)) scale(1); }
+}
+@keyframes libFly {
+  0% { opacity: 1; transform: translate(var(--ox), var(--oy)) rotate(var(--rot)) scale(1); }
+  100% { opacity: 0; transform: translate(34%, 46%) rotate(0deg) scale(.22); }
+}
+.pack-slot {
+  position: absolute; right: -1%; bottom: 2%; z-index: 6;
+  background: #fff; color: var(--ink); border: 1.5px dashed var(--teal);
+  border-radius: 14px; padding: 13px 18px; text-align: left;
+  display: flex; align-items: center; gap: 11px;
+  box-shadow: 0 20px 44px -14px rgba(18,45,40,.28);
+  opacity: 0; transform: translateY(18px);
+}
+.active .pack-slot { animation: blockIn .8s var(--ease-out) forwards, packPulse .6s var(--ease-out) forwards; animation-delay: 4.6s, 6.2s; }
+@keyframes packPulse { 0% { transform: scale(1); border-style: dashed; } 45% { transform: scale(1.06); } 100% { transform: scale(1); border-style: solid; } }
+.pack-slot .ps-ic { width: 34px; height: 34px; border-radius: 9px; background: var(--teal-50); color: var(--teal-dark); display: grid; place-items: center; flex: none; }
+.pack-slot .ps-ic svg { width: 17px; height: 17px; }
+.pack-slot b { display: block; font-size: 13px; }
+.pack-slot small { font-size: 11px; color: var(--ink-dim); }
+.pack-added { display: none; color: var(--teal-dark); font-weight: 700; }
+.active .pack-added { display: inline; opacity: 0; animation: blockIn .4s var(--ease-out) forwards; animation-delay: 6.3s; }
+
+/* ============ S8 · FINAL QA (Method step 8) ============ */
+.stage-qa { height: clamp(300px, 52vh, 560px); }
+.stage-qa .win-qa { position: absolute; width: 92%; right: -1%; top: 8%; }
+.scene-dark .toc-list, .scene-deep .toc-list { border-color: var(--line-cream); }
+.scene-dark .toc-item, .scene-deep .toc-item { border-color: var(--line-cream); }
+.scene-dark .toc-item .ti-n, .scene-deep .toc-item .ti-n { color: #6fd0ad; }
+.scene-dark .toc-item .ti-ok, .scene-deep .toc-item .ti-ok { color: #6fd0ad; }
+
+/* ============ S2 · METHOD OVERVIEW (8-step grid) ============ */
+.m-grid {
+  margin-top: clamp(18px, 3vh, 30px);
+  display: grid; grid-template-columns: 1fr 1fr;
+  column-gap: clamp(20px, 3vw, 48px);
+  width: min(820px, 100%); text-align: left;
+}
+@media (max-width: 700px) { .m-grid { grid-template-columns: 1fr; width: min(420px, 100%); } }
+
+/* user prompt pill on the Ray scene (deck's "Targeted Ray Prompts") */
+.prompt-pill {
+  position: absolute; z-index: 7; right: 2%; top: -4%;
+  background: #fff; color: var(--ink);
+  border-radius: 999px; padding: 10px 16px;
+  font-size: 12.5px; font-weight: 600;
+  box-shadow: 0 18px 40px -12px rgba(0,0,0,.4);
+  opacity: 0; transform: translateY(-12px);
+  max-width: 86%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.prompt-pill i { font-style: normal; color: var(--teal-dark); font-weight: 700; margin-right: 6px; }
+.active .prompt-pill { animation: blockIn .6s var(--ease-out) forwards; animation-delay: 1.5s; }
+
+/* ============ S7 · ASSEMBLE ============ */
+.stage-toc { height: clamp(320px, 54vh, 580px); }
+.stage-toc .win-toc { position: absolute; width: 88%; right: -1%; top: 4%; }
+.toc-list { margin-top: clamp(16px, 2.6vh, 26px); display: flex; flex-direction: column; gap: 0; width: min(360px, 100%); }
+.toc-item {
+  display: flex; align-items: center; gap: 11px;
+  padding: clamp(7px, 1.2vh, 11px) 2px;
+  font-size: clamp(13px, 1.25vw, 16px); font-weight: 500;
+  border-bottom: 1px solid var(--line-ink);
+  opacity: 0; transform: translateY(14px);
+}
+.active .toc-item { animation: blockIn .6s var(--ease-out) forwards; animation-delay: var(--d); }
+.toc-item .ti-n { font-size: 10.5px; font-weight: 700; color: var(--teal-dark); width: 20px; flex: none; letter-spacing: .04em; }
+.toc-item .ti-ok { margin-left: auto; color: var(--teal); opacity: 0; }
+.active .toc-item .ti-ok { animation: popIn .35s var(--ease-out) forwards; animation-delay: calc(var(--d) + .35s); }
+.toc-item .ti-ok svg { width: 13px; height: 13px; }
+.fly-page {
+  position: absolute; z-index: 7; width: 54px; aspect-ratio: 3/4;
+  background: #fff; border-radius: 6px; border-top: 10px solid var(--teal);
+  box-shadow: 0 14px 30px -8px rgba(0,0,0,.3); opacity: 0;
+}
+.fly-page.p2 { border-top-color: var(--amber); }
+.fly-page.p3 { border-top-color: var(--ink); }
+.active .fly-page { animation: flyIn 1.1s var(--ease-curve) forwards; animation-delay: var(--d); }
+@keyframes flyIn {
+  0% { opacity: 0; transform: translate(-34vw, 20vh) rotate(-14deg) scale(1.15); }
+  25% { opacity: 1; }
+  100% { opacity: 0; transform: translate(0, 0) rotate(0) scale(.5); }
+}
+.stage-toc .chip-ready { right: 3%; bottom: 6%; z-index: 8; }
+
+/* ===== Assemble: real tender pages stacking into a finished pack ===== */
+.stage-docs { height: clamp(300px, 50vh, 540px); display: flex; align-items: center; justify-content: center; }
+.doc-stack { position: relative; width: clamp(150px, 19vw, 234px); aspect-ratio: 595 / 842; }
+.doc-pg {
+  position: absolute; inset: 0; border-radius: 7px; overflow: hidden; background: #fff;
+  box-shadow: 0 20px 44px -16px rgba(18,45,40,.45);
+  opacity: 0; transform: translateY(64px) rotate(0deg) scale(.9);
+}
+.doc-pg img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* task-assignment notification card (Delivery Plan scene) */
+.notif-card {
+  position: absolute; z-index: 9; right: 0; bottom: 5%;
+  width: clamp(168px, 20vw, 268px);
+  border-radius: 12px; overflow: hidden; background: #fff;
+  box-shadow: 0 34px 68px -16px rgba(18,45,40,.58), 0 0 0 1px rgba(46,60,59,.08);
+  opacity: 0; transform: translateY(18px) scale(.94);
+}
+.notif-card img { width: 100%; height: auto; display: block; }
+.active .notif-card { animation: popIn .7s var(--ease-out) forwards, floatVW 8s ease-in-out infinite; animation-delay: var(--d, 2s), 3s; }
+.active .doc-pg { animation: docPageIn 1s var(--ease-out) forwards; animation-delay: var(--d, 0s); }
+@keyframes docPageIn { to { opacity: 1; transform: translate(var(--x, 0), var(--y, 0)) rotate(var(--r, 0deg)) scale(1); } }
+
+/* ============ S8 · PAYOFF ============ */
+.stats { margin-top: clamp(24px, 4vh, 44px); display: grid; grid-template-columns: repeat(4, auto); gap: clamp(20px, 3.8vw, 64px); }
+.pay-quote { margin-top: clamp(14px, 2.4vh, 22px); font-size: clamp(13px, 1.3vw, 17px); font-style: italic; color: rgba(255,255,255,.92); max-width: 56ch; }
+.pay-quote b { display: block; margin-top: 6px; font-style: normal; font-size: 12px; font-weight: 600; color: rgba(255,255,255,.75); letter-spacing: .04em; }
+.stat { text-align: center; opacity: 0; transform: translateY(24px); }
+.active .stat { animation: blockIn .8s var(--ease-out) forwards; animation-delay: var(--d, 0s); }
+.stat .n { font-size: clamp(46px, 7vw, 108px); font-weight: 800; letter-spacing: -.03em; line-height: 1; font-variant-numeric: tabular-nums; text-shadow: 0 0 34px rgba(255,255,255,.4); }
+.stat .n small { font-size: .5em; font-weight: 700; }
+.stat .l { margin-top: 10px; font-size: clamp(12px, 1.2vw, 16px); color: rgba(255,255,255,.85); max-width: 20ch; }
+
+/* ============ S9 · BRAND END CARD ============ */
+.scene-end { justify-content: flex-end; align-items: stretch; text-align: left; padding-bottom: clamp(48px, 7vh, 84px); }
+/* dotted texture patches (site's .ray-dots recipe, scaled up) */
+.end-dots {
+  position: absolute; pointer-events: none; opacity: .35;
+  background-image: radial-gradient(rgba(255,255,255,.5) 1.8px, transparent 1.8px);
+  background-size: 20px 20px;
+  -webkit-mask: radial-gradient(60% 60% at 50% 50%, #000, transparent 75%);
+          mask: radial-gradient(60% 60% at 50% 50%, #000, transparent 75%);
+}
+.end-dots-1 { left: -4%; top: 38%; width: 34vw; height: 40vh; }
+.end-dots-2 { right: 14%; bottom: -8%; width: 28vw; height: 34vh; }
+/* giant outlined paperclip motif */
+.end-clip { position: absolute; left: -3vw; bottom: -9vh; width: clamp(220px, 24vw, 420px); opacity: 0; pointer-events: none; }
+.active .end-clip { animation: clipDraw 2.2s var(--ease-out) forwards; animation-delay: .7s; }
+@keyframes clipDraw { from { opacity: 0; transform: translateY(6vh) rotate(-6deg); } to { opacity: 1; transform: translateY(0) rotate(0); } }
+.end-contact {
+  position: absolute; top: clamp(76px, 11vh, 120px); left: var(--pad);
+  display: flex; flex-direction: column; gap: 10px; font-size: clamp(14px, 1.3vw, 18px); font-weight: 500;
+}
+.end-contact .row { display: flex; align-items: center; gap: 11px; opacity: 0; transform: translateY(14px); }
+.active .end-contact .row { animation: blockIn .8s var(--ease-out) forwards; animation-delay: var(--d); }
+.end-contact svg { width: 17px; height: 17px; opacity: .9; }
+.end-contact .rule { width: 52px; height: 3px; background: var(--amber); border-radius: 2px; margin-top: 6px; opacity: 0; transform: scaleX(0); transform-origin: left; }
+.active .end-contact .rule { animation: ruleIn .7s var(--ease-out) forwards; animation-delay: 1.4s; }
+@keyframes ruleIn { to { opacity: 1; transform: scaleX(1); } }
+.end-main { position: relative; z-index: 3; display: flex; align-items: flex-end; justify-content: space-between; gap: 32px; width: 100%; padding: 0 0; }
+.end-brand { min-width: 0; }
+.end-logo { width: clamp(280px, 30vw, 520px); height: auto; opacity: 0; transform: translateY(26px); }
+.active .end-logo { animation: blockIn 1.1s var(--ease-out) forwards; animation-delay: .9s; }
+/* two-tone tagline, as on the Method deck cover */
+.end-tagline { margin-top: 16px; display: flex; flex-direction: column; gap: 2px; }
+.end-tagline b { font-weight: 700; font-size: clamp(17px, 1.9vw, 28px); line-height: 1.2; letter-spacing: -.01em; }
+.end-tagline .tg-mint { color: #7CDDB9; }
+.end-tagline .tg-amber { color: var(--amber); }
+.end-cta { text-align: right; flex: none; margin-bottom: clamp(6px, 1vh, 16px); }
+.end-cta .cap { max-width: 13ch; margin-left: auto; }
+.end-actions { margin-top: clamp(16px, 2.6vh, 26px); display: flex; gap: 12px; justify-content: flex-end; flex-wrap: wrap; }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-weight: 600; font-size: clamp(13px, 1.25vw, 16px);
+  border-radius: 10px; padding: 13px 24px;
+  transition: transform .35s var(--ease-out), background .35s;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn-amber { background: var(--amber); color: var(--ink); box-shadow: 0 10px 32px -8px rgba(255,188,74,.65); animation: btnGlow 3.2s ease-in-out infinite; }
+@keyframes btnGlow { 0%, 100% { box-shadow: 0 10px 32px -8px rgba(255,188,74,.5); } 50% { box-shadow: 0 10px 42px -6px rgba(255,188,74,.85); } }
+.btn-ghost { border: 1.5px solid rgba(255,255,255,.6); color: #fff; }
+.btn-ghost:hover { background: rgba(255,255,255,.12); }
+.end-note { margin-top: 12px; font-size: 12px; color: rgba(255,255,255,.72); letter-spacing: .04em; text-align: right; }
+.end-sub { margin-top: 10px; margin-left: auto; max-width: 36ch; text-align: right; font-size: clamp(13px, 1.25vw, 17px); }
+.end-ack { position: relative; z-index: 3; margin-top: clamp(16px, 2.6vh, 26px); font-size: 11.5px; line-height: 1.5; color: rgba(255,255,255,.62); max-width: 76ch; }
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 940px) {
+  .split { grid-template-columns: 1fr; gap: 20px; text-align: center; }
+  .split .cap { max-width: none; margin: 0 auto; }
+  .split .sub { margin-left: auto; margin-right: auto; }
+  .stage-platform, .stage-go, .stage-ray, .stage-lib, .stage-qa, .stage-toc, .stage-docs { height: clamp(220px, 38vh, 380px); width: min(560px, 94vw); margin: 0 auto; }
+  .notif-card { width: clamp(120px, 28vw, 168px); right: -2%; bottom: 2%; }
+  .pts { align-items: center; }
+  .toc-list { margin-left: auto; margin-right: auto; }
+  .toc-item { text-align: left; }
+  .stats { grid-template-columns: repeat(2, auto); gap: 20px 36px; }
+  .end-sub { margin-left: 0; text-align: left; }
+  .end-main { flex-direction: column; align-items: flex-start; }
+  .end-cta { text-align: left; }
+  .end-cta .cap { margin-left: 0; }
+  .end-actions { justify-content: flex-start; }
+  .end-note { text-align: left; }
+  .chrome-label.mid-label { display: none; }
+  .ray-bubble { width: min(280px, 84%); }
+}
+@media (max-width: 560px) {
+  .hud-count { display: none; }
+  .seg { width: 14px; }
+  .hook-doc { width: 104px; }
+}
+
+/* ============ REDUCED MOTION ============ */
+html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animation-delay: 0s !important; animation-iteration-count: 1 !important; }
+</style>
+  <script>if(location.hostname.indexOf("tenderfy.org")===-1){document.head.appendChild(Object.assign(document.createElement("meta"),{name:"robots",content:"noindex,nofollow"}));}</script>
+</head>
+<body>
+
+<!-- shared paperclip watermark path (deck motif) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <path id="clipSym" d="M14.0122 64.9993C11.9681 65.0002 9.94867 64.5253 8.09554 63.6077C6.24241 62.6902 4.60054 61.3524 3.28519 59.6882C1.96984 58.024 1.01289 56.0737 0.481529 53.9743C-0.0498368 51.8749 -0.142745 49.6772 0.209328 47.5355L5.87064 13.3866C6.36249 10.4198 7.94225 7.78224 10.2624 6.05428C12.5825 4.32632 15.453 3.64947 18.2423 4.17263C21.0316 4.6958 23.5113 6.37611 25.1359 8.84393C26.7604 11.3117 27.3968 14.3649 26.9049 17.3318L25.1036 28.1964C24.533 31.6184 22.7093 34.6599 20.0328 36.6533C17.3563 38.6467 14.0455 39.4292 10.8272 38.8291L11.7081 33.514C13.6013 33.8666 15.5487 33.4061 17.1231 32.2335C18.6976 31.0609 19.7705 29.2719 20.1065 27.259L21.9075 16.3945C22.0437 15.6198 22.0341 14.8241 21.8793 14.0534C21.7245 13.2828 21.4276 12.5524 21.0058 11.9045C20.5839 11.2566 20.0455 10.7042 19.4216 10.2791C18.7978 9.85395 18.1008 9.56462 17.3712 9.42781C16.6415 9.291 15.8936 9.30942 15.1707 9.48202C14.4478 9.65461 13.7642 9.97795 13.1595 10.4333C12.5548 10.8887 12.041 11.4671 11.6478 12.135C11.2546 12.803 10.9898 13.5472 10.8687 14.3247L5.20771 48.4736C5.00449 49.6994 5.03027 50.9559 5.28356 52.1712C5.53686 53.3864 6.01272 54.5367 6.68397 55.5564C7.35522 56.5761 8.20872 57.4451 9.19574 58.114C10.1828 58.7828 11.284 59.2383 12.4365 59.4544C13.589 59.6706 14.7702 59.6432 15.9128 59.3738C17.0553 59.1043 18.1368 58.5982 19.0955 57.8842C20.0541 57.1702 20.8711 56.2624 21.4999 55.2126C22.1287 54.1627 22.557 52.9914 22.7602 51.7656L27.003 26.1725L32 27.1102L27.7573 52.7033C27.1863 56.1421 25.4968 59.2579 22.9844 61.5058C20.472 63.7537 17.2966 64.9905 14.0135 65" stroke="currentColor" stroke-width=".6" fill="none"/>
+  </defs>
+</svg>
+
+<!-- ============ PRELOADER ============ -->
+<div class="preloader" id="preloader" aria-hidden="true">
+  <span class="pre-word" id="preWord">Construction</span>
+</div>
+
+<!-- ============ CURTAIN ============ -->
+<div class="curtain" id="curtain" aria-hidden="true">
+  <span class="curtain-label" id="curtainLabel"></span>
+</div>
+
+<!-- logo lives outside .chrome so the difference blend never inverts its colours -->
+<a class="brandmark" href="index.html"><img id="brandLogo" src="assets/tenderfy-wordmark-white.svg" alt="Tenderfy" /></a>
+
+<!-- ============ CHROME ============ -->
+<div class="chrome">
+  <div class="chrome-top">
+    <span class="chrome-spacer" aria-hidden="true"></span>
+    <span class="chrome-label mid-label">Ray Explainer</span>
+    <span class="chrome-label" id="sceneLabel">Intro</span>
+  </div>
+  <div class="chrome-bot">
+    <div class="segs" id="segs" role="tablist" aria-label="Scenes"></div>
+    <div class="hud">
+      <span class="hud-count" id="hudCount">01 / 09</span>
+      <button class="hud-btn" id="btnSnd" aria-label="Play music">
+        <svg id="icSndOn" viewBox="0 0 16 16" fill="none" style="display:none"><path d="M2 6v4h2.5L8 13V3L4.5 6H2z" fill="currentColor"/><path d="M10.5 5.5c1.2 1 1.2 4 0 5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><path d="M12.5 4c2 1.8 2 6.2 0 8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        <svg id="icSndOff" viewBox="0 0 16 16" fill="none"><path d="M2 6v4h2.5L8 13V3L4.5 6H2z" fill="currentColor"/><path d="M10.5 6.2l3.6 3.6M14.1 6.2l-3.6 3.6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+      </button>
+      <button class="hud-btn" id="btnPrev" aria-label="Previous scene"><svg viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <button class="hud-btn" id="btnPlay" aria-label="Pause">
+        <svg id="icPause" viewBox="0 0 16 16" fill="none"><path d="M5.5 3v10M10.5 3v10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        <svg id="icPlay" viewBox="0 0 16 16" fill="none" style="display:none"><path d="M5 3l8 5-8 5V3z" fill="currentColor"/></svg>
+      </button>
+      <button class="hud-btn" id="btnNext" aria-label="Next scene"><svg viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ S1 · HOOK ============ -->
+<section class="scene scene-dark" data-label="The Old Way" data-dur="7500">
+  <svg class="clip-mark" viewBox="0 0 32 65" aria-hidden="true"><use href="#clipSym"/></svg>
+  <div class="deco" aria-hidden="true">
+    <span class="orb orb-teal" style="width:42vw;height:42vw;left:-12vw;top:-14vh"></span>
+    <span class="orb orb-amber" style="width:28vw;height:28vw;right:-8vw;bottom:-12vh;--od:18s"></span>
+    <span class="dots" style="width:220px;height:160px;left:5%;bottom:9%"></span>
+    <span class="bit" style="left:16%;top:26%"></span>
+    <span class="bit bit-mint" style="right:20%;top:16%;--bd:8s;--bx:-14px;--by:18px"></span>
+  </div>
+  <div class="hook-docs" aria-hidden="true">
+    <div class="hook-doc" style="--d:.2s; --r:-7deg; --sx:-70vw; --sy:-20vh; left:12%; top:16%"><span class="fn">New chat — “so this tender is for…”</span><span class="ln"></span><span class="ln w80"></span><span class="ln w60"></span></div>
+    <div class="hook-doc" style="--d:.35s; --r:5deg; --sx:70vw; --sy:-30vh; right:14%; top:13%"><span class="fn">New chat — “as I said before…”</span><span class="ln w80"></span><span class="ln"></span><span class="ln w60"></span></div>
+    <div class="hook-doc" style="--d:.5s; --r:-4deg; --sx:-60vw; --sy:35vh; left:8%; bottom:14%"><span class="fn">New chat — “which file was it again?”</span><span class="ln w60"></span><span class="ln"></span><span class="ln w80"></span></div>
+    <div class="hook-doc" style="--d:.65s; --r:8deg; --sx:65vw; --sy:30vh; right:9%; bottom:17%"><span class="fn">New chat — “start from the top”</span><span class="ln"></span><span class="ln w60"></span><span class="ln w80"></span></div>
+    <div class="hook-doc" style="--d:.8s; --r:-10deg; --sx:0vw; --sy:-60vh; left:44%; top:8%"><span class="fn">New chat — “where were we?”</span><span class="ln w80"></span><span class="ln w60"></span><span class="ln"></span></div>
+  </div>
+  <h1 class="big">
+    <span class="rw"><span style="--d:.5s">AI</span></span>
+    <span class="rw"><span style="--d:.58s">shouldn't</span></span>
+    <span class="rw"><span style="--d:.66s">mean</span></span><br>
+    <span class="rw"><span class="tl-bright" style="--d:.82s">re-explaining</span></span>
+    <span class="rw"><span class="tl-bright" style="--d:.9s">your</span></span>
+    <span class="rw"><span class="tl-bright" style="--d:.98s">tender</span></span><br>
+    <span class="rw"><span style="--d:1.14s">in</span></span>
+    <span class="rw"><span style="--d:1.22s">every</span></span>
+    <span class="rw"><span style="--d:1.3s">new</span></span>
+    <span class="rw"><span class="am" style="--d:1.38s">chat.</span></span>
+  </h1>
+  <p class="hook-kicker fx" style="--d:4s">Meet Ray — one teammate across Tenderfy who already knows where you’re at.</p>
+</section>
+<!-- ============ S2 · MEET RAY ============ -->
+<section class="scene scene-deep" data-label="Meet Ray" data-dur="8500">
+  <svg class="clip-mark" viewBox="0 0 32 65" aria-hidden="true"><use href="#clipSym"/></svg>
+  <div class="deco" aria-hidden="true">
+    <span class="orb orb-teal" style="width:36vw;height:36vw;right:-10vw;top:-10vh"></span>
+    <span class="ring" style="width:120px;height:120px;left:7%;top:16%"></span>
+    <span class="dots" style="width:200px;height:150px;right:6%;bottom:8%"></span>
+    <span class="bit" style="left:22%;bottom:16%;--bd:7s"></span>
+    <span class="spark" style="right:18%;top:22%"></span>
+    <span class="spark" style="left:13%;bottom:36%;--sd:1.4s"></span>
+  </div>
+  <p class="eyebrow">Ray Agent</p>
+  <h2 class="cap">
+    <span class="rw"><span style="--d:.1s">One</span></span>
+    <span class="rw"><span class="am" style="--d:.18s">teammate.</span></span>
+    <span class="rw"><span class="tl-bright" style="--d:.3s">Eight</span></span>
+    <span class="rw"><span class="tl-bright" style="--d:.38s">steps.</span></span>
+  </h2>
+  <p class="sub fx" style="--d:.65s">Ray works the Tenderfy Method with you — offering each step, doing it when you say go, and stopping for your review before the next. Not a chat box bolted onto the side.</p>
+  <div class="toc-list m-grid" aria-label="The eight steps Ray walks">
+    <div class="toc-item" style="--d:1.05s"><span class="ti-n">01</span>Go / No-Go<span class="ti-ok"><svg viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+    <div class="toc-item" style="--d:1.30s"><span class="ti-n">02</span>Plan the tender<span class="ti-ok"><svg viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+    <div class="toc-item" style="--d:1.55s"><span class="ti-n">03</span>Understand the buyer<span class="ti-ok"><svg viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+    <div class="toc-item" style="--d:1.80s"><span class="ti-n">04</span>Learn from feedback<span class="ti-ok"><svg viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+    <div class="toc-item" style="--d:2.05s"><span class="ti-n">05</span>Complete the responses<span class="ti-ok"><svg viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+    <div class="toc-item" style="--d:2.30s"><span class="ti-n">06</span>Methodology &amp; technical<span class="ti-ok"><svg viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+    <div class="toc-item" style="--d:2.55s"><span class="ti-n">07</span>Build the tender<span class="ti-ok"><svg viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+    <div class="toc-item" style="--d:2.80s"><span class="ti-n">08</span>Final review<span class="ti-ok"><svg viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+  </div>
+  <p class="sub fx" style="--d:3.05s; margin-top:clamp(12px,2vh,20px); font-weight:600">Every step ends the same way: with you.</p>
+  <p class="sub fx" style="--d:3.3s; margin-top:6px">A project holds every chat about a tender — so nothing is ever explained twice.</p>
+</section>
+<!-- ============ S3 · BESIDE EVERY SCREEN ============ -->
+<section class="scene scene-offwhite" data-label="How Ray Works" data-dur="9500" id="sceneRail">
+  <div class="deco" aria-hidden="true">
+    <span class="orb orb-teal" style="width:30vw;height:30vw;right:-8vw;bottom:-10vh"></span>
+    <span class="dots" style="width:180px;height:140px;left:5%;bottom:14%"></span>
+    <span class="bit" style="left:11%;top:20%;--bd:6.5s"></span>
+  </div>
+  <div class="split">
+    <div>
+      <p class="eyebrow fx" style="--d:.05s">How Ray works</p>
+      <h2 class="cap">
+        <span class="rw"><span style="--d:.15s">Beside</span></span>
+        <span class="rw"><span class="tl" style="--d:.23s">every</span></span>
+        <span class="rw"><span class="tl" style="--d:.31s">screen.</span></span><br>
+        <span class="rw"><span style="--d:.44s">Never</span></span>
+        <span class="rw"><span style="--d:.52s">in</span></span>
+        <span class="rw"><span style="--d:.6s">the</span></span>
+        <span class="rw"><span style="--d:.68s">way.</span></span>
+      </h2>
+      <p class="sub fx" style="--d:.9s">Open Ray as a chat, or expand him into a side panel. He sees the tender you have open and the documents already on it — and everything he fetches stays inside your permissions.</p>
+      <ul class="pts">
+        <li style="--d:1.30s">Knows what’s on screen</li>
+        <li style="--d:1.55s">References the documents you’ve already uploaded</li>
+        <li style="--d:1.80s">A project per tender, every chat inside it</li>
+        <li style="--d:2.05s">Offers the next step — you say go, or skip</li>
+      </ul>
+    </div>
+    <div class="stage stage-rail">
+      <div class="rail" aria-label="Ray, beside a tender">
+        <div class="rail-head">
+          <img src="assets/ray-avatar.svg" alt="" />
+          <b>Environmental Industries</b>
+          <span class="rail-beta">BETA</span>
+        </div>
+        <div class="rail-body">
+          <p class="rail-msg fx" style="--d:.7s">Let’s work through <b>Environmental Industries</b>. There are 8 steps, and I’ll offer the next one each time. You can also just ask me anything about it.</p>
+          <div class="rail-offer fx" style="--d:1.5s">
+            <p>Let me assess this against your Go / No-Go criteria and give you a recommendation.</p>
+            <div class="acts"><span class="rail-btn">Go ahead</span><span class="rail-btn ghost">Skip</span></div>
+          </div>
+          <div class="rail-next fx" style="--d:2.2s"><span>Next · <b>1 of 8</b> · Go / No-Go</span><span class="prog"><i></i></span></div>
+          <div class="rail-refs fx" style="--d:2.7s">
+            <span class="rail-lab">Reference</span>
+            <span class="rail-ref">Request for Tender.pdf</span>
+            <span class="rail-ref">Scope of Works — Addendum 2.pdf</span>
+          </div>
+        </div>
+        <div class="rail-comp fx" style="--d:3s"><span>Reply to Ray…</span><span class="send"></span></div>
+      </div>
+      <span class="chip chip-amber" style="--d:3.6s; right:-2%; top:4%"><span class="dot"></span>Knows what you have open</span>
+      <span class="chip" style="--d:4.4s; left:-4%; bottom:10%"><span class="dot"></span>Inside your permissions — always</span>
+    </div>
+  </div>
+</section>
+<section class="scene scene-light" data-label="Step 01 · Go / No-Go" data-dur="9500" id="sceneGo">
+  <div class="deco" aria-hidden="true">
+    <span class="orb orb-teal" style="width:34vw;height:34vw;right:-9vw;top:-12vh"></span>
+    <span class="dots" style="width:190px;height:150px;left:4%;top:12%"></span>
+    <span class="bit bit-mint" style="left:9%;bottom:22%;--bd:7.5s"></span>
+  </div>
+  <div class="split split-vid">
+    <div>
+      <p class="eyebrow fx" style="--d:.05s">Step 01 — Go / No-Go</p>
+      <h2 class="cap">
+        <span class="rw"><span style="--d:0.15s">“Let</span></span>
+        <span class="rw"><span style="--d:0.22s">me</span></span>
+        <span class="rw"><span class="tl" style="--d:0.29s">assess</span></span><br>
+        <span class="rw"><span style="--d:0.42s">this</span></span>
+        <span class="rw"><span class="tl" style="--d:0.49s">one.”</span></span>
+      </h2>
+      <p class="sub fx" style="--d:.85s">Ray rates the opportunity against your Go / No-Go criteria — strategic fit, capability, commercial viability, mandatory requirements, risk — Green, Amber or Red, with a reason for each.</p>
+      <ul class="pts">
+        <li style="--d:1.20s">Recommends GO, GO subject to conditions, HOLD or NO-GO</li>
+        <li style="--d:1.45s">Names what’s missing rather than assuming it</li>
+        <li style="--d:1.70s">You approve before he moves on</li>
+      </ul>
+    </div>
+    <div class="stage stage-vid">
+      <div class="win winv" style="--d:.3s">
+        <div class="win-bar"><span></span><span></span><span></span></div>
+        <video class="shot vid" muted playsinline preload="auto"></video>
+      </div>
+      <span class="chip chip-amber" style="--d:2s; right:2%; top:0"><span class="dot"></span>Human review &amp; approval ✓</span>
+    </div>
+  </div>
+</section>
+<section class="scene scene-offwhite" data-label="Step 02 · Plan the Tender" data-dur="7000" id="sceneDeliver">
+  <div class="deco" aria-hidden="true">
+    <span class="orb orb-blue" style="width:32vw;height:32vw;left:-10vw;bottom:-12vh"></span>
+    <span class="dots" style="width:180px;height:140px;right:5%;top:14%"></span>
+    <span class="bit" style="right:11%;bottom:24%;--bx:-12px;--by:-14px"></span>
+  </div>
+  <div class="split split-vid">
+    <div>
+      <p class="eyebrow fx" style="--d:.05s">Step 02 — Plan the tender</p>
+      <h2 class="cap">
+        <span class="rw"><span style="--d:0.15s">“Let</span></span>
+        <span class="rw"><span style="--d:0.22s">me</span></span>
+        <span class="rw"><span class="tl" style="--d:0.29s">build</span></span><br>
+        <span class="rw"><span style="--d:0.42s">the</span></span>
+        <span class="rw"><span class="tl" style="--d:0.49s">plan.”</span></span>
+      </h2>
+      <p class="sub fx" style="--d:.85s">Working back from the closing date, Ray drafts the task list and delivery plan — owners, due dates, priorities — and marks the tasks he could do himself. He starts none of them until you say so.</p>
+      <ul class="pts">
+        <li style="--d:1.20s">Milestones, responsibilities, risks and approvals</li>
+        <li style="--d:1.45s">Assigned, dated and linked to the requirement</li>
+        <li style="--d:1.70s">SMEs notified instantly</li>
+        <li style="--d:1.95s">Ray’s own tasks flagged, not started</li>
+      </ul>
+    </div>
+    <div class="stage stage-vid">
+      <div class="win winv" style="--d:.3s">
+        <div class="win-bar"><span></span><span></span><span></span></div>
+        <video class="shot vid" muted playsinline preload="auto"></video>
+      </div>
+      <span class="chip chip-tl" style="--d:1.6s; left:-2%; top:6%"><span class="dot"></span>Assigned · due 22/07/2026</span>
+      <span class="chip chip-amber" style="--d:3.6s; left:-2%; bottom:4%"><span class="dot"></span>Next · 2 of 8 · Plan the tender</span>
+      <figure class="notif-card" style="--d:2.2s" aria-label="Task assignment email sent to the assignee">
+        <img src="assets/app/task-assigned-email.png" alt="Email: Daniel Doan assigned you 'Create a Working Schedule' for Riverside Commercial Precinct — Stage 2" />
+      </figure>
+    </div>
+  </div>
+</section>
+<section class="scene scene-light" data-label="Steps 03–04 · Buyer & Feedback" data-dur="8000" id="sceneBuyer">
+  <div class="deco" aria-hidden="true">
+    <span class="orb orb-teal" style="width:32vw;height:32vw;left:-9vw;top:-10vh"></span>
+    <span class="dots" style="width:180px;height:140px;right:6%;bottom:12%"></span>
+    <span class="bit bit-mint" style="right:26%;top:14%;--bd:8s"></span>
+  </div>
+  <div class="split split-vid">
+    <div>
+      <p class="eyebrow fx" style="--d:.05s">Steps 03–04 — Understand the buyer · Learn from feedback</p>
+      <h2 class="cap">
+        <span class="rw"><span style="--d:0.15s">“Let</span></span>
+        <span class="rw"><span style="--d:0.22s">me</span></span>
+        <span class="rw"><span style="--d:0.29s">find</span></span>
+        <span class="rw"><span style="--d:0.36s">where</span></span><br>
+        <span class="rw"><span style="--d:0.49s">you</span></span>
+        <span class="rw"><span style="--d:0.56s">add</span></span>
+        <span class="rw"><span class="tl" style="--d:0.63s">real</span></span>
+        <span class="rw"><span class="tl" style="--d:0.70s">value.”</span></span>
+      </h2>
+      <p class="sub fx" style="--d:.85s">Ray researches the buyer’s goals, initiatives and commitments, compares them with what you genuinely do, and proposes specific value-adds — a named programme with evidence, not “strong communication”. Then he reads what this buyer said about your last bids.</p>
+      <ul class="pts">
+        <li style="--d:1.20s">Buyer priorities &amp; strategic initiatives</li>
+        <li style="--d:1.45s">Scores and evaluator comments — this buyer only, never another’s</li>
+        <li style="--d:1.70s">Things to repeat, things to fix</li>
+        <li style="--d:1.95s">If no feedback exists, he says so</li>
+      </ul>
+    </div>
+    <div class="stage stage-vid">
+      <div class="win winv" style="--d:.3s">
+        <div class="win-bar"><span></span><span></span><span></span></div>
+        <video class="shot vid" muted playsinline preload="auto"></video>
+      </div>
+      <span class="chip chip-tl" style="--d:1.6s; left:-2%; top:6%"><span class="dot"></span>Trusted, verified sources</span>
+      <span class="chip chip-amber" style="--d:3.4s; right:0; bottom:4%"><span class="dot"></span>Shows the buyer you understand them ✓</span>
+    </div>
+  </div>
+</section>
+<section class="scene scene-deep" data-label="Steps 05–06 · Responses & Methodology" data-dur="11500" id="sceneRay">
+  <svg class="clip-mark" viewBox="0 0 32 65" aria-hidden="true"><use href="#clipSym"/></svg>
+  <div class="deco" aria-hidden="true">
+    <span class="orb orb-teal" style="width:40vw;height:40vw;left:-12vw;bottom:-16vh;--od:17s"></span>
+    <span class="orb orb-amber" style="width:24vw;height:24vw;right:-6vw;top:-8vh"></span>
+    <span class="ring" style="width:110px;height:110px;right:9%;bottom:14%"></span>
+    <span class="dots" style="width:200px;height:150px;left:4%;top:12%"></span>
+    <span class="spark" style="left:20%;top:18%"></span>
+    <span class="spark" style="right:24%;top:34%;--sd:1.1s"></span>
+    <span class="spark" style="left:30%;bottom:14%;--sd:2s"></span>
+    <span class="bit bit-mint" style="left:8%;top:42%;--bd:7s"></span>
+  </div>
+  <div class="split split-vid">
+    <div>
+      <p class="eyebrow fx" style="--d:.05s">Steps 05–06 — Complete the responses · Methodology &amp; technical</p>
+      <h2 class="cap">
+        <span class="rw"><span style="--d:0.15s">“Let</span></span>
+        <span class="rw"><span style="--d:0.22s">me</span></span>
+        <span class="rw"><span class="tl-bright" style="--d:0.29s">draft</span></span><br>
+        <span class="rw"><span style="--d:0.42s">the</span></span>
+        <span class="rw"><span class="am" style="--d:0.49s">answers.”</span></span>
+      </h2>
+      <p class="sub fx" style="--d:.85s">Ray pulls every question with its word limit, mandatory flag and weighting, answers it from your approved content and everything agreed earlier in the bid, then builds the methodology from the scope and programme. Anything needing an SME is flagged — not invented.</p>
+      <ul class="pts">
+        <li style="--d:1.20s">Every question — limit, weighting, mandatory flag</li>
+        <li style="--d:1.45s">Grounded in your approved content</li>
+        <li style="--d:1.70s">Technical gaps raised for an SME, never filled in</li>
+      </ul>
+    </div>
+    <div class="stage stage-vid">
+      <div class="win winv" style="--d:.3s">
+        <div class="win-bar"><span></span><span></span><span></span></div>
+        <video class="shot vid" muted playsinline preload="auto"></video>
+      </div>
+      <span class="chip" style="--d:1.8s; left:-2%; top:0"><span class="dot"></span>Next · 5 of 8 · Complete the responses</span>
+      <span class="chip chip-amber" style="--d:3.4s; right:2%; bottom:2%"><span class="dot"></span>Tailored — not copied &amp; pasted ✓</span>
+    </div>
+  </div>
+</section>
+<section class="scene scene-light" data-label="Steps 07–08 · Build & Review" data-dur="8500" id="sceneAssemble">
+  <div class="deco" aria-hidden="true">
+    <span class="orb orb-teal" style="width:32vw;height:32vw;left:-10vw;top:-12vh"></span>
+    <span class="dots" style="width:180px;height:140px;right:4%;top:16%"></span>
+    <span class="bit bit-mint" style="right:9%;bottom:32%;--bd:7s;--bx:-10px;--by:-16px"></span>
+  </div>
+  <div class="split split-vid">
+    <div>
+      <p class="eyebrow fx" style="--d:.05s">Steps 07–08 — Build the tender · Final review</p>
+      <h2 class="cap">
+        <span class="rw"><span style="--d:0.15s">“Let</span></span>
+        <span class="rw"><span style="--d:0.22s">me</span></span>
+        <span class="rw"><span class="tl" style="--d:0.29s">build</span></span>
+        <span class="rw"><span style="--d:0.36s">it,</span></span><br>
+        <span class="rw"><span style="--d:0.49s">then</span></span>
+        <span class="rw"><span class="tl" style="--d:0.56s">check</span></span>
+        <span class="rw"><span style="--d:0.63s">it.”</span></span>
+      </h2>
+      <p class="sub fx" style="--d:.85s">Ray chooses the template and reworks content for this bid rather than reusing it unchanged. Then he checks the submission against the original documents and reads it the way an evaluator would.</p>
+      <ul class="pts">
+        <li style="--d:1.20s">Edits stay on the tender copy — the master library is never overwritten</li>
+        <li style="--d:1.45s">Every mandatory requirement, question, word limit and signature checked</li>
+        <li style="--d:1.70s">Findings sorted Critical, Recommended, Optional</li>
+        <li style="--d:1.95s">You make the call that it’s ready</li>
+      </ul>
+    </div>
+    <div class="stage stage-vid">
+      <div class="win winv" style="--d:.3s">
+        <div class="win-bar"><span></span><span></span><span></span></div>
+        <video class="shot vid" muted playsinline preload="auto"></video>
+      </div>
+      <span class="chip chip-amber" style="--d:2.8s; right:5%; bottom:8%; z-index:8"><span class="dot"></span>One polished, on-brand PDF ✓</span>
+    </div>
+  </div>
+</section>
+<!-- ============ S9 · YOUR METHOD, YOUR RULES ============ -->
+<section class="scene scene-offwhite" data-label="Your Method" data-dur="9000" id="sceneManager">
+  <div class="deco" aria-hidden="true">
+    <span class="orb orb-blue" style="width:32vw;height:32vw;left:-10vw;bottom:-12vh"></span>
+    <span class="dots" style="width:180px;height:140px;right:5%;top:14%"></span>
+    <span class="bit" style="right:11%;bottom:24%;--bx:-12px;--by:-14px"></span>
+  </div>
+  <div class="split split-vid">
+    <div>
+      <p class="eyebrow fx" style="--d:.05s">AI Manager</p>
+      <h2 class="cap">
+        <span class="rw"><span style="--d:.15s">The</span></span>
+        <span class="rw"><span style="--d:.22s">Method</span></span>
+        <span class="rw"><span style="--d:.29s">ships.</span></span><br>
+        <span class="rw"><span style="--d:.42s">Your</span></span>
+        <span class="rw"><span style="--d:.49s">version</span></span>
+        <span class="rw"><span style="--d:.56s">is</span></span>
+        <span class="rw"><span class="tl" style="--d:.63s">yours.</span></span>
+      </h2>
+      <p class="sub fx" style="--d:.9s">The Tenderfy Method comes as a workflow. Edit any step, reorder them, or write one of your own — a three-step Friday-afternoon pass, say. Save the prompts your team reaches for, and they’re one click away in Ray’s composer.</p>
+      <ul class="pts">
+        <li style="--d:1.30s">Edit the Method to match how you actually bid</li>
+        <li style="--d:1.55s">Write your own workflows</li>
+        <li style="--d:1.80s">Saved prompts — managed once, used everywhere</li>
+        <li style="--d:2.05s">Switch a prompt off without losing it</li>
+      </ul>
+    </div>
+    <div class="stage stage-shot">
+      <div class="win" style="--d:.3s">
+        <div class="win-bar"><span></span><span></span><span></span></div>
+        <img class="shot" src="assets/app/ai-manager-workflows.png" alt="AI Manager — the Workflow Manager, with the Tenderfy Method and a custom workflow" />
+      </div>
+      <span class="chip chip-amber" style="--d:2.6s; right:2%; bottom:6%"><span class="dot"></span>Pick a workflow from the composer</span>
+    </div>
+  </div>
+</section>
+<!-- ============ S9 · PAYOFF ============ -->
+<section class="scene scene-ramp" data-label="The Payoff" data-dur="8000" id="sceneStats">
+  <div class="deco" aria-hidden="true">
+    <span class="dots" style="width:240px;height:180px;left:4%;top:14%;opacity:.3"></span>
+    <span class="dots" style="width:200px;height:160px;right:5%;bottom:10%;opacity:.3"></span>
+    <span class="ring" style="width:130px;height:130px;right:9%;top:18%;border-color:rgba(255,255,255,.4)"></span>
+    <span class="bit" style="left:15%;bottom:26%"></span>
+    <span class="bit bit-mint" style="right:20%;bottom:38%;--bd:7.5s"></span>
+  </div>
+  <p class="eyebrow">The payoff</p>
+  <h2 class="cap">
+    <span class="rw"><span style="--d:.05s">Faster</span></span>
+    <span class="rw"><span style="--d:.14s">tenders.</span></span>
+    <span class="rw"><span class="am" style="--d:.26s">More</span></span>
+    <span class="rw"><span class="am" style="--d:.34s">wins.</span></span>
+  </h2>
+  <div class="stats">
+    <div class="stat" style="--d:.6s"><div class="n"><span data-count="60">0</span><small>%</small></div><div class="l">less time preparing tenders</div></div>
+    <div class="stat" style="--d:.85s"><div class="n"><span data-count="25">0</span><small>%+</small></div><div class="l">higher win rates</div></div>
+    <div class="stat" style="--d:1.1s"><div class="n"><span data-count="90">0</span><small>%</small></div><div class="l">faster document updates</div></div>
+    <div class="stat" style="--d:1.35s"><div class="n"><span data-count="10">0</span><small>×</small></div><div class="l">better presentation quality</div></div>
+  </div>
+  <p class="sub fx" style="--d:1.7s">With a teammate who knows the method — and stops for you at every step.</p>
+  <p class="pay-quote fx" style="--d:2.2s">"Tenderfy has streamlined our tendering process significantly — more consistent, professional submissions every time."<b>— Bevan, Project Manager · Seamer Civil Group</b></p>
+</section>
+
+<!-- ============ S9 · BRAND END CARD ============ -->
+<section class="scene scene-end" data-label="Tenderfy" data-dur="11000">
+  <div class="deco" aria-hidden="true">
+    <span class="orb orb-amber" style="width:26vw;height:26vw;right:6vw;top:-8vh;opacity:.35"></span>
+    <span class="bit" style="right:28%;top:30%;--bd:8s"></span>
+    <span class="spark" style="right:13%;top:44%;--sd:.8s"></span>
+  </div>
+  <span class="end-dots end-dots-1" aria-hidden="true"></span>
+  <span class="end-dots end-dots-2" aria-hidden="true"></span>
+  <svg class="end-clip" viewBox="0 0 32 65" fill="none" aria-hidden="true">
+    <path d="M14.0122 64.9993C11.9681 65.0002 9.94867 64.5253 8.09554 63.6077C6.24241 62.6902 4.60054 61.3524 3.28519 59.6882C1.96984 58.024 1.01289 56.0737 0.481529 53.9743C-0.0498368 51.8749 -0.142745 49.6772 0.209328 47.5355L5.87064 13.3866C6.36249 10.4198 7.94225 7.78224 10.2624 6.05428C12.5825 4.32632 15.453 3.64947 18.2423 4.17263C21.0316 4.6958 23.5113 6.37611 25.1359 8.84393C26.7604 11.3117 27.3968 14.3649 26.9049 17.3318L25.1036 28.1964C24.533 31.6184 22.7093 34.6599 20.0328 36.6533C17.3563 38.6467 14.0455 39.4292 10.8272 38.8291L11.7081 33.514C13.6013 33.8666 15.5487 33.4061 17.1231 32.2335C18.6976 31.0609 19.7705 29.2719 20.1065 27.259L21.9075 16.3945C22.0437 15.6198 22.0341 14.8241 21.8793 14.0534C21.7245 13.2828 21.4276 12.5524 21.0058 11.9045C20.5839 11.2566 20.0455 10.7042 19.4216 10.2791C18.7978 9.85395 18.1008 9.56462 17.3712 9.42781C16.6415 9.291 15.8936 9.30942 15.1707 9.48202C14.4478 9.65461 13.7642 9.97795 13.1595 10.4333C12.5548 10.8887 12.041 11.4671 11.6478 12.135C11.2546 12.803 10.9898 13.5472 10.8687 14.3247L5.20771 48.4736C5.00449 49.6994 5.03027 50.9559 5.28356 52.1712C5.53686 53.3864 6.01272 54.5367 6.68397 55.5564C7.35522 56.5761 8.20872 57.4451 9.19574 58.114C10.1828 58.7828 11.284 59.2383 12.4365 59.4544C13.589 59.6706 14.7702 59.6432 15.9128 59.3738C17.0553 59.1043 18.1368 58.5982 19.0955 57.8842C20.0541 57.1702 20.8711 56.2624 21.4999 55.2126C22.1287 54.1627 22.557 52.9914 22.7602 51.7656L27.003 26.1725L32 27.1102L27.7573 52.7033C27.1863 56.1421 25.4968 59.2579 22.9844 61.5058C20.472 63.7537 17.2966 64.9905 14.0135 65" stroke="rgba(255,255,255,.32)" stroke-width=".6" fill="none"/>
+  </svg>
+  <div class="end-contact">
+    <span class="row" style="--d:.8s"><svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.2" stroke="currentColor" stroke-width="1.3"/><path d="M2 8h12M8 1.8c2 1.8 2 10.6 0 12.4M8 1.8c-2 1.8-2 10.6 0 12.4" stroke="currentColor" stroke-width="1.1"/></svg>tenderfy.org</span>
+    <span class="row" style="--d:1s"><svg viewBox="0 0 16 16" fill="none"><rect x="1.8" y="3.2" width="12.4" height="9.6" rx="1.6" stroke="currentColor" stroke-width="1.3"/><path d="M2.5 4.5L8 9l5.5-4.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>connect@tenderfy.org</span>
+    <span class="rule" aria-hidden="true"></span>
+  </div>
+  <div class="end-main">
+    <div class="end-brand">
+      <img class="end-logo" src="assets/tenderfy-wordmark-white.svg" alt="tenderfy" />
+      <span class="end-tagline fx" style="--d:1.5s"><b class="tg-mint">Helping Good Businesses</b><b class="tg-amber">Win Great Work</b></span>
+    </div>
+    <div class="end-cta">
+      <h2 class="cap">
+        <span class="rw"><span style="--d:1.9s">Win</span></span>
+        <span class="rw"><span style="--d:1.98s">more</span></span>
+        <span class="rw"><span class="am" style="--d:2.06s">tenders.</span></span><br>
+        <span class="rw"><span style="--d:2.2s">With</span></span>
+        <span class="rw"><span style="--d:2.28s">less</span></span>
+        <span class="rw"><span style="--d:2.36s">effort.</span></span>
+      </h2>
+      <p class="sub end-sub fx" style="--d:2.5s">Put Ray on your next tender. Your team, your content, your method — worked together.</p>
+      <div class="end-actions">
+        <a class="btn btn-amber fxs" style="--d:2.9s" href="pricing.html">Try for free →</a>
+        <a class="btn btn-ghost fxs" style="--d:3.1s" href="pricing.html">Book a demo</a>
+      </div>
+      <p class="end-note fx" style="--d:3.5s">Try a week for free · Cancel anytime</p>
+    </div>
+  </div>
+  <p class="end-ack fx" style="--d:4s">Tenderfy acknowledges the Kombumerri people of the Yugambeh language region, the Traditional Custodians of the land on which we work.</p>
+</section>
+
+<script>
+(function () {
+  'use strict';
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduced) document.documentElement.classList.add('rm');
+
+
+  var scenes = Array.prototype.slice.call(document.querySelectorAll('.scene'));
+  var curtain = document.getElementById('curtain');
+  var curtainLabel = document.getElementById('curtainLabel');
+  var preloader = document.getElementById('preloader');
+  var preWord = document.getElementById('preWord');
+  var segsEl = document.getElementById('segs');
+  var hudCount = document.getElementById('hudCount');
+  var sceneLabel = document.getElementById('sceneLabel');
+  var btnPlay = document.getElementById('btnPlay');
+  var icPlay = document.getElementById('icPlay');
+  var icPause = document.getElementById('icPause');
+
+  var current = -1;
+  var paused = false;
+  var transitioning = false;
+  var advanceTimer = null;
+  var sceneStart = 0;
+  var remaining = 0;
+  var hookTimers = [];
+  var hookRafs = [];
+
+  function pad(n) { return (n < 10 ? '0' : '') + n; }
+
+  scenes.forEach(function (s, i) {
+    var seg = document.createElement('div');
+    seg.className = 'seg';
+    seg.setAttribute('role', 'tab');
+    seg.setAttribute('aria-label', 'Scene ' + (i + 1) + ' — ' + s.dataset.label);
+    seg.innerHTML = '<b><i></i></b>';
+    seg.addEventListener('click', function () { goTo(i, true); });
+    segsEl.appendChild(seg);
+  });
+  var segs = Array.prototype.slice.call(segsEl.children);
+
+  function paintHud(i) {
+    hudCount.textContent = pad(i + 1) + ' / ' + pad(scenes.length);
+    sceneLabel.textContent = scenes[i].dataset.label;
+    segs.forEach(function (seg, j) {
+      seg.classList.toggle('done', j < i);
+      seg.classList.remove('on');
+      var bar = seg.querySelector('i');
+      bar.style.animation = 'none';
+      void bar.offsetWidth;
+      bar.style.animation = '';
+      if (j === i) {
+        seg.style.setProperty('--dur', scenes[i].dataset.dur + 'ms');
+        seg.classList.add('on');
+      }
+    });
+  }
+
+  function clearHooks() {
+    hookTimers.forEach(clearTimeout);
+    hookTimers = [];
+    hookRafs.forEach(cancelAnimationFrame);
+    hookRafs = [];
+  }
+  function later(fn, ms) { hookTimers.push(setTimeout(fn, reduced ? 0 : ms)); }
+
+  function countUp(el, target, dur) {
+    var t0 = null;
+    function step(ts) {
+      if (paused) { hookRafs.push(requestAnimationFrame(step)); return; }
+      if (t0 === null) t0 = ts;
+      var p = Math.min((ts - t0) / dur, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(target * eased);
+      if (p < 1) hookRafs.push(requestAnimationFrame(step));
+    }
+    hookRafs.push(requestAnimationFrame(step));
+  }
+
+  function typeInto(el, text, cps) {
+    el.textContent = '';
+    if (reduced) { el.textContent = text; return; }
+    var i = 0, interval = 1000 / cps;
+    function tick() {
+      if (paused) { hookTimers.push(setTimeout(tick, 120)); return; }
+      el.textContent = text.slice(0, ++i);
+      if (i < text.length) hookTimers.push(setTimeout(tick, interval));
+    }
+    hookTimers.push(setTimeout(tick, interval));
+  }
+
+  var hooks = {
+    sceneStats: function () {
+      var nums = document.querySelectorAll('#sceneStats [data-count]');
+      Array.prototype.forEach.call(nums, function (el, i) {
+        el.textContent = '0';
+        later(function () { countUp(el, +el.dataset.count, 1400); }, 800 + i * 300);
+      });
+    }
+  };
+
+  // ---- feature videos: each listed scene plays its clip(s) to completion,
+  //      then advances. Two-clip scenes play in sequence. ----
+  var VIDS = {
+    sceneGo:       ['go-nogo.mp4'],
+    sceneDeliver:  ['delivery-plan.mp4'],
+    sceneBuyer:    ['buyer.mp4'],
+    sceneRay:      ['ray.mp4'],
+    sceneAssemble: ['assemble.mp4'],
+  };
+  var activeVideo = null, videoRAF = 0, videoFallback = 0, playlistIdx = 0, preloadTimer = 0;
+  var PLAY_RATE = 1.5; // every scene clip runs 50% faster
+
+  // warm the next scene's first clip mid-scene so the curtain never waits on a download
+  function preloadNextScene(i) {
+    var next = scenes[(i + 1) % scenes.length];
+    if (!next || !next.id || !VIDS[next.id]) return;
+    var nv = next.querySelector('video.vid');
+    var file = VIDS[next.id][0];
+    if (!nv || (nv.currentSrc || '').endsWith(file)) return;
+    try { nv.preload = 'auto'; nv.src = 'assets/app/' + file; nv.load(); } catch (e) {}
+  }
+
+  function stopActiveVideo() {
+    if (videoRAF) { cancelAnimationFrame(videoRAF); videoRAF = 0; }
+    clearTimeout(videoFallback);
+    if (activeVideo) {
+      var v = activeVideo; activeVideo = null;
+      clearInterval(v._retry);
+      v.onended = null; v.onerror = null; v.onloadedmetadata = null;
+      // keep the src (and its buffered data) so re-entering the scene is instant
+      try { v.pause(); v.currentTime = 0; } catch (e) {}
+    }
+  }
+
+  function startVideoScene(scene, list) {
+    var v = scene.querySelector('video.vid');
+    if (!v) { scheduleAdvance(+scene.dataset.dur); return; }
+    activeVideo = v;
+    playlistIdx = 0;
+    var sceneStartT = performance.now();
+    var minHold = +scene.dataset.dur || 0; // if clips finish early, hold on the last frame to here
+    var durs = list.map(function () { return 0; });
+    var seg = segs[current], bar = seg && seg.querySelector('i');
+    if (bar) { bar.style.animation = 'none'; bar.style.transform = 'scaleX(0)'; }
+
+    function frac() {
+      var total = 0, done = 0;
+      for (var k = 0; k < list.length; k++) {
+        var d = durs[k] || (k === playlistIdx ? (v.duration || 0) : 0);
+        total += d;
+        if (k < playlistIdx) done += d;
+      }
+      done += v.currentTime || 0;
+      return total ? Math.min(1, done / total) : 0;
+    }
+    function progress() {
+      if (activeVideo !== v) return;
+      if (bar) bar.style.transform = 'scaleX(' + frac() + ')';
+      videoRAF = requestAnimationFrame(progress);
+    }
+    function tryPlay() {
+      try { v.playbackRate = PLAY_RATE; } catch (e) {}
+      var p = v.play();
+      if (p && p.catch) p.catch(function () {});
+    }
+    function playAt(k) {
+      playlistIdx = k;
+      // reuse an already-loaded/preloaded clip instead of re-fetching it
+      if (!(v.currentSrc || '').endsWith(list[k])) { v.src = 'assets/app/' + list[k]; v.load(); }
+      else { try { v.currentTime = 0; } catch (e) {} }
+      tryPlay();
+      // muted, video-only clips (no audio track) can be power-save-paused when the
+      // tab/iframe is backgrounded — keep nudging until it actually plays
+      clearInterval(v._retry);
+      v._retry = setInterval(function () {
+        if (activeVideo !== v) { clearInterval(v._retry); return; }
+        if (v.ended || (!v.paused && v.currentTime > 0)) { clearInterval(v._retry); return; }
+        if (!paused) tryPlay();
+      }, 500);
+    }
+    // playbackRate resets whenever a new source loads — reapply it
+    v.onloadedmetadata = function () { durs[playlistIdx] = v.duration || 0; try { v.playbackRate = PLAY_RATE; } catch (e) {} };
+    v.onended = function () {
+      durs[playlistIdx] = v.duration || durs[playlistIdx];
+      if (playlistIdx < list.length - 1) { playAt(playlistIdx + 1); }
+      else {
+        // last clip done — freeze on its final frame, then advance (hold to minHold if it ended early)
+        if (bar) bar.style.transform = 'scaleX(1)';
+        clearTimeout(videoFallback);
+        var wait = Math.max(450, minHold - (performance.now() - sceneStartT));
+        advanceTimer = setTimeout(function () { goTo((current + 1) % scenes.length, false); }, wait);
+      }
+    };
+    v.onerror = function () {
+      advanceTimer = setTimeout(function () { goTo((current + 1) % scenes.length, false); }, 800);
+    };
+    playAt(0);
+    // warm the second clip of a two-clip scene while the first plays
+    if (list.length > 1) { try { fetch('assets/app/' + list[1]); } catch (e) {} }
+    videoRAF = requestAnimationFrame(progress);
+    // safety net: never hang if a clip stalls or 'ended' never fires
+    videoFallback = setTimeout(function () { goTo((current + 1) % scenes.length, false); }, 120000);
+  }
+
+  // white wordmark on dark scenes, green on light ones — mark stays amber in both
+  var brandLogo = document.getElementById('brandLogo');
+  function paintBrand(i) {
+    if (!brandLogo) return;
+    var light = scenes[i].classList.contains('scene-light') || scenes[i].classList.contains('scene-offwhite');
+    var want = 'assets/tenderfy-wordmark' + (light ? '' : '-white') + '.svg';
+    if (!brandLogo.getAttribute('src').endsWith(want.split('/').pop())) brandLogo.setAttribute('src', want);
+  }
+
+  function activate(i) {
+    stopActiveVideo();
+    clearHooks();
+    scenes.forEach(function (s, j) { s.classList.toggle('active', j === i); });
+    current = i;
+    paintHud(i);
+    paintBrand(i);
+    if (scenes[i].id && hooks[scenes[i].id]) hooks[scenes[i].id]();
+    if (scenes[i].id && VIDS[scenes[i].id]) {
+      if (reduced) {
+        // reduced motion: show the first frame, advance on the fixed timer
+        var vr = scenes[i].querySelector('video.vid');
+        if (vr) { vr.src = 'assets/app/' + VIDS[scenes[i].id][0]; vr.load(); }
+        scheduleAdvance(+scenes[i].dataset.dur);
+      } else {
+        startVideoScene(scenes[i], VIDS[scenes[i].id]);
+      }
+    } else {
+      scheduleAdvance(+scenes[i].dataset.dur);
+    }
+    clearTimeout(preloadTimer);
+    preloadTimer = setTimeout(function () { preloadNextScene(i); }, 1200);
+  }
+
+  function scheduleAdvance(ms) {
+    clearTimeout(advanceTimer);
+    sceneStart = performance.now();
+    remaining = ms;
+    if (!paused) advanceTimer = setTimeout(function () { goTo((current + 1) % scenes.length, false); }, ms);
+  }
+
+  function goTo(i, manual) {
+    if (transitioning || i === current) return;
+    transitioning = true;
+    clearTimeout(advanceTimer);
+    stopActiveVideo();
+    curtainLabel.textContent = scenes[i].dataset.label;
+    var dur = reduced ? 350 : 800;
+    curtain.animate(
+      [{ transform: 'translateY(104%)' }, { transform: 'translateY(-118%)' }],
+      { duration: dur, easing: 'cubic-bezier(.76,0,.24,1)' }
+    );
+    setTimeout(function () { activate(i); }, dur * 0.45);
+    // release via timer, not anim.onfinish — WAAPI never finishes in a hidden tab,
+    // which would deadlock navigation permanently
+    setTimeout(function () { transitioning = false; }, dur + 80);
+    if (manual && paused) setPaused(false);
+  }
+
+  function setPaused(p) {
+    paused = p;
+    document.body.classList.toggle('paused', p);
+    icPause.style.display = p ? 'none' : 'block';
+    icPlay.style.display = p ? 'block' : 'none';
+    btnPlay.setAttribute('aria-label', p ? 'Play' : 'Pause');
+    if (activeVideo) {
+      // video-driven scene: advance is tied to playback, not the fixed timer
+      if (p) { clearTimeout(videoFallback); clearTimeout(advanceTimer); try { activeVideo.pause(); } catch (e) {} }
+      else if (activeVideo.ended) {
+        // was frozen on the last frame — resume the short hold before advancing
+        advanceTimer = setTimeout(function () { goTo((current + 1) % scenes.length, false); }, 600);
+      } else {
+        var pr = activeVideo.play(); if (pr && pr.catch) pr.catch(function () {});
+        videoFallback = setTimeout(function () { goTo((current + 1) % scenes.length, false); }, 120000);
+      }
+    } else if (p) {
+      remaining = Math.max(0, remaining - (performance.now() - sceneStart));
+      clearTimeout(advanceTimer);
+    } else {
+      sceneStart = performance.now();
+      advanceTimer = setTimeout(function () { goTo((current + 1) % scenes.length, false); }, remaining);
+    }
+    if (musicOn) { if (p) music.stop(); else music.start(); }
+  }
+
+  // ---- soundtrack: generative ambient bed, synthesized in-browser ----
+  // (royalty-free by construction — no samples, no external audio files)
+  var btnSnd = document.getElementById('btnSnd');
+  var icSndOn = document.getElementById('icSndOn');
+  var icSndOff = document.getElementById('icSndOff');
+  var musicOn = false;
+  var music = (function () {
+    var actx = null, master = null, noiseBuf = null, timer = null, barIdx = 0;
+    // upbeat corporate: C → G → Am → F (I–V–vi–IV) at ~116 BPM
+    var chords = [
+      { root: 65.41, tones: [261.63, 329.63, 392.00, 523.25] }, // C
+      { root: 49.00, tones: [246.94, 293.66, 392.00, 493.88] }, // G
+      { root: 55.00, tones: [220.00, 261.63, 329.63, 440.00] }, // Am
+      { root: 43.65, tones: [261.63, 349.23, 440.00, 523.25] }  // F
+    ];
+    var BEAT = 60 / 116, BAR = BEAT * 4;
+    function ensure() {
+      if (actx) return;
+      var AC = window.AudioContext || window.webkitAudioContext;
+      actx = new AC();
+      master = actx.createGain();
+      master.gain.value = 0;
+      var comp = actx.createDynamicsCompressor();
+      master.connect(comp);
+      comp.connect(actx.destination);
+      noiseBuf = actx.createBuffer(1, Math.floor(actx.sampleRate * .3), actx.sampleRate);
+      var d = noiseBuf.getChannelData(0);
+      for (var i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
+    }
+    function kick(t) {
+      var o = actx.createOscillator(), g = actx.createGain();
+      o.type = 'sine';
+      o.frequency.setValueAtTime(150, t);
+      o.frequency.exponentialRampToValueAtTime(48, t + .1);
+      g.gain.setValueAtTime(.15, t);
+      g.gain.exponentialRampToValueAtTime(.0001, t + .16);
+      o.connect(g); g.connect(master);
+      o.start(t); o.stop(t + .2);
+    }
+    function hat(t, vol) {
+      var s = actx.createBufferSource(), g = actx.createGain(), hp = actx.createBiquadFilter();
+      s.buffer = noiseBuf;
+      hp.type = 'highpass'; hp.frequency.value = 7000;
+      g.gain.setValueAtTime(vol, t);
+      g.gain.exponentialRampToValueAtTime(.0001, t + .05);
+      s.connect(hp); hp.connect(g); g.connect(master);
+      s.start(t); s.stop(t + .06);
+    }
+    function bassNote(f, t, dur) {
+      var o = actx.createOscillator(), g = actx.createGain(), lp = actx.createBiquadFilter();
+      o.type = 'sawtooth'; o.frequency.value = f;
+      lp.type = 'lowpass'; lp.frequency.value = 420;
+      g.gain.setValueAtTime(.1, t);
+      g.gain.exponentialRampToValueAtTime(.0001, t + dur);
+      o.connect(lp); lp.connect(g); g.connect(master);
+      o.start(t); o.stop(t + dur + .05);
+    }
+    function stab(f, t, vol, bright) {
+      var o = actx.createOscillator(), g = actx.createGain(), lp = actx.createBiquadFilter();
+      o.type = 'triangle'; o.frequency.value = f;
+      lp.type = 'lowpass'; lp.frequency.value = bright;
+      g.gain.setValueAtTime(vol, t);
+      g.gain.exponentialRampToValueAtTime(.0001, t + .55);
+      var d = actx.createDelay(), dg = actx.createGain();
+      d.delayTime.value = BEAT * .75; dg.gain.value = .22;
+      o.connect(g); g.connect(lp); lp.connect(master); lp.connect(d); d.connect(dg); dg.connect(master);
+      o.start(t); o.stop(t + .7);
+    }
+    function pad(tones, t, dur) {
+      tones.forEach(function (f) {
+        var o = actx.createOscillator(), g = actx.createGain(), lp = actx.createBiquadFilter();
+        o.type = 'sawtooth'; o.frequency.value = f / 2;
+        lp.type = 'lowpass'; lp.frequency.value = 1100;
+        g.gain.setValueAtTime(0, t);
+        g.gain.linearRampToValueAtTime(.011, t + .25);
+        g.gain.linearRampToValueAtTime(.0001, t + dur);
+        o.connect(g); g.connect(lp); lp.connect(master);
+        o.start(t); o.stop(t + dur + .1);
+      });
+    }
+    function bar() {
+      var t = actx.currentTime + .06;
+      var ch = chords[barIdx % chords.length];
+      // energy builds through the film: brighter stabs, busier hats & arp
+      var lift = Math.min(1, .5 + Math.max(0, current) * .05);
+      pad(ch.tones, t, BAR + .2);
+      for (var b = 0; b < 4; b++) {
+        var bt = t + b * BEAT;
+        kick(bt);
+        hat(bt + BEAT / 2, .05 + .04 * lift);
+        if (lift > .7) hat(bt + BEAT / 4, .025);
+        bassNote(ch.root * 2, bt, BEAT * .45);
+        bassNote(ch.root * (b % 2 ? 4 : 2), bt + BEAT / 2, BEAT * .4);
+      }
+      var steps = lift > .75 ? 8 : 4;
+      for (var i = 0; i < steps; i++) {
+        stab(ch.tones[(i + barIdx) % ch.tones.length], t + i * (BAR / steps), .05 + .025 * lift, 1800 + 1400 * lift);
+      }
+      barIdx++;
+      timer = setTimeout(bar, BAR * 1000);
+    }
+    return {
+      start: function () {
+        ensure();
+        actx.resume();
+        master.gain.cancelScheduledValues(actx.currentTime);
+        master.gain.linearRampToValueAtTime(1, actx.currentTime + 1.2);
+        if (!timer) bar();
+      },
+      stop: function () {
+        if (!actx) return;
+        master.gain.cancelScheduledValues(actx.currentTime);
+        master.gain.linearRampToValueAtTime(0, actx.currentTime + .5);
+        clearTimeout(timer); timer = null;
+        setTimeout(function () { if (actx && !timer) actx.suspend(); }, 650);
+      }
+    };
+  })();
+  function setMusic(on) {
+    musicOn = on;
+    icSndOn.style.display = on ? 'block' : 'none';
+    icSndOff.style.display = on ? 'none' : 'block';
+    btnSnd.setAttribute('aria-label', on ? 'Mute music' : 'Play music');
+    if (on && !paused) music.start(); else music.stop();
+  }
+  btnSnd.addEventListener('click', function () { setMusic(!musicOn); });
+
+  var autoPaused = false; // paused by tab-hide, not by the user
+  btnPlay.addEventListener('click', function () { autoPaused = false; setPaused(!paused); });
+  document.getElementById('btnNext').addEventListener('click', function () { goTo((current + 1) % scenes.length, true); });
+  document.getElementById('btnPrev').addEventListener('click', function () { goTo((current - 1 + scenes.length) % scenes.length, true); });
+  document.addEventListener('keydown', function (e) {
+    if (e.code === 'Space') { e.preventDefault(); autoPaused = false; setPaused(!paused); }
+    if (e.code === 'ArrowRight') goTo((current + 1) % scenes.length, true);
+    if (e.code === 'ArrowLeft') goTo((current - 1 + scenes.length) % scenes.length, true);
+  });
+  document.addEventListener('visibilitychange', function () {
+    if (document.hidden) {
+      if (!paused) { autoPaused = true; setPaused(true); }
+    } else if (autoPaused) {
+      autoPaused = false;
+      setPaused(false);
+    }
+  });
+
+  var words = ['Go / No-Go', 'Plan', 'Buyer', 'Feedback', 'Responses', 'Methodology', 'Build', 'Review', 'Ray'];
+  var wi = 0;
+  function nextWord() {
+    wi++;
+    if (wi < words.length) {
+      preWord.textContent = words[wi];
+      setTimeout(nextWord, wi === words.length - 1 ? 640 : 230);
+    } else {
+      preloader.classList.add('out');
+      activate(0);
+      setTimeout(function () { preloader.remove(); }, 1100);
+    }
+  }
+  if (reduced) {
+    preloader.remove();
+    activate(0);
+  } else {
+    setTimeout(nextWord, 520);
+  }
+})();
+</script>
+</body>
+</html>
