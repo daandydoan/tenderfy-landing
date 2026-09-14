@@ -859,6 +859,15 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
     var(--offwhite);
 }
 .scene-light { background: radial-gradient(55% 60% at 100% 0%, rgba(29,158,117,.07), transparent 60%), #fff; }
+/* the hook opens on the brand ramp, the end card closes on the dark ground */
+.scene-dark.hook-grad { background: radial-gradient(135% 150% at 94% -12%, #94B36D 0%, #71B178 13%, #54A481 28%, #1D9E75 47%, #256E85 71%, #124580 100%); }
+.hook-grad .tl-bright { color: #D2F6E6; }  /* a paler mint, so the accent still lifts off the green */
+.scene-end.end-dark {
+  background:
+    radial-gradient(60% 70% at 100% 0%, rgba(29,158,117,.22), transparent 62%),
+    radial-gradient(55% 62% at 0% 100%, rgba(148,179,109,.10), transparent 60%),
+    var(--dark);
+}
 /* ===== type: a notch larger, so a five-second read is an easy one ===== */
 /* The caption column takes half the width so a headline breaks where its
    <br> says, not where a narrow column forces it; the stage gives up the
@@ -995,7 +1004,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
 </div>
 
 <!-- ============ S1 · HOOK ============ -->
-<section class="scene scene-dark" data-label="The Old Way" data-dur="5900">
+<section class="scene scene-dark hook-grad" data-label="The Old Way" data-dur="5900">
   <svg class="clip-mark" viewBox="0 0 32 65" aria-hidden="true"><use href="#clipSym"/></svg>
   <div class="deco" aria-hidden="true">
     <span class="orb orb-teal" style="width:42vw;height:42vw;left:-12vw;top:-14vh"></span>
@@ -1333,7 +1342,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
   </div>
 </section>
 <!-- ============ S9 · BRAND END CARD ============ -->
-<section class="scene scene-end" data-label="Tenderfy" data-dur="5000">
+<section class="scene scene-end end-dark" data-label="Tenderfy" data-dur="5000">
   <div class="deco" aria-hidden="true">
     <span class="orb orb-amber" style="width:26vw;height:26vw;right:6vw;top:-8vh;opacity:.35"></span>
     <span class="bit" style="right:28%;top:30%;--bd:8s"></span>
