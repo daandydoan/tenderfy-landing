@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Tenderfy — Meet Ray</title>
-<meta name="description" content="A 90-second auto-playing film about Ray — the AI teammate that works the Tenderfy Method with you, one step at a time." />
+<title>Tenderfy · Meet Ray</title>
+<meta name="description" content="A 60-second auto-playing film about Ray, the AI teammate that works the Tenderfy Method with you, one step at a time." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -128,6 +128,22 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .rail .bar.ref { height: 18px; border-radius: 999px; background: #F3F4F6; }
 .rail-comp { display: flex; align-items: center; margin: 4px 14px 14px; padding: 9px 12px; background: #F9FAFB; border: 1px solid #EEF1F0; border-radius: 11px; }
 .rail-comp .send { margin-left: auto; width: 22px; height: 22px; border-radius: 50%; background: #0F7355; opacity: .85; }
+/* ===== the hook's floating cards, as mini Ray chats =====
+   Same fly-in and sweep as the product film's stray documents, but each is
+   a chat window in skeleton: Ray's avatar in the head, his bubble, your
+   one-line reply, a composer. Five of them, each starting over, is the
+   pain the film opens on.                                                  */
+.hook-doc.chat { width: clamp(150px, 15vw, 230px); padding: 10px 11px 11px; gap: 7px; border-radius: 12px; }
+.hook-doc.chat .hd { display: flex; align-items: center; gap: 6px; padding-bottom: 6px; border-bottom: 1px solid #EEF1F0; }
+.hook-doc.chat .hd img { width: 16px; height: 14px; flex: none; }
+.hook-doc.chat .fn { font-size: 9.5px; min-width: 0; }
+.hook-doc.chat .bub { display: flex; flex-direction: column; gap: 5px; background: #F3F4F6; border-radius: 9px 9px 9px 3px; padding: 7px 8px; width: 82%; }
+.hook-doc.chat .bub .ln { background: #DDE2E0; height: 6px; }
+.hook-doc.chat .you { display: block; height: 6px; width: 48%; align-self: flex-end; border-radius: 9px 9px 3px 9px; background: rgba(15,115,85,.35); }
+.hook-doc.chat .comp { display: flex; align-items: center; gap: 6px; margin-top: 2px; padding: 5px 7px; border: 1px solid #EEF1F0; border-radius: 8px; background: #F9FAFB; }
+.hook-doc.chat .comp span { flex: 1; height: 5px; border-radius: 3px; background: #ECEFEE; }
+.hook-doc.chat .comp i { width: 12px; height: 12px; border-radius: 50%; background: #0F7355; opacity: .8; flex: none; }
+
 /* ===== type: a notch larger, so a five-second read is an easy one ===== */
 .split .cap { font-size: clamp(30px, 3.9vw, 58px); max-width: 13ch; }
 .split .sub { font-size: clamp(15.5px, 1.55vw, 21px); line-height: 1.5; }
@@ -843,11 +859,11 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
     <span class="bit bit-mint" style="right:20%;top:16%;--bd:8s;--bx:-14px;--by:18px"></span>
   </div>
   <div class="hook-docs" aria-hidden="true">
-    <div class="hook-doc" style="--d:.2s; --r:-7deg; --sx:-70vw; --sy:-20vh; left:12%; top:16%"><span class="fn">New chat — “so this tender is for…”</span><span class="ln"></span><span class="ln w80"></span><span class="ln w60"></span></div>
-    <div class="hook-doc" style="--d:.35s; --r:5deg; --sx:70vw; --sy:-30vh; right:14%; top:13%"><span class="fn">New chat — “as I said before…”</span><span class="ln w80"></span><span class="ln"></span><span class="ln w60"></span></div>
-    <div class="hook-doc" style="--d:.5s; --r:-4deg; --sx:-60vw; --sy:35vh; left:8%; bottom:14%"><span class="fn">New chat — “which file was it again?”</span><span class="ln w60"></span><span class="ln"></span><span class="ln w80"></span></div>
-    <div class="hook-doc" style="--d:.65s; --r:8deg; --sx:65vw; --sy:30vh; right:9%; bottom:17%"><span class="fn">New chat — “start from the top”</span><span class="ln"></span><span class="ln w60"></span><span class="ln w80"></span></div>
-    <div class="hook-doc" style="--d:.8s; --r:-10deg; --sx:0vw; --sy:-60vh; left:44%; top:8%"><span class="fn">New chat — “where were we?”</span><span class="ln w80"></span><span class="ln w60"></span><span class="ln"></span></div>
+    <div class="hook-doc chat" style="--d:.2s; --r:-7deg; --sx:-70vw; --sy:-20vh; left:12%; top:16%"><span class="hd"><img src="assets/ray-avatar.svg" alt="" /><span class="fn">New chat: “so this tender is for…”</span></span><span class="bub"><span class="ln"></span><span class="ln w80"></span></span><span class="you"></span><span class="comp"><span></span><i></i></span></div>
+    <div class="hook-doc chat" style="--d:.35s; --r:5deg; --sx:70vw; --sy:-30vh; right:14%; top:13%"><span class="hd"><img src="assets/ray-avatar.svg" alt="" /><span class="fn">New chat: “as I said before…”</span></span><span class="bub"><span class="ln w80"></span><span class="ln"></span></span><span class="you"></span><span class="comp"><span></span><i></i></span></div>
+    <div class="hook-doc chat" style="--d:.5s; --r:-4deg; --sx:-60vw; --sy:35vh; left:8%; bottom:14%"><span class="hd"><img src="assets/ray-avatar.svg" alt="" /><span class="fn">New chat: “which file was it again?”</span></span><span class="bub"><span class="ln w60"></span><span class="ln"></span></span><span class="you"></span><span class="comp"><span></span><i></i></span></div>
+    <div class="hook-doc chat" style="--d:.65s; --r:8deg; --sx:65vw; --sy:30vh; right:9%; bottom:17%"><span class="hd"><img src="assets/ray-avatar.svg" alt="" /><span class="fn">New chat: “start from the top”</span></span><span class="bub"><span class="ln"></span><span class="ln w60"></span></span><span class="you"></span><span class="comp"><span></span><i></i></span></div>
+    <div class="hook-doc chat" style="--d:.8s; --r:-10deg; --sx:0vw; --sy:-60vh; left:44%; top:8%"><span class="hd"><img src="assets/ray-avatar.svg" alt="" /><span class="fn">New chat: “where were we?”</span></span><span class="bub"><span class="ln w80"></span><span class="ln w60"></span></span><span class="you"></span><span class="comp"><span></span><i></i></span></div>
   </div>
   <h1 class="big">
     <span class="rw"><span style="--d:.5s">AI</span></span>
@@ -913,12 +929,12 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
         <span class="rw"><span style="--d:.6s">in</span></span>
         <span class="rw"><span style="--d:.68s">Tenderfy.</span></span>
       </h2>
-      <p class="sub fx" style="--d:.9s">Ray doesn’t just advise — he does the work, inside your permissions.</p>
+      <p class="sub fx" style="--d:.9s">Ray doesn’t just advise. He does the work, inside your permissions.</p>
       <ul class="pts">
-        <li style="--d:1.30s">Correct him once — he remembers for this tender.</li>
+        <li style="--d:1.30s">Correct him once. He remembers for this tender.</li>
         <li style="--d:1.55s">Works from your tender documents and company knowledge.</li>
         <li style="--d:1.80s">Saved per tender. Pick up where you left off.</li>
-        <li style="--d:2.05s">Offers the next step — go, or skip</li>
+        <li style="--d:2.05s">Offers the next step. You say go, or skip.</li>
       </ul>
     </div>
     <div class="stage stage-rail">
@@ -951,7 +967,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
   </div>
   <div class="split split-vid">
     <div>
-      <p class="eyebrow fx" style="--d:.05s">Step 01 — Go / No-Go</p>
+      <p class="eyebrow fx" style="--d:.05s">Step 01 · Go / No-Go</p>
       <h2 class="cap">
         <span class="rw"><span style="--d:0.15s">“Let</span></span>
         <span class="rw"><span style="--d:0.22s">me</span></span>
@@ -959,9 +975,9 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
         <span class="rw"><span style="--d:0.42s">this</span></span>
         <span class="rw"><span class="tl" style="--d:0.49s">one.”</span></span>
       </h2>
-      <p class="sub fx" style="--d:.85s">Green, Amber or Red on every criterion — then GO, HOLD or NO-GO.</p>
+      <p class="sub fx" style="--d:.85s">Green, Amber or Red on every criterion. Then GO, HOLD or NO-GO.</p>
       <ul class="pts">
-        <li style="--d:1.15s">Missing information named — never assumed, never invented.</li>
+        <li style="--d:1.15s">Missing information named. Never assumed, never invented.</li>
         <li style="--d:1.37s">You approve before he moves on</li>
       </ul>
     </div>
@@ -1000,7 +1016,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
   </div>
   <div class="split split-vid">
     <div>
-      <p class="eyebrow fx" style="--d:.05s">Step 02 — Plan the tender</p>
+      <p class="eyebrow fx" style="--d:.05s">Step 02 · Plan the tender</p>
       <h2 class="cap">
         <span class="rw"><span style="--d:0.15s">“Let</span></span>
         <span class="rw"><span style="--d:0.22s">me</span></span>
@@ -1010,7 +1026,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
       </h2>
       <p class="sub fx" style="--d:.85s">Task list and delivery plan, worked back from the closing date.</p>
       <ul class="pts">
-        <li style="--d:1.15s">Ray’s tasks flagged — not started until you approve.</li>
+        <li style="--d:1.15s">Ray’s tasks flagged. Not started until you approve.</li>
       </ul>
     </div>
     <div class="stage stage-app">
@@ -1048,7 +1064,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
   </div>
   <div class="split split-vid">
     <div>
-      <p class="eyebrow fx" style="--d:.05s">Steps 03–04 — Buyer · Feedback</p>
+      <p class="eyebrow fx" style="--d:.05s">Steps 03–04 · Buyer · Feedback</p>
       <h2 class="cap">
         <span class="rw"><span style="--d:0.15s">“Let</span></span>
         <span class="rw"><span style="--d:0.22s">me</span></span>
@@ -1059,7 +1075,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
         <span class="rw"><span class="tl" style="--d:0.63s">real</span></span>
         <span class="rw"><span class="tl" style="--d:0.70s">value.”</span></span>
       </h2>
-      <p class="sub fx" style="--d:.85s">What this buyer wants — and what they said about your last bids.</p>
+      <p class="sub fx" style="--d:.85s">What this buyer wants, and what they said about your last bids.</p>
       <ul class="pts">
         <li style="--d:1.15s">Specific value-adds, backed by what you actually do.</li>
         <li style="--d:1.37s">Repeat what worked. Fix what didn’t.</li>
@@ -1086,7 +1102,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
         </div>
         <div class="rail-comp fx" style="--d:3.2s"><i class="bar" style="width:38%"></i><span class="send"></span></div>
       </div>
-      <span class="chip chip-amber" style="--d:2.4s; left:-2%; top:2%"><span class="dot"></span>This buyer’s feedback only — never invented.</span>
+      <span class="chip chip-amber" style="--d:2.4s; left:-2%; top:2%"><span class="dot"></span>This buyer’s feedback only. Never invented.</span>
     </div>
   </div>
 </section>
@@ -1106,7 +1122,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
   </div>
   <div class="split split-vid">
     <div>
-      <p class="eyebrow fx" style="--d:.05s">Steps 05–06 — Responses · Methodology</p>
+      <p class="eyebrow fx" style="--d:.05s">Steps 05–06 · Responses · Methodology</p>
       <h2 class="cap">
         <span class="rw"><span style="--d:0.15s">“Let</span></span>
         <span class="rw"><span style="--d:0.22s">me</span></span>
@@ -1123,7 +1139,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
     <div class="stage stage-app">
       <div class="win" style="--d:.3s">
         <div class="win-bar"><span></span><span></span><span></span></div>
-        <img class="shot" src="assets/app/ray-responses.png" alt="The Responses screen — every question drafted — with Ray beside it" />
+        <img class="shot" src="assets/app/ray-responses.png" alt="The Responses screen, every question drafted, with Ray beside it" />
       </div>
       <div class="rail sk mini" aria-label="Ray, beside a tender">
         <div class="rail-head">
@@ -1141,7 +1157,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
         </div>
         <div class="rail-comp fx" style="--d:3.2s"><i class="bar" style="width:38%"></i><span class="send"></span></div>
       </div>
-      <span class="chip chip-amber" style="--d:2.4s; left:-2%; top:2%"><span class="dot"></span>Tailored — not copied &amp; pasted ✓</span>
+      <span class="chip chip-amber" style="--d:2.4s; left:-2%; top:2%"><span class="dot"></span>Tailored, not copied &amp; pasted ✓</span>
     </div>
   </div>
 </section>
@@ -1155,7 +1171,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
   </div>
   <div class="split split-vid">
     <div>
-      <p class="eyebrow fx" style="--d:.05s">Steps 07–08 — Build · Final review</p>
+      <p class="eyebrow fx" style="--d:.05s">Steps 07–08 · Build · Final review</p>
       <h2 class="cap">
         <span class="rw"><span style="--d:0.15s">“Let</span></span>
         <span class="rw"><span style="--d:0.22s">me</span></span>
@@ -1168,7 +1184,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
       <p class="sub fx" style="--d:.85s">Assembled for this bid, then read the way an evaluator would.</p>
       <ul class="pts">
         <li style="--d:1.15s">Master library never overwritten</li>
-        <li style="--d:1.37s">Critical · Recommended · Optional — your call</li>
+        <li style="--d:1.37s">Critical · Recommended · Optional. Your call.</li>
       </ul>
     </div>
     <div class="stage stage-app">
@@ -1224,7 +1240,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
     <div class="stage stage-shot">
       <div class="win" style="--d:.3s">
         <div class="win-bar"><span></span><span></span><span></span></div>
-        <img class="shot" src="assets/app/ai-manager-workflows.png" alt="AI Manager — the Workflow Manager, with the Tenderfy Method and a custom workflow" />
+        <img class="shot" src="assets/app/ai-manager-workflows.png" alt="AI Manager: the Workflow Manager, with the Tenderfy Method and a custom workflow" />
       </div>
     </div>
   </div>
