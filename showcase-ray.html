@@ -176,6 +176,10 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .hook-doc.advice .bul .ln.w80 { flex: 0 0 80%; } .hook-doc.advice .bul .ln.w60 { flex: 0 0 60%; }
 /* it leaves a little sooner, so Ray has the frame to himself */
 .active .hook-doc { animation-delay: var(--d, 0s), 2.4s; }
+/* the payoff's two lines: what you say to Ray, then what happens */
+.hook-kicker { display: flex; flex-direction: column; align-items: center; gap: 5px; }
+.hook-kicker .say { color: var(--cream); font-weight: 600; font-size: clamp(16px, 1.6vw, 22px); }
+.hook-kicker .then { font-size: clamp(13px, 1.25vw, 17px); color: var(--cream-dim); }
 @media (prefers-reduced-motion: reduce) { .hook-ray .halo, .hook-ray img { animation: none; } }
 
 /* ===== Ray's icon, wherever the film speaks as him ===== */
@@ -991,7 +995,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
 </div>
 
 <!-- ============ S1 · HOOK ============ -->
-<section class="scene scene-dark" data-label="The Old Way" data-dur="5200">
+<section class="scene scene-dark" data-label="The Old Way" data-dur="5900">
   <svg class="clip-mark" viewBox="0 0 32 65" aria-hidden="true"><use href="#clipSym"/></svg>
   <div class="deco" aria-hidden="true">
     <span class="orb orb-teal" style="width:42vw;height:42vw;left:-12vw;top:-14vh"></span>
@@ -1022,7 +1026,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
     <span class="rw"><span class="am" style="--d:1.46s">done.</span></span>
   </h1>
   <div class="hook-ray fx" style="--d:2.8s" aria-hidden="true"><span class="halo"></span><span class="halo halo-2"></span><img src="assets/ray-avatar.svg" alt="" /></div>
-  <p class="hook-kicker fx" style="--d:3.2s">“Ray, get this tender started.”</p>
+  <p class="hook-kicker fx" style="--d:3.2s"><span class="say">“Ray, get this tender started.”</span><span class="then fx" style="--d:3.7s">Eight steps. Ray runs them. You approve them.</span></p>
 </section>
 <!-- ============ S2 · MEET RAY ============ -->
 <section class="scene scene-deep" data-label="Meet Ray" data-dur="5500" id="sceneMeet" data-beats='[{"step": 0, "action": ["ray-00-rail.mp4", 0.0, 6.9, 1.5], "result": null, "hold": 0}]'>
