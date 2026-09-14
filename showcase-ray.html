@@ -881,11 +881,11 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
 /* ===== the merged film: one frame, action → result, next card off the deck ===== */
 .stage-app .win.deck { position: absolute; left: 0; top: 50%; width: 90%; margin: 0; opacity: 0;
   transform: translateY(calc(-50% + 44px)) rotateX(6deg) translateZ(-60px);
-  transition: transform .48s cubic-bezier(.76,0,.24,1), opacity .48s cubic-bezier(.76,0,.24,1); }
+  transition: transform .32s cubic-bezier(.76,0,.24,1), opacity .32s cubic-bezier(.76,0,.24,1); }
 .active .stage-app .win.deck { animation: none; }
 .stage-app .win.deck.in { opacity: 1; transform: translateY(-50%) rotateX(0) translateZ(0); }
 .stage-app .win.deck.out { opacity: 0; transform: translateY(calc(-50% - 22px)) rotateX(-8deg) translateZ(-180px);
-  transition-duration: .42s; }
+  transition-duration: .3s; }
 .win.deck .vwrap { position: relative; }
 .win.deck .vwrap video { width: 100%; height: auto; display: block; background: #0d1210; }
 /* the settle cut: the last action frame held on the canvas, then dissolved
@@ -1044,8 +1044,8 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
     </div>
   </div>
 </section>
-<section class="scene scene-light pair" data-label="Steps 01–02 · Go / No-Go · Plan" data-dur="12656" id="scenePair1"
-         data-beats='[{"step": 1, "action": ["ray-01-gonogo.mp4", 0.0, 3.4, 1.5], "result": ["ray-01-gonogo.mp4", 24.9, 27.4, 1.0], "hold": 2.0, "offer": "Scorecard ready for your approval.", "mode": "approve", "strip": "<b>1 of 8</b> \u00b7 Go / No-Go \u00b7 Awaiting your approval"}, {"step": 2, "action": ["ray-02-plan.mp4", 0.0, 2.4, 1.5], "result": ["ray-02-plan.mp4", 44.6, 46.4, 1.0], "hold": 0.35, "offer": "Let me build the task list and delivery plan.", "mode": "offer", "strip": "Next \u00b7 <b>2 of 8</b> \u00b7 Plan the tender"}]'>
+<section class="scene scene-light pair" data-label="Steps 01–02 · Go / No-Go · Plan" data-dur="14096" id="scenePair1"
+         data-beats='[{"step": 1, "action": ["ray-01-gonogo.mp4", 0.0, 4.0, 1.5], "result": ["ray-01-gonogo.mp4", 24.3, 27.4, 1.0], "hold": 2.0, "offer": "Scorecard ready for your approval.", "mode": "approve", "strip": "<b>1 of 8</b> \u00b7 Go / No-Go \u00b7 Awaiting your approval"}, {"step": 2, "action": ["ray-02-plan.mp4", 0.0, 3.0, 1.5], "result": ["ray-02-plan.mp4", 44.0, 46.4, 1.0], "hold": 0.35, "offer": "Let me build the task list and delivery plan.", "mode": "offer", "strip": "Next \u00b7 <b>2 of 8</b> \u00b7 Plan the tender"}]'>
   <div class="deco" aria-hidden="true">
     <span class="orb orb-teal" style="width:34vw;height:34vw;right:-9vw;top:-12vh"></span>
     <span class="dots" style="width:190px;height:150px;left:4%;top:12%"></span>
@@ -1073,7 +1073,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
         <span class="rw"><span class="tl" style="--d:0.49s">plan.”</span></span>
         </h2>
       </div>
-      <p class="sub pairsub fx" style="--d:.9s">Bid or pass, then a plan worked back from the closing date.</p>
+      <p class="sub pairsub fx" style="--d:.5s">Bid or pass, then a plan worked back from the closing date.</p>
       <ul class="pts beatpoint" data-step="1"><li style="--d:0s">Missing information named. Never assumed, never invented.</li></ul>
       <ul class="pts beatpoint" data-step="2"><li style="--d:0s">Ray’s tasks flagged. Not started until you approve.</li></ul>
     </div>
@@ -1098,8 +1098,8 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
     </div>
   </div>
 </section>
-<section class="scene scene-offwhite pair" data-label="Steps 03–04 · Buyer · Feedback" data-dur="9639" id="scenePair2"
-         data-beats='[{"step": 3, "action": ["ray-03-04-buyer.mp4", 0.0, 2.4, 1.5], "result": ["ray-03-04-buyer.mp4", 18.1, 19.9, 1.0], "hold": 0.35, "offer": "Let me research the buyer and find where you add value.", "mode": "offer", "strip": "Next \u00b7 <b>3 of 8</b> \u00b7 Understand the buyer"}, {"step": 4, "action": ["ray-03-04-buyer-2.mp4", 0.0, 2.4, 1.5], "result": ["ray-03-04-buyer-2.mp4", 16.2, 18.0, 1.0], "hold": 0.35, "offer": "Let me read what this buyer said about your previous submissions.", "mode": "offer", "strip": "Next \u00b7 <b>4 of 8</b> \u00b7 Learn from feedback"}]'>
+<section class="scene scene-offwhite pair" data-label="Steps 03–04 · Buyer · Feedback" data-dur="11080" id="scenePair2"
+         data-beats='[{"step": 3, "action": ["ray-03-04-buyer.mp4", 0.0, 3.0, 1.5], "result": ["ray-03-04-buyer.mp4", 17.5, 19.9, 1.0], "hold": 0.35, "offer": "Let me research the buyer and find where you add value.", "mode": "offer", "strip": "Next \u00b7 <b>3 of 8</b> \u00b7 Understand the buyer"}, {"step": 4, "action": ["ray-03-04-buyer-2.mp4", 0.0, 3.0, 1.5], "result": ["ray-03-04-buyer-2.mp4", 15.6, 18.0, 1.0], "hold": 0.35, "offer": "Let me read what this buyer said about your previous submissions.", "mode": "offer", "strip": "Next \u00b7 <b>4 of 8</b> \u00b7 Learn from feedback"}]'>
   <div class="deco" aria-hidden="true">
     <span class="orb orb-teal" style="width:32vw;height:32vw;left:-9vw;top:-10vh"></span>
     <span class="dots" style="width:180px;height:140px;right:6%;bottom:12%"></span>
@@ -1133,7 +1133,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
         <span class="rw"><span class="tl" style="--d:0.70s">time.”</span></span>
         </h2>
       </div>
-      <p class="sub pairsub fx" style="--d:.9s">What this buyer wants, and what they said last time.</p>
+      <p class="sub pairsub fx" style="--d:.5s">What this buyer wants, and what they said last time.</p>
       <ul class="pts beatpoint" data-step="3"><li style="--d:0s">Specific value-adds, backed by what you actually do.</li></ul>
       <ul class="pts beatpoint" data-step="4"><li style="--d:0s">This buyer’s feedback only. Never invented.</li></ul>
     </div>
@@ -1158,8 +1158,8 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
     </div>
   </div>
 </section>
-<section class="scene scene-deep pair" data-label="Steps 05–06 · Responses · Methodology" data-dur="9639" id="scenePair3"
-         data-beats='[{"step": 5, "action": ["ray-05-06-responses.mp4", 0.0, 2.4, 1.5], "result": ["ray-05-06-responses.mp4", 24.2, 26.0, 1.0], "hold": 0.35, "offer": "Let me work through the response schedule.", "mode": "offer", "strip": "Next \u00b7 <b>5 of 8</b> \u00b7 Complete the responses"}, {"step": 6, "action": ["ray-05-06-responses.mp4", 27.0, 29.4, 1.5], "result": ["ray-05-06-responses.mp4", 50.7, 52.5, 1.0], "hold": 0.35, "offer": "Let me develop the methodology and technical content.", "mode": "offer", "strip": "Next \u00b7 <b>6 of 8</b> \u00b7 Methodology &amp; technical"}]'>
+<section class="scene scene-deep pair" data-label="Steps 05–06 · Responses · Methodology" data-dur="11079" id="scenePair3"
+         data-beats='[{"step": 5, "action": ["ray-05-06-responses.mp4", 0.0, 3.0, 1.5], "result": ["ray-05-06-responses.mp4", 23.6, 26.0, 1.0], "hold": 0.35, "offer": "Let me work through the response schedule.", "mode": "offer", "strip": "Next \u00b7 <b>5 of 8</b> \u00b7 Complete the responses"}, {"step": 6, "action": ["ray-05-06-responses.mp4", 27.0, 30.0, 1.5], "result": ["ray-05-06-responses.mp4", 50.1, 52.5, 1.0], "hold": 0.35, "offer": "Let me develop the methodology and technical content.", "mode": "offer", "strip": "Next \u00b7 <b>6 of 8</b> \u00b7 Methodology &amp; technical"}]'>
   <svg class="clip-mark" viewBox="0 0 32 65" aria-hidden="true"><use href="#clipSym"/></svg>
   <div class="deco" aria-hidden="true">
     <span class="orb orb-teal" style="width:40vw;height:40vw;left:-12vw;bottom:-16vh;--od:17s"></span>
@@ -1193,7 +1193,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
         <span class="rw"><span class="tl" style="--d:0.49s">methodology.”</span></span>
         </h2>
       </div>
-      <p class="sub pairsub fx" style="--d:.9s">Every question answered from your approved content.</p>
+      <p class="sub pairsub fx" style="--d:.5s">Every question answered from your approved content.</p>
       <ul class="pts beatpoint" data-step="5"><li style="--d:0s">Word limits and weightings respected.</li></ul>
       <ul class="pts beatpoint" data-step="6"><li style="--d:0s">SME gaps flagged, never invented.</li></ul>
     </div>
@@ -1218,8 +1218,8 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
     </div>
   </div>
 </section>
-<section class="scene scene-light pair" data-label="Steps 07–08 · Build · Review" data-dur="10890" id="scenePair4"
-         data-beats='[{"step": 7, "action": ["ray-07-08-build-review.mp4", 0.0, 2.4, 1.5], "result": ["ray-07-08-build-review.mp4", 11.2, 13.0, 1.0], "hold": 0.35, "offer": "Let me assemble the submission for this bid.", "mode": "offer", "strip": "Next \u00b7 <b>7 of 8</b> \u00b7 Build the tender"}, {"step": 8, "action": ["ray-07-08-build-review.mp4", 13.5, 15.9, 1.5], "result": ["ray-07-08-build-review.mp4", 22.9, 24.9, 1.0], "hold": 1.4, "offer": "<b>All 8 steps done.</b> Every one approved by you. <b>You submit.</b>", "mode": "done", "strip": "Done \u00b7 <b>8 of 8</b>"}]'>
+<section class="scene scene-light pair" data-label="Steps 07–08 · Build · Review" data-dur="12329" id="scenePair4"
+         data-beats='[{"step": 7, "action": ["ray-07-08-build-review.mp4", 0.0, 3.0, 1.5], "result": ["ray-07-08-build-review.mp4", 10.6, 13.0, 1.0], "hold": 0.35, "offer": "Let me assemble the submission for this bid.", "mode": "offer", "strip": "Next \u00b7 <b>7 of 8</b> \u00b7 Build the tender"}, {"step": 8, "action": ["ray-07-08-build-review.mp4", 13.5, 16.5, 1.5], "result": ["ray-07-08-build-review.mp4", 22.3, 24.9, 1.0], "hold": 1.4, "offer": "<b>All 8 steps done.</b> Every one approved by you. <b>You submit.</b>", "mode": "done", "strip": "Done \u00b7 <b>8 of 8</b>"}]'>
   <div class="deco" aria-hidden="true">
     <span class="orb orb-teal" style="width:32vw;height:32vw;left:-10vw;top:-12vh"></span>
     <span class="dots" style="width:180px;height:140px;right:4%;top:16%"></span>
@@ -1246,7 +1246,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
         <span class="rw"><span class="tl" style="--d:0.49s">it.”</span></span>
         </h2>
       </div>
-      <p class="sub pairsub fx" style="--d:.9s">Built for this bid, then read like an evaluator would.</p>
+      <p class="sub pairsub fx" style="--d:.5s">Built for this bid, then read like an evaluator would.</p>
       <ul class="pts beatpoint" data-step="7"><li style="--d:0s">Master library never overwritten.</li></ul>
       <ul class="pts beatpoint" data-step="8"><li style="--d:0s">Critical · Recommended · Optional. Your call.</li></ul>
     </div>
@@ -1918,7 +1918,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
       if (b.offer) paintRail(rail, b, false);
       await seekTo(v, b.action[0], b.action[1]); thaw(win);
       if (!whileRunning(token)) return;
-      if (i === 0) { await sleep(60); win.classList.add('in'); await sleep(reduced ? 0 : 300); }
+      if (i === 0) { await sleep(40); win.classList.add('in'); await sleep(reduced ? 0 : 120); }
       await playUntil(v, b.action[2], b.action[3], token);
       if (!whileRunning(token)) return;
       if (b.result) {
@@ -1938,7 +1938,11 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
       await seekTo(nv, next.action[0], next.action[1]); thaw(nwin);
       if (!whileRunning(token)) return;
       scene.classList.add('moving'); win.classList.add('out'); win.classList.remove('in');
-      await sleep(80); nwin.classList.add('in'); await sleep(reduced ? 0 : 460);
+      // the headline, the rail's offer and the strip change behind the move, not after it
+      copies.forEach(function (c) { c.classList.toggle('on', c.dataset.step === String(next.step)); c.classList.remove('res'); });
+      cards.forEach(function (c) { c.classList.remove('on'); });
+      if (next.offer) paintRail(rail, next, false);
+      await sleep(60); nwin.classList.add('in'); await sleep(reduced ? 0 : 300);
       scene.classList.remove('moving'); win.classList.remove('out');
       cur = 1 - cur;
     }
