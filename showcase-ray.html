@@ -1070,8 +1070,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
     </div>
   </div>
 </section>
-<!-- ray-02-plan.mp4 · target 4.5s — drop the recording in assets/app/, swap the <img> for
-     <video class="shot vid" muted playsinline preload="auto"></video>, and map it in VIDS. -->
+<!-- plays ray-02-plan.mp4 (mapped in VIDS) -->
 <section class="scene scene-offwhite" data-label="Step 02 · Plan the Tender" data-dur="4500" id="sceneDeliver" data-clip="ray-02-plan.mp4" data-clip-len="4.5s">
   <div class="deco" aria-hidden="true">
     <span class="orb orb-blue" style="width:32vw;height:32vw;left:-10vw;bottom:-12vh"></span>
@@ -1096,7 +1095,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
     <div class="stage stage-app">
       <div class="win" style="--d:.3s">
         <div class="win-bar"><span></span><span></span><span></span></div>
-        <img class="shot" src="assets/app/ray-dashboard.png" alt="The dashboard with the task board, and Ray beside it" />
+        <video class="shot vid" muted playsinline preload="auto"></video>
       </div>
       <div class="rail sk mini" aria-label="Ray, beside a tender">
         <div class="rail-head">
@@ -1483,13 +1482,13 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
   //      Phase 1 prototype and advances on its data-dur timer. When a clip lands, drop it in assets/app/, swap the
   //      scene's <img class="shot"> for <video class="shot vid">, and map it
   //      here; the engine then plays it to the end instead of the timer.
-  //      Recorded so far: sceneRail, sceneGo, sceneBuyer (two clips, played
-  //      in sequence), sceneRay, sceneAssemble. Still on a still:
-  //        sceneDeliver   ray-02-plan.mp4              ~4.5s
+  //      Every step scene has its recording; sceneBuyer plays two clips in
+  //      sequence. Each plays to its end at PLAY_RATE, then the scene advances.
   //      Clips run at PLAY_RATE (1.5×), so record ~1.5× the target length. ----
   var VIDS = {
     sceneRail:    ['ray-00-rail.mp4'],
     sceneGo:      ['ray-01-gonogo.mp4'],
+    sceneDeliver: ['ray-02-plan.mp4'],
     sceneBuyer:   ['ray-03-04-buyer.mp4', 'ray-03-04-buyer-2.mp4'],
     sceneRay:     ['ray-05-06-responses.mp4'],
     sceneAssemble: ['ray-07-08-build-review.mp4'],
