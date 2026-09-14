@@ -182,6 +182,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 /* the recording sits smaller and to the left; the rail is tucked behind its
    right edge, a cue rather than a second subject */
 .stage-app .win { width: 90%; position: relative; z-index: 3; }
+.stage-app video.shot { width: 100%; height: auto; display: block; background: #0d1210; }
 .stage-app { overflow: visible; }
 .stage-app .rail.mini {
   position: absolute; right: -3%; bottom: -25%; width: min(240px, 34%); font-size: 11px; z-index: 1;
@@ -995,30 +996,33 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
         <li style="--d:2.05s">Offers the next step. You say go, or skip.</li>
       </ul>
     </div>
-    <div class="stage stage-rail">
-      <div class="rail sk " aria-label="Ray, beside a tender">
+    <div class="stage stage-app">
+      <div class="win" style="--d:.3s">
+        <div class="win-bar"><span></span><span></span><span></span></div>
+        <video class="shot vid" muted playsinline preload="auto"></video>
+      </div>
+      <div class="rail sk mini" aria-label="Ray, beside a tender">
         <div class="rail-head">
           <img src="assets/ray-avatar.svg" alt="" />
           <i class="bar" style="width:46%"></i>
         </div>
         <div class="rail-body">
-          <div class="rail-msg fx" style="--d:0.7s"><i class="bar" style="width:92%"></i><i class="bar" style="width:78%"></i><i class="bar" style="width:46%"></i></div>
-          <div class="rail-refs fx" style="--d:1.0s"><i class="bar ref" style="width:96px"></i><i class="bar ref" style="width:118px"></i></div>
-          <div class="rail-offer fx" style="--d:1.3s">
+          <div class="rail-msg fx" style="--d:1.3s"><i class="bar" style="width:92%"></i><i class="bar" style="width:78%"></i><i class="bar" style="width:46%"></i></div>
+          <div class="rail-refs fx" style="--d:1.6s"><i class="bar ref" style="width:96px"></i><i class="bar ref" style="width:118px"></i></div>
+          <div class="rail-offer fx" style="--d:1.9s">
             <p>Let me assess this against your Go / No-Go criteria.</p>
             <div class="acts"><span class="rail-btn">Go ahead</span><span class="rail-btn ghost">Skip</span></div>
           </div>
-          <div class="rail-next fx" style="--d:1.9s"><span>Next · <b>1 of 8</b> · Go / No-Go</span><span class="prog"><i style="width:0%"></i></span></div>
+          <div class="rail-next fx" style="--d:2.5s"><span>Next · <b>1 of 8</b> · Go / No-Go</span><span class="prog"><i style="width:0%"></i></span></div>
         </div>
-        <div class="rail-comp fx" style="--d:2.6s"><i class="bar" style="width:38%"></i><span class="send"></span></div>
+        <div class="rail-comp fx" style="--d:3.2s"><i class="bar" style="width:38%"></i><span class="send"></span></div>
       </div>
       <div class="mcard mcard-proj" style="--d:2.6s; left:-6%; top:6%"><span class="row"><i class="ic"></i><i class="bar" style="width:70%"></i></span><span class="row sub"><i class="dot"></i><i class="bar" style="width:52%"></i></span><span class="row sub"><i class="dot"></i><i class="bar" style="width:44%"></i></span></div>
-      <div class="mcard mcard-refs" style="--d:3.2s; right:-4%; bottom:8%"><span class="lab">Reference</span><span class="ref"></span><span class="ref" style="width:78%"></span></div>
+      <div class="mcard mcard-refs" style="--d:3.2s; right:-4%; top:-2%"><span class="lab">Reference</span><span class="ref"></span><span class="ref" style="width:78%"></span></div>
     </div>
   </div>
 </section>
-<!-- ray-01-gonogo.mp4 · target 5s — drop the recording in assets/app/, swap the <img> for
-     <video class="shot vid" muted playsinline preload="auto"></video>, and map it in VIDS. -->
+<!-- plays ray-01-gonogo.mp4 (mapped in VIDS) -->
 <section class="scene scene-light" data-label="Step 01 · Go / No-Go" data-dur="5000" id="sceneGo" data-clip="ray-01-gonogo.mp4" data-clip-len="5s">
   <div class="deco" aria-hidden="true">
     <span class="orb orb-teal" style="width:34vw;height:34vw;right:-9vw;top:-12vh"></span>
@@ -1044,7 +1048,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
     <div class="stage stage-app">
       <div class="win" style="--d:.3s">
         <div class="win-bar"><span></span><span></span><span></span></div>
-        <img class="shot" src="assets/app/ray-tenders.png" alt="The Tenders screen, with Ray beside it" />
+        <video class="shot vid" muted playsinline preload="auto"></video>
       </div>
       <div class="rail sk mini" aria-label="Ray, beside a tender">
         <div class="rail-head">
@@ -1115,8 +1119,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
     </div>
   </div>
 </section>
-<!-- ray-03-04-buyer.mp4 · target 5s — drop the recording in assets/app/, swap the <img> for
-     <video class="shot vid" muted playsinline preload="auto"></video>, and map it in VIDS. -->
+<!-- plays ray-03-04-buyer.mp4 (mapped in VIDS) -->
 <section class="scene scene-light" data-label="Steps 03–04 · Buyer & Feedback" data-dur="5000" id="sceneBuyer" data-clip="ray-03-04-buyer.mp4" data-clip-len="5s">
   <div class="deco" aria-hidden="true">
     <span class="orb orb-teal" style="width:32vw;height:32vw;left:-9vw;top:-10vh"></span>
@@ -1145,7 +1148,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
     <div class="stage stage-app">
       <div class="win" style="--d:.3s">
         <div class="win-bar"><span></span><span></span><span></span></div>
-        <img class="shot" src="assets/app/ray-tenders.png" alt="The Tenders screen, with Ray beside it" />
+        <video class="shot vid" muted playsinline preload="auto"></video>
       </div>
       <div class="rail sk mini" aria-label="Ray, beside a tender">
         <div class="rail-head">
@@ -1224,8 +1227,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
     </div>
   </div>
 </section>
-<!-- ray-07-08-build-review.mp4 · target 5s — drop the recording in assets/app/, swap the <img> for
-     <video class="shot vid" muted playsinline preload="auto"></video>, and map it in VIDS. -->
+<!-- plays ray-07-08-build-review.mp4 (mapped in VIDS) -->
 <section class="scene scene-light" data-label="Steps 07–08 · Build & Review" data-dur="5000" id="sceneAssemble" data-clip="ray-07-08-build-review.mp4" data-clip-len="5s">
   <div class="deco" aria-hidden="true">
     <span class="orb orb-teal" style="width:32vw;height:32vw;left:-10vw;top:-12vh"></span>
@@ -1253,7 +1255,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
     <div class="stage stage-app">
       <div class="win" style="--d:.3s">
         <div class="win-bar"><span></span><span></span><span></span></div>
-        <img class="shot" src="assets/app/ray-responses.png" alt="The Responses screen, with Ray’s final review beside it" />
+        <video class="shot vid" muted playsinline preload="auto"></video>
       </div>
       <div class="rail sk mini" aria-label="Ray, beside a tender">
         <div class="rail-head">
@@ -1477,19 +1479,22 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
 
   // ---- feature videos: each listed scene plays its clip(s) to completion,
   //      then advances. Two-clip scenes play in sequence. ----
-  // ---- RECORDINGS — none yet. The step scenes show real screens from the
-  //      Phase 1 prototype with Ray's rail over them, and advance on their
-  //      data-dur timers. When a clip lands, drop it in assets/app/, swap the
+  // ---- RECORDINGS. A scene with a clip plays it to the end (at PLAY_RATE)
+  //      and then advances; a scene without one shows a real screen from the
+  //      Phase 1 prototype and advances on its data-dur timer. When a clip lands, drop it in assets/app/, swap the
   //      scene's <img class="shot"> for <video class="shot vid">, and map it
   //      here; the engine then plays it to the end instead of the timer.
-  //      Each scene carries data-clip / data-clip-len with its target:
-  //        sceneGo        ray-01-gonogo.mp4            ~5s
+  //      Recorded so far: sceneRail, sceneGo, sceneBuyer (two clips, played
+  //      in sequence), sceneAssemble. Still on stills, with their targets:
   //        sceneDeliver   ray-02-plan.mp4              ~4.5s
-  //        sceneBuyer     ray-03-04-buyer.mp4          ~5s
   //        sceneRay       ray-05-06-responses.mp4      ~5.5s
-  //        sceneAssemble  ray-07-08-build-review.mp4   ~5s
   //      Clips run at PLAY_RATE (1.5×), so record ~1.5× the target length. ----
-  var VIDS = {};
+  var VIDS = {
+    sceneRail:    ['ray-00-rail.mp4'],
+    sceneGo:      ['ray-01-gonogo.mp4'],
+    sceneBuyer:   ['ray-03-04-buyer.mp4', 'ray-03-04-buyer-2.mp4'],
+    sceneAssemble: ['ray-07-08-build-review.mp4'],
+  };
   var activeVideo = null, videoRAF = 0, videoFallback = 0, playlistIdx = 0, preloadTimer = 0;
   var PLAY_RATE = 1.5; // every scene clip runs 50% faster
 
