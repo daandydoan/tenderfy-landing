@@ -1171,8 +1171,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
     </div>
   </div>
 </section>
-<!-- ray-05-06-responses.mp4 · target 5.5s — drop the recording in assets/app/, swap the <img> for
-     <video class="shot vid" muted playsinline preload="auto"></video>, and map it in VIDS. -->
+<!-- plays ray-05-06-responses.mp4 (mapped in VIDS) -->
 <section class="scene scene-deep" data-label="Steps 05–06 · Responses & Methodology" data-dur="5500" id="sceneRay" data-clip="ray-05-06-responses.mp4" data-clip-len="5.5s">
   <svg class="clip-mark" viewBox="0 0 32 65" aria-hidden="true"><use href="#clipSym"/></svg>
   <div class="deco" aria-hidden="true">
@@ -1204,7 +1203,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
     <div class="stage stage-app">
       <div class="win" style="--d:.3s">
         <div class="win-bar"><span></span><span></span><span></span></div>
-        <img class="shot" src="assets/app/ray-responses.png" alt="The Responses screen, every question drafted, with Ray beside it" />
+        <video class="shot vid" muted playsinline preload="auto"></video>
       </div>
       <div class="rail sk mini" aria-label="Ray, beside a tender">
         <div class="rail-head">
@@ -1485,14 +1484,14 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
   //      scene's <img class="shot"> for <video class="shot vid">, and map it
   //      here; the engine then plays it to the end instead of the timer.
   //      Recorded so far: sceneRail, sceneGo, sceneBuyer (two clips, played
-  //      in sequence), sceneAssemble. Still on stills, with their targets:
+  //      in sequence), sceneRay, sceneAssemble. Still on a still:
   //        sceneDeliver   ray-02-plan.mp4              ~4.5s
-  //        sceneRay       ray-05-06-responses.mp4      ~5.5s
   //      Clips run at PLAY_RATE (1.5×), so record ~1.5× the target length. ----
   var VIDS = {
     sceneRail:    ['ray-00-rail.mp4'],
     sceneGo:      ['ray-01-gonogo.mp4'],
     sceneBuyer:   ['ray-03-04-buyer.mp4', 'ray-03-04-buyer-2.mp4'],
+    sceneRay:     ['ray-05-06-responses.mp4'],
     sceneAssemble: ['ray-07-08-build-review.mp4'],
   };
   var activeVideo = null, videoRAF = 0, videoFallback = 0, playlistIdx = 0, preloadTimer = 0;
