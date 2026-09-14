@@ -144,20 +144,13 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .hook-doc.chat .comp span { flex: 1; height: 5px; border-radius: 3px; background: #ECEFEE; }
 .hook-doc.chat .comp i { width: 12px; height: 12px; border-radius: 50%; background: #0F7355; opacity: .8; flex: none; }
 
-/* ===== type: a notch larger, so a five-second read is an easy one ===== */
-.split .cap { font-size: clamp(30px, 3.9vw, 58px); max-width: 13ch; }
-.split .sub { font-size: clamp(15.5px, 1.55vw, 21px); line-height: 1.5; }
-.split .pts li { font-size: clamp(14px, 1.4vw, 18px); }
-.split .eyebrow { font-size: 12px; }
-.split.split-vid { grid-template-columns: minmax(280px, .72fr) 1.28fr; }
-
 /* ===== a real screen with the rail behind it: the step scenes ===== */
 .stage-app { position: relative; height: clamp(320px, 56vh, 600px); display: flex; align-items: center; }
 /* the recording sits smaller and to the left; the rail is tucked behind its
    right edge, a cue rather than a second subject */
-.stage-app .win { width: 74%; position: relative; z-index: 3; }
+.stage-app .win { width: 84%; position: relative; z-index: 3; }
 .stage-app .rail.mini {
-  position: absolute; right: 0; bottom: 8%; width: min(250px, 40%); font-size: 11px; z-index: 1;
+  position: absolute; right: 0; bottom: 8%; width: min(230px, 38%); font-size: 11px; z-index: 1;
   opacity: 0; box-shadow: 0 24px 50px -24px rgba(10,20,40,.3), 0 8px 20px -12px rgba(10,20,40,.18);
 }
 .active .stage-app .rail.mini { animation-delay: 1.1s, 1.8s; }
@@ -779,6 +772,21 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
     var(--offwhite);
 }
 .scene-light { background: radial-gradient(55% 60% at 100% 0%, rgba(29,158,117,.07), transparent 60%), #fff; }
+/* ===== type: a notch larger, so a five-second read is an easy one ===== */
+/* The caption column takes half the width so a headline breaks where its
+   <br> says, not where a narrow column forces it; the stage gives up the
+   difference and the recording scales with it. */
+.split .cap { font-size: clamp(28px, 3.6vw, 54px); max-width: 24ch; }
+.split .sub { font-size: clamp(15.5px, 1.55vw, 21px); line-height: 1.5; max-width: 40ch; }
+.split .pts li { font-size: clamp(14px, 1.4vw, 18px); }
+.split .eyebrow { font-size: 12px; }
+.split, .split.split-vid { grid-template-columns: minmax(360px, 1fr) minmax(0, 1fr); gap: clamp(20px, 3vw, 44px); }
+/* a 1fr track still honours its content's min size, and the screen capture
+   is 1440px wide; without this the stage wins the width and the caption is
+   squeezed until every headline wraps twice */
+.split > * { min-width: 0; }
+
+
 /* The chrome — scene labels, counter, buttons, progress segments — was set
    with mix-blend-mode: difference, which reads as white on the near-black
    product film. On this film's teal and green it inverts to magenta and
@@ -922,10 +930,10 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
       <p class="eyebrow fx" style="--d:.05s">How Ray works</p>
       <h2 class="cap">
         <span class="rw"><span class="tl" style="--d:.15s">One</span></span>
-        <span class="rw"><span class="tl" style="--d:.23s">Ray,</span></span><br>
-        <span class="rw"><span style="--d:.36s">on</span></span>
-        <span class="rw"><span style="--d:.44s">every</span></span>
-        <span class="rw"><span style="--d:.52s">screen</span></span>
+        <span class="rw"><span class="tl" style="--d:.23s">Ray,</span></span>
+        <span class="rw"><span style="--d:.31s">on</span></span>
+        <span class="rw"><span style="--d:.39s">every</span></span>
+        <span class="rw"><span style="--d:.47s">screen</span></span><br>
         <span class="rw"><span style="--d:.6s">in</span></span>
         <span class="rw"><span style="--d:.68s">Tenderfy.</span></span>
       </h2>
