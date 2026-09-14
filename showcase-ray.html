@@ -144,6 +144,39 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .hook-doc.chat .comp span { flex: 1; height: 5px; border-radius: 3px; background: #ECEFEE; }
 .hook-doc.chat .comp i { width: 12px; height: 12px; border-radius: 50%; background: #0F7355; opacity: .8; flex: none; }
 
+/* ===== small skeleton cards, one product object per scene ===== */
+.mcard {
+  position: absolute; z-index: 4; width: 150px; background: rgba(255,255,255,.97); color: #2E3C3B;
+  border: 1px solid #E6EAE8; border-radius: 10px; padding: 9px 10px; font-size: 10px; line-height: 1.3;
+  display: flex; flex-direction: column; gap: 6px; opacity: 0;
+  box-shadow: 0 18px 40px -18px rgba(20,30,60,.3), 0 6px 16px -10px rgba(20,30,60,.18);
+}
+.active .mcard { animation: blockIn .9s var(--ease-out) forwards, floatT 8s ease-in-out infinite; animation-delay: var(--d, 2s), 2.6s; }
+.mcard .lab { font-size: 9px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: #8C9694; }
+.mcard .lab b { color: #2E3C3B; }
+.mcard .bar { display: block; height: 7px; border-radius: 4px; background: #E6EAE8; }
+.mcard .row { display: flex; align-items: center; gap: 6px; }
+.mcard .row .bar { flex: none; }
+.mcard .row.sub { padding-left: 4px; }
+.mcard .dot { width: 8px; height: 8px; border-radius: 50%; background: #CBD5D3; flex: none; }
+.mcard .dot.g { background: #1D9E75; } .mcard .dot.a { background: #FFBC4A; } .mcard .dot.r { background: #F95246; }
+.mcard .box { width: 10px; height: 10px; border-radius: 3px; border: 1.5px solid #CBD5D3; flex: none; }
+.mcard .ic { width: 14px; height: 14px; border-radius: 4px; background: rgba(15,115,85,.15); flex: none; }
+.mcard .bk { width: 8px; height: 11px; background: #0F7355; opacity: .55; flex: none; clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 72%, 0 100%); }
+.mcard .ava { width: 14px; height: 12px; }
+.mcard .pill { border-radius: 999px; padding: 4px 10px; font-size: 10px; font-weight: 600; background: #0F7355; color: #fff; }
+.mcard .pill.ghost { background: none; color: #596262; }
+.mcard .pill.sm { padding: 2px 8px; font-size: 9px; margin-left: auto; }
+.mcard .prog { display: block; height: 4px; border-radius: 2px; background: #EAEDEC; overflow: hidden; }
+.mcard .prog i { display: block; height: 100%; background: #0F7355; }
+.mcard .ref { display: block; height: 16px; border-radius: 999px; background: #F3F4F6; }
+.mcard .q { font-size: 22px; line-height: .6; color: #0F7355; font-weight: 700; margin-top: 4px; }
+.mcard b { font-size: 11px; font-weight: 700; }
+.mcard-go { flex-direction: row; width: auto; padding: 7px 8px; border-radius: 999px; }
+.mcard-strip { width: 190px; }
+/* scenes without a stage host theirs in a full-scene layer */
+.minis { position: absolute; inset: 0; pointer-events: none; }
+
 /* ===== a real screen with the rail behind it: the step scenes ===== */
 .stage-app { position: relative; height: clamp(320px, 56vh, 600px); display: flex; align-items: center; }
 /* the recording sits smaller and to the left; the rail is tucked behind its
@@ -911,6 +944,10 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
     <span class="spark" style="right:18%;top:22%"></span>
     <span class="spark" style="left:13%;bottom:36%;--sd:1.4s"></span>
   </div>
+  <div class="minis" aria-hidden="true">
+      <div class="mcard mcard-strip" style="--d:2.4s; left:9%; top:34%"><span class="lab">Next · <b>1 of 8</b> · Go / No-Go</span><span class="prog"><i style="width:12%"></i></span></div>
+      <div class="mcard mcard-go" style="--d:3.0s; right:9%; bottom:30%"><span class="pill">Go ahead</span><span class="pill ghost">Skip</span></div>
+  </div>
   <p class="eyebrow">Ray Agent</p>
   <h2 class="cap">
     <span class="rw"><span style="--d:.1s">One</span></span>
@@ -975,6 +1012,8 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
         </div>
         <div class="rail-comp fx" style="--d:2.6s"><i class="bar" style="width:38%"></i><span class="send"></span></div>
       </div>
+      <div class="mcard mcard-proj" style="--d:2.6s; left:-6%; top:6%"><span class="row"><i class="ic"></i><i class="bar" style="width:70%"></i></span><span class="row sub"><i class="dot"></i><i class="bar" style="width:52%"></i></span><span class="row sub"><i class="dot"></i><i class="bar" style="width:44%"></i></span></div>
+      <div class="mcard mcard-refs" style="--d:3.2s; right:-4%; bottom:8%"><span class="lab">Reference</span><span class="ref"></span><span class="ref" style="width:78%"></span></div>
     </div>
   </div>
 </section>
@@ -1023,7 +1062,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
         </div>
         <div class="rail-comp fx" style="--d:3.2s"><i class="bar" style="width:38%"></i><span class="send"></span></div>
       </div>
-
+      <div class="mcard mcard-score" style="--d:2.9s; left:-3%; bottom:6%"><span class="lab">Go / No-Go</span><span class="row"><i class="dot g"></i><i class="bar" style="width:72%"></i></span><span class="row"><i class="dot a"></i><i class="bar" style="width:58%"></i></span><span class="row"><i class="dot r"></i><i class="bar" style="width:64%"></i></span></div>
     </div>
   </div>
 </section>
@@ -1072,6 +1111,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
         <div class="rail-comp fx" style="--d:3.2s"><i class="bar" style="width:38%"></i><span class="send"></span></div>
       </div>
       <span class="chip chip-tl" style="--d:2.4s; left:-2%; top:2%"><span class="dot"></span>Assignee: Ray · due 22/07/2026</span>
+      <div class="mcard mcard-task" style="--d:2.9s; left:-3%; bottom:6%"><span class="row"><i class="box"></i><i class="bar" style="width:74%"></i></span><span class="row sub"><img class="ava" src="assets/ray-avatar.svg" alt="" /><span class="lab">Assignee: Ray</span></span></div>
     </div>
   </div>
 </section>
@@ -1124,6 +1164,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
         <div class="rail-comp fx" style="--d:3.2s"><i class="bar" style="width:38%"></i><span class="send"></span></div>
       </div>
       <span class="chip chip-amber" style="--d:2.4s; left:-2%; top:2%"><span class="dot"></span>This buyer’s feedback only. Never invented.</span>
+      <div class="mcard mcard-quote" style="--d:2.9s; left:-3%; bottom:6%"><span class="q">“</span><i class="bar" style="width:86%"></i><i class="bar" style="width:62%"></i><span class="lab">Evaluator feedback</span></div>
     </div>
   </div>
 </section>
@@ -1179,6 +1220,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
         <div class="rail-comp fx" style="--d:3.2s"><i class="bar" style="width:38%"></i><span class="send"></span></div>
       </div>
       <span class="chip chip-amber" style="--d:2.4s; left:-2%; top:2%"><span class="dot"></span>Tailored, not copied &amp; pasted ✓</span>
+      <div class="mcard mcard-resp" style="--d:2.9s; left:-3%; bottom:6%"><span class="row"><i class="bar" style="width:64%"></i><span class="pill sm">Approve</span></span><span class="row"><i class="bar" style="width:52%"></i><span class="pill sm">Approve</span></span></div>
     </div>
   </div>
 </section>
@@ -1230,6 +1272,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
         <div class="rail-comp fx" style="--d:3.2s"><i class="bar" style="width:38%"></i><span class="send"></span></div>
       </div>
       <span class="chip chip-amber" style="--d:2.4s; left:-2%; top:2%"><span class="dot"></span>Tender Readiness Summary: what’s left before you submit.</span>
+      <div class="mcard mcard-ready" style="--d:2.9s; left:-3%; bottom:6%"><span class="lab">Readiness summary</span><span class="row"><i class="dot r"></i><b>2</b><i class="bar" style="width:48%"></i></span><span class="row"><i class="dot a"></i><b>4</b><i class="bar" style="width:58%"></i></span><span class="row"><i class="dot g"></i><b>3</b><i class="bar" style="width:40%"></i></span></div>
     </div>
   </div>
 </section>
@@ -1263,6 +1306,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
         <div class="win-bar"><span></span><span></span><span></span></div>
         <img class="shot" src="assets/app/ai-manager-workflows.png" alt="AI Manager: the Workflow Manager, with the Tenderfy Method and a custom workflow" />
       </div>
+      <div class="mcard mcard-prompt" style="--d:2.9s; left:-3%; bottom:6%"><span class="row"><i class="bk"></i><i class="bar" style="width:70%"></i></span><span class="row"><i class="bk"></i><i class="bar" style="width:54%"></i></span><span class="row"><i class="bk"></i><i class="bar" style="width:62%"></i></span></div>
     </div>
   </div>
 </section>
