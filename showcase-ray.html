@@ -231,7 +231,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .stage-app { position: relative; height: clamp(320px, 56vh, 600px); display: flex; align-items: center; }
 /* the recording sits smaller and to the left; the rail is tucked behind its
    right edge, a cue rather than a second subject */
-.stage-app .win { width: 90%; position: relative; z-index: 3; }
+.stage-app .win { width: 94%; position: relative; z-index: 3; }
 .stage-app video.shot, .stage-shot video.shot { width: 100%; height: auto; display: block; background: #0d1210; }
 .stage-app { overflow: visible; }
 .stage-app .rail.mini {
@@ -881,7 +881,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
    scene padding, the caption keeps the room the type needs, and the stage
    gets the rest. */
 .scene:has(.split) { padding-left: clamp(16px, 2.6vw, 44px); padding-right: clamp(16px, 2.6vw, 44px); }
-.split, .split.split-vid { width: 100%; max-width: none; grid-template-columns: minmax(380px, .82fr) minmax(0, 1.18fr); gap: clamp(20px, 3vw, 48px); }
+.split, .split.split-vid { width: 100%; max-width: none; grid-template-columns: minmax(340px, .72fr) minmax(0, 1.28fr); gap: clamp(16px, 2.2vw, 36px); }
 /* a 1fr track still honours its content's min size, and the screen capture
    is 1440px wide; without this the stage wins the width and the caption is
    squeezed until every headline wraps twice */
