@@ -953,6 +953,46 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
 .scene.moving .deco * { animation-play-state: paused !important; }
 @media (prefers-reduced-motion: reduce) { .win.deck, .win.deck.out, .win.deck .freeze, .rail-next .prog i { transition: none !important; } }
 
+/* ===== phones and tablets: one column, copy above the recording =====
+   Declared last so it beats the wide-screen split rule above.          */
+@media (max-width: 940px) {
+  .split, .split.split-vid { grid-template-columns: 1fr; gap: clamp(12px, 2.4vh, 22px); width: 100%; }
+  /* content stacks from the top, so a tall column runs under the player, never over the chrome */
+  .scene:has(.split) { justify-content: flex-start; padding: 68px clamp(14px, 4vw, 28px) 96px; }
+  .scene .split { margin-block: auto; }  /* centred when it fits, top-anchored when it does not */
+  .split .cap { font-size: clamp(26px, 7vw, 44px); max-width: 18ch; }
+  .split .sub { font-size: clamp(14px, 3.9vw, 17px); max-width: 34ch; }
+  .split .pts li { font-size: clamp(13px, 3.6vw, 16px); text-align: left; }
+  .split .eyebrow { font-size: 10.5px; }
+  /* the stage takes its height from the recording's shape, not the viewport */
+  .stage-app { height: auto; aspect-ratio: 1.58; width: min(560px, 100%); margin: 0 auto; }
+  .stage-app .win, .stage-app .win.deck { width: 100%; left: 0; }
+  .stage-app .rail.mini { width: min(200px, 40%); right: -1%; bottom: -6%; }
+  .mcard { display: none; }
+  /* chrome: brand left, scene label right, never overlapping */
+  .chrome-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+  .chrome-top > :last-child { flex: 0 1 auto; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 10px; letter-spacing: .14em; }
+  /* the hook: two small cards up top, the rest stay off so the headline is clear */
+  .hook-doc.chat { width: clamp(104px, 28vw, 140px); }
+  .hook-docs .hook-doc:nth-child(1) { top: 7% !important; left: 6% !important; }
+  .hook-docs .hook-doc:nth-child(2) { top: 5% !important; right: 6% !important; }
+  .hook-docs .hook-doc:nth-child(n+3) { display: none; }
+  .hook-ray { width: 118px; height: 100px; }
+  .hook-ray img { width: 92px; }
+  .hook-kicker .say { font-size: clamp(15px, 4.4vw, 19px); }
+  .hook-kicker .then { font-size: clamp(12.5px, 3.6vw, 15px); }
+  /* Meet Ray's eight steps in two short columns */
+  .toc-list.meet { width: 100%; display: grid; grid-template-columns: 1fr 1fr; column-gap: 14px; }
+  .toc-list.meet .toc-item { padding: 7px 0; font-size: 13.5px; }
+  .end-ray { flex-wrap: wrap; }
+}
+@media (max-width: 600px) {
+  .stage-app .rail.mini { display: none; }
+  .chrome { padding-left: 16px; padding-right: 16px; }
+  .scene .big { font-size: clamp(28px, 9vw, 40px); }
+  .hook-doc.chat .bul:nth-child(n+4) { display: none; }
+}
+
 </style>
   <script>if(location.hostname.indexOf("tenderfy.org")===-1){document.head.appendChild(Object.assign(document.createElement("meta"),{name:"robots",content:"noindex,nofollow"}));}</script>
 </head>
