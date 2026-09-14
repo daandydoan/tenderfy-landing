@@ -182,7 +182,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 /* the recording sits smaller and to the left; the rail is tucked behind its
    right edge, a cue rather than a second subject */
 .stage-app .win { width: 90%; position: relative; z-index: 3; }
-.stage-app video.shot { width: 100%; height: auto; display: block; background: #0d1210; }
+.stage-app video.shot, .stage-shot video.shot { width: 100%; height: auto; display: block; background: #0d1210; }
 .stage-app { overflow: visible; }
 .stage-app .rail.mini {
   position: absolute; right: -3%; bottom: -25%; width: min(240px, 34%); font-size: 11px; z-index: 1;
@@ -853,6 +853,40 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
 .on-light .seg b i { background: var(--ink); }
 /* the rail keeps the product's light theme — it is drawn from the app, not the film */
 
+/* ===== the merged film: one frame, action → result, next card off the deck ===== */
+.stage-app .win.deck { position: absolute; left: 0; top: 50%; width: 90%; margin: 0; opacity: 0;
+  transform: translateY(calc(-50% + 44px)) rotateX(6deg) translateZ(-60px);
+  transition: transform .48s cubic-bezier(.76,0,.24,1), opacity .48s cubic-bezier(.76,0,.24,1); }
+.active .stage-app .win.deck { animation: none; }
+.stage-app .win.deck.in { opacity: 1; transform: translateY(-50%) rotateX(0) translateZ(0); }
+.stage-app .win.deck.out { opacity: 0; transform: translateY(calc(-50% - 22px)) rotateX(-8deg) translateZ(-180px);
+  transition-duration: .42s; }
+.win.deck .vwrap { position: relative; }
+.win.deck .vwrap video { width: 100%; height: auto; display: block; background: #0d1210; }
+.win.deck .freeze { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; transition: opacity .18s ease-in-out; pointer-events: none; }
+.win.deck .freeze.on { opacity: 1; transition: none; }
+/* the copy column: one block per step, shown in turn; the sub belongs to the pair */
+.beatcol { position: relative; }
+.beatcopy { display: none; }
+.beatcopy.on { display: block; }
+.beatpoint { display: none; margin-top: 12px; }
+.beatpoint.on { display: flex; }
+.beatpoint li { opacity: 0; transform: translateY(6px); animation: none; transition: opacity .25s ease, transform .25s ease; }
+.beatpoint.res li { opacity: 1; transform: none; }
+/* the rail is fixed; only its offer, buttons and strip change — and it arrives
+   with the first window, not a second later */
+.active .scene-pair-rail, .scene.pair .rail.mini { animation-delay: .4s, 1.2s !important; }
+.rail-btn { transition: transform .12s ease, filter .12s ease; }
+.rail-btn.pressed { transform: scale(.93); filter: brightness(.88); }
+.rail-next .prog i { transition: width .42s cubic-bezier(.76,0,.24,1); }
+.rail-offer.approve { border-color: rgba(255,188,74,.6); background: rgba(255,188,74,.08); }
+/* cards arrive with the result, one per step */
+.mcard[data-step] { opacity: 0; animation: none !important; transition: opacity .3s ease, transform .3s ease; transform: translateY(8px); }
+.mcard[data-step].on { opacity: 1; transform: none; }
+/* the background holds still while a window moves */
+.scene.moving .deco * { animation-play-state: paused !important; }
+@media (prefers-reduced-motion: reduce) { .win.deck, .win.deck.out, .win.deck .freeze, .rail-next .prog i { transition: none !important; } }
+
 </style>
   <script>if(location.hostname.indexOf("tenderfy.org")===-1){document.head.appendChild(Object.assign(document.createElement("meta"),{name:"robots",content:"noindex,nofollow"}));}</script>
 </head>
@@ -904,7 +938,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
 </div>
 
 <!-- ============ S1 · HOOK ============ -->
-<section class="scene scene-dark" data-label="The Old Way" data-dur="4500">
+<section class="scene scene-dark" data-label="The Old Way" data-dur="3500">
   <svg class="clip-mark" viewBox="0 0 32 65" aria-hidden="true"><use href="#clipSym"/></svg>
   <div class="deco" aria-hidden="true">
     <span class="orb orb-teal" style="width:42vw;height:42vw;left:-12vw;top:-14vh"></span>
@@ -935,7 +969,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
   <p class="hook-kicker fx" style="--d:2.4s">Meet Ray. One teammate who already knows where you’re at.</p>
 </section>
 <!-- ============ S2 · MEET RAY ============ -->
-<section class="scene scene-deep" data-label="Meet Ray" data-dur="6000">
+<section class="scene scene-deep" data-label="Meet Ray" data-dur="5500" id="sceneMeet" data-beats='[{"step": 0, "action": ["ray-00-rail.mp4", 0.0, 6.9, 1.5], "result": null, "hold": 0}]'>
   <svg class="clip-mark" viewBox="0 0 32 65" aria-hidden="true"><use href="#clipSym"/></svg>
   <div class="deco" aria-hidden="true">
     <span class="orb orb-teal" style="width:36vw;height:36vw;right:-10vw;top:-10vh"></span>
@@ -945,190 +979,104 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
     <span class="spark" style="right:18%;top:22%"></span>
     <span class="spark" style="left:13%;bottom:36%;--sd:1.4s"></span>
   </div>
-  <div class="minis" aria-hidden="true">
-      <div class="mcard mcard-strip" style="--d:2.4s; left:9%; top:34%"><span class="lab">Next · <b>1 of 8</b> · Go / No-Go</span><span class="prog"><i style="width:12%"></i></span></div>
-      <div class="mcard mcard-go" style="--d:3.0s; right:9%; bottom:30%"><span class="pill">Go ahead</span><span class="pill ghost">Skip</span></div>
-  </div>
-  <p class="eyebrow">Ray Agent</p>
-  <h2 class="cap">
-    <span class="rw"><span style="--d:.1s">One</span></span>
-    <span class="rw"><span class="am" style="--d:.18s">teammate.</span></span>
-    <span class="rw"><span class="tl-bright" style="--d:.3s">Eight</span></span>
-    <span class="rw"><span class="tl-bright" style="--d:.38s">steps.</span></span>
-  </h2>
-  <p class="sub fx" style="--d:.65s">Offers each step. Does it on your go. Stops for your approval.</p>
-  <div class="toc-list m-grid" aria-label="The eight steps Ray walks">
-    <div class="toc-item" style="--d:1.05s"><span class="ti-n">01</span>Go / No-Go<span class="ti-ok"><svg viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
-    <div class="toc-item" style="--d:1.30s"><span class="ti-n">02</span>Plan the tender<span class="ti-ok"><svg viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
-    <div class="toc-item" style="--d:1.55s"><span class="ti-n">03</span>Understand the buyer<span class="ti-ok"><svg viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
-    <div class="toc-item" style="--d:1.80s"><span class="ti-n">04</span>Learn from feedback<span class="ti-ok"><svg viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
-    <div class="toc-item" style="--d:2.05s"><span class="ti-n">05</span>Complete the responses<span class="ti-ok"><svg viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
-    <div class="toc-item" style="--d:2.30s"><span class="ti-n">06</span>Methodology &amp; technical<span class="ti-ok"><svg viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
-    <div class="toc-item" style="--d:2.55s"><span class="ti-n">07</span>Build the tender<span class="ti-ok"><svg viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
-    <div class="toc-item" style="--d:2.80s"><span class="ti-n">08</span>Final review<span class="ti-ok"><svg viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
-  </div>
-  <p class="sub fx" style="--d:3.05s; margin-top:clamp(12px,2vh,20px); font-weight:600">Every step ends with your approval.</p>
-</section>
-<!-- ============ S3 · BESIDE EVERY SCREEN ============ -->
-<section class="scene scene-offwhite" data-label="How Ray Works" data-dur="6000" id="sceneRail">
-  <div class="deco" aria-hidden="true">
-    <span class="orb orb-teal" style="width:30vw;height:30vw;right:-8vw;bottom:-10vh"></span>
-    <span class="dots" style="width:180px;height:140px;left:5%;bottom:14%"></span>
-    <span class="bit" style="left:11%;top:20%;--bd:6.5s"></span>
-  </div>
-  <div class="split">
+  <div class="split split-vid">
     <div>
-      <p class="eyebrow fx" style="--d:.05s">How Ray works</p>
+      <p class="eyebrow fx" style="--d:.05s">Ray Agent</p>
       <h2 class="cap">
-        <span class="rw"><span class="tl" style="--d:.15s">One</span></span>
-        <span class="rw"><span class="tl" style="--d:.23s">Ray,</span></span>
-        <span class="rw"><span style="--d:.31s">on</span></span>
-        <span class="rw"><span style="--d:.39s">every</span></span><br>
-        <span class="rw"><span style="--d:.47s">screen</span></span>
-        <span class="rw"><span style="--d:.55s">in</span></span>
-        <span class="rw"><span style="--d:.63s">Tenderfy.</span></span>
+        <span class="rw"><span style="--d:.1s">One</span></span>
+        <span class="rw"><span class="am" style="--d:.18s">teammate.</span></span><br>
+        <span class="rw"><span class="tl-bright" style="--d:.3s">Eight</span></span>
+        <span class="rw"><span class="tl-bright" style="--d:.38s">steps.</span></span>
       </h2>
-      <p class="sub fx" style="--d:.9s">Ray doesn’t just advise. He does the work, inside your permissions.</p>
-      <ul class="pts">
-        <li style="--d:1.30s">Correct him once. He remembers for this tender.</li>
-        <li style="--d:1.55s">Works from your tender documents and company knowledge.</li>
-        <li style="--d:1.80s">Saved per tender. Pick up where you left off.</li>
-        <li style="--d:2.05s">Offers the next step. You say go, or skip.</li>
-      </ul>
+      <p class="sub fx" style="--d:.6s">Offers each step. Does it on your go. Stops for your approval.</p>
+      <div class="toc-list meet" aria-label="The eight steps Ray walks">
+    <div class="toc-item" style="--d:0.90s"><span class="ti-n">01</span>Go / No-Go<span class="ti-ok"><svg viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+    <div class="toc-item" style="--d:1.08s"><span class="ti-n">02</span>Plan the tender<span class="ti-ok"><svg viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+    <div class="toc-item" style="--d:1.26s"><span class="ti-n">03</span>Understand the buyer<span class="ti-ok"><svg viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+    <div class="toc-item" style="--d:1.44s"><span class="ti-n">04</span>Learn from feedback<span class="ti-ok"><svg viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+    <div class="toc-item" style="--d:1.62s"><span class="ti-n">05</span>Complete the responses<span class="ti-ok"><svg viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+    <div class="toc-item" style="--d:1.80s"><span class="ti-n">06</span>Methodology &amp; technical<span class="ti-ok"><svg viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+    <div class="toc-item" style="--d:1.98s"><span class="ti-n">07</span>Build the tender<span class="ti-ok"><svg viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+    <div class="toc-item" style="--d:2.16s"><span class="ti-n">08</span>Final review<span class="ti-ok"><svg viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+      </div>
+      <p class="sub fx" style="--d:2.7s; margin-top:clamp(10px,1.6vh,16px); font-weight:600">Every step ends with your approval.</p>
     </div>
     <div class="stage stage-app">
-      <div class="win" style="--d:.3s">
-        <div class="win-bar"><span></span><span></span><span></span></div>
-        <video class="shot vid" muted playsinline preload="auto"></video>
-      </div>
-      <div class="rail sk mini" aria-label="Ray, beside a tender">
-        <div class="rail-head">
-          <img src="assets/ray-avatar.svg" alt="" />
-          <i class="bar" style="width:46%"></i>
-        </div>
-        <div class="rail-body">
-          <div class="rail-msg fx" style="--d:1.3s"><i class="bar" style="width:92%"></i><i class="bar" style="width:78%"></i><i class="bar" style="width:46%"></i></div>
-          <div class="rail-refs fx" style="--d:1.6s"><i class="bar ref" style="width:96px"></i><i class="bar ref" style="width:118px"></i></div>
-          <div class="rail-offer fx" style="--d:1.9s">
-            <p>Let me assess this against your Go / No-Go criteria.</p>
-            <div class="acts"><span class="rail-btn">Go ahead</span><span class="rail-btn ghost">Skip</span></div>
-          </div>
-          <div class="rail-next fx" style="--d:2.5s"><span>Next · <b>1 of 8</b> · Go / No-Go</span><span class="prog"><i style="width:0%"></i></span></div>
-        </div>
-        <div class="rail-comp fx" style="--d:3.2s"><i class="bar" style="width:38%"></i><span class="send"></span></div>
-      </div>
-      <div class="mcard mcard-proj" style="--d:2.6s; left:-6%; top:6%"><span class="row"><i class="ic"></i><i class="bar" style="width:70%"></i></span><span class="row sub"><i class="dot"></i><i class="bar" style="width:52%"></i></span><span class="row sub"><i class="dot"></i><i class="bar" style="width:44%"></i></span></div>
-      <div class="mcard mcard-refs" style="--d:3.2s; right:-4%; top:-2%"><span class="lab">Reference</span><span class="ref"></span><span class="ref" style="width:78%"></span></div>
+      <div class="win deck"><div class="win-bar"><span></span><span></span><span></span></div>
+        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas></div></div>
+      <div class="win deck"><div class="win-bar"><span></span><span></span><span></span></div>
+        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas></div></div>
+      <div class="mcard mcard-strip" style="--d:2.4s; left:-3%; top:2%"><span class="lab">Next · <b>1 of 8</b> · Go / No-Go</span><span class="prog"><i style="width:12%"></i></span></div>
+      <div class="mcard mcard-go" style="--d:3.0s; right:0; bottom:4%"><span class="pill">Go ahead</span><span class="pill ghost">Skip</span></div>
     </div>
   </div>
 </section>
-<!-- plays ray-01-gonogo.mp4 (mapped in VIDS) -->
-<section class="scene scene-light" data-label="Step 01 · Go / No-Go" data-dur="5000" id="sceneGo" data-clip="ray-01-gonogo.mp4" data-clip-len="5s">
+<section class="scene scene-light pair" data-label="Steps 01–02 · Go / No-Go · Plan" data-dur="12656" id="scenePair1"
+         data-beats='[{"step": 1, "action": ["ray-01-gonogo.mp4", 0.0, 3.4, 1.5], "result": ["ray-01-gonogo.mp4", 24.9, 27.4, 1.0], "hold": 2.0, "offer": "Scorecard ready for your approval.", "mode": "approve", "strip": "<b>1 of 8</b> \u00b7 Go / No-Go \u00b7 Awaiting your approval"}, {"step": 2, "action": ["ray-02-plan.mp4", 0.0, 2.4, 1.5], "result": ["ray-02-plan.mp4", 44.6, 46.4, 1.0], "hold": 0.35, "offer": "Let me build the task list and delivery plan.", "mode": "offer", "strip": "Next \u00b7 <b>2 of 8</b> \u00b7 Plan the tender"}]'>
   <div class="deco" aria-hidden="true">
     <span class="orb orb-teal" style="width:34vw;height:34vw;right:-9vw;top:-12vh"></span>
     <span class="dots" style="width:190px;height:150px;left:4%;top:12%"></span>
     <span class="bit bit-mint" style="left:9%;bottom:22%;--bd:7.5s"></span>
   </div>
   <div class="split split-vid">
-    <div>
-      <p class="eyebrow fx" style="--d:.05s">Step 01 · Go / No-Go</p>
-      <h2 class="cap">
+    <div class="beatcol">
+      <div class="beatcopy" data-step="1">
+        <p class="eyebrow fx" style="--d:.05s">Step 01 · Go / No-Go</p>
+        <h2 class="cap">
         <span class="rw"><span style="--d:0.15s">“Let</span></span>
-        <span class="rw"><span style="--d:0.22s">me</span></span>
-        <span class="rw"><span class="tl" style="--d:0.29s">assess</span></span><br>
+        <span class="rw"><span style="--d:0.22s">me</span></span><br>
+        <span class="rw"><span class="tl" style="--d:0.35s">assess</span></span>
         <span class="rw"><span style="--d:0.42s">this</span></span>
         <span class="rw"><span class="tl" style="--d:0.49s">one.”</span></span>
-      </h2>
-      <p class="sub fx" style="--d:.85s">Green, Amber or Red on every criterion. Then GO, HOLD or NO-GO.</p>
-      <ul class="pts">
-        <li style="--d:1.15s">Missing information named. Never assumed, never invented.</li>
-        <li style="--d:1.37s">You approve before he moves on</li>
-      </ul>
-    </div>
-    <div class="stage stage-app">
-      <div class="win" style="--d:.3s">
-        <div class="win-bar"><span></span><span></span><span></span></div>
-        <video class="shot vid" muted playsinline preload="auto"></video>
+        </h2>
       </div>
-      <div class="rail sk mini" aria-label="Ray, beside a tender">
-        <div class="rail-head">
-          <img src="assets/ray-avatar.svg" alt="" />
-          <i class="bar" style="width:46%"></i>
-        </div>
-        <div class="rail-body">
-          <div class="rail-msg fx" style="--d:1.3s"><i class="bar" style="width:88%"></i><i class="bar" style="width:52%"></i></div>
-          <div class="rail-refs fx" style="--d:1.6s"><i class="bar ref" style="width:96px"></i><i class="bar ref" style="width:118px"></i></div>
-          <div class="rail-offer approve fx" style="--d:1.9s">
-            <p>Scorecard ready for your approval.</p>
-            <div class="acts"><span class="rail-btn">Approve</span><span class="rail-btn ghost">Amend</span></div>
-          </div>
-          <div class="rail-next fx" style="--d:2.5s"><span><b>1 of 8</b> · Go / No-Go · Awaiting your approval</span><span class="prog"><i style="width:12%"></i></span></div>
-        </div>
-        <div class="rail-comp fx" style="--d:3.2s"><i class="bar" style="width:38%"></i><span class="send"></span></div>
-      </div>
-      <div class="mcard mcard-score" style="--d:2.9s; left:-3%; bottom:6%"><span class="lab">Go / No-Go</span><span class="row"><i class="dot g"></i><i class="bar" style="width:72%"></i></span><span class="row"><i class="dot a"></i><i class="bar" style="width:58%"></i></span><span class="row"><i class="dot r"></i><i class="bar" style="width:64%"></i></span></div>
-    </div>
-  </div>
-</section>
-<!-- plays ray-02-plan.mp4 (mapped in VIDS) -->
-<section class="scene scene-offwhite" data-label="Step 02 · Plan the Tender" data-dur="4500" id="sceneDeliver" data-clip="ray-02-plan.mp4" data-clip-len="4.5s">
-  <div class="deco" aria-hidden="true">
-    <span class="orb orb-blue" style="width:32vw;height:32vw;left:-10vw;bottom:-12vh"></span>
-    <span class="dots" style="width:180px;height:140px;right:5%;top:14%"></span>
-    <span class="bit" style="right:11%;bottom:24%;--bx:-12px;--by:-14px"></span>
-  </div>
-  <div class="split split-vid">
-    <div>
-      <p class="eyebrow fx" style="--d:.05s">Step 02 · Plan the tender</p>
-      <h2 class="cap">
+      <div class="beatcopy" data-step="2">
+        <p class="eyebrow fx" style="--d:.05s">Step 02 · Plan the tender</p>
+        <h2 class="cap">
         <span class="rw"><span style="--d:0.15s">“Let</span></span>
-        <span class="rw"><span style="--d:0.22s">me</span></span>
-        <span class="rw"><span class="tl" style="--d:0.29s">build</span></span><br>
+        <span class="rw"><span style="--d:0.22s">me</span></span><br>
+        <span class="rw"><span class="tl" style="--d:0.35s">build</span></span>
         <span class="rw"><span style="--d:0.42s">the</span></span>
         <span class="rw"><span class="tl" style="--d:0.49s">plan.”</span></span>
-      </h2>
-      <p class="sub fx" style="--d:.85s">Task list and delivery plan, worked back from the closing date.</p>
-      <ul class="pts">
-        <li style="--d:1.15s">Ray’s tasks flagged. Not started until you approve.</li>
-      </ul>
+        </h2>
+      </div>
+      <p class="sub pairsub fx" style="--d:.9s">Bid or pass, then a plan worked back from the closing date.</p>
+      <ul class="pts beatpoint" data-step="1"><li style="--d:0s">Missing information named. Never assumed, never invented.</li></ul>
+      <ul class="pts beatpoint" data-step="2"><li style="--d:0s">Ray’s tasks flagged. Not started until you approve.</li></ul>
     </div>
     <div class="stage stage-app">
-      <div class="win" style="--d:.3s">
-        <div class="win-bar"><span></span><span></span><span></span></div>
-        <video class="shot vid" muted playsinline preload="auto"></video>
-      </div>
+      <div class="win deck"><div class="win-bar"><span></span><span></span><span></span></div>
+        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas></div></div>
+      <div class="win deck"><div class="win-bar"><span></span><span></span><span></span></div>
+        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas></div></div>
       <div class="rail sk mini" aria-label="Ray, beside a tender">
-        <div class="rail-head">
-          <img src="assets/ray-avatar.svg" alt="" />
-          <i class="bar" style="width:46%"></i>
-        </div>
+        <div class="rail-head"><img src="assets/ray-avatar.svg" alt="" /><i class="bar" style="width:46%"></i></div>
         <div class="rail-body">
-          <div class="rail-msg fx" style="--d:1.3s"><i class="bar" style="width:88%"></i><i class="bar" style="width:52%"></i></div>
-          <div class="rail-refs fx" style="--d:1.6s"><i class="bar ref" style="width:96px"></i><i class="bar ref" style="width:118px"></i></div>
-          <div class="rail-offer fx" style="--d:1.9s">
-            <p>Let me build the task list and delivery plan.</p>
-            <div class="acts"><span class="rail-btn">Go ahead</span><span class="rail-btn ghost">Skip</span></div>
-          </div>
-          <div class="rail-next fx" style="--d:2.5s"><span>Next · <b>2 of 8</b> · Plan the tender</span><span class="prog"><i style="width:12%"></i></span></div>
+          <div class="rail-msg"><i class="bar" style="width:88%"></i><i class="bar" style="width:52%"></i></div>
+          <div class="rail-refs"><i class="bar ref" style="width:96px"></i><i class="bar ref" style="width:118px"></i></div>
+          <div class="rail-offer"><p></p><div class="acts"><span class="rail-btn"></span><span class="rail-btn ghost"></span></div></div>
+          <div class="rail-next"><span></span><span class="prog"><i></i></span></div>
         </div>
-        <div class="rail-comp fx" style="--d:3.2s"><i class="bar" style="width:38%"></i><span class="send"></span></div>
+        <div class="rail-comp"><i class="bar" style="width:38%"></i><span class="send"></span></div>
       </div>
-      <span class="chip chip-tl" style="--d:2.4s; left:-2%; top:2%"><span class="dot"></span>Assignee: Ray · due 22/07/2026</span>
-      <div class="mcard mcard-task" style="--d:2.9s; left:-3%; bottom:6%"><span class="row"><i class="box"></i><i class="bar" style="width:74%"></i></span><span class="row sub"><img class="ava" src="assets/ray-avatar.svg" alt="" /><span class="lab">Assignee: Ray</span></span></div>
+      <div data-step="1" class="mcard mcard-score" style="--d:0s; left:-3%; bottom:6%"><span class="lab">Go / No-Go</span><span class="row"><i class="dot g"></i><i class="bar" style="width:72%"></i></span><span class="row"><i class="dot a"></i><i class="bar" style="width:58%"></i></span><span class="row"><i class="dot r"></i><i class="bar" style="width:64%"></i></span></div>
+      <div data-step="2" class="mcard mcard-task" style="--d:0s; left:-3%; bottom:6%"><span class="row"><i class="box"></i><i class="bar" style="width:74%"></i></span><span class="row sub"><img class="ava" src="assets/ray-avatar.svg" alt="" /><span class="lab">Assignee: Ray</span></span></div>
+
     </div>
   </div>
 </section>
-<!-- plays ray-03-04-buyer.mp4 (mapped in VIDS) -->
-<section class="scene scene-light" data-label="Steps 03–04 · Buyer & Feedback" data-dur="5000" id="sceneBuyer" data-clip="ray-03-04-buyer.mp4" data-clip-len="5s">
+<section class="scene scene-offwhite pair" data-label="Steps 03–04 · Buyer · Feedback" data-dur="9639" id="scenePair2"
+         data-beats='[{"step": 3, "action": ["ray-03-04-buyer.mp4", 0.0, 2.4, 1.5], "result": ["ray-03-04-buyer.mp4", 18.1, 19.9, 1.0], "hold": 0.35, "offer": "Let me research the buyer and find where you add value.", "mode": "offer", "strip": "Next \u00b7 <b>3 of 8</b> \u00b7 Understand the buyer"}, {"step": 4, "action": ["ray-03-04-buyer-2.mp4", 0.0, 2.4, 1.5], "result": ["ray-03-04-buyer-2.mp4", 16.2, 18.0, 1.0], "hold": 0.35, "offer": "Let me read what this buyer said about your previous submissions.", "mode": "offer", "strip": "Next \u00b7 <b>4 of 8</b> \u00b7 Learn from feedback"}]'>
   <div class="deco" aria-hidden="true">
     <span class="orb orb-teal" style="width:32vw;height:32vw;left:-9vw;top:-10vh"></span>
     <span class="dots" style="width:180px;height:140px;right:6%;bottom:12%"></span>
     <span class="bit bit-mint" style="right:26%;top:14%;--bd:8s"></span>
   </div>
   <div class="split split-vid">
-    <div>
-      <p class="eyebrow fx" style="--d:.05s">Steps 03–04 · Buyer · Feedback</p>
-      <h2 class="cap">
+    <div class="beatcol">
+      <div class="beatcopy" data-step="3">
+        <p class="eyebrow fx" style="--d:.05s">Step 03 · Understand the buyer</p>
+        <h2 class="cap">
         <span class="rw"><span style="--d:0.15s">“Let</span></span>
         <span class="rw"><span style="--d:0.22s">me</span></span>
         <span class="rw"><span style="--d:0.29s">find</span></span>
@@ -1137,41 +1085,48 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
         <span class="rw"><span style="--d:0.56s">add</span></span>
         <span class="rw"><span class="tl" style="--d:0.63s">real</span></span>
         <span class="rw"><span class="tl" style="--d:0.70s">value.”</span></span>
-      </h2>
-      <p class="sub fx" style="--d:.85s">What this buyer wants, and what they said about your last bids.</p>
-      <ul class="pts">
-        <li style="--d:1.15s">Specific value-adds, backed by what you actually do.</li>
-        <li style="--d:1.37s">Repeat what worked. Fix what didn’t.</li>
-      </ul>
+        </h2>
+      </div>
+      <div class="beatcopy" data-step="4">
+        <p class="eyebrow fx" style="--d:.05s">Step 04 · Learn from feedback</p>
+        <h2 class="cap">
+        <span class="rw"><span style="--d:0.15s">“Let</span></span>
+        <span class="rw"><span style="--d:0.22s">me</span></span>
+        <span class="rw"><span class="tl" style="--d:0.29s">read</span></span>
+        <span class="rw"><span style="--d:0.36s">what</span></span><br>
+        <span class="rw"><span style="--d:0.49s">they</span></span>
+        <span class="rw"><span style="--d:0.56s">said</span></span>
+        <span class="rw"><span style="--d:0.63s">last</span></span>
+        <span class="rw"><span class="tl" style="--d:0.70s">time.”</span></span>
+        </h2>
+      </div>
+      <p class="sub pairsub fx" style="--d:.9s">What this buyer wants, and what they said last time.</p>
+      <ul class="pts beatpoint" data-step="3"><li style="--d:0s">Specific value-adds, backed by what you actually do.</li></ul>
+      <ul class="pts beatpoint" data-step="4"><li style="--d:0s">This buyer’s feedback only. Never invented.</li></ul>
     </div>
     <div class="stage stage-app">
-      <div class="win" style="--d:.3s">
-        <div class="win-bar"><span></span><span></span><span></span></div>
-        <video class="shot vid" muted playsinline preload="auto"></video>
-      </div>
+      <div class="win deck"><div class="win-bar"><span></span><span></span><span></span></div>
+        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas></div></div>
+      <div class="win deck"><div class="win-bar"><span></span><span></span><span></span></div>
+        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas></div></div>
       <div class="rail sk mini" aria-label="Ray, beside a tender">
-        <div class="rail-head">
-          <img src="assets/ray-avatar.svg" alt="" />
-          <i class="bar" style="width:46%"></i>
-        </div>
+        <div class="rail-head"><img src="assets/ray-avatar.svg" alt="" /><i class="bar" style="width:46%"></i></div>
         <div class="rail-body">
-          <div class="rail-msg fx" style="--d:1.3s"><i class="bar" style="width:88%"></i><i class="bar" style="width:52%"></i></div>
-          <div class="rail-refs fx" style="--d:1.6s"><i class="bar ref" style="width:96px"></i><i class="bar ref" style="width:118px"></i><i class="bar ref" style="width:88px"></i></div>
-          <div class="rail-offer fx" style="--d:1.9s">
-            <p>Let me read what this buyer said about your previous submissions.</p>
-            <div class="acts"><span class="rail-btn">Go ahead</span><span class="rail-btn ghost">Skip</span></div>
-          </div>
-          <div class="rail-next fx" style="--d:2.5s"><span>Next · <b>4 of 8</b> · Learn from feedback</span><span class="prog"><i style="width:38%"></i></span></div>
+          <div class="rail-msg"><i class="bar" style="width:88%"></i><i class="bar" style="width:52%"></i></div>
+          <div class="rail-refs"><i class="bar ref" style="width:96px"></i><i class="bar ref" style="width:118px"></i></div>
+          <div class="rail-offer"><p></p><div class="acts"><span class="rail-btn"></span><span class="rail-btn ghost"></span></div></div>
+          <div class="rail-next"><span></span><span class="prog"><i></i></span></div>
         </div>
-        <div class="rail-comp fx" style="--d:3.2s"><i class="bar" style="width:38%"></i><span class="send"></span></div>
+        <div class="rail-comp"><i class="bar" style="width:38%"></i><span class="send"></span></div>
       </div>
-      <span class="chip chip-amber" style="--d:2.4s; left:-2%; top:2%"><span class="dot"></span>This buyer’s feedback only. Never invented.</span>
-      <div class="mcard mcard-quote" style="--d:2.9s; left:-3%; bottom:6%"><span class="q">“</span><i class="bar" style="width:86%"></i><i class="bar" style="width:62%"></i><span class="lab">Evaluator feedback</span></div>
+      <div data-step="3" class="mcard mcard-refs" style="--d:0s; left:-3%; bottom:6%"><span class="lab">Reference</span><span class="ref"></span><span class="ref" style="width:78%"></span></div>
+      <div data-step="4" class="mcard mcard-quote" style="--d:0s; left:-3%; bottom:6%"><span class="q">“</span><i class="bar" style="width:86%"></i><i class="bar" style="width:62%"></i><span class="lab">Evaluator feedback</span></div>
+
     </div>
   </div>
 </section>
-<!-- plays ray-05-06-responses.mp4 (mapped in VIDS) -->
-<section class="scene scene-deep" data-label="Steps 05–06 · Responses & Methodology" data-dur="5500" id="sceneRay" data-clip="ray-05-06-responses.mp4" data-clip-len="5.5s">
+<section class="scene scene-deep pair" data-label="Steps 05–06 · Responses · Methodology" data-dur="9639" id="scenePair3"
+         data-beats='[{"step": 5, "action": ["ray-05-06-responses.mp4", 0.0, 2.4, 1.5], "result": ["ray-05-06-responses.mp4", 24.2, 26.0, 1.0], "hold": 0.35, "offer": "Let me work through the response schedule.", "mode": "offer", "strip": "Next \u00b7 <b>5 of 8</b> \u00b7 Complete the responses"}, {"step": 6, "action": ["ray-05-06-responses.mp4", 27.0, 29.4, 1.5], "result": ["ray-05-06-responses.mp4", 50.7, 52.5, 1.0], "hold": 0.35, "offer": "Let me develop the methodology and technical content.", "mode": "offer", "strip": "Next \u00b7 <b>6 of 8</b> \u00b7 Methodology &amp; technical"}]'>
   <svg class="clip-mark" viewBox="0 0 32 65" aria-hidden="true"><use href="#clipSym"/></svg>
   <div class="deco" aria-hidden="true">
     <span class="orb orb-teal" style="width:40vw;height:40vw;left:-12vw;bottom:-16vh;--od:17s"></span>
@@ -1184,100 +1139,107 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
     <span class="bit bit-mint" style="left:8%;top:42%;--bd:7s"></span>
   </div>
   <div class="split split-vid">
-    <div>
-      <p class="eyebrow fx" style="--d:.05s">Steps 05–06 · Responses · Methodology</p>
-      <h2 class="cap">
+    <div class="beatcol">
+      <div class="beatcopy" data-step="5">
+        <p class="eyebrow fx" style="--d:.05s">Step 05 · Complete the responses</p>
+        <h2 class="cap">
         <span class="rw"><span style="--d:0.15s">“Let</span></span>
-        <span class="rw"><span style="--d:0.22s">me</span></span>
-        <span class="rw"><span class="tl-bright" style="--d:0.29s">draft</span></span><br>
+        <span class="rw"><span style="--d:0.22s">me</span></span><br>
+        <span class="rw"><span class="tl" style="--d:0.35s">draft</span></span>
         <span class="rw"><span style="--d:0.42s">the</span></span>
-        <span class="rw"><span class="am" style="--d:0.49s">answers.”</span></span>
-      </h2>
-      <p class="sub fx" style="--d:.85s">Every question, answered from your approved content.</p>
-      <ul class="pts">
-        <li style="--d:1.15s">Word limits and weightings respected</li>
-        <li style="--d:1.37s">SME gaps flagged, never invented</li>
-      </ul>
+        <span class="rw"><span class="tl" style="--d:0.49s">answers.”</span></span>
+        </h2>
+      </div>
+      <div class="beatcopy" data-step="6">
+        <p class="eyebrow fx" style="--d:.05s">Step 06 · Methodology &amp; technical</p>
+        <h2 class="cap">
+        <span class="rw"><span style="--d:0.15s">“Let</span></span>
+        <span class="rw"><span style="--d:0.22s">me</span></span><br>
+        <span class="rw"><span class="tl" style="--d:0.35s">build</span></span>
+        <span class="rw"><span style="--d:0.42s">the</span></span>
+        <span class="rw"><span class="tl" style="--d:0.49s">methodology.”</span></span>
+        </h2>
+      </div>
+      <p class="sub pairsub fx" style="--d:.9s">Every question answered from your approved content.</p>
+      <ul class="pts beatpoint" data-step="5"><li style="--d:0s">Word limits and weightings respected.</li></ul>
+      <ul class="pts beatpoint" data-step="6"><li style="--d:0s">SME gaps flagged, never invented.</li></ul>
     </div>
     <div class="stage stage-app">
-      <div class="win" style="--d:.3s">
-        <div class="win-bar"><span></span><span></span><span></span></div>
-        <video class="shot vid" muted playsinline preload="auto"></video>
-      </div>
+      <div class="win deck"><div class="win-bar"><span></span><span></span><span></span></div>
+        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas></div></div>
+      <div class="win deck"><div class="win-bar"><span></span><span></span><span></span></div>
+        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas></div></div>
       <div class="rail sk mini" aria-label="Ray, beside a tender">
-        <div class="rail-head">
-          <img src="assets/ray-avatar.svg" alt="" />
-          <i class="bar" style="width:46%"></i>
-        </div>
+        <div class="rail-head"><img src="assets/ray-avatar.svg" alt="" /><i class="bar" style="width:46%"></i></div>
         <div class="rail-body">
-          <div class="rail-msg fx" style="--d:1.3s"><i class="bar" style="width:88%"></i><i class="bar" style="width:52%"></i></div>
-          <div class="rail-refs fx" style="--d:1.6s"><i class="bar ref" style="width:96px"></i><i class="bar ref" style="width:118px"></i><i class="bar ref" style="width:88px"></i></div>
-          <div class="rail-offer fx" style="--d:1.9s">
-            <p>Let me develop the methodology and technical content.</p>
-            <div class="acts"><span class="rail-btn">Go ahead</span><span class="rail-btn ghost">Skip</span></div>
-          </div>
-          <div class="rail-next fx" style="--d:2.5s"><span>Next · <b>6 of 8</b> · Methodology &amp; technical</span><span class="prog"><i style="width:62%"></i></span></div>
+          <div class="rail-msg"><i class="bar" style="width:88%"></i><i class="bar" style="width:52%"></i></div>
+          <div class="rail-refs"><i class="bar ref" style="width:96px"></i><i class="bar ref" style="width:118px"></i></div>
+          <div class="rail-offer"><p></p><div class="acts"><span class="rail-btn"></span><span class="rail-btn ghost"></span></div></div>
+          <div class="rail-next"><span></span><span class="prog"><i></i></span></div>
         </div>
-        <div class="rail-comp fx" style="--d:3.2s"><i class="bar" style="width:38%"></i><span class="send"></span></div>
+        <div class="rail-comp"><i class="bar" style="width:38%"></i><span class="send"></span></div>
       </div>
-      <span class="chip chip-amber" style="--d:2.4s; left:-2%; top:2%"><span class="dot"></span>Tailored, not copied &amp; pasted ✓</span>
-      <div class="mcard mcard-resp" style="--d:2.9s; left:-3%; bottom:6%"><span class="row"><i class="bar" style="width:64%"></i><span class="pill sm">Approve</span></span><span class="row"><i class="bar" style="width:52%"></i><span class="pill sm">Approve</span></span></div>
+      <div data-step="5" class="mcard mcard-resp" style="--d:0s; left:-3%; bottom:6%"><span class="row"><i class="bar" style="width:64%"></i><span class="pill sm">Approve</span></span><span class="row"><i class="bar" style="width:52%"></i><span class="pill sm">Approve</span></span></div>
+      <div data-step="6" class="mcard mcard-proj" style="--d:0s; left:-3%; bottom:6%"><span class="row"><i class="ic"></i><i class="bar" style="width:70%"></i></span><span class="row sub"><i class="dot"></i><i class="bar" style="width:52%"></i></span><span class="row sub"><i class="dot"></i><i class="bar" style="width:44%"></i></span></div>
+
     </div>
   </div>
 </section>
-<!-- plays ray-07-08-build-review.mp4 (mapped in VIDS) -->
-<section class="scene scene-light" data-label="Steps 07–08 · Build & Review" data-dur="5000" id="sceneAssemble" data-clip="ray-07-08-build-review.mp4" data-clip-len="5s">
+<section class="scene scene-light pair" data-label="Steps 07–08 · Build · Review" data-dur="10890" id="scenePair4"
+         data-beats='[{"step": 7, "action": ["ray-07-08-build-review.mp4", 0.0, 2.4, 1.5], "result": ["ray-07-08-build-review.mp4", 11.2, 13.0, 1.0], "hold": 0.35, "offer": "Let me assemble the submission for this bid.", "mode": "offer", "strip": "Next \u00b7 <b>7 of 8</b> \u00b7 Build the tender"}, {"step": 8, "action": ["ray-07-08-build-review.mp4", 13.5, 15.9, 1.5], "result": ["ray-07-08-build-review.mp4", 22.9, 24.9, 1.0], "hold": 1.4, "offer": "<b>All 8 steps done.</b> Every one approved by you. <b>You submit.</b>", "mode": "done", "strip": "Done \u00b7 <b>8 of 8</b>"}]'>
   <div class="deco" aria-hidden="true">
     <span class="orb orb-teal" style="width:32vw;height:32vw;left:-10vw;top:-12vh"></span>
     <span class="dots" style="width:180px;height:140px;right:4%;top:16%"></span>
     <span class="bit bit-mint" style="right:9%;bottom:32%;--bd:7s;--bx:-10px;--by:-16px"></span>
   </div>
   <div class="split split-vid">
-    <div>
-      <p class="eyebrow fx" style="--d:.05s">Steps 07–08 · Build · Final review</p>
-      <h2 class="cap">
+    <div class="beatcol">
+      <div class="beatcopy" data-step="7">
+        <p class="eyebrow fx" style="--d:.05s">Step 07 · Build the tender</p>
+        <h2 class="cap">
         <span class="rw"><span style="--d:0.15s">“Let</span></span>
-        <span class="rw"><span style="--d:0.22s">me</span></span>
-        <span class="rw"><span class="tl" style="--d:0.29s">build</span></span>
-        <span class="rw"><span style="--d:0.36s">it,</span></span><br>
-        <span class="rw"><span style="--d:0.49s">then</span></span>
-        <span class="rw"><span class="tl" style="--d:0.56s">check</span></span>
-        <span class="rw"><span style="--d:0.63s">it.”</span></span>
-      </h2>
-      <p class="sub fx" style="--d:.85s">Assembled for this bid, then read the way an evaluator would.</p>
-      <ul class="pts">
-        <li style="--d:1.15s">Master library never overwritten</li>
-        <li style="--d:1.37s">Critical · Recommended · Optional. Your call.</li>
-      </ul>
+        <span class="rw"><span style="--d:0.22s">me</span></span><br>
+        <span class="rw"><span class="tl" style="--d:0.35s">build</span></span>
+        <span class="rw"><span class="tl" style="--d:0.42s">it.”</span></span>
+        </h2>
+      </div>
+      <div class="beatcopy" data-step="8">
+        <p class="eyebrow fx" style="--d:.05s">Step 08 · Final review</p>
+        <h2 class="cap">
+        <span class="rw"><span style="--d:0.15s">“Then</span></span>
+        <span class="rw"><span style="--d:0.22s">let</span></span><br>
+        <span class="rw"><span style="--d:0.35s">me</span></span>
+        <span class="rw"><span class="tl" style="--d:0.42s">check</span></span>
+        <span class="rw"><span class="tl" style="--d:0.49s">it.”</span></span>
+        </h2>
+      </div>
+      <p class="sub pairsub fx" style="--d:.9s">Built for this bid, then read like an evaluator would.</p>
+      <ul class="pts beatpoint" data-step="7"><li style="--d:0s">Master library never overwritten.</li></ul>
+      <ul class="pts beatpoint" data-step="8"><li style="--d:0s">Critical · Recommended · Optional. Your call.</li></ul>
     </div>
     <div class="stage stage-app">
-      <div class="win" style="--d:.3s">
-        <div class="win-bar"><span></span><span></span><span></span></div>
-        <video class="shot vid" muted playsinline preload="auto"></video>
-      </div>
+      <div class="win deck"><div class="win-bar"><span></span><span></span><span></span></div>
+        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas></div></div>
+      <div class="win deck"><div class="win-bar"><span></span><span></span><span></span></div>
+        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas></div></div>
       <div class="rail sk mini" aria-label="Ray, beside a tender">
-        <div class="rail-head">
-          <img src="assets/ray-avatar.svg" alt="" />
-          <i class="bar" style="width:46%"></i>
-        </div>
+        <div class="rail-head"><img src="assets/ray-avatar.svg" alt="" /><i class="bar" style="width:46%"></i></div>
         <div class="rail-body">
-          <div class="rail-msg fx" style="--d:1.3s"><i class="bar" style="width:88%"></i><i class="bar" style="width:52%"></i></div>
-          <div class="rail-refs fx" style="--d:1.6s"><i class="bar ref" style="width:96px"></i><i class="bar ref" style="width:118px"></i><i class="bar ref" style="width:88px"></i></div>
-          <div class="rail-offer done fx" style="--d:1.9s">
-            <p><b>All 8 steps done.</b> Every one approved by you. <b>You submit.</b></p>
-            <div class="acts"><span class="rail-btn">Readiness summary</span></div>
-          </div>
-          <div class="rail-next fx" style="--d:2.5s"><span>Done · <b>8 of 8</b></span><span class="prog"><i style="width:100%"></i></span></div>
+          <div class="rail-msg"><i class="bar" style="width:88%"></i><i class="bar" style="width:52%"></i></div>
+          <div class="rail-refs"><i class="bar ref" style="width:96px"></i><i class="bar ref" style="width:118px"></i></div>
+          <div class="rail-offer"><p></p><div class="acts"><span class="rail-btn"></span><span class="rail-btn ghost"></span></div></div>
+          <div class="rail-next"><span></span><span class="prog"><i></i></span></div>
         </div>
-        <div class="rail-comp fx" style="--d:3.2s"><i class="bar" style="width:38%"></i><span class="send"></span></div>
+        <div class="rail-comp"><i class="bar" style="width:38%"></i><span class="send"></span></div>
       </div>
-      <span class="chip chip-amber" style="--d:2.4s; left:-2%; top:2%"><span class="dot"></span>Tender Readiness Summary: what’s left before you submit.</span>
-      <div class="mcard mcard-ready" style="--d:2.9s; left:-3%; bottom:6%"><span class="lab">Readiness summary</span><span class="row"><i class="dot r"></i><b>2</b><i class="bar" style="width:48%"></i></span><span class="row"><i class="dot a"></i><b>4</b><i class="bar" style="width:58%"></i></span><span class="row"><i class="dot g"></i><b>3</b><i class="bar" style="width:40%"></i></span></div>
+      <div data-step="7" class="mcard mcard-prompt" style="--d:0s; left:-3%; bottom:6%"><span class="row"><i class="bk"></i><i class="bar" style="width:70%"></i></span><span class="row"><i class="bk"></i><i class="bar" style="width:54%"></i></span><span class="row"><i class="bk"></i><i class="bar" style="width:62%"></i></span></div>
+      <div data-step="8" class="mcard mcard-ready" style="--d:0s; left:-3%; bottom:6%"><span class="lab">Readiness summary</span><span class="row"><i class="dot r"></i><b>2</b><i class="bar" style="width:48%"></i></span><span class="row"><i class="dot a"></i><b>4</b><i class="bar" style="width:58%"></i></span><span class="row"><i class="dot g"></i><b>3</b><i class="bar" style="width:40%"></i></span></div>
+
     </div>
   </div>
 </section>
-<!-- ============ S9 · YOUR METHOD, YOUR RULES ============ -->
-<section class="scene scene-offwhite" data-label="Your Method" data-dur="4500" id="sceneManager">
+<!-- ============ S7 · YOUR METHOD ============ -->
+<section class="scene scene-offwhite" data-label="Your Method" data-dur="5000" id="sceneManager" data-beats='[{"step": 0, "action": ["ray-09-method.mp4", 0.0, 7.5, 1.5], "result": null, "hold": 0}]'>
   <div class="deco" aria-hidden="true">
     <span class="orb orb-blue" style="width:32vw;height:32vw;left:-10vw;bottom:-12vh"></span>
     <span class="dots" style="width:180px;height:140px;right:5%;top:14%"></span>
@@ -1301,37 +1263,15 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
         <li style="--d:1.55s">Pick a saved prompt from the chat box.</li>
       </ul>
     </div>
-    <div class="stage stage-shot">
-      <div class="win" style="--d:.3s">
-        <div class="win-bar"><span></span><span></span><span></span></div>
-        <img class="shot" src="assets/app/ai-manager-workflows.png" alt="AI Manager: the Workflow Manager, with the Tenderfy Method and a custom workflow" />
-      </div>
+    <div class="stage stage-app">
+      <div class="win deck"><div class="win-bar"><span></span><span></span><span></span></div>
+        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas></div></div>
+      <div class="win deck"><div class="win-bar"><span></span><span></span><span></span></div>
+        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas></div></div>
       <div class="mcard mcard-prompt" style="--d:2.9s; left:-3%; bottom:6%"><span class="row"><i class="bk"></i><i class="bar" style="width:70%"></i></span><span class="row"><i class="bk"></i><i class="bar" style="width:54%"></i></span><span class="row"><i class="bk"></i><i class="bar" style="width:62%"></i></span></div>
     </div>
   </div>
 </section>
-<!-- ============ S9 · PAYOFF ============ -->
-<section class="scene scene-ramp" data-label="The Payoff" data-dur="4500" id="sceneStats">
-  <div class="deco" aria-hidden="true">
-    <span class="dots" style="width:240px;height:180px;left:4%;top:14%;opacity:.3"></span>
-    <span class="dots" style="width:200px;height:160px;right:5%;bottom:10%;opacity:.3"></span>
-    <span class="ring" style="width:130px;height:130px;right:9%;top:18%;border-color:rgba(255,255,255,.4)"></span>
-    <span class="bit" style="left:15%;bottom:26%"></span>
-    <span class="bit bit-mint" style="right:20%;bottom:38%;--bd:7.5s"></span>
-  </div>
-  <p class="eyebrow">The payoff</p>
-  <h2 class="cap">
-    <span class="rw"><span style="--d:.05s">Higher-grade</span></span>
-    <span class="rw"><span style="--d:.14s">tenders,</span></span>
-    <span class="rw"><span class="am" style="--d:.26s">faster.</span></span>
-  </h2>
-  <div class="stats">
-    <div class="stat" style="--d:.6s"><div class="n"><span data-count="60">0</span><small>%</small></div><div class="l">less time preparing tenders</div></div>
-    <div class="stat" style="--d:.85s"><div class="n"><span data-count="25">0</span><small>%+</small></div><div class="l">higher win rates</div></div>
-  </div>
-  <p class="sub fx" style="--d:1.7s">Ray does the majority of the work. You guide, review and approve.</p>
-</section>
-
 <!-- ============ S9 · BRAND END CARD ============ -->
 <section class="scene scene-end" data-label="Tenderfy" data-dur="5000">
   <div class="deco" aria-hidden="true">
@@ -1363,12 +1303,12 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
         <span class="rw"><span style="--d:2.28s">less</span></span>
         <span class="rw"><span style="--d:2.36s">effort.</span></span>
       </h2>
-      <p class="sub end-sub fx" style="--d:2.5s">Say it: “Ray, get this tender started.”</p>
+      <p class="sub end-sub fx" style="--d:2.5s">Ray does the majority of the work. You guide, review and approve.</p>
       <div class="end-actions">
         <a class="btn btn-amber fxs" style="--d:2.9s" href="pricing.html">Try for free →</a>
         <a class="btn btn-ghost fxs" style="--d:3.1s" href="pricing.html">Book a demo</a>
       </div>
-      <p class="end-note fx" style="--d:3.5s">Try a week for free · Cancel anytime</p>
+      <p class="end-note fx" style="--d:3.5s">Say it: “Ray, get this tender started.”</p>
     </div>
   </div>
   <p class="end-ack fx" style="--d:4s">Tenderfy acknowledges the Kombumerri people of the Yugambeh language region, the Traditional Custodians of the land on which we work.</p>
@@ -1477,22 +1417,10 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
 
   // ---- feature videos: each listed scene plays its clip(s) to completion,
   //      then advances. Two-clip scenes play in sequence. ----
-  // ---- RECORDINGS. A scene with a clip plays it to the end (at PLAY_RATE)
-  //      and then advances; a scene without one shows a real screen from the
-  //      Phase 1 prototype and advances on its data-dur timer. When a clip lands, drop it in assets/app/, swap the
-  //      scene's <img class="shot"> for <video class="shot vid">, and map it
-  //      here; the engine then plays it to the end instead of the timer.
-  //      Every step scene has its recording; sceneBuyer plays two clips in
-  //      sequence. Each plays to its end at PLAY_RATE, then the scene advances.
-  //      Clips run at PLAY_RATE (1.5×), so record ~1.5× the target length. ----
-  var VIDS = {
-    sceneRail:    ['ray-00-rail.mp4'],
-    sceneGo:      ['ray-01-gonogo.mp4'],
-    sceneDeliver: ['ray-02-plan.mp4'],
-    sceneBuyer:   ['ray-03-04-buyer.mp4', 'ray-03-04-buyer-2.mp4'],
-    sceneRay:     ['ray-05-06-responses.mp4'],
-    sceneAssemble: ['ray-07-08-build-review.mp4'],
-  };
+  // ---- RECORDINGS are driven by the beat runner at the foot of the page
+  //      (scenes carrying data-beats), not by this player. Each beat seeks a
+  //      window of a clip; the files are never cut.
+  var VIDS = {};
   var activeVideo = null, videoRAF = 0, videoFallback = 0, playlistIdx = 0, preloadTimer = 0;
   var PLAY_RATE = 1.5; // every scene clip runs 50% faster
 
@@ -1848,6 +1776,126 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
   }
   new MutationObserver(sync).observe(document.documentElement, { subtree: true, attributes: true, attributeFilter: ['class'] });
   sync();
+})();
+</script>
+
+<script>
+/* The beat runner. A scene carrying data-beats is driven here instead of by
+   the engine's clip player: each beat seeks a window of a clip and plays it,
+   the settle cut freezes the last action frame on a canvas while the video
+   seeks to the result, and the step change is the next card off the deck.
+   Both windows are paused during any transform. The engine still owns the
+   scene's length (data-dur) and the progress segment. */
+(function () {
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var live = null;      // token for the scene currently running
+  var runningScene = null;
+  function sleep(ms) { return new Promise(function (r) { setTimeout(r, ms); }); }
+  function paused() { return document.body.classList.contains('paused'); }
+  function whileRunning(token) { return live === token; }
+
+  function seekTo(v, file, t) {
+    return new Promise(function (res) {
+      function go() { v.removeEventListener('loadedmetadata', go);
+        var done = function () { v.removeEventListener('seeked', done); res(); };
+        v.addEventListener('seeked', done);
+        try { v.currentTime = t; } catch (e) { res(); } }
+      if (!(v.currentSrc || '').indexOf(file) > -1 || !(v.currentSrc || '').endsWith(file)) {
+        v.src = 'assets/app/' + file; v.load();
+        if (v.readyState >= 1) go(); else v.addEventListener('loadedmetadata', go);
+      } else go();
+    });
+  }
+  function playUntil(v, end, rate, token) {
+    return new Promise(function (res) {
+      var iv;
+      function finish() { clearInterval(iv); v.removeEventListener('timeupdate', onT); try { v.pause(); } catch (e) {} res(); }
+      function onT() { if (v.currentTime >= end - 0.04) finish(); }
+      v.addEventListener('timeupdate', onT);
+      try { v.playbackRate = rate; } catch (e) {}
+      iv = setInterval(function () {
+        if (!whileRunning(token)) { finish(); return; }
+        if (paused()) { if (!v.paused) v.pause(); return; }
+        if (v.paused && v.currentTime < end - 0.04) { try { v.playbackRate = rate; } catch (e) {} var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+      }, 120);
+      var p = v.play(); if (p && p.catch) p.catch(function () {});
+    });
+  }
+  function freeze(win, v) {
+    var c = win.querySelector('canvas.freeze'); if (!c || !v.videoWidth) return;
+    c.width = v.videoWidth; c.height = v.videoHeight;
+    try { c.getContext('2d').drawImage(v, 0, 0, c.width, c.height); c.classList.add('on'); } catch (e) {}
+  }
+  function thaw(win) { var c = win.querySelector('canvas.freeze'); if (c) c.classList.remove('on'); }
+
+  function paintRail(rail, b, ticked) {
+    if (!rail) return;
+    var offer = rail.querySelector('.rail-offer'), p = offer.querySelector('p'), btns = offer.querySelectorAll('.rail-btn');
+    offer.classList.toggle('approve', b.mode === 'approve'); offer.classList.toggle('done', b.mode === 'done');
+    p.innerHTML = b.offer;
+    var labels = b.mode === 'approve' ? ['Approve', 'Amend'] : b.mode === 'done' ? ['Readiness summary', ''] : ['Go ahead', 'Skip'];
+    btns[0].textContent = labels[0]; btns[1].textContent = labels[1]; btns[1].style.display = labels[1] ? '' : 'none';
+    rail.querySelector('.rail-next > span').innerHTML = b.strip;
+    var pct = b.mode === 'done' ? 100 : Math.round(((b.step - 1) + (ticked ? 1 : 0)) / 8 * 100);
+    rail.querySelector('.rail-next .prog i').style.width = pct + '%';
+  }
+  function approve(rail, b) {
+    if (!rail) return;
+    var btn = rail.querySelector('.rail-btn'); btn.classList.add('pressed');
+    setTimeout(function () { btn.classList.remove('pressed'); }, 260);
+    paintRail(rail, b, true);
+  }
+
+  async function runScene(scene) {
+    var token = {}; live = token;
+    var beats = JSON.parse(scene.dataset.beats);
+    var wins = scene.querySelectorAll('.win.deck'), vids = [];
+    wins.forEach(function (w) { w.classList.remove('in', 'out'); thaw(w); vids.push(w.querySelector('video')); });
+    var copies = scene.querySelectorAll('.beatcopy, .beatpoint'), cards = scene.querySelectorAll('.mcard[data-step]');
+    var rail = scene.querySelector('.rail');
+    var cur = 0;
+    for (var i = 0; i < beats.length; i++) {
+      if (!whileRunning(token)) return;
+      var b = beats[i], win = wins[cur], v = vids[cur];
+      copies.forEach(function (c) { c.classList.toggle('on', c.dataset.step === String(b.step)); c.classList.remove('res'); });
+      cards.forEach(function (c) { c.classList.toggle('on', false); });
+      if (b.offer) paintRail(rail, b, false);
+      await seekTo(v, b.action[0], b.action[1]); thaw(win);
+      if (!whileRunning(token)) return;
+      if (i === 0) { await sleep(60); win.classList.add('in'); await sleep(reduced ? 0 : 300); }
+      await playUntil(v, b.action[2], b.action[3], token);
+      if (!whileRunning(token)) return;
+      if (b.result) {
+        freeze(win, v);
+        await seekTo(v, b.result[0], b.result[1]);
+        if (!whileRunning(token)) return;
+        thaw(win); await sleep(reduced ? 0 : 180);
+        copies.forEach(function (c) { if (c.dataset.step === String(b.step)) c.classList.add('res'); });
+        await playUntil(v, b.result[2], b.result[3], token);
+        if (!whileRunning(token)) return;
+        cards.forEach(function (c) { if (c.dataset.step === String(b.step)) c.classList.add('on'); });
+        if (b.offer) approve(rail, b);
+        await sleep((b.hold || 0.5) * 1000);
+      }
+      var next = beats[i + 1]; if (!next) break;
+      var nwin = wins[1 - cur], nv = vids[1 - cur];
+      await seekTo(nv, next.action[0], next.action[1]); thaw(nwin);
+      if (!whileRunning(token)) return;
+      scene.classList.add('moving'); win.classList.add('out'); win.classList.remove('in');
+      await sleep(80); nwin.classList.add('in'); await sleep(reduced ? 0 : 460);
+      scene.classList.remove('moving'); win.classList.remove('out');
+      cur = 1 - cur;
+    }
+  }
+  function stopAll() {
+    live = null;
+    document.querySelectorAll('video.beat').forEach(function (v) { try { v.pause(); } catch (e) {} });
+  }
+  new MutationObserver(function () {
+    var s = document.querySelector('.scene.active');
+    if (s && s.dataset.beats) { if (s !== runningScene) { stopAll(); runningScene = s; runScene(s); } }
+    else if (runningScene) { stopAll(); runningScene = null; }
+  }).observe(document.documentElement, { subtree: true, attributes: true, attributeFilter: ['class'] });
 })();
 </script>
 </body>
