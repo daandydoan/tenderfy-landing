@@ -1846,9 +1846,23 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
     paintRail(rail, b, true);
   }
 
+  /* Over a real network the first seek of a scene costs the clip's opening
+     bytes; done while the previous scene is still playing, it costs nothing
+     visible. Prime the next beat scene's first window as soon as this one
+     starts — one extra decoder, paused. */
+  function prime(scene) {
+    var all = Array.prototype.slice.call(document.querySelectorAll('.scene'));
+    var next = all.slice(all.indexOf(scene) + 1).filter(function (x) { return x.dataset.beats; })[0];
+    if (!next) return;
+    var b = JSON.parse(next.dataset.beats)[0], v = next.querySelector('.win.deck video');
+    if (!b || !v || (v.currentSrc || '').endsWith(b.action[0])) return;
+    seekTo(v, b.action[0], b.action[1]).catch(function () {});
+  }
+
   async function runScene(scene) {
     var token = {}; live = token;
     var beats = JSON.parse(scene.dataset.beats);
+    setTimeout(function () { if (live === token) prime(scene); }, 1500);
     var wins = scene.querySelectorAll('.win.deck'), vids = [];
     wins.forEach(function (w) { w.classList.remove('in', 'out'); thaw(w); vids.push(w.querySelector('video')); });
     var copies = scene.querySelectorAll('.beatcopy, .beatpoint'), cards = scene.querySelectorAll('.mcard[data-step]');
@@ -1891,6 +1905,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
     live = null;
     document.querySelectorAll('video.beat').forEach(function (v) { try { v.pause(); } catch (e) {} });
   }
+  setTimeout(function () { var first = document.querySelector('.scene[data-beats]'); if (first) { var b = JSON.parse(first.dataset.beats)[0], v = first.querySelector('.win.deck video'); if (b && v) seekTo(v, b.action[0], b.action[1]).catch(function () {}); } }, 800);
   new MutationObserver(function () {
     var s = document.querySelector('.scene.active');
     if (s && s.dataset.beats) { if (s !== runningScene) { stopAll(); runningScene = s; runScene(s); } }
