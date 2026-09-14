@@ -144,6 +144,18 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .hook-doc.chat .comp span { flex: 1; height: 5px; border-radius: 3px; background: #ECEFEE; }
 .hook-doc.chat .comp i { width: 12px; height: 12px; border-radius: 50%; background: #0F7355; opacity: .8; flex: none; }
 
+/* ===== Ray's icon, wherever the film speaks as him ===== */
+.rayi { width: 18px; height: 15px; vertical-align: -3px; margin-right: 7px; display: inline-block; }
+.rayi.lg { width: 26px; height: 22px; vertical-align: -6px; margin-right: 9px; }
+.eyebrow .rayi { vertical-align: -4px; }
+.rail-offer .rayi { width: 16px; height: 14px; margin: 0 0 6px; display: block; }
+.mcard .lab .ava, .mcard-go .ava { width: 14px; height: 12px; vertical-align: -2px; margin-right: 4px; }
+.mcard-go .ava { align-self: center; margin-right: 6px; }
+.pre-ray { width: 46px; height: 39px; margin-right: 18px; filter: drop-shadow(0 6px 16px rgba(0,0,0,.35)); }
+.pre-word::before { display: none; }
+.end-ray { margin: 0 0 6px; font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.85); display: flex; align-items: center; }
+.end-ray .rayi.lg { margin-right: 10px; vertical-align: 0; }
+
 /* ===== small skeleton cards, one product object per scene ===== */
 .mcard {
   position: absolute; z-index: 4; width: 150px; background: rgba(255,255,255,.97); color: #2E3C3B;
@@ -863,8 +875,15 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
   transition-duration: .42s; }
 .win.deck .vwrap { position: relative; }
 .win.deck .vwrap video { width: 100%; height: auto; display: block; background: #0d1210; }
-.win.deck .freeze { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; transition: opacity .18s ease-in-out; pointer-events: none; }
+/* the settle cut: the last action frame held on the canvas, then dissolved
+   into the result over the film's own curve — a fade, never a clip. The
+   result frame settles in from a hair larger as the old one goes. */
+.win.deck .freeze { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; transition: opacity .48s cubic-bezier(.76,0,.24,1); pointer-events: none; }
 .win.deck .freeze.on { opacity: 1; transition: none; }
+.win.deck .vwrap video { transition: opacity .3s ease; }
+.win.deck .vwrap.settle video { animation: settleIn .48s cubic-bezier(.76,0,.24,1) both; }
+@keyframes settleIn { from { transform: scale(1.012); } to { transform: none; } }
+.win.deck .vwrap.dim video { opacity: .35; }
 /* the copy column: one block per step, shown in turn; the sub belongs to the pair */
 .beatcol { position: relative; }
 .beatcopy { display: none; }
@@ -901,7 +920,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
 
 <!-- ============ PRELOADER ============ -->
 <div class="preloader" id="preloader" aria-hidden="true">
-  <span class="pre-word" id="preWord">Construction</span>
+  <img class="pre-ray" src="assets/ray-avatar.svg" alt="" /><span class="pre-word" id="preWord">Construction</span>
 </div>
 
 <!-- ============ CURTAIN ============ -->
@@ -966,7 +985,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
     <span class="rw"><span style="--d:1.3s">new</span></span>
     <span class="rw"><span class="am" style="--d:1.38s">chat.</span></span>
   </h1>
-  <p class="hook-kicker fx" style="--d:2.4s">Meet Ray. One teammate who already knows where you’re at.</p>
+  <p class="hook-kicker fx" style="--d:2.4s"><img class="rayi lg" src="assets/ray-avatar.svg" alt="" />Meet Ray. One teammate who already knows where you’re at.</p>
 </section>
 <!-- ============ S2 · MEET RAY ============ -->
 <section class="scene scene-deep" data-label="Meet Ray" data-dur="5500" id="sceneMeet" data-beats='[{"step": 0, "action": ["ray-00-rail.mp4", 0.0, 6.9, 1.5], "result": null, "hold": 0}]'>
@@ -981,7 +1000,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
   </div>
   <div class="split split-vid">
     <div>
-      <p class="eyebrow fx" style="--d:.05s">Ray Agent</p>
+      <p class="eyebrow fx" style="--d:.05s"><img class="rayi" src="assets/ray-avatar.svg" alt="" />Ray Agent</p>
       <h2 class="cap">
         <span class="rw"><span style="--d:.1s">One</span></span>
         <span class="rw"><span class="am" style="--d:.18s">teammate.</span></span><br>
@@ -1006,8 +1025,8 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
         <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas></div></div>
       <div class="win deck"><div class="win-bar"><span></span><span></span><span></span></div>
         <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas></div></div>
-      <div class="mcard mcard-strip" style="--d:2.4s; left:-3%; top:2%"><span class="lab">Next · <b>1 of 8</b> · Go / No-Go</span><span class="prog"><i style="width:12%"></i></span></div>
-      <div class="mcard mcard-go" style="--d:3.0s; right:0; bottom:4%"><span class="pill">Go ahead</span><span class="pill ghost">Skip</span></div>
+      <div class="mcard mcard-strip" style="--d:2.4s; left:-3%; top:2%"><span class="lab"><img class="ava" src="assets/ray-avatar.svg" alt="" />Next · <b>1 of 8</b> · Go / No-Go</span><span class="prog"><i style="width:12%"></i></span></div>
+      <div class="mcard mcard-go" style="--d:3.0s; right:0; bottom:4%"><img class="ava" src="assets/ray-avatar.svg" alt="" /><span class="pill">Go ahead</span><span class="pill ghost">Skip</span></div>
     </div>
   </div>
 </section>
@@ -1021,7 +1040,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
   <div class="split split-vid">
     <div class="beatcol">
       <div class="beatcopy" data-step="1">
-        <p class="eyebrow fx" style="--d:.05s">Step 01 · Go / No-Go</p>
+        <p class="eyebrow fx" style="--d:.05s"><img class="rayi" src="assets/ray-avatar.svg" alt="" />Step 01 · Go / No-Go</p>
         <h2 class="cap">
         <span class="rw"><span style="--d:0.15s">“Let</span></span>
         <span class="rw"><span style="--d:0.22s">me</span></span><br>
@@ -1031,7 +1050,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
         </h2>
       </div>
       <div class="beatcopy" data-step="2">
-        <p class="eyebrow fx" style="--d:.05s">Step 02 · Plan the tender</p>
+        <p class="eyebrow fx" style="--d:.05s"><img class="rayi" src="assets/ray-avatar.svg" alt="" />Step 02 · Plan the tender</p>
         <h2 class="cap">
         <span class="rw"><span style="--d:0.15s">“Let</span></span>
         <span class="rw"><span style="--d:0.22s">me</span></span><br>
@@ -1054,7 +1073,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
         <div class="rail-body">
           <div class="rail-msg"><i class="bar" style="width:88%"></i><i class="bar" style="width:52%"></i></div>
           <div class="rail-refs"><i class="bar ref" style="width:96px"></i><i class="bar ref" style="width:118px"></i></div>
-          <div class="rail-offer"><p></p><div class="acts"><span class="rail-btn"></span><span class="rail-btn ghost"></span></div></div>
+          <div class="rail-offer"><img class="rayi" src="assets/ray-avatar.svg" alt="" /><p></p><div class="acts"><span class="rail-btn"></span><span class="rail-btn ghost"></span></div></div>
           <div class="rail-next"><span></span><span class="prog"><i></i></span></div>
         </div>
         <div class="rail-comp"><i class="bar" style="width:38%"></i><span class="send"></span></div>
@@ -1075,7 +1094,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
   <div class="split split-vid">
     <div class="beatcol">
       <div class="beatcopy" data-step="3">
-        <p class="eyebrow fx" style="--d:.05s">Step 03 · Understand the buyer</p>
+        <p class="eyebrow fx" style="--d:.05s"><img class="rayi" src="assets/ray-avatar.svg" alt="" />Step 03 · Understand the buyer</p>
         <h2 class="cap">
         <span class="rw"><span style="--d:0.15s">“Let</span></span>
         <span class="rw"><span style="--d:0.22s">me</span></span>
@@ -1088,7 +1107,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
         </h2>
       </div>
       <div class="beatcopy" data-step="4">
-        <p class="eyebrow fx" style="--d:.05s">Step 04 · Learn from feedback</p>
+        <p class="eyebrow fx" style="--d:.05s"><img class="rayi" src="assets/ray-avatar.svg" alt="" />Step 04 · Learn from feedback</p>
         <h2 class="cap">
         <span class="rw"><span style="--d:0.15s">“Let</span></span>
         <span class="rw"><span style="--d:0.22s">me</span></span>
@@ -1114,7 +1133,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
         <div class="rail-body">
           <div class="rail-msg"><i class="bar" style="width:88%"></i><i class="bar" style="width:52%"></i></div>
           <div class="rail-refs"><i class="bar ref" style="width:96px"></i><i class="bar ref" style="width:118px"></i></div>
-          <div class="rail-offer"><p></p><div class="acts"><span class="rail-btn"></span><span class="rail-btn ghost"></span></div></div>
+          <div class="rail-offer"><img class="rayi" src="assets/ray-avatar.svg" alt="" /><p></p><div class="acts"><span class="rail-btn"></span><span class="rail-btn ghost"></span></div></div>
           <div class="rail-next"><span></span><span class="prog"><i></i></span></div>
         </div>
         <div class="rail-comp"><i class="bar" style="width:38%"></i><span class="send"></span></div>
@@ -1141,7 +1160,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
   <div class="split split-vid">
     <div class="beatcol">
       <div class="beatcopy" data-step="5">
-        <p class="eyebrow fx" style="--d:.05s">Step 05 · Complete the responses</p>
+        <p class="eyebrow fx" style="--d:.05s"><img class="rayi" src="assets/ray-avatar.svg" alt="" />Step 05 · Complete the responses</p>
         <h2 class="cap">
         <span class="rw"><span style="--d:0.15s">“Let</span></span>
         <span class="rw"><span style="--d:0.22s">me</span></span><br>
@@ -1151,7 +1170,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
         </h2>
       </div>
       <div class="beatcopy" data-step="6">
-        <p class="eyebrow fx" style="--d:.05s">Step 06 · Methodology &amp; technical</p>
+        <p class="eyebrow fx" style="--d:.05s"><img class="rayi" src="assets/ray-avatar.svg" alt="" />Step 06 · Methodology &amp; technical</p>
         <h2 class="cap">
         <span class="rw"><span style="--d:0.15s">“Let</span></span>
         <span class="rw"><span style="--d:0.22s">me</span></span><br>
@@ -1174,7 +1193,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
         <div class="rail-body">
           <div class="rail-msg"><i class="bar" style="width:88%"></i><i class="bar" style="width:52%"></i></div>
           <div class="rail-refs"><i class="bar ref" style="width:96px"></i><i class="bar ref" style="width:118px"></i></div>
-          <div class="rail-offer"><p></p><div class="acts"><span class="rail-btn"></span><span class="rail-btn ghost"></span></div></div>
+          <div class="rail-offer"><img class="rayi" src="assets/ray-avatar.svg" alt="" /><p></p><div class="acts"><span class="rail-btn"></span><span class="rail-btn ghost"></span></div></div>
           <div class="rail-next"><span></span><span class="prog"><i></i></span></div>
         </div>
         <div class="rail-comp"><i class="bar" style="width:38%"></i><span class="send"></span></div>
@@ -1195,7 +1214,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
   <div class="split split-vid">
     <div class="beatcol">
       <div class="beatcopy" data-step="7">
-        <p class="eyebrow fx" style="--d:.05s">Step 07 · Build the tender</p>
+        <p class="eyebrow fx" style="--d:.05s"><img class="rayi" src="assets/ray-avatar.svg" alt="" />Step 07 · Build the tender</p>
         <h2 class="cap">
         <span class="rw"><span style="--d:0.15s">“Let</span></span>
         <span class="rw"><span style="--d:0.22s">me</span></span><br>
@@ -1204,7 +1223,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
         </h2>
       </div>
       <div class="beatcopy" data-step="8">
-        <p class="eyebrow fx" style="--d:.05s">Step 08 · Final review</p>
+        <p class="eyebrow fx" style="--d:.05s"><img class="rayi" src="assets/ray-avatar.svg" alt="" />Step 08 · Final review</p>
         <h2 class="cap">
         <span class="rw"><span style="--d:0.15s">“Then</span></span>
         <span class="rw"><span style="--d:0.22s">let</span></span><br>
@@ -1227,7 +1246,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
         <div class="rail-body">
           <div class="rail-msg"><i class="bar" style="width:88%"></i><i class="bar" style="width:52%"></i></div>
           <div class="rail-refs"><i class="bar ref" style="width:96px"></i><i class="bar ref" style="width:118px"></i></div>
-          <div class="rail-offer"><p></p><div class="acts"><span class="rail-btn"></span><span class="rail-btn ghost"></span></div></div>
+          <div class="rail-offer"><img class="rayi" src="assets/ray-avatar.svg" alt="" /><p></p><div class="acts"><span class="rail-btn"></span><span class="rail-btn ghost"></span></div></div>
           <div class="rail-next"><span></span><span class="prog"><i></i></span></div>
         </div>
         <div class="rail-comp"><i class="bar" style="width:38%"></i><span class="send"></span></div>
@@ -1303,6 +1322,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
         <span class="rw"><span style="--d:2.28s">less</span></span>
         <span class="rw"><span style="--d:2.36s">effort.</span></span>
       </h2>
+      <p class="end-ray fx" style="--d:2.3s"><img class="rayi lg" src="assets/ray-avatar.svg" alt="" />Ray Agent</p>
       <p class="sub end-sub fx" style="--d:2.5s">Ray does the majority of the work. You guide, review and approve.</p>
       <div class="end-actions">
         <a class="btn btn-amber fxs" style="--d:2.9s" href="pricing.html">Try for free →</a>
@@ -1821,12 +1841,20 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
       var p = v.play(); if (p && p.catch) p.catch(function () {});
     });
   }
+  /* Returns true when the frame was captured; when it cannot be (no frame
+     decoded yet), the video dims through the seek instead, so the jump is
+     still a fade and never a cut. */
   function freeze(win, v) {
-    var c = win.querySelector('canvas.freeze'); if (!c || !v.videoWidth) return;
+    var c = win.querySelector('canvas.freeze'); if (!c || !v.videoWidth) { win.querySelector('.vwrap').classList.add('dim'); return false; }
     c.width = v.videoWidth; c.height = v.videoHeight;
-    try { c.getContext('2d').drawImage(v, 0, 0, c.width, c.height); c.classList.add('on'); } catch (e) {}
+    try { c.getContext('2d').drawImage(v, 0, 0, c.width, c.height); c.classList.add('on'); return true; }
+    catch (e) { win.querySelector('.vwrap').classList.add('dim'); return false; }
   }
-  function thaw(win) { var c = win.querySelector('canvas.freeze'); if (c) c.classList.remove('on'); }
+  function thaw(win) {
+    var c = win.querySelector('canvas.freeze'), w = win.querySelector('.vwrap');
+    if (c) c.classList.remove('on');
+    if (w) { w.classList.remove('dim'); w.classList.remove('settle'); void w.offsetWidth; w.classList.add('settle'); setTimeout(function () { w.classList.remove('settle'); }, 520); }
+  }
 
   function paintRail(rail, b, ticked) {
     if (!rail) return;
@@ -1883,7 +1911,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
         freeze(win, v);
         await seekTo(v, b.result[0], b.result[1]);
         if (!whileRunning(token)) return;
-        thaw(win); await sleep(reduced ? 0 : 180);
+        thaw(win); await sleep(reduced ? 0 : 300);
         copies.forEach(function (c) { if (c.dataset.step === String(b.step)) c.classList.add('res'); });
         await playUntil(v, b.result[2], b.result[3], token);
         if (!whileRunning(token)) return;
