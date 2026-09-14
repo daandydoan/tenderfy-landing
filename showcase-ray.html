@@ -710,6 +710,56 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 
 /* ============ REDUCED MOTION ============ */
 html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animation-delay: 0s !important; animation-iteration-count: 1 !important; }
+/* ===== Ray's palette: navy base, sky highlights, amber warmth =====
+   The product film is teal because Tenderfy is. This one is about Ray, whose
+   own surface in the app is a dark slate — so the base moves to the cool end
+   of the brand ramp and the mint highlights become sky blue. Amber stays: it
+   is the one warm note both films share. Declared after the base rules so
+   equal specificity wins on order.                                          */
+:root {
+  --dark: #131A27; --dark-2: #0D121C;
+  --sky: #8FB8FF; --sky-deep: #2F5FB3; --sky-50: #E8F0FE;
+  --brand-ramp: #FFBC4A 4%, #D9A15A 12%, #8C7690 28%, #4C68B6 50%, #2F53A6 72%, #17306A 94%;
+}
+body { background: var(--dark); }
+.scene-dark {
+  background:
+    radial-gradient(60% 70% at 100% 0%, rgba(79,124,214,.22), transparent 62%),
+    radial-gradient(55% 62% at 0% 100%, rgba(255,188,74,.09), transparent 60%),
+    var(--dark);
+}
+.scene-deep {
+  background:
+    radial-gradient(110% 140% at 100% 0%, rgba(63,100,196,.5), transparent 58%),
+    radial-gradient(70% 80% at 0% 100%, rgba(255,188,74,.14), transparent 60%),
+    var(--dark-2);
+}
+.scene-offwhite {
+  background:
+    radial-gradient(55% 60% at 0% 100%, rgba(255,188,74,.08), transparent 60%),
+    radial-gradient(50% 55% at 100% 0%, rgba(79,124,214,.10), transparent 60%),
+    var(--offwhite);
+}
+.scene-light { background: radial-gradient(55% 60% at 100% 0%, rgba(79,124,214,.08), transparent 60%), #fff; }
+.scene-end  { background: radial-gradient(135% 150% at 94% -12%, #6A83C9 0%, #4C68B6 18%, #3557AA 42%, #22449A 66%, #142C66 100%); }
+.scene-dark .eyebrow, .scene-deep .eyebrow { color: var(--sky); }
+.scene-offwhite .eyebrow, .scene-light .eyebrow { color: var(--sky-deep); }
+.tl { color: var(--sky-deep); }
+.tl-bright { color: var(--sky); }
+.scene-dark .toc-item .ti-n, .scene-deep .toc-item .ti-n,
+.scene-dark .toc-item .ti-ok, .scene-deep .toc-item .ti-ok { color: var(--sky); }
+.scene-dark .chip, .scene-deep .chip { box-shadow: 0 16px 36px -10px rgba(0,0,0,.45), 0 0 24px -6px rgba(143,184,255,.5); }
+.chip-tl { background: var(--sky-deep); }
+.orb-teal { background: radial-gradient(circle, rgba(99,140,230,.7), transparent 70%); }
+.scene-light .dots, .scene-offwhite .dots { color: var(--sky-deep); }
+.scene-light .ring, .scene-offwhite .ring { border-color: rgba(47,95,179,.28); }
+.scene-light .ring::before, .scene-offwhite .ring::before { border-color: rgba(47,95,179,.2); }
+.bit-mint { background: var(--sky); box-shadow: 0 0 16px 3px rgba(143,184,255,.55); }
+.pre-word::before { background: var(--sky); box-shadow: 0 0 18px 4px rgba(143,184,255,.55); }
+.win-bar span:first-child { background: var(--sky-deep); }
+.end-tagline .tg-mint { color: var(--sky); }
+/* the rail keeps the product's teal accent — it is drawn from the app, not the film */
+
 </style>
   <script>if(location.hostname.indexOf("tenderfy.org")===-1){document.head.appendChild(Object.assign(document.createElement("meta"),{name:"robots",content:"noindex,nofollow"}));}</script>
 </head>
