@@ -144,6 +144,19 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .hook-doc.chat .comp span { flex: 1; height: 5px; border-radius: 3px; background: #ECEFEE; }
 .hook-doc.chat .comp i { width: 12px; height: 12px; border-radius: 50%; background: #0F7355; opacity: .8; flex: none; }
 
+/* ===== the hook's payoff: Ray, large, in an amber halo ===== */
+.hook-ray { position: relative; width: 160px; height: 136px; margin: clamp(14px, 2.6vh, 26px) auto 0; display: grid; place-items: center; }
+.hook-ray .halo { position: absolute; inset: -34px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,188,74,.55) 0%, rgba(255,188,74,.18) 42%, rgba(255,188,74,0) 68%);
+  filter: blur(8px); animation: haloBreathe 3.4s ease-in-out infinite; }
+.hook-ray .halo-2 { inset: -10px; background: radial-gradient(circle, rgba(111,208,173,.35), rgba(111,208,173,0) 70%); animation-delay: -1.7s; }
+.hook-ray img { position: relative; width: 122px; height: auto; filter: drop-shadow(0 20px 34px rgba(0,0,0,.5)); animation: rayBob 4.2s ease-in-out infinite; }
+@keyframes haloBreathe { 0%, 100% { transform: scale(1); opacity: .85; } 50% { transform: scale(1.12); opacity: 1; } }
+@keyframes rayBob { 0%, 100% { translate: 0 0; rotate: -1.5deg; } 50% { translate: 0 -8px; rotate: 1.5deg; } }
+/* the chats leave a little sooner, so Ray has the frame to himself */
+.active .hook-doc { animation-delay: var(--d, 0s), 2.4s; }
+@media (prefers-reduced-motion: reduce) { .hook-ray .halo, .hook-ray img { animation: none; } }
+
 /* ===== Ray's icon, wherever the film speaks as him ===== */
 .rayi { width: 18px; height: 15px; vertical-align: -3px; margin-right: 7px; display: inline-block; }
 .rayi.lg { width: 26px; height: 22px; vertical-align: -6px; margin-right: 9px; }
@@ -957,7 +970,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
 </div>
 
 <!-- ============ S1 · HOOK ============ -->
-<section class="scene scene-dark" data-label="The Old Way" data-dur="3500">
+<section class="scene scene-dark" data-label="The Old Way" data-dur="5200">
   <svg class="clip-mark" viewBox="0 0 32 65" aria-hidden="true"><use href="#clipSym"/></svg>
   <div class="deco" aria-hidden="true">
     <span class="orb orb-teal" style="width:42vw;height:42vw;left:-12vw;top:-14vh"></span>
@@ -985,7 +998,8 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
     <span class="rw"><span style="--d:1.3s">new</span></span>
     <span class="rw"><span class="am" style="--d:1.38s">chat.</span></span>
   </h1>
-  <p class="hook-kicker fx" style="--d:2.4s"><img class="rayi lg" src="assets/ray-avatar.svg" alt="" />Meet Ray. One teammate who already knows where you’re at.</p>
+  <div class="hook-ray fx" style="--d:2.8s" aria-hidden="true"><span class="halo"></span><span class="halo halo-2"></span><img src="assets/ray-avatar.svg" alt="" /></div>
+  <p class="hook-kicker fx" style="--d:3.2s">Meet Ray. One teammate who already knows where you’re at.</p>
 </section>
 <!-- ============ S2 · MEET RAY ============ -->
 <section class="scene scene-deep" data-label="Meet Ray" data-dur="5500" id="sceneMeet" data-beats='[{"step": 0, "action": ["ray-00-rail.mp4", 0.0, 6.9, 1.5], "result": null, "hold": 0}]'>
