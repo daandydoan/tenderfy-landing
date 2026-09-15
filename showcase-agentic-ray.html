@@ -948,24 +948,52 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
 @media (prefers-reduced-motion: reduce) { .win.deck, .win.deck.out, .win.deck .freeze, .rail-next .prog i { transition: none !important; } }
 
 /* ===== V4 · the drawing sheet ===============================================
-   Tokens for this film only. Paper, ink, teal, amber, one grid.            */
-.v4 { --paper: #F4F8F6; --ink: #0F1A17; --ink-2: #33423E; --dim: #6B7975; --line: #D3DDD8; --teal: #1D9E75; --teal-2: #0F7355; --amber: #E8A33A; --red: #C6483B; --grid: rgba(29,158,117,.10); --grid-2: rgba(29,158,117,.18); }
-.scene-sheet { background:
-  linear-gradient(var(--grid-2) 1px, transparent 1px) 0 0 / 120px 120px,
-  linear-gradient(90deg, var(--grid-2) 1px, transparent 1px) 0 0 / 120px 120px,
-  linear-gradient(var(--grid) 1px, transparent 1px) 0 0 / 24px 24px,
-  linear-gradient(90deg, var(--grid) 1px, transparent 1px) 0 0 / 24px 24px,
-  radial-gradient(70% 60% at 50% 40%, #FFFFFF, transparent 70%), var(--paper); color: var(--ink); }
-.scene-ink { --paper: #0F1A17; --ink: #F2F6F4; --ink-2: #C7D2CD; --dim: #8A9994; --line: #24332E; --grid: rgba(111,208,173,.08); --grid-2: rgba(111,208,173,.16);
+   Tokens for this film only. Tenderfy's teal, green and amber do the work
+   (ticks, buttons, the stamp); the grounds and accents come from across the
+   wheel: coral, plum, slate blue, sand. Each scene owns one.               */
+.v4 { --paper: #F4F8F6; --ink: #0F1A17; --ink-2: #33423E; --dim: #6B7975; --line: #D3DDD8; --teal: #1D9E75; --teal-2: #0F7355; --amber: #E8A33A; --red: #C6483B;
+      --acc: #0F7355; --grid: rgba(29,158,117,.10); --grid-2: rgba(29,158,117,.18); --curtain: #1B1430; }
+/* sand · coral */
+.scene-sand { --paper: #F6EFE3; --ink: #1F1A14; --ink-2: #4A4038; --dim: #857A6C; --line: #E2D8C8; --acc: #D95F45; --curtain: #D95F45;
   background:
-  linear-gradient(var(--grid-2) 1px, transparent 1px) 0 0 / 120px 120px,
-  linear-gradient(90deg, var(--grid-2) 1px, transparent 1px) 0 0 / 120px 120px,
-  linear-gradient(var(--grid) 1px, transparent 1px) 0 0 / 24px 24px,
-  linear-gradient(90deg, var(--grid) 1px, transparent 1px) 0 0 / 24px 24px,
-  radial-gradient(60% 55% at 50% 30%, rgba(29,158,117,.28), transparent 70%), #0F1A17; color: var(--ink); }
-.v4 .grid-deco .crop { position: absolute; width: 22px; height: 22px; border: 1.5px solid var(--teal); opacity: .55; }
+  repeating-linear-gradient(-45deg, rgba(217,95,69,.0) 0 22px, rgba(217,95,69,.06) 22px 23px),
+  radial-gradient(70% 60% at 50% 40%, #FFFBF4, transparent 70%), var(--paper); color: var(--ink); }
+/* blush · plum */
+.scene-blush { --paper: #F8ECE9; --ink: #221626; --ink-2: #4D3A52; --dim: #8B7590; --line: #E6D6DC; --acc: #5A3D7C; --curtain: #5A3D7C;
+  background: radial-gradient(70% 60% at 50% 40%, #FFF7F5, transparent 70%), var(--paper); color: var(--ink); }
+/* lilac · slate */
+.scene-lilac { --paper: #EDEAF6; --ink: #141A2E; --ink-2: #3B4260; --dim: #767D98; --line: #D8D6E8; --acc: #2E4C7E; --curtain: #2E4C7E;
+  background:
+  radial-gradient(rgba(46,76,126,.16) 1.2px, transparent 1.4px) 0 0 / 22px 22px,
+  radial-gradient(70% 60% at 50% 40%, #F8F6FE, transparent 70%), var(--paper); color: var(--ink); }
+/* ink · plum, for the open and the end */
+.scene-ink { --paper: #1B1430; --ink: #F5F1F8; --ink-2: #CFC6DA; --dim: #8F86A0; --line: #302646; --acc: #F0866C; --curtain: #0F1A17;
+  background: radial-gradient(60% 55% at 50% 28%, rgba(240,134,108,.22), transparent 70%), #1B1430; color: var(--ink); }
+.v4end.scene-ink { background: radial-gradient(60% 55% at 50% 28%, rgba(29,158,117,.3), transparent 70%), #1B1430; }
+/* deco, one kind per scene */
+.v4 .grid-deco > i { position: absolute; pointer-events: none; }
+.v4 .grid-deco .crop { width: 22px; height: 22px; border: 1.5px solid var(--acc); opacity: .6; }
 .v4 .crop.tl { left: 28px; top: 74px; border-right: 0; border-bottom: 0; } .v4 .crop.tr { right: 28px; top: 74px; border-left: 0; border-bottom: 0; }
 .v4 .crop.bl { left: 28px; bottom: 74px; border-right: 0; border-top: 0; } .v4 .crop.br { right: 28px; bottom: 74px; border-left: 0; border-top: 0; }
+.v4 .hatch { left: -6vw; bottom: -8vh; width: 46vw; height: 46vh; background: repeating-linear-gradient(45deg, rgba(217,95,69,.16) 0 2px, transparent 2px 14px); clip-path: polygon(0 100%, 100% 100%, 0 0); opacity: .8; }
+.v4 .rings { right: -14vw; top: -18vh; width: 62vw; height: 62vw; border-radius: 50%; background: repeating-radial-gradient(circle, rgba(90,61,124,.14) 0 1.5px, transparent 1.5px 40px); }
+.v4 .dots { left: 4vw; top: 12vh; width: 26vw; height: 40vh; background: radial-gradient(rgba(46,76,126,.35) 1.5px, transparent 1.8px) 0 0 / 14px 14px; mask-image: linear-gradient(135deg, #000, transparent 80%); -webkit-mask-image: linear-gradient(135deg, #000, transparent 80%); }
+.v4 .disc { left: 50%; top: 50%; width: min(64vh, 70vw); height: min(64vh, 70vw); border-radius: 50%; background: radial-gradient(circle, rgba(217,95,69,.28), rgba(217,95,69,.06) 70%, transparent 72%); transform: translate(-50%, -56%); }
+.v4 .glow.coral { left: 50%; top: 22%; width: 60vw; height: 40vh; transform: translateX(-50%); background: radial-gradient(ellipse, rgba(240,134,108,.35), transparent 65%); filter: blur(10px); }
+.v4 .glow.teal { left: 50%; top: 18%; width: 60vw; height: 40vh; transform: translateX(-50%); background: radial-gradient(ellipse, rgba(111,208,173,.35), transparent 65%); filter: blur(10px); }
+.v4 .arc { left: 50%; bottom: -46vh; width: 120vw; height: 90vh; transform: translateX(-50%); border-radius: 50%; border: 1px solid rgba(240,134,108,.35); }
+/* the curtain, in three shapes */
+.curtain.h::before, .curtain.h::after { top: -10%; height: 120%; width: 12vw; left: auto; border-radius: 50%; }
+.curtain.h::before { left: -6vw; } .curtain.h::after { right: -6vw; }
+.curtain.flat::before, .curtain.flat::after { display: none; }
+/* card moves: the deck push (V3's), a lateral slide, and the park-behind */
+.push-slide .stage-app .win.deck { transform: translate(64px, -50%); }
+.push-slide .stage-app .win.deck.in { transform: translateY(-50%); }
+.push-slide .stage-app .win.deck.out { transform: translate(-64px, -50%); opacity: 0; }
+.push-park .stage-app .win.deck { transform: translateY(calc(-50% + 64px)) scale(.96); transition-duration: .42s; }
+.push-park .stage-app .win.deck.in { transform: translateY(-50%) scale(1); z-index: 4; }
+.push-park .stage-app .win.deck.out, .push-park .stage-app .win.deck.parked { opacity: .55; transform: translateY(calc(-50% - 30px)) scale(.92); z-index: 2; transition-duration: .42s; }
+.push-park .stage-app .win.deck.parked .stamp { opacity: .92; }
 body.on-light .chrome-label, body.on-light .chrome-brand { color: var(--ink, #0F1A17); }
 
 /* the column: sheet above, caption band below */
@@ -977,7 +1005,7 @@ body.on-light .chrome-label, body.on-light .chrome-brand { color: var(--ink, #0F
 .v4 .win.deck .win-bar { display: none; }
 .v4 .sheet-bar { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 12px; padding: 7px 12px; border-bottom: 1px solid var(--line);
   font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: var(--dim); font-weight: 600; }
-.v4 .sheet-bar .sb-m { text-align: center; color: var(--teal-2); }
+.v4 .sheet-bar .sb-m { text-align: center; color: var(--acc); }
 .v4 .win.deck .vwrap { aspect-ratio: 16 / 8.2; overflow: hidden; background: #fff; }
 .v4 .win.deck .vwrap video { height: 100%; object-fit: cover; }
 .v4 .win.deck.ph-win .vwrap video, .v4 .win.deck.ph-win canvas.freeze { display: none; }
@@ -1006,9 +1034,9 @@ body.on-light .chrome-label, body.on-light .chrome-brand { color: var(--ink, #0F
 .v4ready .v4cap { position: static; }
 
 /* the rail as Ray's job card: same slots the runner paints, new dress */
-.v4 .stage-app .rail.mini { right: 0; bottom: 0; width: 22%; min-width: 200px; z-index: 6; border-radius: 10px; border: 1px solid var(--line); background: #fff; box-shadow: 0 24px 50px -28px rgba(15,26,23,.45); }
+.v4 .stage-app .rail.mini { right: 0; bottom: 0; width: 22%; min-width: 200px; z-index: 6; border-radius: 10px; border: 1px solid var(--line); border-top: 3px solid var(--acc); background: #fff; box-shadow: 0 24px 50px -28px rgba(15,26,23,.45); }
 .v4rail .rail-head { padding: 9px 12px; gap: 8px; } .v4rail .rail-head img { width: 20px; height: 18px; }
-.v4rail .rh-t { font-weight: 600; font-size: 12px; color: var(--ink-2); } .v4rail .rh-s { margin-left: auto; font-size: 10px; color: var(--teal-2); letter-spacing: .1em; text-transform: uppercase; }
+.v4rail .rh-t { font-weight: 600; font-size: 12px; color: var(--ink-2); } .v4rail .rh-s { margin-left: auto; font-size: 10px; color: var(--acc); letter-spacing: .1em; text-transform: uppercase; }
 .v4rail .rail-body { padding: 10px 12px 12px; gap: 8px; }
 .v4rail .rail-you { display: none; font-size: 11px; line-height: 1.3; color: var(--ink-2); background: #F3F6F4; border-radius: 9px 9px 2px 9px; padding: 6px 8px; margin-left: 14%; }
 .v4rail .rail-you.on { display: block; }
@@ -1111,12 +1139,12 @@ body.on-light .chrome-label, body.on-light .chrome-brand { color: var(--ink, #0F
 .open-sheet .tb-who { display: flex; align-items: center; gap: 6px; font-weight: 600; color: #33423E; } .open-sheet .tb-who img { width: 16px; height: 14px; }
 .open-sheet .tb-sig { letter-spacing: .12em; text-transform: uppercase; font-size: 9px; } .open-sheet .tb-line { height: 1px; background: #D3DDD8; }
 .open-ray { position: relative; width: 112px; height: 96px; display: grid; place-items: center; margin-top: -4px; }
-.open-ray .ring { position: absolute; inset: -6px; border-radius: 50%; border: 1.5px dashed rgba(111,208,173,.6); animation: spin 26s linear infinite; }
+.open-ray .ring { position: absolute; inset: -6px; border-radius: 50%; border: 1.5px dashed rgba(240,134,108,.7); animation: spin 26s linear infinite; }
 .open-ray img { width: 84px; filter: drop-shadow(0 18px 30px rgba(0,0,0,.5)); }
 @keyframes spin { to { transform: rotate(360deg); } }
-.v4open .eyebrow, .v4end .eyebrow { color: #6FD0AD; letter-spacing: .22em; }
+.v4open .eyebrow { color: #F0866C; letter-spacing: .22em; } .v4end .eyebrow { color: #6FD0AD; letter-spacing: .22em; }
 .v4big { font-size: clamp(40px, 6.4vw, 92px); line-height: 1; margin: 0; }
-.v4big .tl-bright { color: #6FD0AD; }
+.v4open .v4big .tl-bright { color: #F0866C; } .v4end .v4big .tl-bright { color: #6FD0AD; }
 .open-kicker { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; color: var(--ink-2); font-size: clamp(15px, 1.5vw, 20px); margin: 6px 0 0; }
 .open-kicker span + span::before { content: '·'; margin-right: 14px; color: var(--dim); }
 .open-kicker.moves span { color: #6FD0AD; font-weight: 600; letter-spacing: .04em; }
@@ -1199,8 +1227,8 @@ body.on-light .chrome-label, body.on-light .chrome-brand { color: var(--ink, #0F
   </div>
 </div>
 
-<section class="scene scene-ink v4 v4open" data-label="Agentic Ray" data-dur="5600" id="sceneOpen">
-  <div class="grid-deco" aria-hidden="true"></div>
+<section class="scene scene-ink v4 v4open" data-label="Agentic Ray" data-dur="5600" id="sceneOpen" data-wipe="up">
+  <div class="grid-deco" aria-hidden="true"><i class="glow coral"></i><i class="arc"></i></div>
   <div class="open-wrap">
     <div class="open-sheet fx" style="--d:.1s" aria-hidden="true">
       <div class="sheet-bar"><span class="sb-l">TENDERFY</span><span class="sb-m">New tender · RFT 2026-114</span><span class="sb-r">REV A</span></div>
@@ -1217,9 +1245,9 @@ body.on-light .chrome-label, body.on-light .chrome-brand { color: var(--ink, #0F
     <p class="open-kicker fx" style="--d:1.9s"><span>You guide.</span><span>Ray does the work.</span><span>You approve.</span></p>
   </div>
 </section>
-<section class="scene scene-sheet scene-offwhite pair v4" data-label="Understand · Plan" data-dur="16080" id="scenePair1"
-         data-beats='[{"step": 1, "action": ["", 0, 3.4, 1], "result": ["", 0, 2.6, 1], "hold": 1.3, "offer": "Go / No-Go assessment ready for your approval.", "mode": "approve", "strip": "<b>1 of 8</b> \u00b7 Go / No-Go \u00b7 Awaiting your approval", "work": ["Reviewing the tender pack", "Identifying key requirements", "Checking your company knowledge"], "ticks": null, "prompt": null, "tb": "Step 01 \u00b7 Go / No-Go", "rec": "ray-01-gonogo \u00b7 0:00 to 0:04, 0:24 to 0:27"}, {"step": 2, "action": ["", 0, 2.8, 1], "result": ["", 0, 3.2, 1], "hold": 1.2, "offer": "Delivery plan ready for your approval.", "mode": "approve", "strip": "<b>2 of 8</b> \u00b7 Plan the tender \u00b7 Awaiting your approval", "work": null, "ticks": ["Delivery plan created", "Tasks identified", "Owners proposed", "Deadlines mapped"], "prompt": null, "tb": "Step 02 \u00b7 Plan the tender", "rec": "ray-02-plan \u00b7 0:00 to 0:03, 0:40 to 0:46"}]'>
-  <div class="grid-deco" aria-hidden="true"><i class="crop tl"></i><i class="crop tr"></i><i class="crop bl"></i><i class="crop br"></i></div>
+<section class="scene scene-sand scene-offwhite pair v4 push-park" data-label="Understand · Plan" data-dur="16080" id="scenePair1"
+         data-wipe="right" data-beats='[{"step": 1, "action": ["", 0, 3.4, 1], "result": ["", 0, 2.6, 1], "hold": 1.3, "offer": "Go / No-Go assessment ready for your approval.", "mode": "approve", "strip": "<b>1 of 8</b> \u00b7 Go / No-Go \u00b7 Awaiting your approval", "work": ["Reviewing the tender pack", "Identifying key requirements", "Checking your company knowledge"], "ticks": null, "prompt": null, "tb": "Step 01 \u00b7 Go / No-Go", "rec": "ray-01-gonogo \u00b7 0:00 to 0:04, 0:24 to 0:27"}, {"step": 2, "action": ["", 0, 2.8, 1], "result": ["", 0, 3.2, 1], "hold": 1.2, "offer": "Delivery plan ready for your approval.", "mode": "approve", "strip": "<b>2 of 8</b> \u00b7 Plan the tender \u00b7 Awaiting your approval", "work": null, "ticks": ["Delivery plan created", "Tasks identified", "Owners proposed", "Deadlines mapped"], "prompt": null, "tb": "Step 02 \u00b7 Plan the tender", "rec": "ray-02-plan \u00b7 0:00 to 0:03, 0:40 to 0:46"}]'>
+  <div class="grid-deco" aria-hidden="true"><i class="hatch"></i><i class="crop tl"></i><i class="crop tr"></i><i class="crop bl"></i><i class="crop br"></i></div>
   <div class="v4col">
     <div class="stage stage-app">
       <div class="win deck ph-win"><div class="sheet-bar"><span class="sb-l">TENDERFY</span><span class="sb-m tb-step"></span><span class="sb-r">REV A</span></div>
@@ -1253,9 +1281,9 @@ body.on-light .chrome-label, body.on-light .chrome-brand { color: var(--ink, #0F
     </div>
   </div>
 </section>
-<section class="scene scene-sheet scene-offwhite pair v4" data-label="The ask · The plan" data-dur="16580" id="scenePair2"
-         data-beats='[{"step": 4, "action": ["", 0, 3.0, 1], "result": ["", 0, 2.8, 1], "hold": 1.5, "offer": "School drop-off and pick-up is a key disruption risk. Want a targeted management plan?", "mode": "ask", "strip": "<b>3 to 4 of 8</b> \u00b7 Understand the buyer \u00b7 Your call", "work": ["Analysing buyer priorities", "Finding your evidence"], "ticks": null, "prompt": null, "tb": "Steps 03 to 04 \u00b7 Understand the buyer", "rec": "ray-03-04-buyer \u00b7 0:00 to 0:03"}, {"step": 6, "action": ["", 0, 3.4, 1], "result": ["", 0, 3.0, 1], "hold": 1.3, "offer": "Your disruption management plan is ready for review.", "mode": "approve", "strip": "<b>6 of 8</b> \u00b7 Methodology \u00b7 Awaiting your approval", "work": ["Analysing traffic and access", "Developing mitigation measures", "Creating the plan"], "ticks": null, "prompt": null, "tb": "Steps 05 to 06 \u00b7 Methodology", "rec": "NEW ray-11-plan-doc \u00b7 8s"}]'>
-  <div class="grid-deco" aria-hidden="true"><i class="crop tl"></i><i class="crop tr"></i><i class="crop bl"></i><i class="crop br"></i></div>
+<section class="scene scene-blush scene-offwhite pair v4 push-slide" data-label="The ask · The plan" data-dur="16580" id="scenePair2"
+         data-wipe="iris" data-beats='[{"step": 4, "action": ["", 0, 3.0, 1], "result": ["", 0, 2.8, 1], "hold": 1.5, "offer": "School drop-off and pick-up is a key disruption risk. Want a targeted management plan?", "mode": "ask", "strip": "<b>3 to 4 of 8</b> \u00b7 Understand the buyer \u00b7 Your call", "work": ["Analysing buyer priorities", "Finding your evidence"], "ticks": null, "prompt": null, "tb": "Steps 03 to 04 \u00b7 Understand the buyer", "rec": "ray-03-04-buyer \u00b7 0:00 to 0:03"}, {"step": 6, "action": ["", 0, 3.4, 1], "result": ["", 0, 3.0, 1], "hold": 1.3, "offer": "Your disruption management plan is ready for review.", "mode": "approve", "strip": "<b>6 of 8</b> \u00b7 Methodology \u00b7 Awaiting your approval", "work": ["Analysing traffic and access", "Developing mitigation measures", "Creating the plan"], "ticks": null, "prompt": null, "tb": "Steps 05 to 06 \u00b7 Methodology", "rec": "NEW ray-11-plan-doc \u00b7 8s"}]'>
+  <div class="grid-deco" aria-hidden="true"><i class="rings"></i><i class="crop tl"></i><i class="crop tr"></i><i class="crop bl"></i><i class="crop br"></i></div>
   <div class="v4col">
     <div class="stage stage-app">
       <div class="win deck ph-win"><div class="sheet-bar"><span class="sb-l">TENDERFY</span><span class="sb-m tb-step"></span><span class="sb-r">REV A</span></div>
@@ -1295,9 +1323,9 @@ body.on-light .chrome-label, body.on-light .chrome-brand { color: var(--ink, #0F
     </div>
   </div>
 </section>
-<section class="scene scene-sheet scene-offwhite pair v4" data-label="Tailor · Build and check" data-dur="16580" id="scenePair3"
-         data-beats='[{"step": 7, "action": ["", 0, 3.4, 1], "result": ["", 0, 2.8, 1], "hold": 1.2, "offer": "Resumes and project profiles tailored. Ready for your approval.", "mode": "approve", "strip": "<b>7 of 8</b> \u00b7 Build the tender \u00b7 Awaiting your approval", "work": ["Matching relevant experience", "Tailoring to the buyer\u2019s language", "Adding them to the tender build"], "ticks": null, "prompt": "Tailor the most relevant resumes and project profiles to this buyer.", "tb": "Step 07 \u00b7 Build the tender", "rec": "NEW ray-12-tailor \u00b7 8s"}, {"step": 8, "action": ["", 0, 3.2, 1], "result": ["", 0, 2.8, 1], "hold": 1.6, "offer": "<b>All 8 steps done.</b> Every one approved by you. <b>You submit.</b>", "mode": "done", "strip": "Done \u00b7 <b>8 of 8</b>", "work": ["Building the tender documents", "Checking compliance", "Flagging missing information"], "ticks": null, "prompt": null, "tb": "Step 08 \u00b7 Final review", "rec": "ray-07-08-build-review \u00b7 0:13 to 0:16, 0:22 to 0:25"}]'>
-  <div class="grid-deco" aria-hidden="true"><i class="crop tl"></i><i class="crop tr"></i><i class="crop bl"></i><i class="crop br"></i></div>
+<section class="scene scene-lilac scene-offwhite pair v4 push-deck" data-label="Tailor · Build and check" data-dur="16580" id="scenePair3"
+         data-wipe="diag" data-beats='[{"step": 7, "action": ["", 0, 3.4, 1], "result": ["", 0, 2.8, 1], "hold": 1.2, "offer": "Resumes and project profiles tailored. Ready for your approval.", "mode": "approve", "strip": "<b>7 of 8</b> \u00b7 Build the tender \u00b7 Awaiting your approval", "work": ["Matching relevant experience", "Tailoring to the buyer\u2019s language", "Adding them to the tender build"], "ticks": null, "prompt": "Tailor the most relevant resumes and project profiles to this buyer.", "tb": "Step 07 \u00b7 Build the tender", "rec": "NEW ray-12-tailor \u00b7 8s"}, {"step": 8, "action": ["", 0, 3.2, 1], "result": ["", 0, 2.8, 1], "hold": 1.6, "offer": "<b>All 8 steps done.</b> Every one approved by you. <b>You submit.</b>", "mode": "done", "strip": "Done \u00b7 <b>8 of 8</b>", "work": ["Building the tender documents", "Checking compliance", "Flagging missing information"], "ticks": null, "prompt": null, "tb": "Step 08 \u00b7 Final review", "rec": "ray-07-08-build-review \u00b7 0:13 to 0:16, 0:22 to 0:25"}]'>
+  <div class="grid-deco" aria-hidden="true"><i class="dots"></i><i class="crop tl"></i><i class="crop tr"></i><i class="crop bl"></i><i class="crop br"></i></div>
   <div class="v4col">
     <div class="stage stage-app">
       <div class="win deck ph-win"><div class="sheet-bar"><span class="sb-l">TENDERFY</span><span class="sb-m tb-step"></span><span class="sb-r">REV A</span></div>
@@ -1330,8 +1358,8 @@ body.on-light .chrome-label, body.on-light .chrome-brand { color: var(--ink, #0F
     </div>
   </div>
 </section>
-<section class="scene scene-sheet scene-offwhite v4 v4ready" data-label="Ready" data-dur="5200" id="sceneReady">
-  <div class="grid-deco" aria-hidden="true"><i class="crop tl"></i><i class="crop tr"></i><i class="crop bl"></i><i class="crop br"></i></div>
+<section class="scene scene-sand scene-offwhite v4 v4ready" data-label="Ready" data-dur="5200" id="sceneReady" data-wipe="iris">
+  <div class="grid-deco" aria-hidden="true"><i class="disc"></i><i class="crop tl"></i><i class="crop tr"></i><i class="crop bl"></i><i class="crop br"></i></div>
   <div class="v4col">
     <div class="ready-stage">
       <div class="cover fx" style="--d:.15s" aria-hidden="true">
@@ -1347,8 +1375,8 @@ body.on-light .chrome-label, body.on-light .chrome-brand { color: var(--ink, #0F
     <div class="capband"><p class="v4cap on">Tender built. Ready for you to submit.</p></div>
   </div>
 </section>
-<section class="scene scene-ink v4 v4end" data-label="Tenderfy" data-dur="5200" id="sceneEnd">
-  <div class="grid-deco" aria-hidden="true"></div>
+<section class="scene scene-ink v4 v4end" data-label="Tenderfy" data-dur="5200" id="sceneEnd" data-wipe="up">
+  <div class="grid-deco" aria-hidden="true"><i class="glow teal"></i></div>
   <div class="open-wrap">
     <div class="open-ray fx" style="--d:.1s" aria-hidden="true"><span class="ring"></span><img src="assets/ray-avatar.svg" alt="" /></div>
     <p class="eyebrow fx" style="--d:.4s">Agentic Ray</p>
@@ -1362,6 +1390,36 @@ body.on-light .chrome-label, body.on-light .chrome-brand { color: var(--ink, #0F
     <div class="end-ctas fx" style="--d:2.2s"><span class="cta">Try for free →</span><span class="cta ghost">Book a demo</span></div>
   </div>
 </section>
+
+<script>
+/* V4 curtains. The engine animates one fixed vertical wipe; this takes over
+   that call and picks the wipe and the colour from the scene being entered
+   (data-wipe, --curtain). The engine's timing is untouched. */
+(function () {
+  var curtain = document.getElementById('curtain'), label = document.getElementById('curtainLabel');
+  if (!curtain || !curtain.animate) return;
+  var real = curtain.animate.bind(curtain);
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var W = {
+    up:    [{ transform: 'translateY(104%)', clipPath: 'none' }, { transform: 'translateY(-118%)', clipPath: 'none' }],
+    right: [{ transform: 'translateX(-112%)', clipPath: 'none' }, { transform: 'translateX(112%)', clipPath: 'none' }],
+    iris:  [{ transform: 'none', clipPath: 'circle(0% at 50% 50%)' }, { transform: 'none', clipPath: 'circle(78% at 50% 50%)', offset: .48 }, { transform: 'none', clipPath: 'circle(78% at 50% 50%)', offset: .56 }, { transform: 'none', clipPath: 'circle(0% at 50% 50%)' }],
+    diag:  [{ transform: 'none', clipPath: 'polygon(-40% 0, -10% 0, -40% 100%, -70% 100%)' }, { transform: 'none', clipPath: 'polygon(-40% 0, 140% 0, 110% 100%, -70% 100%)', offset: .5 }, { transform: 'none', clipPath: 'polygon(110% 0, 140% 0, 110% 100%, 80% 100%)' }]
+  };
+  curtain.animate = function (kf, opts) {
+    var target = Array.prototype.filter.call(document.querySelectorAll('.scene'), function (s) { return s.dataset.label === label.textContent; })[0];
+    var wipe = (target && target.dataset.wipe) || 'up';
+    var col = target && getComputedStyle(target).getPropertyValue('--curtain').trim();
+    curtain.style.background = col || '';
+    curtain.classList.toggle('h', wipe === 'right');
+    curtain.classList.toggle('flat', wipe === 'iris' || wipe === 'diag');
+    var frames = reduced ? W.up : (W[wipe] || W.up);
+    var a = real(frames, opts);
+    a.addEventListener('finish', function () { curtain.style.clipPath = ''; curtain.classList.remove('h', 'flat'); });
+    return a;
+  };
+})();
+</script>
 <script>
 (function () {
   'use strict';
@@ -1963,7 +2021,7 @@ body.on-light .chrome-label, body.on-light .chrome-brand { color: var(--ink, #0F
     var beats = JSON.parse(scene.dataset.beats);
     setTimeout(function () { if (live === token) prime(scene); }, 1500);
     var wins = scene.querySelectorAll('.win.deck'), vids = [];
-    wins.forEach(function (w) { w.classList.remove('in', 'out'); thaw(w); vids.push(w.querySelector('video')); });
+    wins.forEach(function (w) { w.classList.remove('in', 'out', 'parked'); thaw(w); vids.push(w.querySelector('video')); });
     var copies = scene.querySelectorAll('.beatcopy, .beatpoint'), cards = scene.querySelectorAll('.mcard[data-step]');
     var rail = scene.querySelector('.rail');
     var cur = 0;
@@ -2005,6 +2063,7 @@ body.on-light .chrome-label, body.on-light .chrome-brand { color: var(--ink, #0F
       scene.classList.remove('res'); paintWork(rail, next, 'run'); paintSheet(nwin, next);
       await sleep(60); nwin.classList.add('in'); await sleep(reduced ? 0 : 300);
       scene.classList.remove('moving'); win.classList.remove('out');
+      if (scene.classList.contains('push-park')) win.classList.add('parked');
       cur = 1 - cur;
     }
   }

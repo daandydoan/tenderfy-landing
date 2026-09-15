@@ -2027,7 +2027,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
     var beats = JSON.parse(scene.dataset.beats);
     setTimeout(function () { if (live === token) prime(scene); }, 1500);
     var wins = scene.querySelectorAll('.win.deck'), vids = [];
-    wins.forEach(function (w) { w.classList.remove('in', 'out'); thaw(w); vids.push(w.querySelector('video')); });
+    wins.forEach(function (w) { w.classList.remove('in', 'out', 'parked'); thaw(w); vids.push(w.querySelector('video')); });
     var copies = scene.querySelectorAll('.beatcopy, .beatpoint'), cards = scene.querySelectorAll('.mcard[data-step]');
     var rail = scene.querySelector('.rail');
     var cur = 0;
@@ -2069,6 +2069,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
       scene.classList.remove('res'); paintWork(rail, next, 'run'); paintSheet(nwin, next);
       await sleep(60); nwin.classList.add('in'); await sleep(reduced ? 0 : 300);
       scene.classList.remove('moving'); win.classList.remove('out');
+      if (scene.classList.contains('push-park')) win.classList.add('parked');
       cur = 1 - cur;
     }
   }
