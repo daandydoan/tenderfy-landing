@@ -2064,15 +2064,15 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
       var nwin = wins[1 - cur], nv = vids[1 - cur];
       await seekTo(nv, next.action[0], next.action[1]); thaw(nwin);
       if (!whileRunning(token)) return;
-      var park = scene.classList.contains('push-park');
+      var park = scene.classList.contains('push-park') || scene.classList.contains('push-calm');
       scene.classList.add('moving');
       if (park) {
         // the park-behind: the approved card recedes and stays; the next rises 40ms later;
         // the words change at the crossing, not at the start
         if (v.videoWidth) freeze(win, v);
         win.classList.remove('in'); win.classList.add('parked');
-        await sleep(reduced ? 0 : 40); nwin.classList.add('in');
-        await sleep(reduced ? 0 : 130);
+        await sleep(reduced ? 0 : 60); nwin.classList.add('in');
+        await sleep(reduced ? 0 : 160);
       } else { win.classList.add('out'); win.classList.remove('in'); }
       // the headline, the rail's offer and the strip change behind the move, not after it
       copies.forEach(function (c) { c.classList.toggle('on', c.dataset.step === String(next.step)); c.classList.remove('res'); });
