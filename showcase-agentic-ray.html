@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Tenderfy · Meet Ray</title>
-<meta name="description" content="A 60-second auto-playing film about Ray, the AI teammate that works the Tenderfy Method with you, one step at a time." />
+<title>Tenderfy · Agentic Ray</title>
+<meta name="description" content="Agentic Ray, your tender teammate. You guide. Ray does the work. You approve." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -12,13 +12,7 @@
 <meta name="theme-color" content="#1a2422" />
 <style>
 /* ============================================================
-   TENDERFY — MEET RAY · a film through the eight steps
-   Hook → Meet Ray → Beside every screen → Steps 01…08 (five
-   scenes) → Your Method (AI Manager) → Payoff → Brand end card.
-   Built on the product-film engine below; only the scenes and
-   the Ray rail styling are new.
-   ------------------------------------------------------------
-   v2 (explainer-video script arc)
+   TENDERFY · AGENTIC RAY — v4, the drawing sheet (explainer-video script arc)
    Sequence: Hook → Platform → Start a tender → Ray (hero) →
    Library → Your data → Assemble → Payoff → Brand end card.
    Visual language: landing-site gradients + real app screens
@@ -953,44 +947,206 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
 .scene.moving .deco * { animation-play-state: paused !important; }
 @media (prefers-reduced-motion: reduce) { .win.deck, .win.deck.out, .win.deck .freeze, .rail-next .prog i { transition: none !important; } }
 
-/* ===== phones and tablets: one column, copy above the recording =====
-   Declared last so it beats the wide-screen split rule above.          */
+/* ===== V4 · the drawing sheet ===============================================
+   Tokens for this film only. Paper, ink, teal, amber, one grid.            */
+.v4 { --paper: #F4F8F6; --ink: #0F1A17; --ink-2: #33423E; --dim: #6B7975; --line: #D3DDD8; --teal: #1D9E75; --teal-2: #0F7355; --amber: #E8A33A; --red: #C6483B; --grid: rgba(29,158,117,.10); --grid-2: rgba(29,158,117,.18); }
+.scene-sheet { background:
+  linear-gradient(var(--grid-2) 1px, transparent 1px) 0 0 / 120px 120px,
+  linear-gradient(90deg, var(--grid-2) 1px, transparent 1px) 0 0 / 120px 120px,
+  linear-gradient(var(--grid) 1px, transparent 1px) 0 0 / 24px 24px,
+  linear-gradient(90deg, var(--grid) 1px, transparent 1px) 0 0 / 24px 24px,
+  radial-gradient(70% 60% at 50% 40%, #FFFFFF, transparent 70%), var(--paper); color: var(--ink); }
+.scene-ink { --paper: #0F1A17; --ink: #F2F6F4; --ink-2: #C7D2CD; --dim: #8A9994; --line: #24332E; --grid: rgba(111,208,173,.08); --grid-2: rgba(111,208,173,.16);
+  background:
+  linear-gradient(var(--grid-2) 1px, transparent 1px) 0 0 / 120px 120px,
+  linear-gradient(90deg, var(--grid-2) 1px, transparent 1px) 0 0 / 120px 120px,
+  linear-gradient(var(--grid) 1px, transparent 1px) 0 0 / 24px 24px,
+  linear-gradient(90deg, var(--grid) 1px, transparent 1px) 0 0 / 24px 24px,
+  radial-gradient(60% 55% at 50% 30%, rgba(29,158,117,.28), transparent 70%), #0F1A17; color: var(--ink); }
+.v4 .grid-deco .crop { position: absolute; width: 22px; height: 22px; border: 1.5px solid var(--teal); opacity: .55; }
+.v4 .crop.tl { left: 28px; top: 74px; border-right: 0; border-bottom: 0; } .v4 .crop.tr { right: 28px; top: 74px; border-left: 0; border-bottom: 0; }
+.v4 .crop.bl { left: 28px; bottom: 74px; border-right: 0; border-top: 0; } .v4 .crop.br { right: 28px; bottom: 74px; border-left: 0; border-top: 0; }
+body.on-light .chrome-label, body.on-light .chrome-brand { color: var(--ink, #0F1A17); }
+
+/* the column: sheet above, caption band below */
+.scene.v4.pair { padding: 76px clamp(16px, 3vw, 48px) 92px; }
+.v4col { width: min(1120px, 100%, calc((100vh - 340px) * 2.2)); margin: auto; display: flex; flex-direction: column; align-items: center; gap: clamp(14px, 2.4vh, 26px); }
+.v4 .stage-app { width: 100%; height: auto; aspect-ratio: 16 / 8.6; position: relative; }
+.v4 .stage-app .win.deck { width: 80%; left: 0; border-radius: 6px; background: #fff; border: 1px solid var(--line);
+  box-shadow: 0 30px 60px -30px rgba(15,26,23,.35), 0 2px 0 #fff inset; overflow: visible; }
+.v4 .win.deck .win-bar { display: none; }
+.v4 .sheet-bar { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 12px; padding: 7px 12px; border-bottom: 1px solid var(--line);
+  font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: var(--dim); font-weight: 600; }
+.v4 .sheet-bar .sb-m { text-align: center; color: var(--teal-2); }
+.v4 .win.deck .vwrap { aspect-ratio: 16 / 8.2; overflow: hidden; background: #fff; }
+.v4 .win.deck .vwrap video { height: 100%; object-fit: cover; }
+.v4 .win.deck.ph-win .vwrap video, .v4 .win.deck.ph-win canvas.freeze { display: none; }
+.v4 .win.deck.has-vid .ph { display: none; }
+/* the title block: who, the recording slot, the signature line */
+.v4 .sheet-tb { display: grid; grid-template-columns: auto 1fr auto minmax(80px, 160px); align-items: center; gap: 12px; padding: 7px 12px; border-top: 1px solid var(--line); font-size: 10.5px; color: var(--dim); }
+.v4 .sheet-tb .tb-who { display: flex; align-items: center; gap: 6px; color: var(--ink-2); font-weight: 600; } .v4 .sheet-tb .tb-who img { width: 16px; height: 14px; }
+.v4 .sheet-tb .tb-rec { font-family: ui-monospace, Menlo, monospace; font-size: 10px; letter-spacing: 0; color: var(--dim); }
+.v4 .sheet-tb .tb-sig { letter-spacing: .12em; text-transform: uppercase; font-size: 9px; }
+.v4 .sheet-tb .tb-line { height: 1px; background: var(--line); }
+/* the stamp: lands on the title block when a beat is approved */
+.v4 .stamp { position: absolute; right: 8%; bottom: 2px; padding: 3px 9px; border: 2px solid var(--amber); border-radius: 4px; color: var(--amber);
+  font-size: 11px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; transform: rotate(-9deg) scale(1.8); opacity: 0; pointer-events: none; z-index: 5; mix-blend-mode: multiply; }
+.v4 .stamp.on { animation: stampIn .34s cubic-bezier(.2,.9,.3,1.2) forwards; }
+@keyframes stampIn { from { opacity: 0; transform: rotate(-9deg) scale(1.8); } 60% { opacity: 1; } to { opacity: .92; transform: rotate(-9deg) scale(1); } }
+.v4 .stamp.go { color: var(--teal-2); border-color: var(--teal-2); }
+/* placeholder dims through the settle cut, exactly as a video would */
+.v4 .vwrap .ph { transition: opacity .3s ease; }
+.v4 .vwrap.dim .ph { opacity: .35; }
+.v4 .vwrap.settle .ph { animation: settleIn .48s cubic-bezier(.76,0,.24,1) both; }
+/* caption band */
+.v4 .capband { position: relative; width: 100%; min-height: 3.2em; text-align: center; }
+.v4cap { position: absolute; left: 0; right: 0; top: 0; margin: 0 auto; max-width: 30ch; font-size: clamp(20px, 2.5vw, 36px); font-weight: 600; line-height: 1.2; letter-spacing: -.01em; color: var(--ink); text-wrap: balance;
+  opacity: 0; transform: translateY(8px); transition: opacity .32s ease, transform .32s cubic-bezier(.2,.7,.2,1); }
+.v4cap.on { opacity: 1; transform: none; }
+.v4ready .v4cap { position: static; }
+
+/* the rail as Ray's job card: same slots the runner paints, new dress */
+.v4 .stage-app .rail.mini { right: 0; bottom: 0; width: 22%; min-width: 200px; z-index: 6; border-radius: 10px; border: 1px solid var(--line); background: #fff; box-shadow: 0 24px 50px -28px rgba(15,26,23,.45); }
+.v4rail .rail-head { padding: 9px 12px; gap: 8px; } .v4rail .rail-head img { width: 20px; height: 18px; }
+.v4rail .rh-t { font-weight: 600; font-size: 12px; color: var(--ink-2); } .v4rail .rh-s { margin-left: auto; font-size: 10px; color: var(--teal-2); letter-spacing: .1em; text-transform: uppercase; }
+.v4rail .rail-body { padding: 10px 12px 12px; gap: 8px; }
+.v4rail .rail-you { display: none; font-size: 11px; line-height: 1.3; color: var(--ink-2); background: #F3F6F4; border-radius: 9px 9px 2px 9px; padding: 6px 8px; margin-left: 14%; }
+.v4rail .rail-you.on { display: block; }
+.v4rail .rail-work { display: flex; flex-direction: column; gap: 5px; }
+.v4rail .work { display: flex; align-items: center; gap: 7px; font-size: 11px; line-height: 1.25; color: var(--ink-2); opacity: 0; transform: translateY(4px); transition: opacity .3s ease, transform .3s ease; }
+.v4rail .work.on { opacity: 1; transform: none; }
+.v4rail .work i { width: 10px; height: 10px; border-radius: 50%; border: 1.5px solid var(--dim); flex: none; position: relative; transition: background .2s, border-color .2s; }
+.v4rail .work.live i { border-color: var(--teal); animation: v4pulse 1.1s ease-in-out infinite; }
+.v4rail .work.done { color: var(--dim); } .v4rail .work.done i { background: var(--teal); border-color: var(--teal); }
+.v4rail .work.done i::after { content: ''; position: absolute; left: 2.5px; top: 1px; width: 3px; height: 5px; border: solid #fff; border-width: 0 1.5px 1.5px 0; transform: rotate(45deg); }
+@keyframes v4pulse { 50% { opacity: .35; } }
+.v4rail .rail-offer { border-radius: 9px; padding: 8px 10px; } .v4rail .rail-offer p { font-size: 11.5px; line-height: 1.3; }
+.v4rail .rail-offer.ask { border-color: rgba(29,158,117,.5); background: rgba(29,158,117,.06); }
+.v4rail .rail-next { font-size: 10.5px; }
+@media (prefers-reduced-motion: reduce) { .v4rail .work.live i { animation: none; } .v4 .stamp.on { animation: none; opacity: .92; transform: rotate(-9deg); } }
+
+/* ===== placeholders: what a recording slot shows until the clip lands ===== */
+.v4 .win.deck { container-type: inline-size; }
+.ph { position: absolute; inset: 0; padding: 1.4em 1.6em; font-size: clamp(9px, 1.6cqw, 18px); line-height: 1.3; color: var(--ink-2); }
+.ph .ln { display: block; height: 0.571em; border-radius: 0.286em; background: #E9EFEC; margin: 0.476em 0; }
+.ph .ln.w100 { width: 100%; } .ph .ln.w90 { width: 90%; } .ph .ln.w80 { width: 80%; } .ph .ln.w70 { width: 70%; } .ph .ln.w60 { width: 60%; } .ph .ln.w50 { width: 50%; } .ph .ln.w40 { width: 40%; }
+.ph .ln.hi { background: rgba(29,158,117,.18); transition: background .4s ease .2s; } .res .ph .ln.hi { background: rgba(29,158,117,.55); }
+/* go / no-go */
+.ph-gonogo { display: grid; grid-template-columns: 1fr 1.25fr; gap: 1.524em; }
+.ph-gonogo .pack { position: relative; padding-top: 0.952em; }
+.ph-gonogo .pg { position: absolute; left: 0; top: 0; width: 72%; height: 78%; background: #fff; border: 1px solid var(--line); border-radius: 0.286em; padding: 0.952em; box-shadow: 0 0.762em 1.714em -1.143em rgba(15,26,23,.4); }
+.ph-gonogo .pg:nth-child(2) { transform: translate(1.143em, 0.952em); z-index: -1; } .ph-gonogo .pg:nth-child(3) { transform: translate(2.286em, 1.905em); z-index: -2; }
+.ph-gonogo .tag { position: absolute; left: 0; bottom: 0; font-size: 0.952em; color: var(--dim); }
+.ph-gonogo .score { justify-content: space-evenly; border: 1px solid var(--line); border-radius: 0.571em; padding: 0.762em 0.952em; background: #fff; display: flex; flex-direction: column; gap: 0.381em; }
+.ph-gonogo .sc-head { font-weight: 600; color: var(--ink); font-size: 1.048em; padding-bottom: 0.381em; border-bottom: 1px solid var(--line); }
+.ph-gonogo .sc-row { display: flex; align-items: center; justify-content: space-between; gap: 0.762em; }
+.ph-gonogo .sc-row b { width: 4.381em; height: 0.762em; border-radius: 0.381em; background: #E9EFEC; transition: background .35s ease; }
+.res .ph-gonogo .sc-row b.g { background: var(--teal); } .res .ph-gonogo .sc-row b.a { background: var(--amber); } .res .ph-gonogo .sc-row b.r { background: var(--red); }
+.ph-gonogo .verdict { display: flex; justify-content: space-between; align-items: center; margin-top: 0.381em; padding-top: 0.571em; border-top: 1px solid var(--line); }
+.ph-gonogo .verdict b { color: transparent; background: #E9EFEC; border-radius: 0.381em; padding: 0.19em 0.762em; transition: all .35s ease .3s; }
+.res .ph-gonogo .verdict b { color: #fff; background: var(--teal-2); }
+/* plan */
+.ph-plan { display: flex; flex-direction: column; justify-content: space-evenly; gap: 0.667em; }
+.ph-plan .g-head { display: flex; justify-content: space-between; font-weight: 600; color: var(--ink); font-size: 1.048em; padding-bottom: 0.476em; border-bottom: 1px solid var(--line); }
+.ph-plan .g-dead { color: var(--amber); }
+.ph-plan .g-row { display: grid; grid-template-columns: 34% 1fr 3.429em; align-items: center; gap: 0.952em; }
+.ph-plan .g-track { position: relative; height: 0.952em; background: #EEF3F0; border-radius: 0.476em; }
+.ph-plan .g-track i { position: absolute; left: var(--o); width: 0; top: 0; bottom: 0; border-radius: 0.476em; background: rgba(29,158,117,.35); transition: width .5s cubic-bezier(.2,.7,.2,1); }
+.res .ph-plan .g-track i { width: var(--w); background: var(--teal); }
+.ph-plan .g-own { font-size: 0.857em; font-weight: 700; letter-spacing: .06em; text-align: center; border: 1px solid var(--line); border-radius: 95.143em; padding: 0.19em 0; color: var(--dim); background: #fff; }
+.ph-plan .g-now { position: absolute; left: calc(1.524em + (100% - 3.048em) * .34 + (100% - 3.048em) * .66 * .58); top: 3.619em; bottom: 1.333em; width: 0; border-left: 1.5px dashed var(--amber); opacity: .8; }
+/* buyer */
+.ph-buyer { display: flex; flex-direction: column; justify-content: space-evenly; gap: 0.571em; }
+.ph-buyer .b-head { display: flex; justify-content: space-between; font-weight: 600; color: var(--ink); font-size: 1.048em; padding-bottom: 0.476em; border-bottom: 1px solid var(--line); }
+.ph-buyer .b-head .src { font-weight: 400; color: var(--dim); }
+.ph-buyer .b-row { display: flex; align-items: center; gap: 0.762em; padding: 0.476em 0.762em; border-radius: 0.571em; border: 1px solid transparent; }
+.ph-buyer .b-row em { margin-left: auto; font-style: normal; color: var(--dim); }
+.ph-buyer .pin { width: 0.762em; height: 0.762em; border-radius: 50%; background: #D3DDD8; flex: none; }
+.ph-buyer .b-row.hot { border-color: rgba(232,163,58,.5); background: rgba(232,163,58,.08); color: var(--ink); transition: background .4s ease; }
+.ph-buyer .b-row.hot .pin { background: var(--amber); } .ph-buyer .b-row.hot em { color: #8A5A0E; font-weight: 600; }
+.res .ph-buyer .b-row.hot { background: rgba(232,163,58,.2); }
+.ph-buyer .b-evd { margin-top: auto; padding-top: 0.571em; border-top: 1px solid var(--line); color: var(--dim); }
+.ph-buyer .b-evd em { font-style: normal; color: var(--teal-2); font-weight: 600; opacity: 0; transition: opacity .4s ease .2s; }
+.res .ph-buyer .b-evd em { opacity: 1; }
+/* the plan document */
+.ph-plandoc { display: grid; place-items: start center; }
+.ph-plandoc .page { width: 84%; height: 100%; justify-content: space-between; background: #fff; border: 1px solid var(--line); border-radius: 0.286em; padding: 1.333em 1.714em; box-shadow: 0 0.952em 2.476em -1.524em rgba(15,26,23,.4); display: flex; flex-direction: column; gap: 0.381em; }
+.ph-plandoc .p-title { font-weight: 700; color: var(--ink); font-size: 1.238em; line-height: 1.2; }
+.ph-plandoc .p-sub { color: var(--dim); font-size: 0.905em; margin-bottom: 0.381em; }
+.ph-plandoc .p-h { font-weight: 600; color: var(--teal-2); margin-top: 0.571em; font-size: 1.0em; }
+.ph-plandoc .t-row { display: grid; grid-template-columns: 1fr 1.8fr .8fr; gap: 0.762em; font-size: 0.905em; padding: 0.286em 0; border-bottom: 1px solid #EEF3F0; opacity: .35; transition: opacity .4s ease; }
+.ph-plandoc .t-row.t-head { font-weight: 600; color: var(--ink); opacity: 1; }
+.res .ph-plandoc .t-row { opacity: 1; }
+/* tailor */
+.ph-tailor { display: flex; flex-direction: column; gap: 0.762em; }
+.ph-tailor .r-you { align-self: flex-end; max-width: 70%; background: #F3F6F4; border-radius: 0.857em 0.857em 0.19em 0.857em; padding: 0.476em 0.857em; font-size: 0.952em; color: var(--ink-2); }
+.ph-tailor .r-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.143em; flex: 1; }
+.ph-tailor .r-card { background: #fff; border: 1px solid var(--line); border-radius: 0.571em; padding: 0.952em; }
+.ph-tailor .r-head { display: grid; grid-template-columns: 1.905em 1fr; gap: 0.19em 0.762em; margin-bottom: 0.381em; }
+.ph-tailor .r-head b { grid-row: span 2; width: 1.905em; height: 1.905em; border-radius: 50%; background: #E9EFEC; }
+.ph-tailor .r-head span { font-weight: 600; color: var(--ink); font-size: 1.0em; } .ph-tailor .r-head em { font-style: normal; color: var(--dim); font-size: 0.905em; }
+.ph-tailor .r-foot { display: flex; justify-content: space-between; color: var(--dim); font-size: 0.952em; } .ph-tailor .r-foot .k { color: var(--teal-2); font-weight: 600; }
+/* review */
+.ph-review { display: flex; flex-direction: column; justify-content: space-evenly; gap: 0.476em; }
+.ph-review .c-head { display: flex; justify-content: space-between; align-items: center; font-weight: 600; color: var(--ink); font-size: 1.048em; padding-bottom: 0.476em; border-bottom: 1px solid var(--line); }
+.ph-review .c-sum { display: flex; gap: 0.571em; } .ph-review .c-sum b { font-size: 0.905em; border-radius: 95.143em; padding: 0.19em 0.667em; color: #fff; }
+.ph-review .c-sum .crit { background: var(--red); } .ph-review .c-sum .rec { background: var(--amber); }
+.ph-review .c-row { display: flex; align-items: center; gap: 0.762em; padding: 0.381em 0.571em; border-radius: 0.476em; }
+.ph-review .c-row i { width: 1.143em; height: 1.143em; border-radius: 50%; border: 1.5px solid var(--line); flex: none; position: relative; transition: all .3s ease; }
+.ph-review .c-row em { margin-left: auto; font-style: normal; color: var(--dim); }
+.res .ph-review .c-row.ok i { background: var(--teal); border-color: var(--teal); }
+.res .ph-review .c-row.ok i::after { content: ''; position: absolute; left: 0.333em; top: 1.5px; width: 0.286em; height: 0.571em; border: solid #fff; border-width: 0 1.5px 1.5px 0; transform: rotate(45deg); }
+.ph-review .c-row.crit { background: rgba(198,72,59,.07); } .ph-review .c-row.crit i { border-color: var(--red); background: rgba(198,72,59,.25); } .ph-review .c-row.crit em { color: var(--red); font-weight: 600; }
+.ph-review .c-row.rec i { border-color: var(--amber); background: rgba(232,163,58,.3); } .ph-review .c-row.rec em { color: #8A5A0E; }
+
+/* ===== open, ready, end ===== */
+.v4open, .v4end { justify-content: center; align-items: center; text-align: center; }
+.open-wrap { position: relative; display: flex; flex-direction: column; align-items: center; gap: 10px; width: min(880px, 100%); }
+.open-sheet { width: min(420px, 78%); background: #fff; color: #33423E; border-radius: 6px; border: 1px solid #D3DDD8; box-shadow: 0 40px 80px -40px rgba(0,0,0,.7); margin-bottom: 6px; }
+.open-sheet .sheet-bar { display: grid; grid-template-columns: auto 1fr auto; gap: 12px; padding: 6px 12px; border-bottom: 1px solid #D3DDD8; font-size: 9.5px; letter-spacing: .16em; text-transform: uppercase; color: #6B7975; font-weight: 600; }
+.open-sheet .sheet-bar .sb-m { text-align: center; color: #0F7355; }
+.open-pack { padding: 14px 16px 10px; } .open-pack .ln { display: block; height: 6px; border-radius: 3px; background: #E9EFEC; margin: 6px 0; }
+.open-pack .w40 { width: 40%; } .open-pack .w60 { width: 60%; } .open-pack .w80 { width: 80%; } .open-pack .w100 { width: 100%; }
+.open-sheet .sheet-tb { display: grid; grid-template-columns: auto 1fr auto 90px; align-items: center; gap: 10px; padding: 6px 12px; border-top: 1px solid #D3DDD8; font-size: 10px; color: #6B7975; }
+.open-sheet .tb-who { display: flex; align-items: center; gap: 6px; font-weight: 600; color: #33423E; } .open-sheet .tb-who img { width: 16px; height: 14px; }
+.open-sheet .tb-sig { letter-spacing: .12em; text-transform: uppercase; font-size: 9px; } .open-sheet .tb-line { height: 1px; background: #D3DDD8; }
+.open-ray { position: relative; width: 112px; height: 96px; display: grid; place-items: center; margin-top: -4px; }
+.open-ray .ring { position: absolute; inset: -6px; border-radius: 50%; border: 1.5px dashed rgba(111,208,173,.6); animation: spin 26s linear infinite; }
+.open-ray img { width: 84px; filter: drop-shadow(0 18px 30px rgba(0,0,0,.5)); }
+@keyframes spin { to { transform: rotate(360deg); } }
+.v4open .eyebrow, .v4end .eyebrow { color: #6FD0AD; letter-spacing: .22em; }
+.v4big { font-size: clamp(40px, 6.4vw, 92px); line-height: 1; margin: 0; }
+.v4big .tl-bright { color: #6FD0AD; }
+.open-kicker { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; color: var(--ink-2); font-size: clamp(15px, 1.5vw, 20px); margin: 6px 0 0; }
+.open-kicker span + span::before { content: '·'; margin-right: 14px; color: var(--dim); }
+.open-kicker.moves span { color: #6FD0AD; font-weight: 600; letter-spacing: .04em; }
+.end-say { color: var(--dim); font-size: clamp(13px, 1.3vw, 17px); margin: 4px 0 0; }
+.end-ctas { display: flex; gap: 10px; margin-top: 8px; }
+.end-ctas .cta { border-radius: 999px; padding: 10px 18px; background: var(--amber); color: #1a1a1a; font-weight: 600; font-size: 14px; }
+.end-ctas .cta.ghost { background: transparent; color: var(--ink); border: 1px solid rgba(255,255,255,.35); }
+.v4ready .ready-stage { position: relative; width: 100%; height: clamp(280px, 52vh, 520px); display: grid; place-items: center; }
+.v4ready .cover { width: clamp(200px, 26vh, 300px); aspect-ratio: 1 / 1.35; background: #fff; border: 1px solid var(--line); border-radius: 4px; padding: 20px 18px; display: flex; flex-direction: column; gap: 6px;
+  box-shadow: 0 40px 70px -36px rgba(15,26,23,.6), 8px 8px 0 -2px #E9EFEC, 16px 16px 0 -4px #DDE6E1; position: relative; }
+.v4ready .cv-brand { font-weight: 700; font-size: 18px; color: var(--teal-2); letter-spacing: -.02em; } .v4ready .cv-brand i { font-style: normal; color: var(--amber); }
+.v4ready .cv-t { font-weight: 700; font-size: 15px; color: var(--ink); margin-top: 18px; line-height: 1.1; }
+.v4ready .cv-s { font-size: 10.5px; color: var(--dim); margin-bottom: 8px; }
+.v4ready .cover .ln { display: block; height: 6px; border-radius: 3px; background: #E9EFEC; } .v4ready .cover .w60 { width: 60%; } .v4ready .cover .w40 { width: 40%; }
+.v4ready .cv-stamp { position: absolute; right: 12px; bottom: 14px; border: 2px solid var(--amber); color: var(--amber); border-radius: 4px; padding: 3px 8px; font-size: 10px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; transform: rotate(-8deg); }
+.v4ready .dl { position: absolute; left: 50%; bottom: 8%; transform: translateX(-50%); display: flex; align-items: center; gap: 9px; background: var(--teal-2); color: #fff; border-radius: 999px; padding: 9px 16px; font-weight: 600; font-size: 13px; box-shadow: 0 14px 30px -14px rgba(15,115,85,.7); }
+.v4ready .dl i { width: 12px; height: 12px; border: solid #fff; border-width: 0 2px 2px 0; transform: rotate(45deg) translate(-2px, -2px); }
+.v4ready .rec-note { position: absolute; right: 4%; top: 4%; font-family: ui-monospace, Menlo, monospace; font-size: 10px; color: var(--dim); }
+
+/* ===== phones and tablets ===== */
 @media (max-width: 940px) {
-  .split, .split.split-vid { grid-template-columns: 1fr; gap: clamp(12px, 2.4vh, 22px); width: 100%; }
-  /* content stacks from the top, so a tall column runs under the player, never over the chrome */
-  .scene:has(.split) { justify-content: flex-start; padding: 68px clamp(14px, 4vw, 28px) 96px; }
-  .scene .split { margin-block: auto; }  /* centred when it fits, top-anchored when it does not */
-  .split .cap { font-size: clamp(26px, 7vw, 44px); max-width: 18ch; }
-  .split .sub { font-size: clamp(14px, 3.9vw, 17px); max-width: 34ch; }
-  .split .pts li { font-size: clamp(13px, 3.6vw, 16px); text-align: left; }
-  .split .eyebrow { font-size: 10.5px; }
-  /* the stage takes its height from the recording's shape, not the viewport */
-  .stage-app { height: auto; aspect-ratio: 1.58; width: min(560px, 100%); margin: 0 auto; }
-  .stage-app .win, .stage-app .win.deck { width: 100%; left: 0; }
-  .stage-app .rail.mini { width: min(200px, 40%); right: -1%; bottom: -6%; }
-  .mcard { display: none; }
-  /* chrome: brand left, scene label right, never overlapping */
-  .chrome-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
-  .chrome-top > :last-child { flex: 0 1 auto; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 10px; letter-spacing: .14em; }
-  /* the hook: two small cards up top, the rest stay off so the headline is clear */
-  .hook-doc.chat { width: clamp(104px, 28vw, 140px); }
-  .hook-docs .hook-doc:nth-child(1) { top: 7% !important; left: 6% !important; }
-  .hook-docs .hook-doc:nth-child(2) { top: 5% !important; right: 6% !important; }
-  .hook-docs .hook-doc:nth-child(n+3) { display: none; }
-  .hook-ray { width: 118px; height: 100px; }
-  .hook-ray img { width: 92px; }
-  .hook-kicker .say { font-size: clamp(15px, 4.4vw, 19px); }
-  .hook-kicker .then { font-size: clamp(12.5px, 3.6vw, 15px); }
-  /* Meet Ray's eight steps in two short columns */
-  .toc-list.meet { width: 100%; display: grid; grid-template-columns: 1fr 1fr; column-gap: 14px; }
-  .toc-list.meet .toc-item { padding: 7px 0; font-size: 13.5px; }
-  .end-ray { flex-wrap: wrap; }
-}
-@media (max-width: 600px) {
-  .stage-app .rail.mini { display: none; }
-  .chrome { padding-left: 16px; padding-right: 16px; }
-  .scene .big { font-size: clamp(28px, 9vw, 40px); }
-  .hook-doc.chat .bul:nth-child(n+4) { display: none; }
+  .scene.v4.pair { padding: 68px 16px 96px; justify-content: flex-start; }
+  .v4 .stage-app { aspect-ratio: auto; max-height: none; display: block; }
+  .v4 .stage-app .win.deck { position: relative; width: 100%; top: auto; left: auto; transform: none; }
+  .v4 .stage-app .win.deck:not(.in) { position: absolute; }
+  .v4 .stage-app .rail.mini { position: relative; right: auto; bottom: auto; width: 100%; margin-top: 12px; animation: none; opacity: 1; transform: none; }
+  .v4cap { font-size: clamp(18px, 5.4vw, 26px); }
+  .v4big { font-size: clamp(34px, 11vw, 56px); }
+  .open-sheet { width: min(360px, 88%); }
+  .v4 .crop { display: none; }
 }
 
 </style>
@@ -1022,7 +1178,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
 <div class="chrome">
   <div class="chrome-top">
     <span class="chrome-spacer" aria-hidden="true"></span>
-    <span class="chrome-label mid-label">Ray Explainer</span>
+    <span class="chrome-label mid-label">Agentic Ray</span>
     <span class="chrome-label" id="sceneLabel">Intro</span>
   </div>
   <div class="chrome-bot">
@@ -1043,387 +1199,169 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
   </div>
 </div>
 
-<!-- ============ S1 · HOOK ============ -->
-<section class="scene scene-dark hook-grad" data-label="The Old Way" data-dur="5900">
-  <svg class="clip-mark" viewBox="0 0 32 65" aria-hidden="true"><use href="#clipSym"/></svg>
-  <div class="deco" aria-hidden="true">
-    <span class="orb orb-teal" style="width:42vw;height:42vw;left:-12vw;top:-14vh"></span>
-    <span class="orb orb-amber" style="width:28vw;height:28vw;right:-8vw;bottom:-12vh;--od:18s"></span>
-    <span class="dots" style="width:220px;height:160px;left:5%;bottom:9%"></span>
-    <span class="bit" style="left:16%;top:26%"></span>
-    <span class="bit bit-mint" style="right:20%;top:16%;--bd:8s;--bx:-14px;--by:18px"></span>
-  </div>
-  <div class="hook-docs" aria-hidden="true">
-    <div class="hook-doc chat advice" style="--d:0.2s; --r:-7deg; --sx:-70vw; --sy:-20vh; left:12%; top:16%"><span class="hd"><i class="aiic"></i><span class="fn">AI assistant</span></span><span class="bul" style="--b:0.6s"><i class="n">1</i><i class="ln w80"></i></span><span class="bul" style="--b:0.85s"><i class="n">2</i><i class="ln"></i></span><span class="bul" style="--b:1.1s"><i class="n">3</i><i class="ln w60"></i></span><span class="comp"><span></span><i></i></span></div>
-    <div class="hook-doc chat advice" style="--d:0.35s; --r:5deg; --sx:70vw; --sy:-30vh; right:14%; top:13%"><span class="hd"><i class="aiic"></i><span class="fn">AI assistant</span></span><span class="bul" style="--b:0.75s"><i class="n">1</i><i class="ln"></i></span><span class="bul" style="--b:1.0s"><i class="n">2</i><i class="ln w60"></i></span><span class="bul" style="--b:1.25s"><i class="n">3</i><i class="ln w80"></i></span><span class="comp"><span></span><i></i></span></div>
-    <div class="hook-doc chat advice" style="--d:0.5s; --r:-4deg; --sx:-60vw; --sy:35vh; left:8%; bottom:14%"><span class="hd"><i class="aiic"></i><span class="fn">AI assistant</span></span><span class="bul" style="--b:0.9s"><i class="n">1</i><i class="ln w60"></i></span><span class="bul" style="--b:1.15s"><i class="n">2</i><i class="ln"></i></span><span class="bul" style="--b:1.4s"><i class="n">3</i><i class="ln w80"></i></span><span class="comp"><span></span><i></i></span></div>
-    <div class="hook-doc chat advice" style="--d:0.65s; --r:8deg; --sx:65vw; --sy:30vh; right:9%; bottom:17%"><span class="hd"><i class="aiic"></i><span class="fn">AI assistant</span></span><span class="bul" style="--b:1.05s"><i class="n">1</i><i class="ln w80"></i></span><span class="bul" style="--b:1.3s"><i class="n">2</i><i class="ln w60"></i></span><span class="bul" style="--b:1.55s"><i class="n">3</i><i class="ln"></i></span><span class="comp"><span></span><i></i></span></div>
-    <div class="hook-doc chat advice" style="--d:0.8s; --r:-10deg; --sx:-70vw; --sy:0vh; left:3%; top:41%"><span class="hd"><i class="aiic"></i><span class="fn">AI assistant</span></span><span class="bul" style="--b:1.2s"><i class="n">1</i><i class="ln"></i></span><span class="bul" style="--b:1.45s"><i class="n">2</i><i class="ln w80"></i></span><span class="bul" style="--b:1.7s"><i class="n">3</i><i class="ln w60"></i></span><span class="comp"><span></span><i></i></span></div>
-  </div>
-  <h1 class="big">
-    <span class="rw"><span style="--d:.5s">You</span></span>
-    <span class="rw"><span style="--d:.58s">do</span></span>
-    <span class="rw"><span style="--d:.66s">not</span></span>
-    <span class="rw"><span style="--d:.74s">need</span></span><br>
-    <span class="rw"><span style="--d:.82s">more</span></span>
-    <span class="rw"><span class="tl-bright" style="--d:.9s">AI</span></span>
-    <span class="rw"><span class="tl-bright" style="--d:.98s">advice.</span></span><br>
-    <span class="rw"><span style="--d:1.14s">You</span></span>
-    <span class="rw"><span style="--d:1.22s">need</span></span>
-    <span class="rw"><span style="--d:1.3s">the</span></span>
-    <span class="rw"><span class="am" style="--d:1.38s">work</span></span>
-    <span class="rw"><span class="am" style="--d:1.46s">done.</span></span>
-  </h1>
-  <div class="hook-ray fx" style="--d:2.8s" aria-hidden="true"><span class="halo"></span><span class="halo halo-2"></span><img src="assets/ray-avatar.svg" alt="" /></div>
-  <p class="hook-kicker fx" style="--d:3.2s"><span class="say">“Ray, get this tender started.”</span><span class="then fx" style="--d:3.7s">Eight steps. Ray runs them. You approve them.</span></p>
-</section>
-<!-- ============ S2 · MEET RAY ============ -->
-<section class="scene scene-deep" data-label="Meet Ray" data-dur="5500" id="sceneMeet" data-beats='[{"step": 0, "action": ["ray-00-rail.mp4", 0.0, 6.9, 1.5], "result": null, "hold": 0}]'>
-  <svg class="clip-mark" viewBox="0 0 32 65" aria-hidden="true"><use href="#clipSym"/></svg>
-  <div class="deco" aria-hidden="true">
-    <span class="orb orb-teal" style="width:36vw;height:36vw;right:-10vw;top:-10vh"></span>
-    <span class="ring" style="width:120px;height:120px;left:7%;top:16%"></span>
-    <span class="dots" style="width:200px;height:150px;right:6%;bottom:8%"></span>
-    <span class="bit" style="left:22%;bottom:16%;--bd:7s"></span>
-    <span class="spark" style="right:18%;top:22%"></span>
-    <span class="spark" style="left:13%;bottom:36%;--sd:1.4s"></span>
-  </div>
-  <div class="split split-vid">
-    <div>
-      <p class="eyebrow fx" style="--d:.05s"><img class="rayi" src="assets/ray-avatar.svg" alt="" />Ray Agent</p>
-      <h2 class="cap">
-        <span class="rw"><span style="--d:.1s">One</span></span>
-        <span class="rw"><span class="am" style="--d:.18s">teammate.</span></span><br>
-        <span class="rw"><span class="tl-bright" style="--d:.3s">Eight</span></span>
-        <span class="rw"><span class="tl-bright" style="--d:.38s">steps.</span></span>
-      </h2>
-      <p class="sub fx" style="--d:.6s">Offers each step. Does it on your go. Stops for your approval.</p>
-      <div class="toc-list meet" aria-label="The eight steps Ray walks">
-    <div class="toc-item" style="--d:0.90s"><span class="ti-n">01</span>Go / No-Go<span class="ti-ok"><svg viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
-    <div class="toc-item" style="--d:1.08s"><span class="ti-n">02</span>Plan the tender<span class="ti-ok"><svg viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
-    <div class="toc-item" style="--d:1.26s"><span class="ti-n">03</span>Understand the buyer<span class="ti-ok"><svg viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
-    <div class="toc-item" style="--d:1.44s"><span class="ti-n">04</span>Learn from feedback<span class="ti-ok"><svg viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
-    <div class="toc-item" style="--d:1.62s"><span class="ti-n">05</span>Complete the responses<span class="ti-ok"><svg viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
-    <div class="toc-item" style="--d:1.80s"><span class="ti-n">06</span>Methodology &amp; technical<span class="ti-ok"><svg viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
-    <div class="toc-item" style="--d:1.98s"><span class="ti-n">07</span>Build the tender<span class="ti-ok"><svg viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
-    <div class="toc-item" style="--d:2.16s"><span class="ti-n">08</span>Final review<span class="ti-ok"><svg viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
-      </div>
-      <p class="sub fx" style="--d:2.7s; margin-top:clamp(10px,1.6vh,16px); font-weight:600">Every step ends with your approval.</p>
+<section class="scene scene-ink v4 v4open" data-label="Agentic Ray" data-dur="5600" id="sceneOpen">
+  <div class="grid-deco" aria-hidden="true"></div>
+  <div class="open-wrap">
+    <div class="open-sheet fx" style="--d:.1s" aria-hidden="true">
+      <div class="sheet-bar"><span class="sb-l">TENDERFY</span><span class="sb-m">New tender · RFT 2026-114</span><span class="sb-r">REV A</span></div>
+      <div class="open-pack"><i class="ln w40"></i><i class="ln w100"></i><i class="ln w80"></i><i class="ln w100"></i><i class="ln w60"></i></div>
+      <div class="sheet-tb"><span class="tb-who"><img src="assets/ray-avatar.svg" alt="" />Ray</span><span class="tb-rec">Opened by Ray</span><span class="tb-sig">Approved by</span><i class="tb-line"></i></div>
     </div>
-    <div class="stage stage-app">
-      <div class="win deck"><div class="win-bar"><span></span><span></span><span></span></div>
-        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas></div></div>
-      <div class="win deck"><div class="win-bar"><span></span><span></span><span></span></div>
-        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas></div></div>
-      <div class="mcard mcard-strip" style="--d:2.4s; left:-3%; top:2%"><span class="lab"><img class="ava" src="assets/ray-avatar.svg" alt="" />Next · <b>1 of 8</b> · Go / No-Go</span><span class="prog"><i style="width:12%"></i></span></div>
-      <div class="mcard mcard-go" style="--d:3.0s; right:0; bottom:4%"><img class="ava" src="assets/ray-avatar.svg" alt="" /><span class="pill">Go ahead</span><span class="pill ghost">Skip</span></div>
-    </div>
+    <div class="open-ray fx" style="--d:.6s" aria-hidden="true"><span class="ring"></span><img src="assets/ray-avatar.svg" alt="" /></div>
+    <p class="eyebrow fx" style="--d:1.0s">Agentic Ray</p>
+    <h1 class="big v4big">
+        <span class="rw"><span style="--d:1.15s">Your</span></span>
+        <span class="rw"><span style="--d:1.27s">tender</span></span>
+        <span class="rw"><span class="tl-bright" style="--d:1.39s">teammate.</span></span>
+    </h1>
+    <p class="open-kicker fx" style="--d:1.9s"><span>You guide.</span><span>Ray does the work.</span><span>You approve.</span></p>
   </div>
 </section>
-<section class="scene scene-light pair" data-label="Steps 01–02 · Go / No-Go · Plan" data-dur="14096" id="scenePair1"
-         data-beats='[{"step": 1, "action": ["ray-01-gonogo.mp4", 0.0, 4.0, 1.5], "result": ["ray-01-gonogo.mp4", 24.3, 27.4, 1.0], "hold": 2.0, "offer": "Scorecard ready for your approval.", "mode": "approve", "strip": "<b>1 of 8</b> \u00b7 Go / No-Go \u00b7 Awaiting your approval"}, {"step": 2, "action": ["ray-02-plan.mp4", 0.0, 3.0, 1.5], "result": ["ray-02-plan.mp4", 44.0, 46.4, 1.0], "hold": 0.35, "offer": "Let me build the task list and delivery plan.", "mode": "offer", "strip": "Next \u00b7 <b>2 of 8</b> \u00b7 Plan the tender"}]'>
-  <div class="deco" aria-hidden="true">
-    <span class="orb orb-teal" style="width:34vw;height:34vw;right:-9vw;top:-12vh"></span>
-    <span class="dots" style="width:190px;height:150px;left:4%;top:12%"></span>
-    <span class="bit bit-mint" style="left:9%;bottom:22%;--bd:7.5s"></span>
-  </div>
-  <div class="split split-vid">
-    <div class="beatcol">
-      <div class="beatcopy" data-step="1">
-        <p class="eyebrow fx" style="--d:.05s"><img class="rayi" src="assets/ray-avatar.svg" alt="" />Step 01 · Go / No-Go</p>
-        <h2 class="cap">
-        <span class="rw"><span style="--d:0.15s">“Let</span></span>
-        <span class="rw"><span style="--d:0.22s">me</span></span><br>
-        <span class="rw"><span class="tl" style="--d:0.35s">assess</span></span>
-        <span class="rw"><span style="--d:0.42s">this</span></span>
-        <span class="rw"><span class="tl" style="--d:0.49s">one.”</span></span>
-        </h2>
-      </div>
-      <div class="beatcopy" data-step="2">
-        <p class="eyebrow fx" style="--d:.05s"><img class="rayi" src="assets/ray-avatar.svg" alt="" />Step 02 · Plan the tender</p>
-        <h2 class="cap">
-        <span class="rw"><span style="--d:0.15s">“Let</span></span>
-        <span class="rw"><span style="--d:0.22s">me</span></span><br>
-        <span class="rw"><span class="tl" style="--d:0.35s">build</span></span>
-        <span class="rw"><span style="--d:0.42s">the</span></span>
-        <span class="rw"><span class="tl" style="--d:0.49s">plan.”</span></span>
-        </h2>
-      </div>
-      <p class="sub pairsub fx" style="--d:.5s">Bid or pass, then a plan worked back from the closing date.</p>
-      <ul class="pts beatpoint" data-step="1"><li style="--d:0s">Missing information named. Never assumed, never invented.</li></ul>
-      <ul class="pts beatpoint" data-step="2"><li style="--d:0s">Ray’s tasks flagged. Not started until you approve.</li></ul>
-    </div>
+<section class="scene scene-sheet scene-offwhite pair v4" data-label="Understand · Plan" data-dur="16080" id="scenePair1"
+         data-beats='[{"step": 1, "action": ["", 0, 3.4, 1], "result": ["", 0, 2.6, 1], "hold": 1.3, "offer": "Go / No-Go assessment ready for your approval.", "mode": "approve", "strip": "<b>1 of 8</b> \u00b7 Go / No-Go \u00b7 Awaiting your approval", "work": ["Reviewing the tender pack", "Identifying key requirements", "Checking your company knowledge"], "ticks": null, "prompt": null, "tb": "Step 01 \u00b7 Go / No-Go", "rec": "ray-01-gonogo \u00b7 0:00 to 0:04, 0:24 to 0:27"}, {"step": 2, "action": ["", 0, 2.8, 1], "result": ["", 0, 3.2, 1], "hold": 1.2, "offer": "Delivery plan ready for your approval.", "mode": "approve", "strip": "<b>2 of 8</b> \u00b7 Plan the tender \u00b7 Awaiting your approval", "work": null, "ticks": ["Delivery plan created", "Tasks identified", "Owners proposed", "Deadlines mapped"], "prompt": null, "tb": "Step 02 \u00b7 Plan the tender", "rec": "ray-02-plan \u00b7 0:00 to 0:03, 0:40 to 0:46"}]'>
+  <div class="grid-deco" aria-hidden="true"><i class="crop tl"></i><i class="crop tr"></i><i class="crop bl"></i><i class="crop br"></i></div>
+  <div class="v4col">
     <div class="stage stage-app">
-      <div class="win deck"><div class="win-bar"><span></span><span></span><span></span></div>
-        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas></div></div>
-      <div class="win deck"><div class="win-bar"><span></span><span></span><span></span></div>
-        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas></div></div>
-      <div class="rail sk mini" aria-label="Ray, beside a tender">
-        <div class="rail-head"><img src="assets/ray-avatar.svg" alt="" /><i class="bar" style="width:46%"></i></div>
+      <div class="win deck ph-win"><div class="sheet-bar"><span class="sb-l">TENDERFY</span><span class="sb-m tb-step"></span><span class="sb-r">REV A</span></div>
+        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas><div class="ph ph-gonogo">
+          <div class="pack"><div class="pg"><i class="ln w40"></i><i class="ln w100"></i><i class="ln w80"></i><i class="ln w100"></i><i class="ln w60"></i></div><div class="pg"></div><div class="pg"></div><span class="tag">Tender pack · 214 pages</span></div>
+          <div class="score"><div class="sc-head">Go / No-Go scorecard</div><div class="sc-row"><span>Strategic alignment</span><b class="g"></b></div><div class="sc-row"><span>Relevant capability</span><b class="a"></b></div><div class="sc-row"><span>Commercial viability</span><b class="r"></b></div><div class="sc-row"><span>Mandatory requirements</span><b class="a"></b></div><div class="sc-row"><span>Client relationship</span><b class="a"></b></div><div class="sc-row"><span>Competitive position</span><b class="g"></b></div><div class="sc-row"><span>Scope and delivery risk</span><b class="r"></b></div><div class="sc-row"><span>Programme and timeframe</span><b class="a"></b></div><div class="verdict"><span>Recommendation</span><b>Go, with conditions</b></div></div>
+        </div></div>
+        <div class="sheet-tb"><span class="tb-who"><img src="assets/ray-avatar.svg" alt="" />Ray</span><span class="tb-rec"></span><span class="tb-sig">Approved by</span><i class="tb-line"></i></div>
+        <div class="stamp"></div></div>
+      <div class="win deck ph-win"><div class="sheet-bar"><span class="sb-l">TENDERFY</span><span class="sb-m tb-step"></span><span class="sb-r">REV A</span></div>
+        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas><div class="ph ph-plan">
+          <div class="g-head"><span>Tender delivery plan</span><span class="g-dead">Closes 30 Sep</span></div>
+          <div class="g-row"><span class="g-lbl">Site walk and clarifications</span><span class="g-track"><i style="--o:0%;--w:16%"></i></span><span class="g-own">MB</span></div><div class="g-row"><span class="g-lbl">Methodology and programme</span><span class="g-track"><i style="--o:10%;--w:30%"></i></span><span class="g-own">RK</span></div><div class="g-row"><span class="g-lbl">Pricing schedule</span><span class="g-track"><i style="--o:26%;--w:26%"></i></span><span class="g-own">JS</span></div><div class="g-row"><span class="g-lbl">Resumes and project profiles</span><span class="g-track"><i style="--o:34%;--w:22%"></i></span><span class="g-own">RAY</span></div><div class="g-row"><span class="g-lbl">Compliance and insurances</span><span class="g-track"><i style="--o:40%;--w:18%"></i></span><span class="g-own">MB</span></div><div class="g-row"><span class="g-lbl">Build, review, lodge</span><span class="g-track"><i style="--o:60%;--w:30%"></i></span><span class="g-own">RAY</span></div>
+          <i class="g-now" style="--x:58%"></i>
+        </div></div>
+        <div class="sheet-tb"><span class="tb-who"><img src="assets/ray-avatar.svg" alt="" />Ray</span><span class="tb-rec"></span><span class="tb-sig">Approved by</span><i class="tb-line"></i></div>
+        <div class="stamp"></div></div>
+      <div class="rail sk mini v4rail" aria-label="Ray, working">
+        <div class="rail-head"><img src="assets/ray-avatar.svg" alt="" /><span class="rh-t">Ray</span><span class="rh-s">Working</span></div>
         <div class="rail-body">
-          <div class="rail-msg"><i class="bar" style="width:88%"></i><i class="bar" style="width:52%"></i></div>
-          <div class="rail-refs"><i class="bar ref" style="width:96px"></i><i class="bar ref" style="width:118px"></i></div>
-          <div class="rail-offer"><img class="rayi" src="assets/ray-avatar.svg" alt="" /><p></p><div class="acts"><span class="rail-btn"></span><span class="rail-btn ghost"></span></div></div>
+          <div class="rail-you"></div>
+          <div class="rail-work"></div>
+          <div class="rail-offer"><p></p><div class="acts"><span class="rail-btn"></span><span class="rail-btn ghost"></span></div></div>
           <div class="rail-next"><span></span><span class="prog"><i></i></span></div>
         </div>
-        <div class="rail-comp"><i class="bar" style="width:38%"></i><span class="send"></span></div>
       </div>
-      <div data-step="1" class="mcard mcard-score" style="--d:0s; left:-3%; bottom:6%"><span class="lab">Go / No-Go</span><span class="row"><i class="dot g"></i><i class="bar" style="width:72%"></i></span><span class="row"><i class="dot a"></i><i class="bar" style="width:58%"></i></span><span class="row"><i class="dot r"></i><i class="bar" style="width:64%"></i></span></div>
-      <div data-step="2" class="mcard mcard-task" style="--d:0s; left:-3%; bottom:6%"><span class="row"><i class="box"></i><i class="bar" style="width:74%"></i></span><span class="row sub"><img class="ava" src="assets/ray-avatar.svg" alt="" /><span class="lab">Assignee: Ray</span></span></div>
-
+    </div>
+    <div class="capband">
+      <p class="v4cap beatcopy" data-step="1">Ray understands the opportunity before the work starts.</p>
+      <p class="v4cap beatcopy" data-step="2">Ray works out what needs doing, then plans it.</p>
     </div>
   </div>
 </section>
-<section class="scene scene-offwhite pair" data-label="Steps 03–04 · Buyer · Feedback" data-dur="11080" id="scenePair2"
-         data-beats='[{"step": 3, "action": ["ray-03-04-buyer.mp4", 0.0, 3.0, 1.5], "result": ["ray-03-04-buyer.mp4", 17.5, 19.9, 1.0], "hold": 0.35, "offer": "Let me research the buyer and find where you add value.", "mode": "offer", "strip": "Next \u00b7 <b>3 of 8</b> \u00b7 Understand the buyer"}, {"step": 4, "action": ["ray-03-04-buyer-2.mp4", 0.0, 3.0, 1.5], "result": ["ray-03-04-buyer-2.mp4", 15.6, 18.0, 1.0], "hold": 0.35, "offer": "Let me read what this buyer said about your previous submissions.", "mode": "offer", "strip": "Next \u00b7 <b>4 of 8</b> \u00b7 Learn from feedback"}]'>
-  <div class="deco" aria-hidden="true">
-    <span class="orb orb-teal" style="width:32vw;height:32vw;left:-9vw;top:-10vh"></span>
-    <span class="dots" style="width:180px;height:140px;right:6%;bottom:12%"></span>
-    <span class="bit bit-mint" style="right:26%;top:14%;--bd:8s"></span>
-  </div>
-  <div class="split split-vid">
-    <div class="beatcol">
-      <div class="beatcopy" data-step="3">
-        <p class="eyebrow fx" style="--d:.05s"><img class="rayi" src="assets/ray-avatar.svg" alt="" />Step 03 · Understand the buyer</p>
-        <h2 class="cap">
-        <span class="rw"><span style="--d:0.15s">“Let</span></span>
-        <span class="rw"><span style="--d:0.22s">me</span></span>
-        <span class="rw"><span style="--d:0.29s">find</span></span>
-        <span class="rw"><span style="--d:0.36s">where</span></span><br>
-        <span class="rw"><span style="--d:0.49s">you</span></span>
-        <span class="rw"><span style="--d:0.56s">add</span></span>
-        <span class="rw"><span class="tl" style="--d:0.63s">real</span></span>
-        <span class="rw"><span class="tl" style="--d:0.70s">value.”</span></span>
-        </h2>
-      </div>
-      <div class="beatcopy" data-step="4">
-        <p class="eyebrow fx" style="--d:.05s"><img class="rayi" src="assets/ray-avatar.svg" alt="" />Step 04 · Learn from feedback</p>
-        <h2 class="cap">
-        <span class="rw"><span style="--d:0.15s">“Let</span></span>
-        <span class="rw"><span style="--d:0.22s">me</span></span>
-        <span class="rw"><span class="tl" style="--d:0.29s">read</span></span>
-        <span class="rw"><span style="--d:0.36s">what</span></span><br>
-        <span class="rw"><span style="--d:0.49s">they</span></span>
-        <span class="rw"><span style="--d:0.56s">said</span></span>
-        <span class="rw"><span style="--d:0.63s">last</span></span>
-        <span class="rw"><span class="tl" style="--d:0.70s">time.”</span></span>
-        </h2>
-      </div>
-      <p class="sub pairsub fx" style="--d:.5s">What this buyer wants, and what they said last time.</p>
-      <ul class="pts beatpoint" data-step="3"><li style="--d:0s">Specific value-adds, backed by what you actually do.</li></ul>
-      <ul class="pts beatpoint" data-step="4"><li style="--d:0s">This buyer’s feedback only. Never invented.</li></ul>
-    </div>
+<section class="scene scene-sheet scene-offwhite pair v4" data-label="The ask · The plan" data-dur="16580" id="scenePair2"
+         data-beats='[{"step": 4, "action": ["", 0, 3.0, 1], "result": ["", 0, 2.8, 1], "hold": 1.5, "offer": "School drop-off and pick-up is a key disruption risk. Want a targeted management plan?", "mode": "ask", "strip": "<b>3 to 4 of 8</b> \u00b7 Understand the buyer \u00b7 Your call", "work": ["Analysing buyer priorities", "Finding your evidence"], "ticks": null, "prompt": null, "tb": "Steps 03 to 04 \u00b7 Understand the buyer", "rec": "ray-03-04-buyer \u00b7 0:00 to 0:03"}, {"step": 6, "action": ["", 0, 3.4, 1], "result": ["", 0, 3.0, 1], "hold": 1.3, "offer": "Your disruption management plan is ready for review.", "mode": "approve", "strip": "<b>6 of 8</b> \u00b7 Methodology \u00b7 Awaiting your approval", "work": ["Analysing traffic and access", "Developing mitigation measures", "Creating the plan"], "ticks": null, "prompt": null, "tb": "Steps 05 to 06 \u00b7 Methodology", "rec": "NEW ray-11-plan-doc \u00b7 8s"}]'>
+  <div class="grid-deco" aria-hidden="true"><i class="crop tl"></i><i class="crop tr"></i><i class="crop bl"></i><i class="crop br"></i></div>
+  <div class="v4col">
     <div class="stage stage-app">
-      <div class="win deck"><div class="win-bar"><span></span><span></span><span></span></div>
-        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas></div></div>
-      <div class="win deck"><div class="win-bar"><span></span><span></span><span></span></div>
-        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas></div></div>
-      <div class="rail sk mini" aria-label="Ray, beside a tender">
-        <div class="rail-head"><img src="assets/ray-avatar.svg" alt="" /><i class="bar" style="width:46%"></i></div>
+      <div class="win deck ph-win"><div class="sheet-bar"><span class="sb-l">TENDERFY</span><span class="sb-m tb-step"></span><span class="sb-r">REV A</span></div>
+        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas><div class="ph ph-buyer">
+          <div class="b-head"><span>Buyer priorities · Evaluation criteria</span><span class="src">From the RFT, addendum 2</span></div>
+          <div class="b-row"><i class="pin"></i><span>Safety of students and staff during works</span><em>30%</em></div><div class="b-row hot"><i class="pin"></i><span>School drop-off and pick-up times</span><em>key risk</em></div><div class="b-row"><i class="pin"></i><span>Minimal disruption to teaching</span><em>25%</em></div><div class="b-row"><i class="pin"></i><span>Local employment and apprentices</span><em>15%</em></div><div class="b-row"><i class="pin"></i><span>Programme certainty</span><em>20%</em></div>
+          <div class="b-evd"><span>Your evidence</span><i class="ln w90"></i><i class="ln w70"></i><em>3 comparable school projects found</em></div>
+        </div></div>
+        <div class="sheet-tb"><span class="tb-who"><img src="assets/ray-avatar.svg" alt="" />Ray</span><span class="tb-rec"></span><span class="tb-sig">Approved by</span><i class="tb-line"></i></div>
+        <div class="stamp"></div></div>
+      <div class="win deck ph-win"><div class="sheet-bar"><span class="sb-l">TENDERFY</span><span class="sb-m tb-step"></span><span class="sb-r">REV A</span></div>
+        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas><div class="ph ph-plandoc">
+          <div class="page">
+            <div class="p-title">School Drop-Off and Pick-Up Disruption Management Plan</div>
+            <div class="p-sub">Section 4.2 · Methodology · Drafted by Ray, for your review</div>
+            <i class="ln w100"></i><i class="ln w90"></i><i class="ln w60"></i>
+            <div class="p-h">Mitigation measures</div>
+            <div class="t-row t-head"><span>Window</span><span>Measure</span><span>Owner</span></div>
+            <div class="t-row"><span>Drop-off, 8:00 to 9:00</span><span>No deliveries. Traffic controller at Gate B.</span><span>Site manager</span></div><div class="t-row"><span>Pick-up, 2:45 to 3:30</span><span>Plant movements paused. Pedestrian barrier line held.</span><span>Site manager</span></div><div class="t-row"><span>Wet weather</span><span>Covered walkway maintained. Extra controller.</span><span>Foreman</span></div><div class="t-row"><span>Term breaks</span><span>Heavy works scheduled. School advised two weeks prior.</span><span>Project manager</span></div>
+          </div>
+        </div></div>
+        <div class="sheet-tb"><span class="tb-who"><img src="assets/ray-avatar.svg" alt="" />Ray</span><span class="tb-rec"></span><span class="tb-sig">Approved by</span><i class="tb-line"></i></div>
+        <div class="stamp"></div></div>
+      <div class="rail sk mini v4rail" aria-label="Ray, working">
+        <div class="rail-head"><img src="assets/ray-avatar.svg" alt="" /><span class="rh-t">Ray</span><span class="rh-s">Working</span></div>
         <div class="rail-body">
-          <div class="rail-msg"><i class="bar" style="width:88%"></i><i class="bar" style="width:52%"></i></div>
-          <div class="rail-refs"><i class="bar ref" style="width:96px"></i><i class="bar ref" style="width:118px"></i></div>
-          <div class="rail-offer"><img class="rayi" src="assets/ray-avatar.svg" alt="" /><p></p><div class="acts"><span class="rail-btn"></span><span class="rail-btn ghost"></span></div></div>
+          <div class="rail-you"></div>
+          <div class="rail-work"></div>
+          <div class="rail-offer"><p></p><div class="acts"><span class="rail-btn"></span><span class="rail-btn ghost"></span></div></div>
           <div class="rail-next"><span></span><span class="prog"><i></i></span></div>
         </div>
-        <div class="rail-comp"><i class="bar" style="width:38%"></i><span class="send"></span></div>
       </div>
-      <div data-step="3" class="mcard mcard-refs" style="--d:0s; left:-3%; bottom:6%"><span class="lab">Reference</span><span class="ref"></span><span class="ref" style="width:78%"></span></div>
-      <div data-step="4" class="mcard mcard-quote" style="--d:0s; left:-3%; bottom:6%"><span class="q">“</span><i class="bar" style="width:86%"></i><i class="bar" style="width:62%"></i><span class="lab">Evaluator feedback</span></div>
-
+    </div>
+    <div class="capband">
+      <p class="v4cap beatcopy" data-step="4">Ray finds where you add real value.</p>
+      <p class="v4cap beatcopy" data-step="6">Ray turns buyer priorities into tender-ready answers.</p>
     </div>
   </div>
 </section>
-<section class="scene scene-deep pair" data-label="Steps 05–06 · Responses · Methodology" data-dur="11079" id="scenePair3"
-         data-beats='[{"step": 5, "action": ["ray-05-06-responses.mp4", 0.0, 3.0, 1.5], "result": ["ray-05-06-responses.mp4", 23.6, 26.0, 1.0], "hold": 0.35, "offer": "Let me work through the response schedule.", "mode": "offer", "strip": "Next \u00b7 <b>5 of 8</b> \u00b7 Complete the responses"}, {"step": 6, "action": ["ray-05-06-responses.mp4", 27.0, 30.0, 1.5], "result": ["ray-05-06-responses.mp4", 50.1, 52.5, 1.0], "hold": 0.35, "offer": "Let me develop the methodology and technical content.", "mode": "offer", "strip": "Next \u00b7 <b>6 of 8</b> \u00b7 Methodology &amp; technical"}]'>
-  <svg class="clip-mark" viewBox="0 0 32 65" aria-hidden="true"><use href="#clipSym"/></svg>
-  <div class="deco" aria-hidden="true">
-    <span class="orb orb-teal" style="width:40vw;height:40vw;left:-12vw;bottom:-16vh;--od:17s"></span>
-    <span class="orb orb-amber" style="width:24vw;height:24vw;right:-6vw;top:-8vh"></span>
-    <span class="ring" style="width:110px;height:110px;right:9%;bottom:14%"></span>
-    <span class="dots" style="width:200px;height:150px;left:4%;top:12%"></span>
-    <span class="spark" style="left:20%;top:18%"></span>
-    <span class="spark" style="right:24%;top:34%;--sd:1.1s"></span>
-    <span class="spark" style="left:30%;bottom:14%;--sd:2s"></span>
-    <span class="bit bit-mint" style="left:8%;top:42%;--bd:7s"></span>
-  </div>
-  <div class="split split-vid">
-    <div class="beatcol">
-      <div class="beatcopy" data-step="5">
-        <p class="eyebrow fx" style="--d:.05s"><img class="rayi" src="assets/ray-avatar.svg" alt="" />Step 05 · Complete the responses</p>
-        <h2 class="cap">
-        <span class="rw"><span style="--d:0.15s">“Let</span></span>
-        <span class="rw"><span style="--d:0.22s">me</span></span><br>
-        <span class="rw"><span class="tl" style="--d:0.35s">draft</span></span>
-        <span class="rw"><span style="--d:0.42s">the</span></span>
-        <span class="rw"><span class="tl" style="--d:0.49s">answers.”</span></span>
-        </h2>
-      </div>
-      <div class="beatcopy" data-step="6">
-        <p class="eyebrow fx" style="--d:.05s"><img class="rayi" src="assets/ray-avatar.svg" alt="" />Step 06 · Methodology &amp; technical</p>
-        <h2 class="cap">
-        <span class="rw"><span style="--d:0.15s">“Let</span></span>
-        <span class="rw"><span style="--d:0.22s">me</span></span><br>
-        <span class="rw"><span class="tl" style="--d:0.35s">build</span></span>
-        <span class="rw"><span style="--d:0.42s">the</span></span>
-        <span class="rw"><span class="tl" style="--d:0.49s">methodology.”</span></span>
-        </h2>
-      </div>
-      <p class="sub pairsub fx" style="--d:.5s">Every question answered from your approved content.</p>
-      <ul class="pts beatpoint" data-step="5"><li style="--d:0s">Word limits and weightings respected.</li></ul>
-      <ul class="pts beatpoint" data-step="6"><li style="--d:0s">SME gaps flagged, never invented.</li></ul>
-    </div>
+<section class="scene scene-sheet scene-offwhite pair v4" data-label="Tailor · Build and check" data-dur="16580" id="scenePair3"
+         data-beats='[{"step": 7, "action": ["", 0, 3.4, 1], "result": ["", 0, 2.8, 1], "hold": 1.2, "offer": "Resumes and project profiles tailored. Ready for your approval.", "mode": "approve", "strip": "<b>7 of 8</b> \u00b7 Build the tender \u00b7 Awaiting your approval", "work": ["Matching relevant experience", "Tailoring to the buyer\u2019s language", "Adding them to the tender build"], "ticks": null, "prompt": "Tailor the most relevant resumes and project profiles to this buyer.", "tb": "Step 07 \u00b7 Build the tender", "rec": "NEW ray-12-tailor \u00b7 8s"}, {"step": 8, "action": ["", 0, 3.2, 1], "result": ["", 0, 2.8, 1], "hold": 1.6, "offer": "<b>All 8 steps done.</b> Every one approved by you. <b>You submit.</b>", "mode": "done", "strip": "Done \u00b7 <b>8 of 8</b>", "work": ["Building the tender documents", "Checking compliance", "Flagging missing information"], "ticks": null, "prompt": null, "tb": "Step 08 \u00b7 Final review", "rec": "ray-07-08-build-review \u00b7 0:13 to 0:16, 0:22 to 0:25"}]'>
+  <div class="grid-deco" aria-hidden="true"><i class="crop tl"></i><i class="crop tr"></i><i class="crop bl"></i><i class="crop br"></i></div>
+  <div class="v4col">
     <div class="stage stage-app">
-      <div class="win deck"><div class="win-bar"><span></span><span></span><span></span></div>
-        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas></div></div>
-      <div class="win deck"><div class="win-bar"><span></span><span></span><span></span></div>
-        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas></div></div>
-      <div class="rail sk mini" aria-label="Ray, beside a tender">
-        <div class="rail-head"><img src="assets/ray-avatar.svg" alt="" /><i class="bar" style="width:46%"></i></div>
+      <div class="win deck ph-win"><div class="sheet-bar"><span class="sb-l">TENDERFY</span><span class="sb-m tb-step"></span><span class="sb-r">REV A</span></div>
+        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas><div class="ph ph-tailor">
+          <div class="r-grid"><div class="r-card"><div class="r-head"><b></b><span>Resume · M. Bassett</span><em>Project Manager</em></div><i class="ln w80"></i><i class="ln w100"></i><i class="ln w60"></i><i class="ln hi w90"></i><i class="ln w70"></i><i class="ln hi w80"></i><i class="ln w100"></i><i class="ln w50"></i></div><div class="r-card"><div class="r-head"><b></b><span>Project profile · Hillcrest Primary</span><em>Live school, 2024</em></div><i class="ln w80"></i><i class="ln w100"></i><i class="ln w60"></i><i class="ln hi w90"></i><i class="ln w70"></i><i class="ln hi w80"></i><i class="ln w100"></i><i class="ln w50"></i></div></div>
+          <div class="r-foot"><span class="k">Tailored to the buyer’s language</span><span>Master library unchanged</span></div>
+        </div></div>
+        <div class="sheet-tb"><span class="tb-who"><img src="assets/ray-avatar.svg" alt="" />Ray</span><span class="tb-rec"></span><span class="tb-sig">Approved by</span><i class="tb-line"></i></div>
+        <div class="stamp"></div></div>
+      <div class="win deck ph-win"><div class="sheet-bar"><span class="sb-l">TENDERFY</span><span class="sb-m tb-step"></span><span class="sb-r">REV A</span></div>
+        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas><div class="ph ph-review">
+          <div class="c-head"><span>Final review · Readiness</span><span class="c-sum"><b class="crit">1 critical</b><b class="rec">1 recommended</b></span></div>
+          <div class="c-row ok"><i></i><span>Response schedule complete</span><em>42 of 42</em></div><div class="c-row ok"><i></i><span>Word limits and weightings</span><em>Compliant</em></div><div class="c-row ok"><i></i><span>Methodology and programme</span><em>Compliant</em></div><div class="c-row crit"><i></i><span>Insurance certificate of currency</span><em>Missing, critical</em></div><div class="c-row rec"><i></i><span>Referee contact details</span><em>Recommended</em></div><div class="c-row ok"><i></i><span>Signed statutory declaration</span><em>Compliant</em></div>
+        </div></div>
+        <div class="sheet-tb"><span class="tb-who"><img src="assets/ray-avatar.svg" alt="" />Ray</span><span class="tb-rec"></span><span class="tb-sig">Approved by</span><i class="tb-line"></i></div>
+        <div class="stamp"></div></div>
+      <div class="rail sk mini v4rail" aria-label="Ray, working">
+        <div class="rail-head"><img src="assets/ray-avatar.svg" alt="" /><span class="rh-t">Ray</span><span class="rh-s">Working</span></div>
         <div class="rail-body">
-          <div class="rail-msg"><i class="bar" style="width:88%"></i><i class="bar" style="width:52%"></i></div>
-          <div class="rail-refs"><i class="bar ref" style="width:96px"></i><i class="bar ref" style="width:118px"></i></div>
-          <div class="rail-offer"><img class="rayi" src="assets/ray-avatar.svg" alt="" /><p></p><div class="acts"><span class="rail-btn"></span><span class="rail-btn ghost"></span></div></div>
+          <div class="rail-you"></div>
+          <div class="rail-work"></div>
+          <div class="rail-offer"><p></p><div class="acts"><span class="rail-btn"></span><span class="rail-btn ghost"></span></div></div>
           <div class="rail-next"><span></span><span class="prog"><i></i></span></div>
         </div>
-        <div class="rail-comp"><i class="bar" style="width:38%"></i><span class="send"></span></div>
       </div>
-      <div data-step="5" class="mcard mcard-resp" style="--d:0s; left:-3%; bottom:6%"><span class="row"><i class="bar" style="width:64%"></i><span class="pill sm">Approve</span></span><span class="row"><i class="bar" style="width:52%"></i><span class="pill sm">Approve</span></span></div>
-      <div data-step="6" class="mcard mcard-proj" style="--d:0s; left:-3%; bottom:6%"><span class="row"><i class="ic"></i><i class="bar" style="width:70%"></i></span><span class="row sub"><i class="dot"></i><i class="bar" style="width:52%"></i></span><span class="row sub"><i class="dot"></i><i class="bar" style="width:44%"></i></span></div>
-
+    </div>
+    <div class="capband">
+      <p class="v4cap beatcopy" data-step="7">Ray tailors your content to the opportunity. The facts stay the facts.</p>
+      <p class="v4cap beatcopy" data-step="8">From the first read to the final check.</p>
     </div>
   </div>
 </section>
-<section class="scene scene-light pair" data-label="Steps 07–08 · Build · Review" data-dur="12329" id="scenePair4"
-         data-beats='[{"step": 7, "action": ["ray-07-08-build-review.mp4", 0.0, 3.0, 1.5], "result": ["ray-07-08-build-review.mp4", 10.6, 13.0, 1.0], "hold": 0.35, "offer": "Let me assemble the submission for this bid.", "mode": "offer", "strip": "Next \u00b7 <b>7 of 8</b> \u00b7 Build the tender"}, {"step": 8, "action": ["ray-07-08-build-review.mp4", 13.5, 16.5, 1.5], "result": ["ray-07-08-build-review.mp4", 22.3, 24.9, 1.0], "hold": 1.4, "offer": "<b>All 8 steps done.</b> Every one approved by you. <b>You submit.</b>", "mode": "done", "strip": "Done \u00b7 <b>8 of 8</b>"}]'>
-  <div class="deco" aria-hidden="true">
-    <span class="orb orb-teal" style="width:32vw;height:32vw;left:-10vw;top:-12vh"></span>
-    <span class="dots" style="width:180px;height:140px;right:4%;top:16%"></span>
-    <span class="bit bit-mint" style="right:9%;bottom:32%;--bd:7s;--bx:-10px;--by:-16px"></span>
-  </div>
-  <div class="split split-vid">
-    <div class="beatcol">
-      <div class="beatcopy" data-step="7">
-        <p class="eyebrow fx" style="--d:.05s"><img class="rayi" src="assets/ray-avatar.svg" alt="" />Step 07 · Build the tender</p>
-        <h2 class="cap">
-        <span class="rw"><span style="--d:0.15s">“Let</span></span>
-        <span class="rw"><span style="--d:0.22s">me</span></span><br>
-        <span class="rw"><span class="tl" style="--d:0.35s">build</span></span>
-        <span class="rw"><span class="tl" style="--d:0.42s">it.”</span></span>
-        </h2>
+<section class="scene scene-sheet scene-offwhite v4 v4ready" data-label="Ready" data-dur="5200" id="sceneReady">
+  <div class="grid-deco" aria-hidden="true"><i class="crop tl"></i><i class="crop tr"></i><i class="crop bl"></i><i class="crop br"></i></div>
+  <div class="v4col">
+    <div class="ready-stage">
+      <div class="cover fx" style="--d:.15s" aria-hidden="true">
+        <div class="cv-brand">tend<i>e</i>rfy</div>
+        <div class="cv-t">Tender submission</div>
+        <div class="cv-s">RFT 2026-114 · Hillcrest Primary School, Stage 2</div>
+        <i class="ln w60"></i><i class="ln w40"></i>
+        <div class="cv-stamp">8 of 8 approved</div>
       </div>
-      <div class="beatcopy" data-step="8">
-        <p class="eyebrow fx" style="--d:.05s"><img class="rayi" src="assets/ray-avatar.svg" alt="" />Step 08 · Final review</p>
-        <h2 class="cap">
-        <span class="rw"><span style="--d:0.15s">“Then</span></span>
-        <span class="rw"><span style="--d:0.22s">let</span></span><br>
-        <span class="rw"><span style="--d:0.35s">me</span></span>
-        <span class="rw"><span class="tl" style="--d:0.42s">check</span></span>
-        <span class="rw"><span class="tl" style="--d:0.49s">it.”</span></span>
-        </h2>
-      </div>
-      <p class="sub pairsub fx" style="--d:.5s">Built for this bid, then read like an evaluator would.</p>
-      <ul class="pts beatpoint" data-step="7"><li style="--d:0s">Master library never overwritten.</li></ul>
-      <ul class="pts beatpoint" data-step="8"><li style="--d:0s">Critical · Recommended · Optional. Your call.</li></ul>
+      <div class="dl fx" style="--d:1.2s" aria-hidden="true"><i></i><span>Download the pack</span></div>
+      <p class="rec-note fx" style="--d:.5s">Recording slot · NEW ray-13-download · 3s</p>
     </div>
-    <div class="stage stage-app">
-      <div class="win deck"><div class="win-bar"><span></span><span></span><span></span></div>
-        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas></div></div>
-      <div class="win deck"><div class="win-bar"><span></span><span></span><span></span></div>
-        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas></div></div>
-      <div class="rail sk mini" aria-label="Ray, beside a tender">
-        <div class="rail-head"><img src="assets/ray-avatar.svg" alt="" /><i class="bar" style="width:46%"></i></div>
-        <div class="rail-body">
-          <div class="rail-msg"><i class="bar" style="width:88%"></i><i class="bar" style="width:52%"></i></div>
-          <div class="rail-refs"><i class="bar ref" style="width:96px"></i><i class="bar ref" style="width:118px"></i></div>
-          <div class="rail-offer"><img class="rayi" src="assets/ray-avatar.svg" alt="" /><p></p><div class="acts"><span class="rail-btn"></span><span class="rail-btn ghost"></span></div></div>
-          <div class="rail-next"><span></span><span class="prog"><i></i></span></div>
-        </div>
-        <div class="rail-comp"><i class="bar" style="width:38%"></i><span class="send"></span></div>
-      </div>
-      <div data-step="7" class="mcard mcard-prompt" style="--d:0s; left:-3%; bottom:6%"><span class="row"><i class="bk"></i><i class="bar" style="width:70%"></i></span><span class="row"><i class="bk"></i><i class="bar" style="width:54%"></i></span><span class="row"><i class="bk"></i><i class="bar" style="width:62%"></i></span></div>
-      <div data-step="8" class="mcard mcard-ready" style="--d:0s; left:-3%; bottom:6%"><span class="lab">Readiness summary</span><span class="row"><i class="dot r"></i><b>2</b><i class="bar" style="width:48%"></i></span><span class="row"><i class="dot a"></i><b>4</b><i class="bar" style="width:58%"></i></span><span class="row"><i class="dot g"></i><b>3</b><i class="bar" style="width:40%"></i></span></div>
-
-    </div>
+    <div class="capband"><p class="v4cap on">Tender built. Ready for you to submit.</p></div>
   </div>
 </section>
-<!-- ============ S7 · YOUR METHOD ============ -->
-<section class="scene scene-offwhite" data-label="Your Method" data-dur="5000" id="sceneManager" data-beats='[{"step": 0, "action": ["ray-09-method.mp4", 0.0, 7.5, 1.5], "result": null, "hold": 0}]'>
-  <div class="deco" aria-hidden="true">
-    <span class="orb orb-blue" style="width:32vw;height:32vw;left:-10vw;bottom:-12vh"></span>
-    <span class="dots" style="width:180px;height:140px;right:5%;top:14%"></span>
-    <span class="bit" style="right:11%;bottom:24%;--bx:-12px;--by:-14px"></span>
-  </div>
-  <div class="split split-vid">
-    <div>
-      <p class="eyebrow fx" style="--d:.05s">Saved prompts · The Tenderfy Method</p>
-      <h2 class="cap">
-        <span class="rw"><span style="--d:.15s">The</span></span>
-        <span class="rw"><span style="--d:.22s">Method</span></span>
-        <span class="rw"><span style="--d:.29s">ships.</span></span><br>
-        <span class="rw"><span style="--d:.42s">Your</span></span>
-        <span class="rw"><span style="--d:.49s">version</span></span>
-        <span class="rw"><span style="--d:.56s">is</span></span>
-        <span class="rw"><span class="tl" style="--d:.63s">yours.</span></span>
-      </h2>
-      <p class="sub fx" style="--d:.9s">Edit any step to match how your company bids.</p>
-      <ul class="pts">
-        <li style="--d:1.30s">Make the prompts specific to your business.</li>
-        <li style="--d:1.55s">Pick a saved prompt from the chat box.</li>
-      </ul>
-    </div>
-    <div class="stage stage-app">
-      <div class="win deck"><div class="win-bar"><span></span><span></span><span></span></div>
-        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas></div></div>
-      <div class="win deck"><div class="win-bar"><span></span><span></span><span></span></div>
-        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas></div></div>
-      <div class="mcard mcard-prompt" style="--d:2.9s; left:-3%; bottom:6%"><span class="row"><i class="bk"></i><i class="bar" style="width:70%"></i></span><span class="row"><i class="bk"></i><i class="bar" style="width:54%"></i></span><span class="row"><i class="bk"></i><i class="bar" style="width:62%"></i></span></div>
-    </div>
+<section class="scene scene-ink v4 v4end" data-label="Tenderfy" data-dur="5200" id="sceneEnd">
+  <div class="grid-deco" aria-hidden="true"></div>
+  <div class="open-wrap">
+    <div class="open-ray fx" style="--d:.1s" aria-hidden="true"><span class="ring"></span><img src="assets/ray-avatar.svg" alt="" /></div>
+    <p class="eyebrow fx" style="--d:.4s">Agentic Ray</p>
+    <h1 class="big v4big">
+        <span class="rw"><span style="--d:0.55s">Your</span></span>
+        <span class="rw"><span style="--d:0.67s">tender</span></span>
+        <span class="rw"><span class="tl-bright" style="--d:0.79s">teammate.</span></span>
+    </h1>
+    <p class="open-kicker moves fx" style="--d:1.2s"><span>Understand.</span><span>Plan.</span><span>Create.</span><span>Deliver.</span></p>
+    <p class="end-say fx" style="--d:1.8s">Say it: “Ray, get this tender started.”</p>
+    <div class="end-ctas fx" style="--d:2.2s"><span class="cta">Try for free →</span><span class="cta ghost">Book a demo</span></div>
   </div>
 </section>
-<!-- ============ S9 · BRAND END CARD ============ -->
-<section class="scene scene-end end-dark" data-label="Tenderfy" data-dur="5000">
-  <div class="deco" aria-hidden="true">
-    <span class="orb orb-amber" style="width:26vw;height:26vw;right:6vw;top:-8vh;opacity:.35"></span>
-    <span class="bit" style="right:28%;top:30%;--bd:8s"></span>
-    <span class="spark" style="right:13%;top:44%;--sd:.8s"></span>
-  </div>
-  <span class="end-dots end-dots-1" aria-hidden="true"></span>
-  <span class="end-dots end-dots-2" aria-hidden="true"></span>
-  <svg class="end-clip" viewBox="0 0 32 65" fill="none" aria-hidden="true">
-    <path d="M14.0122 64.9993C11.9681 65.0002 9.94867 64.5253 8.09554 63.6077C6.24241 62.6902 4.60054 61.3524 3.28519 59.6882C1.96984 58.024 1.01289 56.0737 0.481529 53.9743C-0.0498368 51.8749 -0.142745 49.6772 0.209328 47.5355L5.87064 13.3866C6.36249 10.4198 7.94225 7.78224 10.2624 6.05428C12.5825 4.32632 15.453 3.64947 18.2423 4.17263C21.0316 4.6958 23.5113 6.37611 25.1359 8.84393C26.7604 11.3117 27.3968 14.3649 26.9049 17.3318L25.1036 28.1964C24.533 31.6184 22.7093 34.6599 20.0328 36.6533C17.3563 38.6467 14.0455 39.4292 10.8272 38.8291L11.7081 33.514C13.6013 33.8666 15.5487 33.4061 17.1231 32.2335C18.6976 31.0609 19.7705 29.2719 20.1065 27.259L21.9075 16.3945C22.0437 15.6198 22.0341 14.8241 21.8793 14.0534C21.7245 13.2828 21.4276 12.5524 21.0058 11.9045C20.5839 11.2566 20.0455 10.7042 19.4216 10.2791C18.7978 9.85395 18.1008 9.56462 17.3712 9.42781C16.6415 9.291 15.8936 9.30942 15.1707 9.48202C14.4478 9.65461 13.7642 9.97795 13.1595 10.4333C12.5548 10.8887 12.041 11.4671 11.6478 12.135C11.2546 12.803 10.9898 13.5472 10.8687 14.3247L5.20771 48.4736C5.00449 49.6994 5.03027 50.9559 5.28356 52.1712C5.53686 53.3864 6.01272 54.5367 6.68397 55.5564C7.35522 56.5761 8.20872 57.4451 9.19574 58.114C10.1828 58.7828 11.284 59.2383 12.4365 59.4544C13.589 59.6706 14.7702 59.6432 15.9128 59.3738C17.0553 59.1043 18.1368 58.5982 19.0955 57.8842C20.0541 57.1702 20.8711 56.2624 21.4999 55.2126C22.1287 54.1627 22.557 52.9914 22.7602 51.7656L27.003 26.1725L32 27.1102L27.7573 52.7033C27.1863 56.1421 25.4968 59.2579 22.9844 61.5058C20.472 63.7537 17.2966 64.9905 14.0135 65" stroke="rgba(255,255,255,.32)" stroke-width=".6" fill="none"/>
-  </svg>
-  <div class="end-contact">
-    <span class="row" style="--d:.8s"><svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.2" stroke="currentColor" stroke-width="1.3"/><path d="M2 8h12M8 1.8c2 1.8 2 10.6 0 12.4M8 1.8c-2 1.8-2 10.6 0 12.4" stroke="currentColor" stroke-width="1.1"/></svg>tenderfy.org</span>
-    <span class="row" style="--d:1s"><svg viewBox="0 0 16 16" fill="none"><rect x="1.8" y="3.2" width="12.4" height="9.6" rx="1.6" stroke="currentColor" stroke-width="1.3"/><path d="M2.5 4.5L8 9l5.5-4.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>connect@tenderfy.org</span>
-    <span class="rule" aria-hidden="true"></span>
-  </div>
-  <div class="end-main">
-    <div class="end-brand">
-      <img class="end-logo" src="assets/tenderfy-wordmark-white.svg" alt="tenderfy" />
-      <span class="end-tagline fx" style="--d:1.5s"><b class="tg-mint">Helping Good Businesses</b><b class="tg-amber">Win Great Work</b></span>
-    </div>
-    <div class="end-cta">
-      <h2 class="cap">
-        <span class="rw"><span style="--d:1.9s">Win</span></span>
-        <span class="rw"><span style="--d:1.98s">more</span></span>
-        <span class="rw"><span class="am" style="--d:2.06s">tenders.</span></span><br>
-        <span class="rw"><span style="--d:2.2s">With</span></span>
-        <span class="rw"><span style="--d:2.28s">less</span></span>
-        <span class="rw"><span style="--d:2.36s">effort.</span></span>
-      </h2>
-      <p class="end-ray fx" style="--d:2.3s"><img class="rayi lg" src="assets/ray-avatar.svg" alt="" />Ray Agent</p>
-      <p class="sub end-sub fx" style="--d:2.5s">Ray does the majority of the work. You guide, review and approve.</p>
-      <div class="end-actions">
-        <a class="btn btn-amber fxs" style="--d:2.9s" href="pricing.html">Try for free →</a>
-        <a class="btn btn-ghost fxs" style="--d:3.1s" href="pricing.html">Book a demo</a>
-      </div>
-      <p class="end-note fx" style="--d:3.5s">Say it: “Ray, get this tender started.”</p>
-    </div>
-  </div>
-  <p class="end-ack fx" style="--d:4s">Tenderfy acknowledges the Kombumerri people of the Yugambeh language region, the Traditional Custodians of the land on which we work.</p>
-</section>
-
 <script>
 (function () {
   'use strict';
@@ -1527,9 +1465,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
 
   // ---- feature videos: each listed scene plays its clip(s) to completion,
   //      then advances. Two-clip scenes play in sequence. ----
-  // ---- RECORDINGS are driven by the beat runner at the foot of the page
-  //      (scenes carrying data-beats), not by this player. Each beat seeks a
-  //      window of a clip; the files are never cut.
+  // V4: recordings are seeked by the beat runner; placeholders hold until the clips land.
   var VIDS = {};
   var activeVideo = null, videoRAF = 0, videoFallback = 0, playlistIdx = 0, preloadTimer = 0;
   var PLAY_RATE = 1.5; // every scene clip runs 50% faster
@@ -1855,7 +1791,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
     }
   });
 
-  var words = ['Go / No-Go', 'Plan', 'Buyer', 'Feedback', 'Responses', 'Methodology', 'Build', 'Review', 'Ray'];
+  var words = ['Understand', 'Plan', 'Create', 'Deliver', 'Agentic Ray'];
   var wi = 0;
   function nextWord() {
     wi++;
