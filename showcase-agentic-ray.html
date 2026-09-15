@@ -992,7 +992,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
 .push-slide .stage-app .win.deck.out { transform: translate(-64px, -50%); opacity: 0; }
 .push-park .stage-app .win.deck { transform: translateY(calc(-50% + 64px)) scale(.96); transition-duration: .42s; }
 .push-park .stage-app .win.deck.in { transform: translateY(-50%) scale(1); z-index: 4; }
-.push-park .stage-app .win.deck.out, .push-park .stage-app .win.deck.parked { opacity: .55; transform: translateY(calc(-50% - 30px)) scale(.92); z-index: 2; transition-duration: .42s; }
+.push-park .stage-app .win.deck.out, .push-park .stage-app .win.deck.parked { opacity: .6; transform: translateY(calc(-50% - 54px)) scale(.9); z-index: 2; transition-duration: .42s; }
 .push-park .stage-app .win.deck.parked .stamp { opacity: .92; }
 body.on-light .chrome-label, body.on-light .chrome-brand { color: var(--ink, #0F1A17); }
 
@@ -1000,10 +1000,13 @@ body.on-light .chrome-label, body.on-light .chrome-brand { color: var(--ink, #0F
 .scene.v4.pair { padding: 76px clamp(16px, 3vw, 48px) 92px; }
 .v4col { width: min(1120px, 100%, calc((100vh - 340px) * 2.2)); margin: auto; display: flex; flex-direction: column; align-items: center; gap: clamp(14px, 2.4vh, 26px); }
 .v4 .stage-app { width: 100%; height: auto; aspect-ratio: 16 / 8.6; position: relative; }
-.v4 .stage-app .win.deck { width: 80%; left: 0; border-radius: 6px; background: #fff; border: 1px solid var(--line);
+.v4 .stage-app .win.deck { width: 80%; left: 0; border-radius: 10px; background: #fff; border: 1px solid var(--line);
   box-shadow: 0 30px 60px -30px rgba(15,26,23,.35), 0 2px 0 #fff inset; overflow: visible; }
-.v4 .win.deck .win-bar { display: none; }
-.v4 .sheet-bar { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 12px; padding: 7px 12px; border-bottom: 1px solid var(--line);
+.v4 .win.deck .win-bar { display: flex; align-items: center; gap: 6px; padding: 9px 12px; background: #F1F4F2; border-bottom: 1px solid var(--line); }
+.v4 .win.deck .win-bar span { width: 9px; height: 9px; border-radius: 50%; background: #D3DDD8; }
+.v4 .win.deck .win-bar span:first-child { background: #8FA6A0; }
+.v4 .sheet-bar, .v4 .sheet-tb, .v4 .stamp { display: none; }
+.v4 .sheet-bar-x { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 12px; padding: 7px 12px; border-bottom: 1px solid var(--line);
   font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: var(--dim); font-weight: 600; }
 .v4 .sheet-bar .sb-m { text-align: center; color: var(--acc); }
 .v4 .win.deck .vwrap { aspect-ratio: 16 / 8.2; overflow: hidden; background: #fff; }
@@ -1053,92 +1056,162 @@ body.on-light .chrome-label, body.on-light .chrome-brand { color: var(--ink, #0F
 .v4rail .rail-next { font-size: 10.5px; }
 @media (prefers-reduced-motion: reduce) { .v4rail .work.live i { animation: none; } .v4 .stamp.on { animation: none; opacity: .92; transform: rotate(-9deg); } }
 
-/* ===== placeholders: what a recording slot shows until the clip lands ===== */
 .v4 .win.deck { container-type: inline-size; }
-.ph { position: absolute; inset: 0; padding: 1.4em 1.6em; font-size: clamp(9px, 1.6cqw, 18px); line-height: 1.3; color: var(--ink-2); }
-.ph .ln { display: block; height: 0.571em; border-radius: 0.286em; background: #E9EFEC; margin: 0.476em 0; }
-.ph .ln.w100 { width: 100%; } .ph .ln.w90 { width: 90%; } .ph .ln.w80 { width: 80%; } .ph .ln.w70 { width: 70%; } .ph .ln.w60 { width: 60%; } .ph .ln.w50 { width: 50%; } .ph .ln.w40 { width: 40%; }
-.ph .ln.hi { background: rgba(29,158,117,.18); transition: background .4s ease .2s; } .res .ph .ln.hi { background: rgba(29,158,117,.55); }
-/* go / no-go */
-.ph-gonogo { display: grid; grid-template-columns: 1fr 1.25fr; gap: 1.524em; }
-.ph-gonogo .pack { position: relative; padding-top: 0.952em; }
-.ph-gonogo .pg { position: absolute; left: 0; top: 0; width: 72%; height: 78%; background: #fff; border: 1px solid var(--line); border-radius: 0.286em; padding: 0.952em; box-shadow: 0 0.762em 1.714em -1.143em rgba(15,26,23,.4); }
-.ph-gonogo .pg:nth-child(2) { transform: translate(1.143em, 0.952em); z-index: -1; } .ph-gonogo .pg:nth-child(3) { transform: translate(2.286em, 1.905em); z-index: -2; }
-.ph-gonogo .tag { position: absolute; left: 0; bottom: 0; font-size: 0.952em; color: var(--dim); }
-.ph-gonogo .score { justify-content: space-evenly; border: 1px solid var(--line); border-radius: 0.571em; padding: 0.762em 0.952em; background: #fff; display: flex; flex-direction: column; gap: 0.381em; }
-.ph-gonogo .sc-head { font-weight: 600; color: var(--ink); font-size: 1.048em; padding-bottom: 0.381em; border-bottom: 1px solid var(--line); }
-.ph-gonogo .sc-row { display: flex; align-items: center; justify-content: space-between; gap: 0.762em; }
-.ph-gonogo .sc-row b { width: 4.381em; height: 0.762em; border-radius: 0.381em; background: #E9EFEC; transition: background .35s ease; }
-.res .ph-gonogo .sc-row b.g { background: var(--teal); } .res .ph-gonogo .sc-row b.a { background: var(--amber); } .res .ph-gonogo .sc-row b.r { background: var(--red); }
-.ph-gonogo .verdict { display: flex; justify-content: space-between; align-items: center; margin-top: 0.381em; padding-top: 0.571em; border-top: 1px solid var(--line); }
-.ph-gonogo .verdict b { color: transparent; background: #E9EFEC; border-radius: 0.381em; padding: 0.19em 0.762em; transition: all .35s ease .3s; }
-.res .ph-gonogo .verdict b { color: #fff; background: var(--teal-2); }
-/* plan */
-.ph-plan { display: flex; flex-direction: column; justify-content: space-evenly; gap: 0.667em; }
-.ph-plan .g-head { display: flex; justify-content: space-between; font-weight: 600; color: var(--ink); font-size: 1.048em; padding-bottom: 0.476em; border-bottom: 1px solid var(--line); }
-.ph-plan .g-dead { color: var(--amber); }
-.ph-plan .g-row { display: grid; grid-template-columns: 34% 1fr 3.429em; align-items: center; gap: 0.952em; }
-.ph-plan .g-track { position: relative; height: 0.952em; background: #EEF3F0; border-radius: 0.476em; }
-.ph-plan .g-track i { position: absolute; left: var(--o); width: 0; top: 0; bottom: 0; border-radius: 0.476em; background: rgba(29,158,117,.35); transition: width .5s cubic-bezier(.2,.7,.2,1); }
-.res .ph-plan .g-track i { width: var(--w); background: var(--teal); }
-.ph-plan .g-own { font-size: 0.857em; font-weight: 700; letter-spacing: .06em; text-align: center; border: 1px solid var(--line); border-radius: 95.143em; padding: 0.19em 0; color: var(--dim); background: #fff; }
-.ph-plan .g-now { position: absolute; left: calc(1.524em + (100% - 3.048em) * .34 + (100% - 3.048em) * .66 * .58); top: 3.619em; bottom: 1.333em; width: 0; border-left: 1.5px dashed var(--amber); opacity: .8; }
+.ph { position: absolute; inset: 0; font-size: clamp(8px, 1.4cqw, 17px); line-height: 1.3; color: var(--ink-2); }
+.v4 .vwrap .ph { transition: opacity .3s ease; }
+.v4 .vwrap.dim .ph { opacity: .35; }
+/* ===== the app shell: sidebar #394645, toolbar #38988A, page #FAFCFB ===== */
+.ph.app { padding: 0; display: grid; grid-template-columns: 5.2em 1fr; background: #FAFCFB; }
+.a-side { background: #394645; display: flex; flex-direction: column; align-items: center; gap: 1.6em; padding-top: 1.2em; }
+.a-logo { width: 1.7em; height: 3.4em; color: #E8A33A; margin-bottom: .6em; } .a-logo use { stroke-width: 2.2; }
+.a-ic { width: 1.5em; height: 1.3em; border-radius: .25em; border: .16em solid rgba(255,255,255,.85); opacity: .9; }
+.a-ic:nth-child(3) { border-radius: .2em .2em .5em .5em; } .a-ic:nth-child(4) { border-radius: .6em .6em .6em .15em; } .a-ic:nth-child(5) { width: 1.2em; } .a-ic:nth-child(6) { border-radius: .3em; }
+.a-main { display: flex; flex-direction: column; min-width: 0; }
+.a-bar { display: flex; align-items: center; gap: 1em; background: #38988A; color: #fff; padding: 0 1.4em; height: 3.4em; font-size: .95em; font-weight: 600; }
+.a-home { width: 1.1em; height: 1em; border: .15em solid #fff; border-top-width: .3em; border-radius: .15em .15em 0 0; }
+.a-crumb { letter-spacing: .01em; opacity: .95; }
+.a-ray { margin-left: auto; display: flex; align-items: center; gap: .45em; background: rgba(255,255,255,.18); border-radius: 999px; padding: .25em .8em .25em .4em; font-size: .9em; } .a-ray img { width: 1.4em; height: 1.2em; }
+.a-av { width: 1.8em; height: 1.8em; border-radius: 50%; background: #1F2B28; border: .15em solid rgba(255,255,255,.5); }
+.a-body { flex: 1; display: grid; grid-template-columns: .78fr 1.22fr; gap: 1.1em; padding: 1.1em 1.3em; min-height: 0; }
+.a-body.wide { grid-template-columns: 1fr; }
+.pane { background: #fff; border-radius: .6em; box-shadow: 0 .1em .4em rgba(20,28,26,.08); overflow: hidden; display: flex; flex-direction: column; min-height: 0; }
+.p-head { display: flex; align-items: center; justify-content: space-between; padding: .7em 1.1em; font-weight: 600; font-size: 1.05em; }
+.p-head.dark { background: #4E5A59; color: #fff; }
+.btn { display: inline-block; background: #38988A; color: #fff; border-radius: .45em; padding: .4em .95em; font-size: .85em; font-weight: 600; white-space: nowrap; }
+.btn.amber { background: #F2B544; color: #fff; } .btn.ghost { background: transparent; color: #4A4038; border: 1px solid #D7DEDB; }
+.btn.pressed { transform: scale(.94); filter: brightness(.9); }
+.p-body { padding: .9em 1.1em; display: flex; flex-direction: column; gap: .5em; }
+.fold { border: 1px solid #DDE5E1; border-radius: .5em; padding: .6em .9em; font-size: .95em; }
+.fold.sel { background: #1F2B28; color: #fff; } .fold.sel b { margin-left: .3em; }
+.file { display: flex; align-items: center; gap: .6em; padding: .45em .9em; font-size: .9em; color: #33423E; }
+.file i { width: .9em; height: 1.1em; border: .12em solid #38988A; border-radius: .12em; }
+.qa { margin-top: auto; border: 1px solid #C9E6E0; background: #EEF8F6; border-radius: .6em; padding: .7em .9em; display: flex; flex-wrap: wrap; gap: .4em; font-size: .82em; }
+.qa span { width: 100%; font-size: .85em; letter-spacing: .08em; text-transform: uppercase; color: #4A4038; font-weight: 600; }
+.qa b { border: 1px solid #38988A; color: #0F7355; border-radius: 999px; padding: .25em .7em; font-weight: 500; }
+.qa b.hi { background: #38988A; color: #fff; }
+.pane.doc { padding: 1.1em 1.3em; gap: .35em; }
+.d-crumb { font-size: .8em; color: #857A6C; letter-spacing: .04em; }
+.d-title { font-weight: 700; color: #1F1A14; font-size: 1.25em; line-height: 1.15; }
+.d-sub { color: #857A6C; font-size: .9em; margin-bottom: .3em; }
+.d-h { font-weight: 600; color: #0F7355; margin-top: .5em; font-size: .95em; }
+.ph .ln { display: block; height: .55em; border-radius: .3em; background: #E9EFEC; margin: .4em 0; }
+.ph .ln.w100 { width: 100%; } .ph .ln.w92 { width: 92%; } .ph .ln.w90 { width: 90%; } .ph .ln.w86 { width: 86%; } .ph .ln.w80 { width: 80%; } .ph .ln.w70 { width: 70%; } .ph .ln.w62 { width: 62%; }
+/* go / no-go scorecard: the criteria and the words Green, Amber, Red */
+.sc-row { display: flex; justify-content: space-between; align-items: center; gap: 1em; padding: .22em 0; border-bottom: 1px solid #EEF2F0; font-size: .92em; }
+.sc-row.sc-head { font-weight: 600; color: #1F1A14; border-bottom-color: #D7DEDB; }
+.sc-row b { min-width: 4.4em; text-align: right; font-weight: 600; color: transparent; background: #E9EFEC; border-radius: .3em; padding: 0 .4em; transition: all .3s ease; }
+.res .sc-row b { background: transparent; } .res .sc-row b.g { color: #1D9E75; } .res .sc-row b.a { color: #D98E1F; } .res .sc-row b.r { color: #C6483B; }
+.d-rec { display: flex; justify-content: space-between; align-items: center; margin-top: .6em; padding-top: .6em; border-top: 1px solid #D7DEDB; font-weight: 600; }
+.d-rec b { color: transparent; background: #E9EFEC; border-radius: .4em; padding: .25em .7em; transition: all .35s ease .25s; }
+.res .d-rec b { color: #fff; background: #0F7355; animation: popIn .4s cubic-bezier(.2,1.5,.3,1) both; animation-delay: .25s; }
+/* checklist */
+.tabs { display: flex; align-items: center; gap: 1.6em; padding: .5em 1.1em 0; font-size: .92em; border-bottom: 1px solid #EEF2F0; }
+.tabs span { padding: .5em 0; color: #33423E; } .tabs span.on { color: #0F7355; font-weight: 600; border-bottom: .2em solid #38988A; }
+.tabs em { margin-left: auto; font-style: normal; border: 1px solid #D7DEDB; border-radius: .4em; padding: .3em .8em; font-size: .9em; }
+.t-row { display: grid; grid-template-columns: 1.2em 1fr 6.5em 5.5em; align-items: center; gap: .8em; padding: .5em 1.1em; border-bottom: 1px solid #EEF2F0; font-size: .9em; }
+.t-row.t-head { color: #6B7975; font-size: .8em; letter-spacing: .06em; }
+.t-row .dot { width: .6em; height: .6em; border-radius: 50%; background: #E24B3F; }
+.t-name { font-weight: 600; color: #1F1A14; line-height: 1.15; } .t-name small { display: block; font-weight: 400; color: #857A6C; font-size: .82em; }
+.t-due { color: #33423E; }
+.t-act { display: flex; gap: .4em; } .t-act i { width: 1.4em; height: 1.4em; border-radius: 50%; background: #E9EFEC; transition: background .3s ease; }
+.res .t-act .ed { background: #38988A; } .res .t-act .ok { background: #1D9E75; } .res .t-act .del { background: #E24B3F; }
+.ph-plan .t-row:not(.t-head) { opacity: 0; transform: translateX(-.6em); animation: rowIn .45s cubic-bezier(.2,1.4,.3,1) forwards; animation-delay: calc(.25s + var(--i) * .16s); }
+@keyframes rowIn { to { opacity: 1; transform: none; } }
 /* buyer */
-.ph-buyer { display: flex; flex-direction: column; justify-content: space-evenly; gap: 0.571em; }
-.ph-buyer .b-head { display: flex; justify-content: space-between; font-weight: 600; color: var(--ink); font-size: 1.048em; padding-bottom: 0.476em; border-bottom: 1px solid var(--line); }
-.ph-buyer .b-head .src { font-weight: 400; color: var(--dim); }
-.ph-buyer .b-row { display: flex; align-items: center; gap: 0.762em; padding: 0.476em 0.762em; border-radius: 0.571em; border: 1px solid transparent; }
-.ph-buyer .b-row em { margin-left: auto; font-style: normal; color: var(--dim); }
-.ph-buyer .pin { width: 0.762em; height: 0.762em; border-radius: 50%; background: #D3DDD8; flex: none; }
-.ph-buyer .b-row.hot { border-color: rgba(232,163,58,.5); background: rgba(232,163,58,.08); color: var(--ink); transition: background .4s ease; }
-.ph-buyer .b-row.hot .pin { background: var(--amber); } .ph-buyer .b-row.hot em { color: #8A5A0E; font-weight: 600; }
-.res .ph-buyer .b-row.hot { background: rgba(232,163,58,.2); }
-.ph-buyer .b-evd { margin-top: auto; padding-top: 0.571em; border-top: 1px solid var(--line); color: var(--dim); }
-.ph-buyer .b-evd em { font-style: normal; color: var(--teal-2); font-weight: 600; opacity: 0; transition: opacity .4s ease .2s; }
-.res .ph-buyer .b-evd em { opacity: 1; }
+.d-hot { display: flex; align-items: center; gap: .6em; margin: .4em 0; padding: .5em .8em; border-radius: .5em; border: 1px solid rgba(232,163,58,.5); background: rgba(232,163,58,.1); font-weight: 600; color: #1F1A14; font-size: .95em; transition: background .4s ease; }
+.d-hot .pin { width: .7em; height: .7em; border-radius: 50%; background: #E8A33A; } .d-hot em { margin-left: auto; font-style: normal; color: #8A5A0E; font-size: .85em; }
+.res .d-hot { background: rgba(232,163,58,.24); animation: popIn .4s cubic-bezier(.2,1.5,.3,1) both; }
+.d-evd { color: #0F7355; font-weight: 600; font-size: .92em; opacity: 0; transition: opacity .4s ease .2s; } .res .d-evd { opacity: 1; }
 /* the plan document */
-.ph-plandoc { display: grid; place-items: start center; }
-.ph-plandoc .page { width: 84%; height: 100%; justify-content: space-between; background: #fff; border: 1px solid var(--line); border-radius: 0.286em; padding: 1.333em 1.714em; box-shadow: 0 0.952em 2.476em -1.524em rgba(15,26,23,.4); display: flex; flex-direction: column; gap: 0.381em; }
-.ph-plandoc .p-title { font-weight: 700; color: var(--ink); font-size: 1.238em; line-height: 1.2; }
-.ph-plandoc .p-sub { color: var(--dim); font-size: 0.905em; margin-bottom: 0.381em; }
-.ph-plandoc .p-h { font-weight: 600; color: var(--teal-2); margin-top: 0.571em; font-size: 1.0em; }
-.ph-plandoc .t-row { display: grid; grid-template-columns: 1fr 1.8fr .8fr; gap: 0.762em; font-size: 0.905em; padding: 0.286em 0; border-bottom: 1px solid #EEF3F0; opacity: .35; transition: opacity .4s ease; }
-.ph-plandoc .t-row.t-head { font-weight: 600; color: var(--ink); opacity: 1; }
-.res .ph-plandoc .t-row { opacity: 1; }
-/* tailor */
-.ph-tailor { display: flex; flex-direction: column; gap: 0.762em; }
-.ph-tailor .r-you { align-self: flex-end; max-width: 70%; background: #F3F6F4; border-radius: 0.857em 0.857em 0.19em 0.857em; padding: 0.476em 0.857em; font-size: 0.952em; color: var(--ink-2); }
-.ph-tailor .r-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.143em; flex: 1; }
-.ph-tailor .r-card { background: #fff; border: 1px solid var(--line); border-radius: 0.571em; padding: 0.952em; }
-.ph-tailor .r-head { display: grid; grid-template-columns: 1.905em 1fr; gap: 0.19em 0.762em; margin-bottom: 0.381em; }
-.ph-tailor .r-head b { grid-row: span 2; width: 1.905em; height: 1.905em; border-radius: 50%; background: #E9EFEC; }
-.ph-tailor .r-head span { font-weight: 600; color: var(--ink); font-size: 1.0em; } .ph-tailor .r-head em { font-style: normal; color: var(--dim); font-size: 0.905em; }
-.ph-tailor .r-foot { display: flex; justify-content: space-between; color: var(--dim); font-size: 0.952em; } .ph-tailor .r-foot .k { color: var(--teal-2); font-weight: 600; }
-/* review */
-.ph-review { display: flex; flex-direction: column; justify-content: space-evenly; gap: 0.476em; }
-.ph-review .c-head { display: flex; justify-content: space-between; align-items: center; font-weight: 600; color: var(--ink); font-size: 1.048em; padding-bottom: 0.476em; border-bottom: 1px solid var(--line); }
-.ph-review .c-sum { display: flex; gap: 0.571em; } .ph-review .c-sum b { font-size: 0.905em; border-radius: 95.143em; padding: 0.19em 0.667em; color: #fff; }
-.ph-review .c-sum .crit { background: var(--red); } .ph-review .c-sum .rec { background: var(--amber); }
-.ph-review .c-row { display: flex; align-items: center; gap: 0.762em; padding: 0.381em 0.571em; border-radius: 0.476em; }
-.ph-review .c-row i { width: 1.143em; height: 1.143em; border-radius: 50%; border: 1.5px solid var(--line); flex: none; position: relative; transition: all .3s ease; }
-.ph-review .c-row em { margin-left: auto; font-style: normal; color: var(--dim); }
-.res .ph-review .c-row.ok i { background: var(--teal); border-color: var(--teal); }
-.res .ph-review .c-row.ok i::after { content: ''; position: absolute; left: 0.333em; top: 1.5px; width: 0.286em; height: 0.571em; border: solid #fff; border-width: 0 1.5px 1.5px 0; transform: rotate(45deg); }
-.ph-review .c-row.crit { background: rgba(198,72,59,.07); } .ph-review .c-row.crit i { border-color: var(--red); background: rgba(198,72,59,.25); } .ph-review .c-row.crit em { color: var(--red); font-weight: 600; }
-.ph-review .c-row.rec i { border-color: var(--amber); background: rgba(232,163,58,.3); } .ph-review .c-row.rec em { color: #8A5A0E; }
+.m-row { display: grid; grid-template-columns: 1fr 1.9fr .8fr; gap: .8em; font-size: .88em; padding: .35em 0; border-bottom: 1px solid #EEF2F0; opacity: .3; transition: opacity .4s ease; }
+.m-row.m-head { font-weight: 600; color: #1F1A14; opacity: 1; } .res .m-row { opacity: 1; }
+.d-acts { margin-top: auto; display: flex; justify-content: flex-end; gap: .5em; padding-top: .6em; }
+/* build tender */
+.b-top { display: flex; align-items: center; gap: .8em; padding: .2em 0 .8em; }
+.b-top .back { background: #F2B544; color: #fff; border-radius: .5em; padding: .5em 1em; font-size: .9em; font-weight: 600; }
+.b-title { font-weight: 600; font-size: 1.2em; color: #1F1A14; border-left: .25em solid #38988A; padding-left: .6em; margin-right: auto; }
+.pane.build { padding: .7em 1em; gap: .45em; background: #F2F5F4; }
+.sec { background: #fff; border: 1px solid #C9E6E0; border-radius: .5em; padding: .45em .9em; display: flex; flex-direction: column; gap: .25em; }
+.s-t { font-weight: 600; color: #1F1A14; font-size: .95em; }
+.s-add { color: #0F7355; font-size: .85em; border-top: 1px solid #EEF2F0; padding-top: .4em; text-align: center; }
+.r-row { display: flex; align-items: center; gap: .7em; padding: .35em .2em; font-size: .9em; }
+.r-photo { width: 2em; height: 2em; border-radius: 50%; background: linear-gradient(135deg, #C9D6D2, #8FA6A0); flex: none; } .r-photo.sq { border-radius: .3em; }
+.r-name { font-weight: 600; color: #1F1A14; line-height: 1.1; } .r-name small { display: block; font-weight: 400; color: #857A6C; font-size: .82em; }
+.r-skill { margin-left: auto; border: 1px solid #D7DEDB; border-radius: 999px; padding: .2em .6em; font-size: .78em; color: #6B7975; }
+.tail { font-style: normal; font-size: .78em; font-weight: 600; color: #fff; background: #1D9E75; border-radius: 999px; padding: .2em .6em; opacity: 0; transform: scale(.6); transition: all .35s cubic-bezier(.2,1.5,.3,1) .15s; }
+.res .tail { opacity: 1; transform: none; }
+/* readiness */
+.c-sum { display: flex; gap: .5em; margin: .3em 0 .5em; } .c-sum b { font-size: .8em; border-radius: 999px; padding: .25em .75em; color: #fff; }
+.c-sum .crit { background: #C6483B; } .c-sum .rec { background: #E8A33A; } .c-sum .opt { background: #B7C3BF; }
+.c-row { display: flex; align-items: center; gap: .7em; padding: .42em .5em; border-radius: .4em; font-size: .92em; }
+.c-row i { width: 1.1em; height: 1.1em; border-radius: 50%; border: .13em solid #D7DEDB; flex: none; position: relative; transition: all .3s ease; }
+.c-row em { margin-left: auto; font-style: normal; color: #857A6C; }
+.res .c-row.ok i { background: #1D9E75; border-color: #1D9E75; }
+.res .c-row.ok i::after { content: ''; position: absolute; left: .3em; top: .1em; width: .28em; height: .55em; border: solid #fff; border-width: 0 .13em .13em 0; transform: rotate(45deg); }
+.c-row.crit { background: rgba(198,72,59,.08); } .c-row.crit i { border-color: #C6483B; background: rgba(198,72,59,.25); } .c-row.crit em { color: #C6483B; font-weight: 600; }
+.c-row.rec i { border-color: #E8A33A; background: rgba(232,163,58,.3); } .c-row.rec em { color: #8A5A0E; }
+.res .c-row.crit { animation: shake .5s ease .3s; }
+@keyframes shake { 20%, 60% { transform: translateX(-.25em); } 40%, 80% { transform: translateX(.25em); } }
+@keyframes popIn { from { transform: scale(.7); } to { transform: none; } }
+/* the recording slot tag, outside the frame */
+.win.deck.in .rec-tag { opacity: 1; }
+.rec-tag { opacity: 0; transition: opacity .3s ease; position: absolute; right: 0; top: -1.7em; display: flex; align-items: center; gap: .4em; font-family: ui-monospace, Menlo, monospace; font-size: 10px; color: var(--dim); }
+.rec-tag i { width: 6px; height: 6px; border-radius: 50%; background: #E24B3F; animation: v4pulse 1.2s ease-in-out infinite; }
+/* the open card: the tender as it sits on the Tenders screen */
+.open-card { width: min(272px, 78%); background: #fff; color: #1F1A14; border-radius: 10px; padding: 10px 14px 8px; text-align: left; box-shadow: 0 40px 80px -40px rgba(0,0,0,.7); font-size: 11px; }
+.oc-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
+.oc-box { width: 12px; height: 12px; border: 1.5px solid #B7C3BF; border-radius: 2px; } .oc-menu { color: #857A6C; }
+.oc-f { padding: 3px 0; font-weight: 600; } .oc-f small { display: block; font-weight: 400; color: #857A6C; font-size: 10px; }
+.oc-foot { display: flex; gap: 14px; margin-top: 8px; padding-top: 8px; border-top: 1px solid #EEF2F0; }
+.oc-foot span { display: flex; flex-direction: column; } .oc-foot small { color: #857A6C; font-size: 10px; } .oc-foot b { font-weight: 600; }
+.oc-foot .hi { color: #E24B3F; } .oc-foot .am { color: #D98E1F; }
+/* ready: build tender with download pressed, the cover in the live palette */
+.v4ready .ready-app { position: absolute; left: 0; right: 0; margin-inline: auto; top: 4%; width: min(760px, 92%); background: #fff; border-radius: 10px; padding: 12px 16px; box-shadow: 0 30px 60px -30px rgba(15,26,23,.35); font-size: 12px; }
+.v4ready .ready-app .b-top { padding: 0; }
+.v4ready .dl-chip { margin-top: 10px; display: inline-flex; align-items: center; gap: 8px; background: #F2F5F4; border: 1px solid #D7DEDB; border-radius: 8px; padding: 6px 10px; font-size: 11px; color: #33423E; }
+.v4ready .dl-chip i { width: 10px; height: 10px; border: solid #1D9E75; border-width: 0 2px 2px 0; transform: rotate(45deg) translate(-1px,-1px); } .v4ready .dl-chip em { font-style: normal; color: #0F7355; font-weight: 600; }
+.v4ready .cover { position: absolute; left: 0; right: 0; margin-inline: auto; top: 30%; width: clamp(190px, 24vh, 270px); aspect-ratio: 1 / 1.3; background: #fff; border-radius: 4px; overflow: hidden; display: flex; flex-direction: column;
+  box-shadow: 0 40px 70px -36px rgba(15,26,23,.6), 8px 8px 0 -2px #EEE8DC, 16px 16px 0 -4px #E4DCCB; }
+.v4ready .cv-band { height: 42%; background: #094074; }
+.v4ready .cv-t { font-weight: 700; font-size: 15px; color: #094074; line-height: 1.1; padding: 14px 16px 0; }
+.v4ready .cv-s { font-size: 10.5px; color: #6B7975; padding: 4px 16px 0; }
+.v4ready .cv-foot { margin-top: auto; display: flex; justify-content: space-between; align-items: flex-end; padding: 0 16px 12px; font-size: 9.5px; color: #857A6C; }
+.v4ready .cv-foot b { color: #fff; background: #1D9E75; border-radius: 999px; padding: 3px 8px; font-weight: 600; }
 
+/* ===== mockup badge: on every drawn frame, so a graphic never passes for the product ===== */
+.mock { font-style: normal; font-size: 9px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: #fff; background: #C6483B; border-radius: 3px; padding: 2px 6px; margin-left: auto; }
+.oc-top .mock { margin: 0 auto 0 8px; } .cv-band .mock { position: absolute; left: 10px; top: 10px; margin: 0; }
+.v4ready .cv-band { position: relative; }
+/* ===== energy: pops, not fades ===== */
+.v4 { --pop: cubic-bezier(.2,1.5,.3,1); }
+.v4cap { transition: opacity .22s ease, transform .5s var(--pop); transform: translateY(14px) scale(.96); }
+.v4cap.on { transform: none; }
+.v4 .stage-app .win.deck { transition-duration: .38s; transition-timing-function: var(--pop), ease; }
+.active .stage-app .rail.mini.v4rail { animation-timing-function: var(--pop), var(--ease-curve); animation-duration: .6s, 9s; }
+.v4rail .work { transition: opacity .2s ease, transform .4s var(--pop); transform: translateX(-10px); }
+.v4rail .rail-btn { transition: transform .18s var(--pop), filter .12s ease; }
+.v4rail .rail-btn.pressed { transform: scale(.86); }
+.v4rail .rail-next.pop { animation: stripPop .5s var(--pop); }
+@keyframes stripPop { 30% { transform: scale(1.06); background: rgba(29,158,117,.12); } }
+.v4rail .rail-next .prog i { transition: width .5s var(--pop); }
+.v4 .vwrap.settle .ph { animation: settlePop .5s var(--pop) both; }
+@keyframes settlePop { from { transform: scale(1.03); } to { transform: none; } }
+.v4big .rw span { animation-timing-function: var(--pop) !important; animation-duration: .55s !important; }
+.open-ray img { animation: rayIn .7s var(--pop) both, rayBob 4.2s ease-in-out 1s infinite; }
+@keyframes rayIn { from { transform: translateY(24px) scale(.6); opacity: 0; } to { transform: none; opacity: 1; } }
+.v4 .rings { animation: ringsTurn 60s linear infinite; }
+@keyframes ringsTurn { to { transform: rotate(360deg); } }
+.v4 .hatch { animation: hatchDrift 14s ease-in-out infinite alternate; }
+@keyframes hatchDrift { to { transform: translate(14px, -10px); } }
+.v4 .glow { animation: glowPulse 5s ease-in-out infinite; }
+@keyframes glowPulse { 50% { opacity: .7; transform: translateX(-50%) scale(1.06); } }
+.v4 .disc { animation: discIn .9s var(--pop) both; }
+@keyframes discIn { from { transform: translate(-50%, -56%) scale(.4); opacity: 0; } to { transform: translate(-50%, -56%) scale(1); opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .v4 .rings, .v4 .hatch, .v4 .glow, .open-ray img, .v4 .disc { animation: none; } }
 /* ===== open, ready, end ===== */
 .v4open, .v4end { justify-content: center; align-items: center; text-align: center; }
 .open-wrap { position: relative; display: flex; flex-direction: column; align-items: center; gap: 10px; width: min(880px, 100%); }
-.open-sheet { width: min(420px, 78%); background: #fff; color: #33423E; border-radius: 6px; border: 1px solid #D3DDD8; box-shadow: 0 40px 80px -40px rgba(0,0,0,.7); margin-bottom: 6px; }
-.open-sheet .sheet-bar { display: grid; grid-template-columns: auto 1fr auto; gap: 12px; padding: 6px 12px; border-bottom: 1px solid #D3DDD8; font-size: 9.5px; letter-spacing: .16em; text-transform: uppercase; color: #6B7975; font-weight: 600; }
-.open-sheet .sheet-bar .sb-m { text-align: center; color: #0F7355; }
-.open-pack { padding: 14px 16px 10px; } .open-pack .ln { display: block; height: 6px; border-radius: 3px; background: #E9EFEC; margin: 6px 0; }
-.open-pack .w40 { width: 40%; } .open-pack .w60 { width: 60%; } .open-pack .w80 { width: 80%; } .open-pack .w100 { width: 100%; }
-.open-sheet .sheet-tb { display: grid; grid-template-columns: auto 1fr auto 90px; align-items: center; gap: 10px; padding: 6px 12px; border-top: 1px solid #D3DDD8; font-size: 10px; color: #6B7975; }
-.open-sheet .tb-who { display: flex; align-items: center; gap: 6px; font-weight: 600; color: #33423E; } .open-sheet .tb-who img { width: 16px; height: 14px; }
-.open-sheet .tb-sig { letter-spacing: .12em; text-transform: uppercase; font-size: 9px; } .open-sheet .tb-line { height: 1px; background: #D3DDD8; }
-.open-ray { position: relative; width: 112px; height: 96px; display: grid; place-items: center; margin-top: -4px; }
+.open-ray { position: relative; width: 112px; height: 96px; display: grid; place-items: center; margin-top: 6px; }
 .open-ray .ring { position: absolute; inset: -6px; border-radius: 50%; border: 1.5px dashed rgba(240,134,108,.7); animation: spin 26s linear infinite; }
 .open-ray img { width: 84px; filter: drop-shadow(0 18px 30px rgba(0,0,0,.5)); }
 @keyframes spin { to { transform: rotate(360deg); } }
@@ -1152,18 +1225,7 @@ body.on-light .chrome-label, body.on-light .chrome-brand { color: var(--ink, #0F
 .end-ctas { display: flex; gap: 10px; margin-top: 8px; }
 .end-ctas .cta { border-radius: 999px; padding: 10px 18px; background: var(--amber); color: #1a1a1a; font-weight: 600; font-size: 14px; }
 .end-ctas .cta.ghost { background: transparent; color: var(--ink); border: 1px solid rgba(255,255,255,.35); }
-.v4ready .ready-stage { position: relative; width: 100%; height: clamp(280px, 52vh, 520px); display: grid; place-items: center; }
-.v4ready .cover { width: clamp(200px, 26vh, 300px); aspect-ratio: 1 / 1.35; background: #fff; border: 1px solid var(--line); border-radius: 4px; padding: 20px 18px; display: flex; flex-direction: column; gap: 6px;
-  box-shadow: 0 40px 70px -36px rgba(15,26,23,.6), 8px 8px 0 -2px #E9EFEC, 16px 16px 0 -4px #DDE6E1; position: relative; }
-.v4ready .cv-brand { font-weight: 700; font-size: 18px; color: var(--teal-2); letter-spacing: -.02em; } .v4ready .cv-brand i { font-style: normal; color: var(--amber); }
-.v4ready .cv-t { font-weight: 700; font-size: 15px; color: var(--ink); margin-top: 18px; line-height: 1.1; }
-.v4ready .cv-s { font-size: 10.5px; color: var(--dim); margin-bottom: 8px; }
-.v4ready .cover .ln { display: block; height: 6px; border-radius: 3px; background: #E9EFEC; } .v4ready .cover .w60 { width: 60%; } .v4ready .cover .w40 { width: 40%; }
-.v4ready .cv-stamp { position: absolute; right: 12px; bottom: 14px; border: 2px solid var(--amber); color: var(--amber); border-radius: 4px; padding: 3px 8px; font-size: 10px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; transform: rotate(-8deg); }
-.v4ready .dl { position: absolute; left: 50%; bottom: 8%; transform: translateX(-50%); display: flex; align-items: center; gap: 9px; background: var(--teal-2); color: #fff; border-radius: 999px; padding: 9px 16px; font-weight: 600; font-size: 13px; box-shadow: 0 14px 30px -14px rgba(15,115,85,.7); }
-.v4ready .dl i { width: 12px; height: 12px; border: solid #fff; border-width: 0 2px 2px 0; transform: rotate(45deg) translate(-2px, -2px); }
-.v4ready .rec-note { position: absolute; right: 4%; top: 4%; font-family: ui-monospace, Menlo, monospace; font-size: 10px; color: var(--dim); }
-
+.v4ready .ready-stage { position: relative; width: 100%; height: clamp(300px, 56vh, 560px); }
 /* ===== phones and tablets ===== */
 @media (max-width: 940px) {
   .scene.v4.pair { padding: 68px 16px 96px; justify-content: flex-start; }
@@ -1230,10 +1292,12 @@ body.on-light .chrome-label, body.on-light .chrome-brand { color: var(--ink, #0F
 <section class="scene scene-ink v4 v4open" data-label="Agentic Ray" data-dur="5600" id="sceneOpen" data-wipe="up">
   <div class="grid-deco" aria-hidden="true"><i class="glow coral"></i><i class="arc"></i></div>
   <div class="open-wrap">
-    <div class="open-sheet fx" style="--d:.1s" aria-hidden="true">
-      <div class="sheet-bar"><span class="sb-l">TENDERFY</span><span class="sb-m">New tender · RFT 2026-114</span><span class="sb-r">REV A</span></div>
-      <div class="open-pack"><i class="ln w40"></i><i class="ln w100"></i><i class="ln w80"></i><i class="ln w100"></i><i class="ln w60"></i></div>
-      <div class="sheet-tb"><span class="tb-who"><img src="assets/ray-avatar.svg" alt="" />Ray</span><span class="tb-rec">Opened by Ray</span><span class="tb-sig">Approved by</span><i class="tb-line"></i></div>
+    <div class="open-card fx" style="--d:.1s" aria-hidden="true">
+      <div class="oc-top"><i class="oc-box"></i><em class="mock">Mockup</em><span class="oc-menu">⋮</span></div>
+      <div class="oc-f"><small>Name</small>Northside School Upgrade</div>
+      <div class="oc-f"><small>Organisation</small>Dept of Education</div>
+      <div class="oc-f"><small>Contact Name</small>Priya Nair</div>
+      <div class="oc-foot"><span><small>Priority</small><b class="hi">High</b></span><span><small>Status</small><b class="am">Pending</b></span><span><small>Due Date</small><b>4 Oct 2026</b></span></div>
     </div>
     <div class="open-ray fx" style="--d:.6s" aria-hidden="true"><span class="ring"></span><img src="assets/ray-avatar.svg" alt="" /></div>
     <p class="eyebrow fx" style="--d:1.0s">Agentic Ray</p>
@@ -1250,21 +1314,30 @@ body.on-light .chrome-label, body.on-light .chrome-brand { color: var(--ink, #0F
   <div class="grid-deco" aria-hidden="true"><i class="hatch"></i><i class="crop tl"></i><i class="crop tr"></i><i class="crop bl"></i><i class="crop br"></i></div>
   <div class="v4col">
     <div class="stage stage-app">
-      <div class="win deck ph-win"><div class="sheet-bar"><span class="sb-l">TENDERFY</span><span class="sb-m tb-step"></span><span class="sb-r">REV A</span></div>
-        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas><div class="ph ph-gonogo">
-          <div class="pack"><div class="pg"><i class="ln w40"></i><i class="ln w100"></i><i class="ln w80"></i><i class="ln w100"></i><i class="ln w60"></i></div><div class="pg"></div><div class="pg"></div><span class="tag">Tender pack · 214 pages</span></div>
-          <div class="score"><div class="sc-head">Go / No-Go scorecard</div><div class="sc-row"><span>Strategic alignment</span><b class="g"></b></div><div class="sc-row"><span>Relevant capability</span><b class="a"></b></div><div class="sc-row"><span>Commercial viability</span><b class="r"></b></div><div class="sc-row"><span>Mandatory requirements</span><b class="a"></b></div><div class="sc-row"><span>Client relationship</span><b class="a"></b></div><div class="sc-row"><span>Competitive position</span><b class="g"></b></div><div class="sc-row"><span>Scope and delivery risk</span><b class="r"></b></div><div class="sc-row"><span>Programme and timeframe</span><b class="a"></b></div><div class="verdict"><span>Recommendation</span><b>Go, with conditions</b></div></div>
+      <div class="win deck ph-win"><div class="win-bar"><span></span><span></span><span></span><em class="mock">Mockup</em></div>
+        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas><div class="ph app ph-gonogo">
+          <div class="a-side"><svg class="a-logo" viewBox="0 0 32 65"><use href="#clipSym"/></svg><i class="a-ic"></i><i class="a-ic"></i><i class="a-ic"></i><i class="a-ic"></i><i class="a-ic"></i></div>
+          <div class="a-main">
+            <div class="a-bar"><i class="a-home"></i><span class="a-crumb">Tenders · Tender Details</span><span class="a-ray"><img src="assets/ray-avatar.svg" alt="" />Ray</span><i class="a-av"></i></div>
+            <div class="a-body"><div class="pane docs"><div class="p-head dark"><span>Tender documentation</span><b class="btn">Add Document</b></div>
+              <div class="p-body"><div class="fold sel">(02 Selected) <b>Default</b></div><div class="file"><i></i>RFT · Northside School Upgrade.pdf</div><div class="file"><i></i>Addendum 2 · Scope of Works.pdf</div><div class="fold">Go / No-Go</div></div></div>
+            <div class="pane doc"><div class="d-title">Go / No-Go Assessment</div><div class="d-sub">Headline scorecard</div>
+              <div class="sc-row sc-head"><span>Criterion</span><b>Rating</b></div><div class="sc-row"><span>Strategic alignment</span><b class="g">Green</b></div><div class="sc-row"><span>Relevant capability and experience</span><b class="a">Amber</b></div><div class="sc-row"><span>Commercial viability</span><b class="r">Red</b></div><div class="sc-row"><span>Mandatory requirements and compliance</span><b class="r">Red</b></div><div class="sc-row"><span>Client relationship and understanding</span><b class="a">Amber</b></div><div class="sc-row"><span>Competitive position / likelihood of winning</span><b class="a">Amber</b></div><div class="sc-row"><span>Scope and delivery risk</span><b class="r">Red</b></div><div class="sc-row"><span>Programme and tender timeframe</span><b class="a">Amber</b></div>
+              <div class="d-rec"><span>Recommendation</span><b>Go, with conditions</b></div></div></div>
+          </div>
         </div></div>
-        <div class="sheet-tb"><span class="tb-who"><img src="assets/ray-avatar.svg" alt="" />Ray</span><span class="tb-rec"></span><span class="tb-sig">Approved by</span><i class="tb-line"></i></div>
-        <div class="stamp"></div></div>
-      <div class="win deck ph-win"><div class="sheet-bar"><span class="sb-l">TENDERFY</span><span class="sb-m tb-step"></span><span class="sb-r">REV A</span></div>
-        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas><div class="ph ph-plan">
-          <div class="g-head"><span>Tender delivery plan</span><span class="g-dead">Closes 30 Sep</span></div>
-          <div class="g-row"><span class="g-lbl">Site walk and clarifications</span><span class="g-track"><i style="--o:0%;--w:16%"></i></span><span class="g-own">MB</span></div><div class="g-row"><span class="g-lbl">Methodology and programme</span><span class="g-track"><i style="--o:10%;--w:30%"></i></span><span class="g-own">RK</span></div><div class="g-row"><span class="g-lbl">Pricing schedule</span><span class="g-track"><i style="--o:26%;--w:26%"></i></span><span class="g-own">JS</span></div><div class="g-row"><span class="g-lbl">Resumes and project profiles</span><span class="g-track"><i style="--o:34%;--w:22%"></i></span><span class="g-own">RAY</span></div><div class="g-row"><span class="g-lbl">Compliance and insurances</span><span class="g-track"><i style="--o:40%;--w:18%"></i></span><span class="g-own">MB</span></div><div class="g-row"><span class="g-lbl">Build, review, lodge</span><span class="g-track"><i style="--o:60%;--w:30%"></i></span><span class="g-own">RAY</span></div>
-          <i class="g-now" style="--x:58%"></i>
+        <span class="rec-tag"><i></i><b class="tb-rec"></b></span></div>
+      <div class="win deck ph-win"><div class="win-bar"><span></span><span></span><span></span><em class="mock">Mockup</em></div>
+        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas><div class="ph app ph-plan">
+          <div class="a-side"><svg class="a-logo" viewBox="0 0 32 65"><use href="#clipSym"/></svg><i class="a-ic"></i><i class="a-ic"></i><i class="a-ic"></i><i class="a-ic"></i><i class="a-ic"></i></div>
+          <div class="a-main">
+            <div class="a-bar"><i class="a-home"></i><span class="a-crumb">Tenders · Tender Details</span><span class="a-ray"><img src="assets/ray-avatar.svg" alt="" />Ray</span><i class="a-av"></i></div>
+            <div class="a-body wide"><div class="pane check"><div class="p-head dark"><span>Checklist</span><b class="btn">Add Task</b></div>
+              <div class="tabs"><span class="on">My Tasks</span><span>Assigned Tasks</span><span>Completed Tasks</span><em>Priority</em></div>
+              <div class="t-row t-head"><span></span><span>TASK</span><span>DUE DATE ↓</span><span>ACTIONS</span></div><div class="t-row" style="--i:0"><i class="dot"></i><span class="t-name">Conduct final buyer-feedback com…<small>Before lodgement, confirm every relevant…</small></span><span class="t-due">30/09/2026</span><span class="t-act"><i class="ed"></i><i class="ok"></i><i class="del"></i></span></div><div class="t-row" style="--i:1"><i class="dot"></i><span class="t-name">Conduct qualitative differentiator r…<small>Review the draft response against t…</small></span><span class="t-due">28/09/2026</span><span class="t-act"><i class="ed"></i><i class="ok"></i><i class="del"></i></span></div><div class="t-row" style="--i:2"><i class="dot"></i><span class="t-name">Prepare measurable local and First…<small>Develop a project-specific response…</small></span><span class="t-due">25/09/2026</span><span class="t-act"><i class="ed"></i><i class="ok"></i><i class="del"></i></span></div><div class="t-row" style="--i:3"><i class="dot"></i><span class="t-name">Prepare role-specific resumes and…<small>Provide concise resumes for nomina…</small></span><span class="t-due">24/09/2026</span><span class="t-act"><i class="ed"></i><i class="ok"></i><i class="del"></i></span></div><div class="t-row" style="--i:4"><i class="dot"></i><span class="t-name">Verify three comparable projects a…<small>Confirm each reference meets the b…</small></span><span class="t-due">22/09/2026</span><span class="t-act"><i class="ed"></i><i class="ok"></i><i class="del"></i></span></div><div class="t-row" style="--i:5"><i class="dot"></i><span class="t-name">Prepare traffic and school access p…<small>Drop-off and pick-up windows, Gate B…</small></span><span class="t-due">19/09/2026</span><span class="t-act"><i class="ed"></i><i class="ok"></i><i class="del"></i></span></div></div></div>
+          </div>
         </div></div>
-        <div class="sheet-tb"><span class="tb-who"><img src="assets/ray-avatar.svg" alt="" />Ray</span><span class="tb-rec"></span><span class="tb-sig">Approved by</span><i class="tb-line"></i></div>
-        <div class="stamp"></div></div>
+        <span class="rec-tag"><i></i><b class="tb-rec"></b></span></div>
       <div class="rail sk mini v4rail" aria-label="Ray, working">
         <div class="rail-head"><img src="assets/ray-avatar.svg" alt="" /><span class="rh-t">Ray</span><span class="rh-s">Working</span></div>
         <div class="rail-body">
@@ -1286,27 +1359,36 @@ body.on-light .chrome-label, body.on-light .chrome-brand { color: var(--ink, #0F
   <div class="grid-deco" aria-hidden="true"><i class="rings"></i><i class="crop tl"></i><i class="crop tr"></i><i class="crop bl"></i><i class="crop br"></i></div>
   <div class="v4col">
     <div class="stage stage-app">
-      <div class="win deck ph-win"><div class="sheet-bar"><span class="sb-l">TENDERFY</span><span class="sb-m tb-step"></span><span class="sb-r">REV A</span></div>
-        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas><div class="ph ph-buyer">
-          <div class="b-head"><span>Buyer priorities · Evaluation criteria</span><span class="src">From the RFT, addendum 2</span></div>
-          <div class="b-row"><i class="pin"></i><span>Safety of students and staff during works</span><em>30%</em></div><div class="b-row hot"><i class="pin"></i><span>School drop-off and pick-up times</span><em>key risk</em></div><div class="b-row"><i class="pin"></i><span>Minimal disruption to teaching</span><em>25%</em></div><div class="b-row"><i class="pin"></i><span>Local employment and apprentices</span><em>15%</em></div><div class="b-row"><i class="pin"></i><span>Programme certainty</span><em>20%</em></div>
-          <div class="b-evd"><span>Your evidence</span><i class="ln w90"></i><i class="ln w70"></i><em>3 comparable school projects found</em></div>
-        </div></div>
-        <div class="sheet-tb"><span class="tb-who"><img src="assets/ray-avatar.svg" alt="" />Ray</span><span class="tb-rec"></span><span class="tb-sig">Approved by</span><i class="tb-line"></i></div>
-        <div class="stamp"></div></div>
-      <div class="win deck ph-win"><div class="sheet-bar"><span class="sb-l">TENDERFY</span><span class="sb-m tb-step"></span><span class="sb-r">REV A</span></div>
-        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas><div class="ph ph-plandoc">
-          <div class="page">
-            <div class="p-title">School Drop-Off and Pick-Up Disruption Management Plan</div>
-            <div class="p-sub">Section 4.2 · Methodology · Drafted by Ray, for your review</div>
-            <i class="ln w100"></i><i class="ln w90"></i><i class="ln w60"></i>
-            <div class="p-h">Mitigation measures</div>
-            <div class="t-row t-head"><span>Window</span><span>Measure</span><span>Owner</span></div>
-            <div class="t-row"><span>Drop-off, 8:00 to 9:00</span><span>No deliveries. Traffic controller at Gate B.</span><span>Site manager</span></div><div class="t-row"><span>Pick-up, 2:45 to 3:30</span><span>Plant movements paused. Pedestrian barrier line held.</span><span>Site manager</span></div><div class="t-row"><span>Wet weather</span><span>Covered walkway maintained. Extra controller.</span><span>Foreman</span></div><div class="t-row"><span>Term breaks</span><span>Heavy works scheduled. School advised two weeks prior.</span><span>Project manager</span></div>
+      <div class="win deck ph-win"><div class="win-bar"><span></span><span></span><span></span><em class="mock">Mockup</em></div>
+        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas><div class="ph app ph-buyer">
+          <div class="a-side"><svg class="a-logo" viewBox="0 0 32 65"><use href="#clipSym"/></svg><i class="a-ic"></i><i class="a-ic"></i><i class="a-ic"></i><i class="a-ic"></i><i class="a-ic"></i></div>
+          <div class="a-main">
+            <div class="a-bar"><i class="a-home"></i><span class="a-crumb">Tenders · Tender Details</span><span class="a-ray"><img src="assets/ray-avatar.svg" alt="" />Ray</span><i class="a-av"></i></div>
+            <div class="a-body"><div class="pane docs"><div class="p-head dark"><span>Tender documentation</span><b class="btn">Add Document</b></div>
+              <div class="p-body"><div class="fold sel">(01 Selected) <b>Default</b></div><div class="file"><i></i>RFT · Northside School Upgrade.pdf</div><div class="file"><i></i>Addendum 2 · Scope of Works.pdf</div>
+              <div class="qa"><span>Quick actions:</span><b>Go No Go</b><b>Executive Brief</b><b>Document Summary</b><b class="hi">Understand the buyer</b></div></div></div>
+            <div class="pane doc"><div class="d-title">Understanding the buyer · Dept of Education</div><div class="d-sub">What this buyer scores, from the RFT and addendum 2</div>
+              <div class="d-h">Evaluation priorities</div><i class="ln w100"></i><i class="ln w86"></i>
+              <div class="d-hot"><i class="pin"></i><span>School drop-off and pick-up times</span><em>key disruption risk</em></div>
+              <i class="ln w92"></i><i class="ln w70"></i>
+              <div class="d-h">Your evidence</div><i class="ln w80"></i><div class="d-evd">3 comparable live-school projects found in your library</div></div></div>
           </div>
         </div></div>
-        <div class="sheet-tb"><span class="tb-who"><img src="assets/ray-avatar.svg" alt="" />Ray</span><span class="tb-rec"></span><span class="tb-sig">Approved by</span><i class="tb-line"></i></div>
-        <div class="stamp"></div></div>
+        <span class="rec-tag"><i></i><b class="tb-rec"></b></span></div>
+      <div class="win deck ph-win"><div class="win-bar"><span></span><span></span><span></span><em class="mock">Mockup</em></div>
+        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas><div class="ph app ph-plandoc">
+          <div class="a-side"><svg class="a-logo" viewBox="0 0 32 65"><use href="#clipSym"/></svg><i class="a-ic"></i><i class="a-ic"></i><i class="a-ic"></i><i class="a-ic"></i><i class="a-ic"></i></div>
+          <div class="a-main">
+            <div class="a-bar"><i class="a-home"></i><span class="a-crumb">Responses · Methodology</span><span class="a-ray"><img src="assets/ray-avatar.svg" alt="" />Ray</span><i class="a-av"></i></div>
+            <div class="a-body wide"><div class="pane doc solo"><div class="d-crumb">Responses · Methodology · Section 4.2</div>
+              <div class="d-title">Disruption Management Plan: School Drop-Off and Pick-Up</div><div class="d-sub">Drafted by Ray · matched your library · for your review</div>
+              <i class="ln w100"></i><i class="ln w90"></i><i class="ln w62"></i>
+              <div class="d-h">Mitigation measures</div>
+              <div class="m-row m-head"><span>Window</span><span>Measure</span><span>Owner</span></div><div class="m-row"><span>Drop-off, 8:00 to 9:00</span><span>No deliveries. Traffic controller at Gate B.</span><span>Site manager</span></div><div class="m-row"><span>Pick-up, 2:45 to 3:30</span><span>Plant movements paused. Pedestrian barrier line held.</span><span>Site manager</span></div><div class="m-row"><span>Wet weather</span><span>Covered walkway maintained. Extra controller.</span><span>Foreman</span></div><div class="m-row"><span>Term breaks</span><span>Heavy works scheduled. School advised two weeks prior.</span><span>Project manager</span></div>
+              <div class="d-acts"><b class="btn ghost">Discard</b><b class="btn ghost">Edit</b><b class="btn">Approve</b></div></div></div>
+          </div>
+        </div></div>
+        <span class="rec-tag"><i></i><b class="tb-rec"></b></span></div>
       <div class="rail sk mini v4rail" aria-label="Ray, working">
         <div class="rail-head"><img src="assets/ray-avatar.svg" alt="" /><span class="rh-t">Ray</span><span class="rh-s">Working</span></div>
         <div class="rail-body">
@@ -1328,20 +1410,29 @@ body.on-light .chrome-label, body.on-light .chrome-brand { color: var(--ink, #0F
   <div class="grid-deco" aria-hidden="true"><i class="dots"></i><i class="crop tl"></i><i class="crop tr"></i><i class="crop bl"></i><i class="crop br"></i></div>
   <div class="v4col">
     <div class="stage stage-app">
-      <div class="win deck ph-win"><div class="sheet-bar"><span class="sb-l">TENDERFY</span><span class="sb-m tb-step"></span><span class="sb-r">REV A</span></div>
-        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas><div class="ph ph-tailor">
-          <div class="r-grid"><div class="r-card"><div class="r-head"><b></b><span>Resume · M. Bassett</span><em>Project Manager</em></div><i class="ln w80"></i><i class="ln w100"></i><i class="ln w60"></i><i class="ln hi w90"></i><i class="ln w70"></i><i class="ln hi w80"></i><i class="ln w100"></i><i class="ln w50"></i></div><div class="r-card"><div class="r-head"><b></b><span>Project profile · Hillcrest Primary</span><em>Live school, 2024</em></div><i class="ln w80"></i><i class="ln w100"></i><i class="ln w60"></i><i class="ln hi w90"></i><i class="ln w70"></i><i class="ln hi w80"></i><i class="ln w100"></i><i class="ln w50"></i></div></div>
-          <div class="r-foot"><span class="k">Tailored to the buyer’s language</span><span>Master library unchanged</span></div>
+      <div class="win deck ph-win"><div class="win-bar"><span></span><span></span><span></span><em class="mock">Mockup</em></div>
+        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas><div class="ph app ph-tailor">
+          <div class="a-side"><svg class="a-logo" viewBox="0 0 32 65"><use href="#clipSym"/></svg><i class="a-ic"></i><i class="a-ic"></i><i class="a-ic"></i><i class="a-ic"></i><i class="a-ic"></i></div>
+          <div class="a-main">
+            <div class="a-bar"><i class="a-home"></i><span class="a-crumb">Tenders · Tender Details · Build Tender</span><span class="a-ray"><img src="assets/ray-avatar.svg" alt="" />Ray</span><i class="a-av"></i></div>
+            <div class="a-body wide"><div class="b-top"><b class="back">‹ Back</b><span class="b-title">Tender Attachments · Tender Pack</span><b class="btn amber">Download</b><b class="btn">Save Changes</b></div>
+            <div class="pane build"><div class="sec"><span class="s-t">Cover Pages</span><span class="s-add">+ Add Cover Pages</span></div><div class="sec"><span class="s-t">Table of Contents</span><span class="s-add">+ Add Table of Contents</span></div>
+              <div class="sec"><span class="s-t">Resumes</span><div class="r-row"><i class="r-photo"></i><span class="r-name">Daniel Whitfield<small>Senior Civil Estimator</small></span><span class="r-skill">Estimating · ECI</span><em class="tail">Tailored</em></div><div class="r-row"><i class="r-photo"></i><span class="r-name">Priya Nair<small>Contracts Administrator</small></span><span class="r-skill">Contracts · Procure</span><em class="tail">Tailored</em></div><span class="s-add">+ Add Resumes</span></div>
+              <div class="sec"><span class="s-t">Case Studies</span><div class="r-row"><i class="r-photo sq"></i><span class="r-name">Hillcrest Primary, Stage 1<small>Live school · 2024 · Dept of Education</small></span><span class="r-skill">Case study</span><em class="tail">Tailored</em></div><span class="s-add">+ Add Case Studies</span></div></div></div>
+          </div>
         </div></div>
-        <div class="sheet-tb"><span class="tb-who"><img src="assets/ray-avatar.svg" alt="" />Ray</span><span class="tb-rec"></span><span class="tb-sig">Approved by</span><i class="tb-line"></i></div>
-        <div class="stamp"></div></div>
-      <div class="win deck ph-win"><div class="sheet-bar"><span class="sb-l">TENDERFY</span><span class="sb-m tb-step"></span><span class="sb-r">REV A</span></div>
-        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas><div class="ph ph-review">
-          <div class="c-head"><span>Final review · Readiness</span><span class="c-sum"><b class="crit">1 critical</b><b class="rec">1 recommended</b></span></div>
-          <div class="c-row ok"><i></i><span>Response schedule complete</span><em>42 of 42</em></div><div class="c-row ok"><i></i><span>Word limits and weightings</span><em>Compliant</em></div><div class="c-row ok"><i></i><span>Methodology and programme</span><em>Compliant</em></div><div class="c-row crit"><i></i><span>Insurance certificate of currency</span><em>Missing, critical</em></div><div class="c-row rec"><i></i><span>Referee contact details</span><em>Recommended</em></div><div class="c-row ok"><i></i><span>Signed statutory declaration</span><em>Compliant</em></div>
+        <span class="rec-tag"><i></i><b class="tb-rec"></b></span></div>
+      <div class="win deck ph-win"><div class="win-bar"><span></span><span></span><span></span><em class="mock">Mockup</em></div>
+        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas><div class="ph app ph-review">
+          <div class="a-side"><svg class="a-logo" viewBox="0 0 32 65"><use href="#clipSym"/></svg><i class="a-ic"></i><i class="a-ic"></i><i class="a-ic"></i><i class="a-ic"></i><i class="a-ic"></i></div>
+          <div class="a-main">
+            <div class="a-bar"><i class="a-home"></i><span class="a-crumb">Tenders · Tender Details</span><span class="a-ray"><img src="assets/ray-avatar.svg" alt="" />Ray</span><i class="a-av"></i></div>
+            <div class="a-body wide"><div class="b-top"><b class="back">‹ Back</b><span class="b-title">Northside School Upgrade</span><b class="btn">Build Tender</b><b class="btn amber">Update Tender</b></div>
+            <div class="pane doc solo"><div class="d-title">Final review · Readiness summary</div><div class="d-sub">Ray checked the build against the RFT. Your call on each.</div>
+              <div class="c-sum"><b class="crit">1 Critical</b><b class="rec">1 Recommended</b><b class="opt">Optional</b></div><div class="c-row ok"><i></i><span>Response schedule complete</span><em>42 of 42</em></div><div class="c-row ok"><i></i><span>Word limits and weightings</span><em>Compliant</em></div><div class="c-row ok"><i></i><span>Methodology and programme</span><em>Compliant</em></div><div class="c-row ok"><i></i><span>Signed statutory declaration</span><em>Compliant</em></div><div class="c-row crit"><i></i><span>Insurance certificate of currency</span><em>Missing</em></div><div class="c-row rec"><i></i><span>Referee contact details</span><em>Add before lodging</em></div></div></div>
+          </div>
         </div></div>
-        <div class="sheet-tb"><span class="tb-who"><img src="assets/ray-avatar.svg" alt="" />Ray</span><span class="tb-rec"></span><span class="tb-sig">Approved by</span><i class="tb-line"></i></div>
-        <div class="stamp"></div></div>
+        <span class="rec-tag"><i></i><b class="tb-rec"></b></span></div>
       <div class="rail sk mini v4rail" aria-label="Ray, working">
         <div class="rail-head"><img src="assets/ray-avatar.svg" alt="" /><span class="rh-t">Ray</span><span class="rh-s">Working</span></div>
         <div class="rail-body">
@@ -1362,15 +1453,17 @@ body.on-light .chrome-label, body.on-light .chrome-brand { color: var(--ink, #0F
   <div class="grid-deco" aria-hidden="true"><i class="disc"></i><i class="crop tl"></i><i class="crop tr"></i><i class="crop bl"></i><i class="crop br"></i></div>
   <div class="v4col">
     <div class="ready-stage">
-      <div class="cover fx" style="--d:.15s" aria-hidden="true">
-        <div class="cv-brand">tend<i>e</i>rfy</div>
-        <div class="cv-t">Tender submission</div>
-        <div class="cv-s">RFT 2026-114 · Hillcrest Primary School, Stage 2</div>
-        <i class="ln w60"></i><i class="ln w40"></i>
-        <div class="cv-stamp">8 of 8 approved</div>
+      <div class="ready-app fx" style="--d:.1s" aria-hidden="true">
+        <div class="b-top"><b class="back">‹ Back</b><span class="b-title">Tender Attachments · Tender Pack</span><b class="btn amber pressed">Download</b><b class="btn">Save Changes</b></div>
+        <div class="dl-chip fx" style="--d:1.1s"><i></i><span>Northside-School-Upgrade-Tender-Pack.pdf</span><em>Done</em></div>
       </div>
-      <div class="dl fx" style="--d:1.2s" aria-hidden="true"><i></i><span>Download the pack</span></div>
-      <p class="rec-note fx" style="--d:.5s">Recording slot · NEW ray-13-download · 3s</p>
+      <div class="cover fx" style="--d:.7s" aria-hidden="true">
+        <div class="cv-band"><em class="mock">Mockup</em></div>
+        <div class="cv-t">Northside School Upgrade</div>
+        <div class="cv-s">Tender submission · Dept of Education</div>
+        <div class="cv-foot"><span>Prepared with Tenderfy</span><b>8 of 8 approved</b></div>
+      </div>
+      <p class="rec-note fx" style="--d:.5s"><em class="mock">Mockup</em> Recording slot · NEW ray-13-download · 3s</p>
     </div>
     <div class="capband"><p class="v4cap on">Tender built. Ready for you to submit.</p></div>
   </div>
@@ -1975,6 +2068,7 @@ body.on-light .chrome-label, body.on-light .chrome-brand { color: var(--ink, #0F
       setTimeout(function () { btn.classList.remove('pressed'); }, 260);
       paintRail(rail, b, true);
     }
+    var nx = rail && rail.querySelector('.rail-next'); if (nx) { nx.classList.remove('pop'); void nx.offsetWidth; nx.classList.add('pop'); }
     var st = win && win.querySelector('.stamp');
     if (st) { st.textContent = b.mode === 'ask' ? 'Go' : b.mode === 'done' ? 'Ready' : 'Approved'; st.classList.toggle('go', b.mode === 'ask'); st.classList.remove('on'); void st.offsetWidth; st.classList.add('on'); }
   }
@@ -1991,7 +2085,7 @@ body.on-light .chrome-label, body.on-light .chrome-brand { color: var(--ink, #0F
       box.innerHTML = rows.map(function (t) { return '<div class="work"><i></i><span>' + t + '</span></div>'; }).join('');
       var els = box.querySelectorAll('.work');
       if (b.work) els.forEach(function (el, i) { workTimers.push(setTimeout(function () {
-        el.classList.add('on', 'live'); if (i > 0) { els[i - 1].classList.remove('live'); els[i - 1].classList.add('done'); } }, 260 + i * 720)); });
+        el.classList.add('on', 'live'); if (i > 0) { els[i - 1].classList.remove('live'); els[i - 1].classList.add('done'); } }, 180 + i * 480)); });
     } else {
       var els2 = box.querySelectorAll('.work');
       els2.forEach(function (el, i) { workTimers.push(setTimeout(function () { el.classList.remove('live'); el.classList.add('on', 'done'); }, b.ticks ? 200 + i * 520 : i * 90)); });

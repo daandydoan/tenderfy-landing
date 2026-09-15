@@ -1981,6 +1981,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
       setTimeout(function () { btn.classList.remove('pressed'); }, 260);
       paintRail(rail, b, true);
     }
+    var nx = rail && rail.querySelector('.rail-next'); if (nx) { nx.classList.remove('pop'); void nx.offsetWidth; nx.classList.add('pop'); }
     var st = win && win.querySelector('.stamp');
     if (st) { st.textContent = b.mode === 'ask' ? 'Go' : b.mode === 'done' ? 'Ready' : 'Approved'; st.classList.toggle('go', b.mode === 'ask'); st.classList.remove('on'); void st.offsetWidth; st.classList.add('on'); }
   }
@@ -1997,7 +1998,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
       box.innerHTML = rows.map(function (t) { return '<div class="work"><i></i><span>' + t + '</span></div>'; }).join('');
       var els = box.querySelectorAll('.work');
       if (b.work) els.forEach(function (el, i) { workTimers.push(setTimeout(function () {
-        el.classList.add('on', 'live'); if (i > 0) { els[i - 1].classList.remove('live'); els[i - 1].classList.add('done'); } }, 260 + i * 720)); });
+        el.classList.add('on', 'live'); if (i > 0) { els[i - 1].classList.remove('live'); els[i - 1].classList.add('done'); } }, 180 + i * 480)); });
     } else {
       var els2 = box.querySelectorAll('.work');
       els2.forEach(function (el, i) { workTimers.push(setTimeout(function () { el.classList.remove('live'); el.classList.add('on', 'done'); }, b.ticks ? 200 + i * 520 : i * 90)); });
