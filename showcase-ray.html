@@ -2050,6 +2050,8 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
         await seekTo(v, b.result[0], b.result[1]);
         if (!whileRunning(token)) return;
         thaw(win); await sleep(reduced ? 0 : 300);
+        // the next window's seek rides the result clip, off the boundary's critical path
+        var nb = beats[i + 1]; if (nb && nb.action[0]) seekTo(vids[1 - cur], nb.action[0], nb.action[1]).catch(function () {});
         scene.classList.add('res'); paintWork(rail, b, 'done');
         copies.forEach(function (c) { if (c.dataset.step === String(b.step)) c.classList.add('res'); });
         await run(v, b.result, token);
@@ -2062,15 +2064,24 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
       var nwin = wins[1 - cur], nv = vids[1 - cur];
       await seekTo(nv, next.action[0], next.action[1]); thaw(nwin);
       if (!whileRunning(token)) return;
-      scene.classList.add('moving'); win.classList.add('out'); win.classList.remove('in');
+      var park = scene.classList.contains('push-park');
+      scene.classList.add('moving');
+      if (park) {
+        // the park-behind: the approved card recedes and stays; the next rises 40ms later;
+        // the words change at the crossing, not at the start
+        if (v.videoWidth) freeze(win, v);
+        win.classList.remove('in'); win.classList.add('parked');
+        await sleep(reduced ? 0 : 40); nwin.classList.add('in');
+        await sleep(reduced ? 0 : 130);
+      } else { win.classList.add('out'); win.classList.remove('in'); }
       // the headline, the rail's offer and the strip change behind the move, not after it
       copies.forEach(function (c) { c.classList.toggle('on', c.dataset.step === String(next.step)); c.classList.remove('res'); });
       cards.forEach(function (c) { c.classList.remove('on'); });
       if (next.offer) paintRail(rail, next, false);
       scene.classList.remove('res'); paintWork(rail, next, 'run'); paintSheet(nwin, next);
-      await sleep(60); nwin.classList.add('in'); await sleep(reduced ? 0 : 300);
-      scene.classList.remove('moving'); win.classList.remove('out');
-      if (scene.classList.contains('push-park')) win.classList.add('parked');
+      if (park) { await sleep(reduced ? 0 : 300); }
+      else { await sleep(60); nwin.classList.add('in'); await sleep(reduced ? 0 : 300); win.classList.remove('out'); }
+      scene.classList.remove('moving');
       cur = 1 - cur;
     }
   }
