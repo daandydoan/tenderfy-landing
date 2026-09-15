@@ -993,6 +993,20 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
   .hook-doc.chat .bul:nth-child(n+4) { display: none; }
 }
 
+/* ===== the veil and the calm park, shared with the Agentic Ray film ===== */
+.curtain.soft::before, .curtain.soft::after { display: none; }
+.curtain.soft { height: 320vh; top: -110vh; -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 16%, #000 84%, transparent 100%); mask-image: linear-gradient(to bottom, transparent 0, #000 16%, #000 84%, transparent 100%); }
+.push-calm .stage-app .win.deck { transform: translateY(calc(-50% + 40px)); transform-origin: 50% 0;
+  transition: transform .62s cubic-bezier(.4,0,.2,1), opacity .36s ease-out; }
+.push-calm .stage-app .win.deck.in { transform: translateY(-50%); z-index: 4; }
+.push-calm .stage-app .win.deck.parked { opacity: .45; transform: translateY(calc(-50% - 28px)) scale(.95); z-index: 2;
+  transition: transform .62s cubic-bezier(.4,0,.2,1), opacity .62s cubic-bezier(.4,0,.2,1); pointer-events: none; }
+@media (prefers-reduced-motion: reduce) { .push-calm .stage-app .win.deck.parked { opacity: 0; } }
+/* the veil takes the colour of the scene it enters */
+.scene-dark, .scene-deep, .scene-end { --curtain: var(--dark-2); }
+.scene-light, .scene-offwhite { --curtain: #0F7355; }
+.scene-dark.hook-grad { --curtain: #1D9E75; }
+
 </style>
   <script>if(location.hostname.indexOf("tenderfy.org")===-1){document.head.appendChild(Object.assign(document.createElement("meta"),{name:"robots",content:"noindex,nofollow"}));}</script>
 </head>
@@ -1044,7 +1058,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
 </div>
 
 <!-- ============ S1 · HOOK ============ -->
-<section class="scene scene-dark hook-grad" data-label="The Old Way" data-dur="5900">
+<section class="scene scene-dark hook-grad" data-wipe="veil" data-label="The Old Way" data-dur="5900">
   <svg class="clip-mark" viewBox="0 0 32 65" aria-hidden="true"><use href="#clipSym"/></svg>
   <div class="deco" aria-hidden="true">
     <span class="orb orb-teal" style="width:42vw;height:42vw;left:-12vw;top:-14vh"></span>
@@ -1078,7 +1092,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
   <p class="hook-kicker fx" style="--d:3.2s"><span class="say">“Ray, get this tender started.”</span><span class="then fx" style="--d:3.7s">Eight steps. Ray runs them. You approve them.</span></p>
 </section>
 <!-- ============ S2 · MEET RAY ============ -->
-<section class="scene scene-deep" data-label="Meet Ray" data-dur="5500" id="sceneMeet" data-beats='[{"step": 0, "action": ["ray-00-rail.mp4", 0.0, 6.9, 1.5], "result": null, "hold": 0}]'>
+<section class="scene scene-deep" data-wipe="veil" data-label="Meet Ray" data-dur="5500" id="sceneMeet" data-beats='[{"step": 0, "action": ["ray-00-rail.mp4", 0.0, 6.9, 1.5], "result": null, "hold": 0}]'>
   <svg class="clip-mark" viewBox="0 0 32 65" aria-hidden="true"><use href="#clipSym"/></svg>
   <div class="deco" aria-hidden="true">
     <span class="orb orb-teal" style="width:36vw;height:36vw;right:-10vw;top:-10vh"></span>
@@ -1120,7 +1134,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
     </div>
   </div>
 </section>
-<section class="scene scene-light pair" data-label="Steps 01–02 · Go / No-Go · Plan" data-dur="14096" id="scenePair1"
+<section class="scene scene-light pair push-calm" data-wipe="veil" data-label="Steps 01–02 · Go / No-Go · Plan" data-dur="14096" id="scenePair1"
          data-beats='[{"step": 1, "action": ["ray-01-gonogo.mp4", 0.0, 4.0, 1.5], "result": ["ray-01-gonogo.mp4", 24.3, 27.4, 1.0], "hold": 2.0, "offer": "Scorecard ready for your approval.", "mode": "approve", "strip": "<b>1 of 8</b> \u00b7 Go / No-Go \u00b7 Awaiting your approval"}, {"step": 2, "action": ["ray-02-plan.mp4", 0.0, 3.0, 1.5], "result": ["ray-02-plan.mp4", 44.0, 46.4, 1.0], "hold": 0.35, "offer": "Let me build the task list and delivery plan.", "mode": "offer", "strip": "Next \u00b7 <b>2 of 8</b> \u00b7 Plan the tender"}]'>
   <div class="deco" aria-hidden="true">
     <span class="orb orb-teal" style="width:34vw;height:34vw;right:-9vw;top:-12vh"></span>
@@ -1174,7 +1188,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
     </div>
   </div>
 </section>
-<section class="scene scene-offwhite pair" data-label="Steps 03–04 · Buyer · Feedback" data-dur="11080" id="scenePair2"
+<section class="scene scene-offwhite pair push-calm" data-wipe="veil" data-label="Steps 03–04 · Buyer · Feedback" data-dur="11080" id="scenePair2"
          data-beats='[{"step": 3, "action": ["ray-03-04-buyer.mp4", 0.0, 3.0, 1.5], "result": ["ray-03-04-buyer.mp4", 17.5, 19.9, 1.0], "hold": 0.35, "offer": "Let me research the buyer and find where you add value.", "mode": "offer", "strip": "Next \u00b7 <b>3 of 8</b> \u00b7 Understand the buyer"}, {"step": 4, "action": ["ray-03-04-buyer-2.mp4", 0.0, 3.0, 1.5], "result": ["ray-03-04-buyer-2.mp4", 15.6, 18.0, 1.0], "hold": 0.35, "offer": "Let me read what this buyer said about your previous submissions.", "mode": "offer", "strip": "Next \u00b7 <b>4 of 8</b> \u00b7 Learn from feedback"}]'>
   <div class="deco" aria-hidden="true">
     <span class="orb orb-teal" style="width:32vw;height:32vw;left:-9vw;top:-10vh"></span>
@@ -1234,7 +1248,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
     </div>
   </div>
 </section>
-<section class="scene scene-deep pair" data-label="Steps 05–06 · Responses · Methodology" data-dur="11079" id="scenePair3"
+<section class="scene scene-deep pair push-calm" data-wipe="veil" data-label="Steps 05–06 · Responses · Methodology" data-dur="11079" id="scenePair3"
          data-beats='[{"step": 5, "action": ["ray-05-06-responses.mp4", 0.0, 3.0, 1.5], "result": ["ray-05-06-responses.mp4", 23.6, 26.0, 1.0], "hold": 0.35, "offer": "Let me work through the response schedule.", "mode": "offer", "strip": "Next \u00b7 <b>5 of 8</b> \u00b7 Complete the responses"}, {"step": 6, "action": ["ray-05-06-responses.mp4", 27.0, 30.0, 1.5], "result": ["ray-05-06-responses.mp4", 50.1, 52.5, 1.0], "hold": 0.35, "offer": "Let me develop the methodology and technical content.", "mode": "offer", "strip": "Next \u00b7 <b>6 of 8</b> \u00b7 Methodology &amp; technical"}]'>
   <svg class="clip-mark" viewBox="0 0 32 65" aria-hidden="true"><use href="#clipSym"/></svg>
   <div class="deco" aria-hidden="true">
@@ -1294,7 +1308,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
     </div>
   </div>
 </section>
-<section class="scene scene-light pair" data-label="Steps 07–08 · Build · Review" data-dur="12329" id="scenePair4"
+<section class="scene scene-light pair push-calm" data-wipe="veil" data-label="Steps 07–08 · Build · Review" data-dur="12329" id="scenePair4"
          data-beats='[{"step": 7, "action": ["ray-07-08-build-review.mp4", 0.0, 3.0, 1.5], "result": ["ray-07-08-build-review.mp4", 10.6, 13.0, 1.0], "hold": 0.35, "offer": "Let me assemble the submission for this bid.", "mode": "offer", "strip": "Next \u00b7 <b>7 of 8</b> \u00b7 Build the tender"}, {"step": 8, "action": ["ray-07-08-build-review.mp4", 13.5, 16.5, 1.5], "result": ["ray-07-08-build-review.mp4", 22.3, 24.9, 1.0], "hold": 1.4, "offer": "<b>All 8 steps done.</b> Every one approved by you. <b>You submit.</b>", "mode": "done", "strip": "Done \u00b7 <b>8 of 8</b>"}]'>
   <div class="deco" aria-hidden="true">
     <span class="orb orb-teal" style="width:32vw;height:32vw;left:-10vw;top:-12vh"></span>
@@ -1348,7 +1362,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
   </div>
 </section>
 <!-- ============ S7 · YOUR METHOD ============ -->
-<section class="scene scene-offwhite" data-label="Your Method" data-dur="5000" id="sceneManager" data-beats='[{"step": 0, "action": ["ray-09-method.mp4", 0.0, 7.5, 1.5], "result": null, "hold": 0}]'>
+<section class="scene scene-offwhite" data-wipe="veil" data-label="Your Method" data-dur="5000" id="sceneManager" data-beats='[{"step": 0, "action": ["ray-09-method.mp4", 0.0, 7.5, 1.5], "result": null, "hold": 0}]'>
   <div class="deco" aria-hidden="true">
     <span class="orb orb-blue" style="width:32vw;height:32vw;left:-10vw;bottom:-12vh"></span>
     <span class="dots" style="width:180px;height:140px;right:5%;top:14%"></span>
@@ -1382,7 +1396,7 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
   </div>
 </section>
 <!-- ============ S9 · BRAND END CARD ============ -->
-<section class="scene scene-end end-dark" data-label="Tenderfy" data-dur="5000">
+<section class="scene scene-end end-dark" data-wipe="veil" data-label="Tenderfy" data-dur="5000">
   <div class="deco" aria-hidden="true">
     <span class="orb orb-amber" style="width:26vw;height:26vw;right:6vw;top:-8vh;opacity:.35"></span>
     <span class="bit" style="right:28%;top:30%;--bd:8s"></span>
@@ -1424,6 +1438,44 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
   <p class="end-ack fx" style="--d:4s">Tenderfy acknowledges the Kombumerri people of the Yugambeh language region, the Traditional Custodians of the land on which we work.</p>
 </section>
 
+
+<script>
+/* V4 curtains. The engine animates one fixed vertical wipe; this takes over
+   that call and picks the wipe and the colour from the scene being entered
+   (data-wipe, --curtain). The engine's timing is untouched. */
+(function () {
+  var curtain = document.getElementById('curtain'), label = document.getElementById('curtainLabel');
+  if (!curtain || !curtain.animate) return;
+  var real = curtain.animate.bind(curtain);
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var W = {
+    up:    [{ transform: 'translateY(104%)', clipPath: 'none' }, { transform: 'translateY(-118%)', clipPath: 'none' }],
+    right: [{ transform: 'translateX(-112%)', clipPath: 'none' }, { transform: 'translateX(112%)', clipPath: 'none' }],
+    iris:  [{ transform: 'none', clipPath: 'circle(0% at 50% 50%)' }, { transform: 'none', clipPath: 'circle(78% at 50% 50%)', offset: .48 }, { transform: 'none', clipPath: 'circle(78% at 50% 50%)', offset: .56 }, { transform: 'none', clipPath: 'circle(0% at 50% 50%)' }],
+    diag:  [{ transform: 'none', clipPath: 'polygon(-40% 0, -10% 0, -40% 100%, -70% 100%)' }, { transform: 'none', clipPath: 'polygon(-40% 0, 140% 0, 110% 100%, -70% 100%)', offset: .5 }, { transform: 'none', clipPath: 'polygon(110% 0, 140% 0, 110% 100%, 80% 100%)' }],
+    /* calm: a feathered veil, up or down, and a dip to the next scene's own ground */
+    veil:  [{ transform: 'translateY(100vh)' }, { transform: 'translateY(-100vh)' }],
+    'veil-down': [{ transform: 'translateY(-100vh)' }, { transform: 'translateY(100vh)' }],
+    dip:   [{ transform: 'none', opacity: 0 }, { transform: 'none', opacity: 1, offset: .4 }, { transform: 'none', opacity: 1, offset: .6 }, { transform: 'none', opacity: 0 }]
+  };
+  var EASE = { veil: 'cubic-bezier(.45,0,.2,1)', 'veil-down': 'cubic-bezier(.45,0,.2,1)', dip: 'ease-in-out' };
+  curtain.animate = function (kf, opts) {
+    var target = Array.prototype.filter.call(document.querySelectorAll('.scene'), function (s) { return s.dataset.label === label.textContent; })[0];
+    var wipe = (target && target.dataset.wipe) || 'up';
+    var cs = target && getComputedStyle(target);
+    var col = cs && (wipe === 'dip' ? cs.getPropertyValue('--paper') : cs.getPropertyValue('--curtain')).trim();
+    curtain.style.background = col || '';
+    curtain.classList.toggle('h', wipe === 'right');
+    curtain.classList.toggle('flat', wipe === 'iris' || wipe === 'diag' || wipe === 'dip');
+    curtain.classList.toggle('soft', wipe === 'veil' || wipe === 'veil-down');
+    var frames = reduced ? W.dip : (W[wipe] || W.up);
+    var o = Object.assign({}, opts); if (EASE[wipe]) o.easing = EASE[wipe];
+    var a = real(frames, o);
+    a.addEventListener('finish', function () { curtain.style.clipPath = ''; curtain.style.opacity = ''; curtain.classList.remove('h', 'flat', 'soft'); });
+    return a;
+  };
+})();
+</script>
 <script>
 (function () {
   'use strict';
