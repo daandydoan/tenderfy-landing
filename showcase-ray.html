@@ -1194,7 +1194,7 @@ body.on-light .edge { --edge: rgba(255,255,255,.3); }
 .v5 .beatcol .eyebrow { margin-bottom: 10px; }
 .v5 .onscreen { display: flex; flex-direction: column; gap: .1em; }
 .v5 .onscreen b { font-weight: 700; } .v5 .onscreen b:last-child { color: var(--teal); }
-.v5 .stage-app .win.deck { width: 82%; }
+.v5 .stage-app .win.deck { width: 70%; }
 .v5 .stage-app .rail.mini { right: 0; bottom: -6%; width: min(300px, 36%); z-index: 6; opacity: 0; border-radius: 10px; border: 1px solid #DCE5E1; background: #fff; box-shadow: 0 24px 50px -28px rgba(15,26,23,.45); }
 .v5 .v4rail { --acc: #0F7355; --teal: #1D9E75; --dim: #6B7975; --ink-2: #33423E; --pop: cubic-bezier(.2,1.5,.3,1); --line: #DCE5E1; }
 .v5 .v4rail .rail-btn { white-space: nowrap; }
@@ -1245,6 +1245,69 @@ body.on-light .edge { --edge: rgba(255,255,255,.3); }
 .v5hook .hk-line { font-size: clamp(20px, 2.2vw, 32px); font-weight: 600; color: #6FD0AD; --d0: 1.2s; }
 .v5hook .hk-sub { font-size: clamp(15px, 1.5vw, 20px); color: rgba(242,246,244,.78); }
 @media (max-width: 940px) { .v5hook .hk-big { font-size: clamp(44px, 14vw, 72px); margin-bottom: -.1em; } .v5hook .hk-panel { width: min(340px, 90vw); } .v5hook .hk-row { flex-direction: column; align-items: center; gap: 6px; text-align: center; } .v5hook .hk-panel .hk-starter:nth-child(6) { display: none; } }
+/* bare elements: no shell, no browser bar; the card floats and sizes to its content */
+.v5 .win.deck.ph-win { background: transparent; border: 0; box-shadow: none; }
+.v5 .win.deck.ph-win .win-bar { display: none; }
+.v5 .win.deck.ph-win .vwrap { aspect-ratio: auto; background: transparent; overflow: visible; }
+.v5 .ph.bare { position: relative; inset: auto; font-size: clamp(9px, 1.7cqw, 19px); background: #fff; border-radius: .7em; padding: 1.3em 1.5em; box-shadow: 0 30px 60px -30px rgba(15,26,23,.4); color: #33423E; }
+.v5 .ph.bare > .mock { position: absolute; top: .7em; right: .8em; z-index: 2; }
+.v5 .ph.bare .pane { box-shadow: none; }
+.v5 .ph.bare .pane.docs { display: none; }
+.v5 .ph.bare.ph-plan .p-head { border-radius: .5em; }
+.v5 .ph.bare .b-top { padding-bottom: .5em; }
+.t-row { grid-template-columns: 1.2em 1fr 6.5em 3em 5.5em; }
+.t-own { font-size: .78em; font-weight: 700; letter-spacing: .05em; text-align: center; border-radius: 999px; padding: .2em 0; background: #E9EFEC; color: #6B7975; opacity: 0; transform: scale(.6); transition: all .35s cubic-bezier(.2,1.5,.3,1); transition-delay: calc(var(--i) * .12s); }
+.res .t-own { opacity: 1; transform: none; background: #38988A; color: #fff; }
+.v5 .ph-download .dl-chip { margin-top: 1em; display: inline-flex; align-items: center; gap: .6em; background: #F2F5F4; border: 1px solid #D7DEDB; border-radius: .6em; padding: .5em .9em; font-size: .95em; opacity: 0; transform: translateY(6px); transition: all .4s ease .35s; }
+.res .ph-download .dl-chip { opacity: 1; transform: none; }
+.res .ph-download .btn.amber { transform: scale(.94); filter: brightness(.9); }
+/* the Agentic Ray panel, as the prototype draws it */
+.v5 .stage-app .rail.mini.raypanel { width: min(340px, 34%); right: -2%; bottom: -6%; top: auto; background: #26302E; color: #E6ECEA; border: 1px solid rgba(255,255,255,.08); border-top: 0; border-radius: 12px; box-shadow: 0 34px 70px -30px rgba(0,0,0,.7); overflow: hidden; --acc: #6FD0AD; --dim: #9AA8A3; --ink-2: #DCE4E1; --line: rgba(255,255,255,.1); }
+.raypanel .rp-head { display: flex; align-items: center; gap: 8px; padding: 10px 12px; border-bottom: 1px solid rgba(255,255,255,.08); font-size: 12px; font-weight: 600; }
+.raypanel .rp-back { width: 7px; height: 7px; border-left: 1.5px solid #B8C4C0; border-bottom: 1.5px solid #B8C4C0; transform: rotate(45deg); margin-right: 4px; }
+.raypanel .rp-title { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.raypanel .rp-beta { font-style: normal; font-size: 8.5px; font-weight: 700; letter-spacing: .12em; background: #F2C46D; color: #2B2B2B; border-radius: 3px; padding: 2px 5px; }
+.raypanel .rp-dots { width: 14px; height: 3px; background: radial-gradient(circle, #B8C4C0 1px, transparent 1.4px) 0 0 / 5px 3px; }
+.raypanel .rail-body { padding: 12px 14px 8px; gap: 8px; min-height: 150px; }
+.raypanel .rail-you { align-self: flex-end; margin: 0 0 4px auto; background: #3A4643; color: #F2F6F4; border-radius: 12px; padding: 7px 11px; font-size: 11.5px; max-width: 88%; }
+.raypanel .rp-ray { display: flex; align-items: center; gap: 6px; font-size: 11px; color: #9AA8A3; } .raypanel .rp-ray img { width: 16px; height: 14px; }
+.raypanel .rh-s { font-size: 11px; color: #9AA8A3; margin: -2px 0 2px; }
+.raypanel .rail-work { gap: 6px; padding-left: 2px; }
+.raypanel .work { display: grid; grid-template-columns: 12px auto 1fr; gap: 8px; align-items: start; font-size: 10.5px; line-height: 1.3; color: #C9D4D0; }
+.raypanel .work i { margin-top: 2px; width: 9px; height: 9px; border-color: #6B7975; } .raypanel .work.done i { background: #6FD0AD; border-color: #6FD0AD; }
+.raypanel .work.done i::after { left: 2px; top: .5px; width: 2.5px; height: 4.5px; border-color: #26302E; }
+.raypanel .work code { font-family: ui-monospace, Menlo, monospace; font-size: 10px; color: #F2F6F4; white-space: nowrap; }
+.raypanel .work.done { color: #9AA8A3; }
+.raypanel .rail-offer { background: transparent; border: 0; padding: 4px 0 0; }
+.raypanel .rail-offer p { color: #F2F6F4; font-size: 12px; line-height: 1.45; }
+.raypanel .rail-offer.ask, .raypanel .rail-offer.review, .raypanel .rail-offer.approve { background: rgba(255,255,255,.05); border: 1px solid rgba(111,208,173,.35); border-radius: 10px; padding: 9px 11px; }
+.raypanel .rail-btn { background: #1D9E75; color: #fff; } .raypanel .rail-btn.ghost { background: transparent; color: #C9D4D0; border: 1px solid rgba(255,255,255,.2); }
+.raypanel .rail-offer.review .rail-btn:not(:last-child) { background: transparent; color: #C9D4D0; border: 1px solid rgba(255,255,255,.2); }
+.raypanel .rail-offer.status .acts { display: none; }
+.raypanel .rp-foot { border-top: 1px solid rgba(255,255,255,.08); padding: 8px 12px 12px; }
+.raypanel .rp-ref { display: flex; flex-wrap: wrap; gap: 5px; align-items: center; margin-bottom: 8px; }
+.raypanel .rp-ref span { width: 100%; font-size: 8.5px; letter-spacing: .12em; text-transform: uppercase; color: #9AA8A3; }
+.raypanel .rp-ref b { font-weight: 500; font-size: 9.5px; color: #C9D4D0; background: #33403D; border-radius: 999px; padding: 3px 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 48%; }
+.raypanel .rp-composer { display: flex; align-items: center; gap: 8px; background: #33403D; border-radius: 10px; padding: 8px 10px; font-size: 11px; color: #9AA8A3; }
+.raypanel .rp-composer span { flex: 1; } .raypanel .rp-att, .raypanel .rp-clip { width: 11px; height: 11px; border: 1.5px solid #9AA8A3; border-radius: 3px; }
+.raypanel .rp-send { width: 20px; height: 20px; border-radius: 50%; background: #1D9E75; position: relative; }
+.raypanel .rp-send::after { content: ''; position: absolute; left: 7px; top: 5px; width: 5px; height: 5px; border-top: 1.5px solid #fff; border-left: 1.5px solid #fff; transform: rotate(45deg); }
+.v5 .v4rail .rail-offer.status { border: 0; background: transparent; }
+/* documents Ray creates: a page with a header band */
+.v5 .ph.bare.doc { padding: 0; overflow: hidden; min-height: 48vh; display: flex; flex-direction: column; }
+.v5 .ph.bare.doc > .pane { flex: 1; }
+.v5 .ph.bare.doc .doc-head { display: flex; align-items: center; gap: .8em; padding: .9em 1.4em; background: #F4F8F6; border-bottom: 1px solid #DCE5E1; }
+.v5 .doc-logo { width: 1.1em; height: 2.2em; color: #E8A33A; } .v5 .doc-logo use { stroke-width: 2.2; }
+.v5 .doc-head b { display: block; font-size: 1.05em; color: #1F1A14; line-height: 1.15; } .v5 .doc-head small { color: #6B7975; font-size: .8em; }
+.v5 .doc-head .doc-by { margin-left: auto; margin-right: 4.2em; font-style: normal; font-size: .78em; color: #0F7355; display: flex; align-items: center; gap: .4em; white-space: nowrap; } .v5 .doc-head .doc-by img { width: 1.2em; height: 1em; }
+.v5 .ph.bare.doc > .pane, .v5 .ph.bare.doc > .b-top, .v5 .ph.bare.doc > .dl-chip { margin: 1em 1.4em; }
+.v5 .ph.bare.doc > .dl-chip { margin-top: 0; }
+.v5 .ph.bare.doc .pane.check .p-head, .v5 .ph.bare.doc .pane.check .tabs { display: none; }
+.v5 .ph.bare.doc .pane.doc > .d-title { display: none; }
+.v5 .win.deck .ph.bare { font-size: clamp(11px, 2.2cqw, 22px); }
+.v5 .ph.bare.doc.ph-download { justify-content: flex-start; }
+.v5 .pack .c-row { transition-delay: calc(var(--i) * .08s); } .v5 .pack .c-row i { transition: all .3s ease calc(var(--i) * .08s); }
+.v5 .ph.bare.doc > .pane.pack { flex: 0 0 auto; margin-top: .4em; }
 /* open and end */
 .v5open .big.v5big, .v5end .big.v5big { font-size: clamp(40px, 5.6vw, 84px); line-height: 1; margin: 0 0 8px; text-align: left; }
 .v5end .big.v5big { text-align: center; }
@@ -1605,7 +1668,7 @@ body.on-light .edge { --edge: rgba(255,255,255,.3); }
     </div>
     <div class="stage stage-app">
       <div class="win deck ph-win"><div class="win-bar"><span></span><span></span><span></span><em class="mock">Mockup</em></div>
-        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas><div class="ph bare doc ph-download"><em class="mock">Mockup</em><div class="doc-head"><svg class="doc-logo" viewBox="0 0 32 65"><use href="#clipSym"/></svg><div><b>Tender Pack</b><small>Ready for submission</small></div><em class="doc-by"><img src="assets/ray-avatar.svg" alt="" />Created by Ray</em></div><div class="b-top"><b class="back">‹ Back</b><span class="b-title">Tender Attachments · Tender Pack</span><b class="btn amber">Download</b><b class="btn">Save Changes</b></div><div class="dl-chip"><i></i><span>Tender-Pack.pdf</span><em>Done</em></div></div></div>
+        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas><div class="ph bare doc ph-download"><em class="mock">Mockup</em><div class="doc-head"><svg class="doc-logo" viewBox="0 0 32 65"><use href="#clipSym"/></svg><div><b>Tender Pack</b><small>Ready for submission</small></div><em class="doc-by"><img src="assets/ray-avatar.svg" alt="" />Created by Ray</em></div><div class="b-top"><b class="back">‹ Back</b><span class="b-title">Tender Attachments · Tender Pack</span><b class="btn amber">Download</b><b class="btn">Save Changes</b></div><div class="pane doc solo pack"><div class="c-row ok" style="--i:0"><i></i><span>Cover Page</span><em>1 page</em></div><div class="c-row ok" style="--i:1"><i></i><span>Table of Contents</span><em>1 page</em></div><div class="c-row ok" style="--i:2"><i></i><span>Tender Documentations</span><em>3 files</em></div><div class="c-row ok" style="--i:3"><i></i><span>Resumes</span><em>2 tailored</em></div><div class="c-row ok" style="--i:4"><i></i><span>Case Studies</span><em>1 tailored</em></div><div class="c-row ok" style="--i:5"><i></i><span>Policies</span><em>4 files</em></div><div class="c-row ok" style="--i:6"><i></i><span>Insurances</span><em>3 certificates</em></div><div class="c-row ok" style="--i:7"><i></i><span>Certifications</span><em>2 files</em></div></div><div class="dl-chip"><i></i><span>Northside-School-Upgrade-Tender-Pack.pdf</span><em>Done</em></div></div></div>
         <span class="rec-tag"><i></i><b class="tb-rec"></b></span></div>
       <div class="win deck"><div class="win-bar"><span></span><span></span><span></span></div>
         <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas></div></div>
