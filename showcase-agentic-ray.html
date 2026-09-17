@@ -1362,7 +1362,7 @@ body.on-light .chrome-label, body.on-light .chrome-brand { color: var(--ink, #0F
         <div class="rail-body">
           <div class="rail-you"></div>
           <div class="rail-work"></div>
-          <div class="rail-offer"><p></p><div class="acts"><span class="rail-btn"></span><span class="rail-btn ghost"></span></div></div>
+          <div class="rail-offer"><p></p><div class="acts"><span class="rail-btn"></span><span class="rail-btn ghost"></span><span class="rail-btn" style="display:none"></span></div></div>
           <div class="rail-next"><span></span><span class="prog"><i></i></span></div>
         </div>
       </div>
@@ -1413,7 +1413,7 @@ body.on-light .chrome-label, body.on-light .chrome-brand { color: var(--ink, #0F
         <div class="rail-body">
           <div class="rail-you"></div>
           <div class="rail-work"></div>
-          <div class="rail-offer"><p></p><div class="acts"><span class="rail-btn"></span><span class="rail-btn ghost"></span></div></div>
+          <div class="rail-offer"><p></p><div class="acts"><span class="rail-btn"></span><span class="rail-btn ghost"></span><span class="rail-btn" style="display:none"></span></div></div>
           <div class="rail-next"><span></span><span class="prog"><i></i></span></div>
         </div>
       </div>
@@ -1457,7 +1457,7 @@ body.on-light .chrome-label, body.on-light .chrome-brand { color: var(--ink, #0F
         <div class="rail-body">
           <div class="rail-you"></div>
           <div class="rail-work"></div>
-          <div class="rail-offer"><p></p><div class="acts"><span class="rail-btn"></span><span class="rail-btn ghost"></span></div></div>
+          <div class="rail-offer"><p></p><div class="acts"><span class="rail-btn"></span><span class="rail-btn ghost"></span><span class="rail-btn" style="display:none"></span></div></div>
           <div class="rail-next"><span></span><span class="prog"><i></i></span></div>
         </div>
       </div>
@@ -2082,16 +2082,17 @@ body.on-light .chrome-label, body.on-light .chrome-brand { color: var(--ink, #0F
     offer.classList.toggle('approve', b.mode === 'approve'); offer.classList.toggle('done', b.mode === 'done');
     p.innerHTML = b.offer;
     offer.classList.toggle('ask', b.mode === 'ask');
-    var labels = b.mode === 'approve' ? ['Approve', 'Amend'] : b.mode === 'done' ? ['Readiness summary', ''] : b.mode === 'ask' ? ['Yes, create it', 'Not now'] : ['Go ahead', 'Skip'];
+    offer.classList.toggle('review', b.mode === 'review'); offer.classList.toggle('status', b.mode === 'status');
+    var labels = b.btns || (b.mode === 'approve' ? ['Approve', 'Amend'] : b.mode === 'done' ? ['Readiness summary', ''] : b.mode === 'ask' ? ['Yes, create it', 'Not now'] : ['Go ahead', 'Skip']);
     var you = rail.querySelector('.rail-you'); if (you) { you.textContent = b.prompt || ''; you.classList.toggle('on', !!b.prompt); }
-    btns[0].textContent = labels[0]; btns[1].textContent = labels[1]; btns[1].style.display = labels[1] ? '' : 'none';
+    for (var k = 0; k < btns.length; k++) { btns[k].textContent = labels[k] || ''; btns[k].style.display = labels[k] ? '' : 'none'; }
     rail.querySelector('.rail-next > span').innerHTML = b.strip;
     var pct = b.mode === 'done' ? 100 : Math.round(((b.step - 1) + (ticked ? 1 : 0)) / 8 * 100);
     rail.querySelector('.rail-next .prog i').style.width = pct + '%';
   }
   function approve(rail, b, win) {
     if (rail) {
-      var btn = rail.querySelector('.rail-btn'); btn.classList.add('pressed');
+      var btn = rail.querySelectorAll('.rail-btn')[b.press || 0] || rail.querySelector('.rail-btn'); btn.classList.add('pressed');
       setTimeout(function () { btn.classList.remove('pressed'); }, 260);
       paintRail(rail, b, true);
     }
@@ -2107,6 +2108,8 @@ body.on-light .chrome-label, body.on-light .chrome-brand { color: var(--ink, #0F
     var box = rail && rail.querySelector('.rail-work'); if (!box) return;
     workTimers.forEach(clearTimeout); workTimers = [];
     var st = rail.querySelector('.rh-s'); if (st) st.textContent = phase === 'run' ? 'Working' : 'Done';
+    // Ray's line waits for the working lines: it lands with the result, not before
+    var off = rail.querySelector('.rail-offer'); if (off) off.classList.toggle('pending', phase === 'run' && !!(b.work || b.ticks));
     var rows = b.work || b.ticks || [];
     if (phase === 'run') {
       box.innerHTML = rows.map(function (t) { return '<div class="work"><i></i><span>' + t + '</span></div>'; }).join('');
