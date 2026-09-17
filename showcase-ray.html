@@ -1217,92 +1217,33 @@ body.on-light .edge { --edge: rgba(255,255,255,.3); }
 .v5 .win.deck.ph-win .vwrap video, .v5 .win.deck.ph-win canvas.freeze { display: none; }
 .v5 .win.deck.ph-win .vwrap { position: relative; aspect-ratio: 16 / 9.4; background: #FAFCFB; overflow: hidden; }
 .v5 .ph-download .a-body { padding: 1.2em 1.4em; }
-/* the hook: a split poster */
-.v5hook { --paper: #0F1A17; background: #0F1A17; color: #F2F6F4; --curtain: #0F1A17; padding: 0; justify-content: stretch; align-items: stretch; }
-.v5hook .hk-band { position: absolute; top: 0; right: 0; bottom: 0; width: 44%; background: linear-gradient(160deg, #1D9E75, #0F7355 70%, #0B5A44); }
-.v5hook .hk-band::after { content: ''; position: absolute; inset: 0; background: radial-gradient(60% 50% at 30% 20%, rgba(148,179,109,.35), transparent 70%); }
-.v5hook .hk-grid { position: relative; z-index: 2; display: grid; grid-template-columns: 56% 44%; width: 100%; height: 100%; }
-.v5hook .hk-type { text-align: left; display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-end; padding: 0 clamp(20px, 5vw, 80px) clamp(90px, 14vh, 150px) clamp(20px, 5vw, 80px); }
-.v5hook .hk-eyebrow { font-size: 11px; letter-spacing: .3em; text-transform: uppercase; color: #E8A33A; margin: 0 0 14px; }
-.v5hook .hk-big { font-size: clamp(56px, 8.6vw, 150px); line-height: .92; letter-spacing: -.02em; margin: 0 0 14px; text-align: left; }
-.v5hook .hk-line { font-size: clamp(22px, 2.6vw, 40px); font-weight: 600; color: #6FD0AD; margin: 0 0 18px; line-height: 1.1; }
-.v5hook .hk-rule { display: block; width: 72px; height: 2px; background: #E8A33A; margin-bottom: 16px; }
-.v5hook .hk-sub { font-size: clamp(16px, 1.6vw, 22px); color: rgba(242,246,244,.78); margin: 0; }
-.v5hook .hk-stage { position: relative; display: grid; place-items: center; }
-.v5hook .hk-pair { position: relative; width: min(300px, 70%); }
-.v5hook .hk-card { width: 100%; transform: rotate(-3deg); box-shadow: 0 50px 90px -40px rgba(0,0,0,.7); }
-.active .v5hook .hk-card { animation: cardUp .9s cubic-bezier(.2,.8,.2,1) both; animation-delay: .5s; }
-@keyframes cardUp { from { opacity: 0; transform: translateY(80px) rotate(-3deg); } to { opacity: 1; transform: translateY(0) rotate(-3deg); } }
-.v5hook .hk-ray { position: absolute; left: -64px; bottom: -58px; width: 150px; height: 130px; display: grid; place-items: center; }
-.v5hook .hk-ray .ring { position: absolute; inset: -8px; border-radius: 50%; border: 2px dashed rgba(232,163,58,.8); animation: spin 30s linear infinite; }
-.v5hook .hk-ray img { width: 116px; filter: drop-shadow(0 18px 30px rgba(0,0,0,.55)); animation: rayBob 4.2s ease-in-out 1.6s infinite; }
-.v5hook .fx { transform: translateY(26px); }
-@media (max-width: 940px) {
-  .v5hook .hk-band { width: 100%; height: 46%; bottom: 0; top: auto; }
-  .v5hook .hk-grid { grid-template-columns: 1fr; grid-template-rows: 54% 46%; }
-  .v5hook .hk-type { justify-content: center; padding: 70px 20px 10px; }
-  .v5hook .hk-big { font-size: clamp(44px, 14vw, 72px); }
-  .v5hook .hk-pair { width: min(230px, 62%); margin: 0 0 64px 24px; }
-  .v5hook .hk-ray { left: -40px; bottom: -34px; width: 96px; height: 84px; } .v5hook .hk-ray img { width: 72px; }
-}
-/* bare elements: no shell, no browser bar; the card floats and sizes to its content */
-.v5 .win.deck.ph-win { background: transparent; border: 0; box-shadow: none; }
-.v5 .win.deck.ph-win .win-bar { display: none; }
-.v5 .win.deck.ph-win .vwrap { aspect-ratio: auto; background: transparent; overflow: visible; }
-.v5 .ph.bare { position: relative; inset: auto; font-size: clamp(9px, 1.7cqw, 19px); background: #fff; border: 1px solid #DCE5E1; border-radius: .7em; padding: 1.3em 1.5em; box-shadow: 0 30px 60px -30px rgba(15,26,23,.4); color: #33423E; }
-.v5 .ph.bare > .mock { position: absolute; top: .7em; right: .8em; z-index: 2; }
-.v5 .ph.bare .pane { box-shadow: none; }
-.v5 .ph.bare .pane.docs { display: none; }
-.v5 .ph.bare.ph-plan .p-head { border-radius: .5em; }
-.v5 .ph.bare .b-top { padding: 0 4.5em .5em 0; }
-.t-row { grid-template-columns: 1.2em 1fr 6.5em 3em 5.5em; }
-.t-own { font-size: .78em; font-weight: 700; letter-spacing: .05em; text-align: center; border-radius: 999px; padding: .2em 0; background: #E9EFEC; color: #6B7975; opacity: 0; transform: scale(.6); transition: all .35s cubic-bezier(.2,1.5,.3,1); transition-delay: calc(var(--i) * .12s); }
-.res .t-own { opacity: 1; transform: none; background: #38988A; color: #fff; }
-.v5 .ph-download .dl-chip { margin-top: 1em; display: inline-flex; align-items: center; gap: .6em; background: #F2F5F4; border: 1px solid #D7DEDB; border-radius: .6em; padding: .5em .9em; font-size: .95em; opacity: 0; transform: translateY(6px); transition: all .4s ease .35s; }
-.res .ph-download .dl-chip { opacity: 1; transform: none; }
-.res .ph-download .btn.amber { transform: scale(.94); filter: brightness(.9); }
-/* the Agentic Ray panel, as the prototype draws it */
-.v5 .stage-app .rail.mini.raypanel { width: min(360px, 40%); right: -2%; bottom: -8%; top: auto; background: #26302E; color: #E6ECEA; border: 1px solid rgba(255,255,255,.08); border-top: 0; border-radius: 12px; box-shadow: 0 34px 70px -30px rgba(0,0,0,.7); overflow: hidden; --acc: #6FD0AD; --dim: #9AA8A3; --ink-2: #DCE4E1; --line: rgba(255,255,255,.1); }
-.raypanel .rp-head { display: flex; align-items: center; gap: 8px; padding: 10px 12px; border-bottom: 1px solid rgba(255,255,255,.08); font-size: 12px; font-weight: 600; }
-.raypanel .rp-back { width: 7px; height: 7px; border-left: 1.5px solid #B8C4C0; border-bottom: 1.5px solid #B8C4C0; transform: rotate(45deg); margin-right: 4px; }
-.raypanel .rp-title { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.raypanel .rp-beta { font-style: normal; font-size: 8.5px; font-weight: 700; letter-spacing: .12em; background: #F2C46D; color: #2B2B2B; border-radius: 3px; padding: 2px 5px; }
-.raypanel .rp-dots { width: 14px; height: 3px; background: radial-gradient(circle, #B8C4C0 1px, transparent 1.4px) 0 0 / 5px 3px; }
-.raypanel .rail-body { padding: 12px 14px 8px; gap: 8px; min-height: 150px; }
-.raypanel .rail-you { align-self: flex-end; margin: 0 0 4px auto; background: #3A4643; color: #F2F6F4; border-radius: 12px; padding: 7px 11px; font-size: 11.5px; max-width: 88%; }
-.raypanel .rp-ray { display: flex; align-items: center; gap: 6px; font-size: 11px; color: #9AA8A3; } .raypanel .rp-ray img { width: 16px; height: 14px; }
-.raypanel .rh-s { font-size: 11px; color: #9AA8A3; margin: -2px 0 2px; }
-.raypanel .rail-work { gap: 6px; padding-left: 2px; }
-.raypanel .work { display: grid; grid-template-columns: 12px auto 1fr; gap: 8px; align-items: start; font-size: 10.5px; line-height: 1.3; color: #C9D4D0; }
-.raypanel .work i { margin-top: 2px; width: 9px; height: 9px; border-color: #6B7975; } .raypanel .work.done i { background: #6FD0AD; border-color: #6FD0AD; }
-.raypanel .work.done i::after { left: 2px; top: .5px; width: 2.5px; height: 4.5px; border-color: #26302E; }
-.raypanel .work code { font-family: ui-monospace, Menlo, monospace; font-size: 10px; color: #F2F6F4; white-space: nowrap; }
-.raypanel .work.done { color: #9AA8A3; }
-.raypanel .rail-offer { background: transparent; border: 0; padding: 4px 0 0; }
-.raypanel .rail-offer p { color: #F2F6F4; font-size: 12px; line-height: 1.45; }
-.raypanel .rail-offer.ask, .raypanel .rail-offer.review, .raypanel .rail-offer.approve { background: rgba(255,255,255,.05); border: 1px solid rgba(111,208,173,.35); border-radius: 10px; padding: 9px 11px; }
-.raypanel .rail-btn { background: #1D9E75; color: #fff; } .raypanel .rail-btn.ghost { background: transparent; color: #C9D4D0; border: 1px solid rgba(255,255,255,.2); }
-.raypanel .rail-offer.review .rail-btn:not(:last-child) { background: transparent; color: #C9D4D0; border: 1px solid rgba(255,255,255,.2); }
-.raypanel .rail-offer.status .acts { display: none; }
-.raypanel .rp-foot { border-top: 1px solid rgba(255,255,255,.08); padding: 8px 12px 12px; }
-.raypanel .rp-ref { display: flex; flex-wrap: wrap; gap: 5px; align-items: center; margin-bottom: 8px; }
-.raypanel .rp-ref span { width: 100%; font-size: 8.5px; letter-spacing: .12em; text-transform: uppercase; color: #9AA8A3; }
-.raypanel .rp-ref b { font-weight: 500; font-size: 9.5px; color: #C9D4D0; background: #33403D; border-radius: 999px; padding: 3px 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 48%; }
-.raypanel .rp-composer { display: flex; align-items: center; gap: 8px; background: #33403D; border-radius: 10px; padding: 8px 10px; font-size: 11px; color: #9AA8A3; }
-.raypanel .rp-composer span { flex: 1; } .raypanel .rp-att, .raypanel .rp-clip { width: 11px; height: 11px; border: 1.5px solid #9AA8A3; border-radius: 3px; }
-.raypanel .rp-send { width: 20px; height: 20px; border-radius: 50%; background: #1D9E75; position: relative; }
-.raypanel .rp-send::after { content: ''; position: absolute; left: 7px; top: 5px; width: 5px; height: 5px; border-top: 1.5px solid #fff; border-left: 1.5px solid #fff; transform: rotate(45deg); }
-.v5 .v4rail .rail-offer.status { border: 0; background: transparent; }
-/* documents Ray creates: a page with a header band */
-.v5 .ph.bare.doc { padding: 0; overflow: hidden; }
-.v5 .ph.bare.doc .doc-head { display: flex; align-items: center; gap: .8em; padding: .9em 1.4em; background: #F4F8F6; border-bottom: 1px solid #DCE5E1; }
-.v5 .doc-logo { width: 1.1em; height: 2.2em; color: #E8A33A; } .v5 .doc-logo use { stroke-width: 2.2; }
-.v5 .doc-head b { display: block; font-size: 1.05em; color: #1F1A14; line-height: 1.15; } .v5 .doc-head small { color: #6B7975; font-size: .8em; }
-.v5 .doc-head .doc-by { margin-left: auto; margin-right: 4.2em; font-style: normal; font-size: .78em; color: #0F7355; display: flex; align-items: center; gap: .4em; white-space: nowrap; } .v5 .doc-head .doc-by img { width: 1.2em; height: 1em; }
-.v5 .ph.bare.doc > .pane, .v5 .ph.bare.doc > .b-top, .v5 .ph.bare.doc > .dl-chip { margin: 1em 1.4em; }
-.v5 .ph.bare.doc > .dl-chip { margin-top: 0; }
-.v5 .ph.bare.doc .pane.check .p-head, .v5 .ph.bare.doc .pane.check .tabs { display: none; }
-.v5 .ph.bare.doc .pane.doc > .d-title { display: none; }
+/* the hook: the panel is the hero */
+.v5hook { --paper: #0F1A17; background: #0F1A17; color: #F2F6F4; --curtain: #0F1A17; justify-content: center; gap: 0; padding-top: 60px; }
+.v5hook .hk-glow { position: absolute; left: 50%; top: 40%; width: 70vw; height: 60vh; transform: translate(-50%, -50%); background: radial-gradient(ellipse, rgba(29,158,117,.35), transparent 65%); filter: blur(20px); pointer-events: none; animation: glowPulse 6s ease-in-out infinite; }
+.v5hook .hk-eyebrow { position: relative; font-size: 11px; letter-spacing: .3em; text-transform: uppercase; color: #E8A33A; margin: 0 0 6px; }
+.v5hook .hk-big { position: relative; z-index: 2; font-size: clamp(56px, 9.4vw, 160px); line-height: .9; letter-spacing: -.02em; margin: 0 0 -.06em; text-align: center; }
+.v5hook .hk-panel { position: relative; z-index: 1; width: min(470px, 82vw); background: #26302E; color: #E6ECEA; border: 1px solid rgba(255,255,255,.08); border-radius: 14px; box-shadow: 0 50px 90px -40px rgba(0,0,0,.8); overflow: hidden; text-align: left; font-size: 12px; }
+.v5hook .rp-head { display: flex; align-items: center; gap: 8px; padding: 10px 12px; border-bottom: 1px solid rgba(255,255,255,.08); font-weight: 600; }
+.v5hook .rp-back { width: 7px; height: 7px; border-left: 1.5px solid #B8C4C0; border-bottom: 1.5px solid #B8C4C0; transform: rotate(45deg); margin-right: 4px; }
+.v5hook .rp-title { flex: 1; } .v5hook .rp-beta { font-style: normal; font-size: 8.5px; font-weight: 700; letter-spacing: .12em; background: #F2C46D; color: #2B2B2B; border-radius: 3px; padding: 2px 5px; }
+.v5hook .rp-dots { width: 14px; height: 3px; background: radial-gradient(circle, #B8C4C0 1px, transparent 1.4px) 0 0 / 5px 3px; }
+.v5hook .hk-empty { padding: 26px 14px 14px; display: flex; flex-direction: column; gap: 6px; }
+.v5hook .hk-halo { width: 36px; height: 36px; border-radius: 50%; background: radial-gradient(circle, rgba(111,208,173,.5), rgba(111,208,173,.08) 70%); display: grid; place-items: center; margin-bottom: 8px; } .v5hook .hk-halo img { width: 22px; }
+.v5hook .hk-empty b { font-size: 15px; color: #F2F6F4; } .v5hook .hk-empty p { margin: 0 0 8px; color: #B8C4C0; font-size: 11.5px; line-height: 1.4; }
+.v5hook .hk-starter { background: #33403D; border-radius: 9px; padding: 8px 10px; font-size: 11px; color: #E6ECEA; opacity: 0; transform: translateY(6px); animation: blockIn .6s var(--ease-out) forwards; }
+.v5hook .hk-starter:nth-child(4) { animation-delay: 1.1s; } .v5hook .hk-starter:nth-child(5) { animation-delay: 1.25s; } .v5hook .hk-starter:nth-child(6) { animation-delay: 1.4s; }
+.v5hook .rp-foot { border-top: 1px solid rgba(255,255,255,.08); padding: 8px 12px 12px; }
+.v5hook .rp-ref { display: flex; flex-wrap: wrap; gap: 5px; align-items: center; margin-bottom: 8px; }
+.v5hook .rp-ref span { width: 100%; font-size: 8.5px; letter-spacing: .12em; text-transform: uppercase; color: #9AA8A3; }
+.v5hook .rp-ref b { font-weight: 500; font-size: 9.5px; color: #C9D4D0; background: #33403D; border-radius: 999px; padding: 3px 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 48%; }
+.v5hook .rp-composer { display: flex; align-items: center; gap: 8px; background: #33403D; border-radius: 10px; padding: 8px 10px; font-size: 11px; color: #9AA8A3; }
+.v5hook .rp-composer span { flex: 1; } .v5hook .rp-att, .v5hook .rp-clip { width: 11px; height: 11px; border: 1.5px solid #9AA8A3; border-radius: 3px; }
+.v5hook .rp-send { width: 20px; height: 20px; border-radius: 50%; background: #1D9E75; position: relative; }
+.v5hook .rp-send::after { content: ''; position: absolute; left: 7px; top: 5px; width: 5px; height: 5px; border-top: 1.5px solid #fff; border-left: 1.5px solid #fff; transform: rotate(45deg); }
+.v5hook .hk-row { position: relative; display: flex; align-items: baseline; gap: 22px; flex-wrap: wrap; justify-content: center; margin: 22px 0 0; }
+.v5hook .hk-line { font-size: clamp(20px, 2.2vw, 32px); font-weight: 600; color: #6FD0AD; --d0: 1.2s; }
+.v5hook .hk-sub { font-size: clamp(15px, 1.5vw, 20px); color: rgba(242,246,244,.78); }
+@media (max-width: 940px) { .v5hook .hk-big { font-size: clamp(44px, 14vw, 72px); margin-bottom: -.1em; } .v5hook .hk-panel { width: min(340px, 90vw); } .v5hook .hk-row { flex-direction: column; align-items: center; gap: 6px; text-align: center; } .v5hook .hk-panel .hk-starter:nth-child(6) { display: none; } }
 /* open and end */
 .v5open .big.v5big, .v5end .big.v5big { font-size: clamp(40px, 5.6vw, 84px); line-height: 1; margin: 0 0 8px; text-align: left; }
 .v5end .big.v5big { text-align: center; }
@@ -1376,27 +1317,24 @@ body.on-light .edge { --edge: rgba(255,255,255,.3); }
   </div>
 </div>
 
-<section class="scene scene-dark v5 v5hook" data-label="Agentic Ray" data-dur="6600" id="sHook" data-wipe="dissolve">
-  <div class="hk-band" aria-hidden="true"></div><i class="streak s1"></i><i class="streak s2"></i>
-  <div class="hk-grid">
-    <div class="hk-type">
-      <p class="hk-eyebrow fx" style="--d:.2s">Tenderfy</p>
-      <h1 class="big hk-big"><span class="w"><i class="ch" style="--i:0">A</i><i class="ch" style="--i:1">g</i><i class="ch" style="--i:2">e</i><i class="ch" style="--i:3">n</i><i class="ch" style="--i:4">t</i><i class="ch" style="--i:5">i</i><i class="ch" style="--i:6">c</i></span> <span class="w"><i class="ch" style="--i:7">R</i><i class="ch" style="--i:8">a</i><i class="ch" style="--i:9">y</i><i class="ch" style="--i:10">.</i></span></h1>
-      <p class="hk-line"><span class="w"><i class="ch" style="--i:12">Y</i><i class="ch" style="--i:13">o</i><i class="ch" style="--i:14">u</i><i class="ch" style="--i:15">r</i></span> <span class="w"><i class="ch" style="--i:16">t</i><i class="ch" style="--i:17">e</i><i class="ch" style="--i:18">n</i><i class="ch" style="--i:19">d</i><i class="ch" style="--i:20">e</i><i class="ch" style="--i:21">r</i></span> <span class="w"></span> <u class="ul"><span class="w"><i class="ch" style="--i:22">c</i><i class="ch" style="--i:23">o</i><i class="ch" style="--i:24">-</i><i class="ch" style="--i:25">w</i><i class="ch" style="--i:26">o</i><i class="ch" style="--i:27">r</i><i class="ch" style="--i:28">k</i><i class="ch" style="--i:29">e</i><i class="ch" style="--i:30">r</i></span></u><span class="w"><i class="ch" style="--i:31">.</i></span></p>
-      <i class="hk-rule fx" style="--d:1.2s"></i>
-      <p class="hk-sub fx" style="--d:1.35s">You guide. Ray helps deliver the tender.</p>
+<section class="scene scene-dark v5 v5hook" data-label="Agentic Ray" data-dur="6800" id="sHook" data-wipe="dissolve">
+  <i class="hk-glow" aria-hidden="true"></i><i class="streak s1"></i><i class="streak s2"></i>
+  <p class="hk-eyebrow fx" style="--d:.2s">Tenderfy</p>
+  <h1 class="big hk-big"><span class="w"><i class="ch" style="--i:0">A</i><i class="ch" style="--i:1">g</i><i class="ch" style="--i:2">e</i><i class="ch" style="--i:3">n</i><i class="ch" style="--i:4">t</i><i class="ch" style="--i:5">i</i><i class="ch" style="--i:6">c</i></span> <span class="w"><i class="ch" style="--i:7">R</i><i class="ch" style="--i:8">a</i><i class="ch" style="--i:9">y</i><i class="ch" style="--i:10">.</i></span></h1>
+  <div class="hk-panel fx" style="--d:.6s" aria-hidden="true">
+    <div class="rp-head"><i class="rp-back"></i><span class="rp-title">Northside School Upgrade</span><em class="rp-beta">BETA</em><i class="rp-dots"></i></div>
+    <div class="hk-empty">
+      <span class="hk-halo"><img src="assets/ray-avatar.svg" alt="" /></span>
+      <b>How can Ray help?</b>
+      <p>Ask me anything across your tenders, documents and Response Library.</p>
+      <span class="hk-starter">What are the evaluation criteria on this tender?</span>
+      <span class="hk-starter">What insurance is required?</span>
+      <span class="hk-starter">Which tenders am I on?</span>
     </div>
-    <div class="hk-stage" aria-hidden="true"><div class="hk-pair">
-    <div class="open-card hk-card fx" style="--d:.5s" aria-hidden="true">
-      <div class="oc-top"><i class="oc-box"></i><em class="mock">Mockup</em><span class="oc-menu">⋮</span></div>
-      <div class="oc-f"><small>Name</small>Northside School Upgrade</div>
-      <div class="oc-f"><small>Organisation</small>Dept of Education</div>
-      <div class="oc-f"><small>Contact Name</small>Priya Nair</div>
-      <div class="oc-foot"><span><small>Priority</small><b class="hi">High</b></span><span><small>Status</small><b class="am">Pending</b></span><span><small>Due Date</small><b>4 Oct 2026</b></span></div>
-    </div>
-      <div class="hk-ray fx" style="--d:1.1s"><span class="ring"></span><img src="assets/ray-avatar.svg" alt="" /></div>
-    </div></div>
+    <div class="rp-foot"><div class="rp-ref"><span>Reference</span><b>Request for Tender.pdf</b><b>Scope of Works · Addendum 2.pdf</b></div>
+      <div class="rp-composer"><i class="rp-att"></i><span>Click to run step 1 of 8</span><i class="rp-clip"></i><i class="rp-send"></i></div></div>
   </div>
+  <p class="hk-row"><span class="hk-line"><span class="w"><i class="ch" style="--i:12">Y</i><i class="ch" style="--i:13">o</i><i class="ch" style="--i:14">u</i><i class="ch" style="--i:15">r</i></span> <span class="w"><i class="ch" style="--i:16">t</i><i class="ch" style="--i:17">e</i><i class="ch" style="--i:18">n</i><i class="ch" style="--i:19">d</i><i class="ch" style="--i:20">e</i><i class="ch" style="--i:21">r</i></span> <span class="w"></span> <u class="ul"><span class="w"><i class="ch" style="--i:22">c</i><i class="ch" style="--i:23">o</i><i class="ch" style="--i:24">-</i><i class="ch" style="--i:25">w</i><i class="ch" style="--i:26">o</i><i class="ch" style="--i:27">r</i><i class="ch" style="--i:28">k</i><i class="ch" style="--i:29">e</i><i class="ch" style="--i:30">r</i></span></u><span class="w"><i class="ch" style="--i:31">.</i></span></span><span class="hk-sub fx" style="--d:1.5s">You guide. Ray helps deliver the tender.</span></p>
 </section>
 <section class="scene scene-light pair push-calm v5" data-label="Understand" data-dur="8440" id="sUnderstand" data-wipe="dissolve"
          data-beats='[{"step": 1, "action": ["", 0, 3.4, 1], "result": ["", 0, 2.6, 1], "hold": 1.4, "offer": "Go/No-Go assessment created. Filed in the Go/No-Go folder with the tender.", "mode": "status", "strip": "Understand", "work": ["Reviewing the tender pack\u2026", "Identifying key requirements\u2026", "Understanding how to add value\u2026", "Checking your company knowledge\u2026"], "ticks": null, "tools": ["list_documents", "read_whole_document", "outline_document", "search_library"], "prompt": null, "btns": null, "press": 0, "rec": "Recreated UI \u00b7 Tender details, Go/No-Go assessment"}]'>
