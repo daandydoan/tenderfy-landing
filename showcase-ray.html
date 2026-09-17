@@ -1261,6 +1261,48 @@ body.on-light .edge { --edge: rgba(255,255,255,.3); }
 .v5 .ph-download .dl-chip { margin-top: 1em; display: inline-flex; align-items: center; gap: .6em; background: #F2F5F4; border: 1px solid #D7DEDB; border-radius: .6em; padding: .5em .9em; font-size: .95em; opacity: 0; transform: translateY(6px); transition: all .4s ease .35s; }
 .res .ph-download .dl-chip { opacity: 1; transform: none; }
 .res .ph-download .btn.amber { transform: scale(.94); filter: brightness(.9); }
+/* the Agentic Ray panel, as the prototype draws it */
+.v5 .stage-app .rail.mini.raypanel { width: min(360px, 40%); right: -2%; bottom: -8%; top: auto; background: #26302E; color: #E6ECEA; border: 1px solid rgba(255,255,255,.08); border-top: 0; border-radius: 12px; box-shadow: 0 34px 70px -30px rgba(0,0,0,.7); overflow: hidden; --acc: #6FD0AD; --dim: #9AA8A3; --ink-2: #DCE4E1; --line: rgba(255,255,255,.1); }
+.raypanel .rp-head { display: flex; align-items: center; gap: 8px; padding: 10px 12px; border-bottom: 1px solid rgba(255,255,255,.08); font-size: 12px; font-weight: 600; }
+.raypanel .rp-back { width: 7px; height: 7px; border-left: 1.5px solid #B8C4C0; border-bottom: 1.5px solid #B8C4C0; transform: rotate(45deg); margin-right: 4px; }
+.raypanel .rp-title { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.raypanel .rp-beta { font-style: normal; font-size: 8.5px; font-weight: 700; letter-spacing: .12em; background: #F2C46D; color: #2B2B2B; border-radius: 3px; padding: 2px 5px; }
+.raypanel .rp-dots { width: 14px; height: 3px; background: radial-gradient(circle, #B8C4C0 1px, transparent 1.4px) 0 0 / 5px 3px; }
+.raypanel .rail-body { padding: 12px 14px 8px; gap: 8px; min-height: 150px; }
+.raypanel .rail-you { align-self: flex-end; margin: 0 0 4px auto; background: #3A4643; color: #F2F6F4; border-radius: 12px; padding: 7px 11px; font-size: 11.5px; max-width: 88%; }
+.raypanel .rp-ray { display: flex; align-items: center; gap: 6px; font-size: 11px; color: #9AA8A3; } .raypanel .rp-ray img { width: 16px; height: 14px; }
+.raypanel .rh-s { font-size: 11px; color: #9AA8A3; margin: -2px 0 2px; }
+.raypanel .rail-work { gap: 6px; padding-left: 2px; }
+.raypanel .work { display: grid; grid-template-columns: 12px auto 1fr; gap: 8px; align-items: start; font-size: 10.5px; line-height: 1.3; color: #C9D4D0; }
+.raypanel .work i { margin-top: 2px; width: 9px; height: 9px; border-color: #6B7975; } .raypanel .work.done i { background: #6FD0AD; border-color: #6FD0AD; }
+.raypanel .work.done i::after { left: 2px; top: .5px; width: 2.5px; height: 4.5px; border-color: #26302E; }
+.raypanel .work code { font-family: ui-monospace, Menlo, monospace; font-size: 10px; color: #F2F6F4; white-space: nowrap; }
+.raypanel .work.done { color: #9AA8A3; }
+.raypanel .rail-offer { background: transparent; border: 0; padding: 4px 0 0; }
+.raypanel .rail-offer p { color: #F2F6F4; font-size: 12px; line-height: 1.45; }
+.raypanel .rail-offer.ask, .raypanel .rail-offer.review, .raypanel .rail-offer.approve { background: rgba(255,255,255,.05); border: 1px solid rgba(111,208,173,.35); border-radius: 10px; padding: 9px 11px; }
+.raypanel .rail-btn { background: #1D9E75; color: #fff; } .raypanel .rail-btn.ghost { background: transparent; color: #C9D4D0; border: 1px solid rgba(255,255,255,.2); }
+.raypanel .rail-offer.review .rail-btn:not(:last-child) { background: transparent; color: #C9D4D0; border: 1px solid rgba(255,255,255,.2); }
+.raypanel .rail-offer.status .acts { display: none; }
+.raypanel .rp-foot { border-top: 1px solid rgba(255,255,255,.08); padding: 8px 12px 12px; }
+.raypanel .rp-ref { display: flex; flex-wrap: wrap; gap: 5px; align-items: center; margin-bottom: 8px; }
+.raypanel .rp-ref span { width: 100%; font-size: 8.5px; letter-spacing: .12em; text-transform: uppercase; color: #9AA8A3; }
+.raypanel .rp-ref b { font-weight: 500; font-size: 9.5px; color: #C9D4D0; background: #33403D; border-radius: 999px; padding: 3px 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 48%; }
+.raypanel .rp-composer { display: flex; align-items: center; gap: 8px; background: #33403D; border-radius: 10px; padding: 8px 10px; font-size: 11px; color: #9AA8A3; }
+.raypanel .rp-composer span { flex: 1; } .raypanel .rp-att, .raypanel .rp-clip { width: 11px; height: 11px; border: 1.5px solid #9AA8A3; border-radius: 3px; }
+.raypanel .rp-send { width: 20px; height: 20px; border-radius: 50%; background: #1D9E75; position: relative; }
+.raypanel .rp-send::after { content: ''; position: absolute; left: 7px; top: 5px; width: 5px; height: 5px; border-top: 1.5px solid #fff; border-left: 1.5px solid #fff; transform: rotate(45deg); }
+.v5 .v4rail .rail-offer.status { border: 0; background: transparent; }
+/* documents Ray creates: a page with a header band */
+.v5 .ph.bare.doc { padding: 0; overflow: hidden; }
+.v5 .ph.bare.doc .doc-head { display: flex; align-items: center; gap: .8em; padding: .9em 1.4em; background: #F4F8F6; border-bottom: 1px solid #DCE5E1; }
+.v5 .doc-logo { width: 1.1em; height: 2.2em; color: #E8A33A; } .v5 .doc-logo use { stroke-width: 2.2; }
+.v5 .doc-head b { display: block; font-size: 1.05em; color: #1F1A14; line-height: 1.15; } .v5 .doc-head small { color: #6B7975; font-size: .8em; }
+.v5 .doc-head .doc-by { margin-left: auto; margin-right: 4.2em; font-style: normal; font-size: .78em; color: #0F7355; display: flex; align-items: center; gap: .4em; white-space: nowrap; } .v5 .doc-head .doc-by img { width: 1.2em; height: 1em; }
+.v5 .ph.bare.doc > .pane, .v5 .ph.bare.doc > .b-top, .v5 .ph.bare.doc > .dl-chip { margin: 1em 1.4em; }
+.v5 .ph.bare.doc > .dl-chip { margin-top: 0; }
+.v5 .ph.bare.doc .pane.check .p-head, .v5 .ph.bare.doc .pane.check .tabs { display: none; }
+.v5 .ph.bare.doc .pane.doc > .d-title { display: none; }
 /* open and end */
 .v5open .big.v5big, .v5end .big.v5big { font-size: clamp(40px, 5.6vw, 84px); line-height: 1; margin: 0 0 8px; text-align: left; }
 .v5end .big.v5big { text-align: center; }
@@ -1357,7 +1399,7 @@ body.on-light .edge { --edge: rgba(255,255,255,.3); }
   </div>
 </section>
 <section class="scene scene-light pair push-calm v5" data-label="Understand" data-dur="8440" id="sUnderstand" data-wipe="dissolve"
-         data-beats='[{"step": 1, "action": ["", 0, 3.4, 1], "result": ["", 0, 2.6, 1], "hold": 1.4, "offer": "Go/No-Go assessment created. Filed in the Go/No-Go folder with the tender.", "mode": "status", "strip": "Understand", "work": ["Reviewing the tender pack\u2026", "Identifying key requirements\u2026", "Understanding how to add value\u2026", "Checking your company knowledge\u2026"], "ticks": null, "prompt": null, "btns": null, "press": 0, "rec": "Recreated UI \u00b7 Tender details, Go/No-Go assessment"}]'>
+         data-beats='[{"step": 1, "action": ["", 0, 3.4, 1], "result": ["", 0, 2.6, 1], "hold": 1.4, "offer": "Go/No-Go assessment created. Filed in the Go/No-Go folder with the tender.", "mode": "status", "strip": "Understand", "work": ["Reviewing the tender pack\u2026", "Identifying key requirements\u2026", "Understanding how to add value\u2026", "Checking your company knowledge\u2026"], "ticks": null, "tools": ["list_documents", "read_whole_document", "outline_document", "search_library"], "prompt": null, "btns": null, "press": 0, "rec": "Recreated UI \u00b7 Tender details, Go/No-Go assessment"}]'>
   <div class="deco" aria-hidden="true">
     <span class="orb orb-teal" style="width:34vw;height:34vw;right:-9vw;top:-12vh"></span>
     <span class="dots" style="width:190px;height:150px;left:4%;top:12%"></span>
@@ -1372,7 +1414,7 @@ body.on-light .edge { --edge: rgba(255,255,255,.3); }
     </div>
     <div class="stage stage-app">
       <div class="win deck ph-win"><div class="win-bar"><span></span><span></span><span></span><em class="mock">Mockup</em></div>
-        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas><div class="ph bare ph-gonogo"><em class="mock">Mockup</em><div class="pane docs"><div class="p-head dark"><span>Tender documentation</span><b class="btn">Add Document</b></div>
+        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas><div class="ph bare doc ph-gonogo"><em class="mock">Mockup</em><div class="doc-head"><svg class="doc-logo" viewBox="0 0 32 65"><use href="#clipSym"/></svg><div><b>Go/No-Go Assessment</b><small>Northside School Upgrade · Dept of Education</small></div><em class="doc-by"><img src="assets/ray-avatar.svg" alt="" />Created by Ray</em></div><div class="pane docs"><div class="p-head dark"><span>Tender documentation</span><b class="btn">Add Document</b></div>
               <div class="p-body"><div class="fold sel">(02 Selected) <b>Default</b></div><div class="file"><i></i>RFT · Northside School Upgrade.pdf</div><div class="file"><i></i>Addendum 2 · Scope of Works.pdf</div><div class="fold">Go / No-Go</div></div></div>
             <div class="pane doc"><div class="d-title">Go / No-Go Assessment</div><div class="d-sub">Headline scorecard</div>
               <div class="sc-row sc-head"><span>Criterion</span><b>Rating</b></div><div class="sc-row"><span>Strategic alignment</span><b class="g">Green</b></div><div class="sc-row"><span>Relevant capability and experience</span><b class="a">Amber</b></div><div class="sc-row"><span>Commercial viability</span><b class="r">Red</b></div><div class="sc-row"><span>Mandatory requirements and compliance</span><b class="r">Red</b></div><div class="sc-row"><span>Client relationship and understanding</span><b class="a">Amber</b></div><div class="sc-row"><span>Competitive position / likelihood of winning</span><b class="a">Amber</b></div><div class="sc-row"><span>Scope and delivery risk</span><b class="r">Red</b></div><div class="sc-row"><span>Programme and tender timeframe</span><b class="a">Amber</b></div>
@@ -1380,20 +1422,24 @@ body.on-light .edge { --edge: rgba(255,255,255,.3); }
         <span class="rec-tag"><i></i><b class="tb-rec"></b></span></div>
       <div class="win deck"><div class="win-bar"><span></span><span></span><span></span></div>
         <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas></div></div>
-      <div class="rail sk mini v4rail" aria-label="Ray, working">
-        <div class="rail-head"><img src="assets/ray-avatar.svg" alt="" /><span class="rh-t">Ray</span><span class="rh-s">Working</span></div>
+      <div class="rail sk mini v4rail raypanel" aria-label="Ray, working">
+        <div class="rp-head"><i class="rp-back"></i><span class="rp-title">Northside School Upgrade</span><em class="rp-beta">BETA</em><i class="rp-dots"></i></div>
         <div class="rail-body">
           <div class="rail-you"></div>
+          <div class="rp-ray"><img src="assets/ray-avatar.svg" alt="" /><span>Ray</span></div>
+          <div class="rh-s">Working.</div>
           <div class="rail-work"></div>
           <div class="rail-offer"><p></p><div class="acts"><span class="rail-btn"></span><span class="rail-btn ghost"></span><span class="rail-btn" style="display:none"></span></div></div>
           <div class="rail-next"><span></span><span class="prog"><i></i></span></div>
         </div>
+        <div class="rp-foot"><div class="rp-ref"><span>Reference</span><b>Request for Tender.pdf</b><b>Scope of Works · Addendum 2.pdf</b></div>
+          <div class="rp-composer"><i class="rp-att"></i><span>Reply to Ray…</span><i class="rp-clip"></i><i class="rp-send"></i></div></div>
       </div>
     </div>
   </div>
 </section>
 <section class="scene scene-offwhite pair push-calm v5" data-label="Plan" data-dur="8240" id="sPlan" data-wipe="dissolve"
-         data-beats='[{"step": 2, "action": ["", 0, 2.8, 1], "result": ["", 0, 3.2, 1], "hold": 1.2, "offer": "Tasks assigned to team members.", "mode": "status", "strip": "Plan", "work": null, "ticks": ["Tender Delivery Plan Created", "Tasks Identified", "Responsibilities Assigned", "Deadlines Mapped"], "prompt": null, "btns": null, "press": 0, "rec": "Recreated UI \u00b7 Checklist"}]'>
+         data-beats='[{"step": 2, "action": ["", 0, 2.8, 1], "result": ["", 0, 3.2, 1], "hold": 1.2, "offer": "Tasks assigned to team members.", "mode": "status", "strip": "Plan", "work": null, "ticks": ["Tender Delivery Plan Created", "Tasks Identified", "Responsibilities Assigned", "Deadlines Mapped"], "tools": ["create_plan", "create_tasks", "assign_tasks", "set_due_dates"], "prompt": null, "btns": null, "press": 0, "rec": "Recreated UI \u00b7 Checklist"}]'>
   <div class="deco" aria-hidden="true">
     <span class="orb orb-teal" style="width:34vw;height:34vw;right:-9vw;top:-12vh"></span>
     <span class="dots" style="width:190px;height:150px;left:4%;top:12%"></span>
@@ -1408,26 +1454,30 @@ body.on-light .edge { --edge: rgba(255,255,255,.3); }
     </div>
     <div class="stage stage-app">
       <div class="win deck ph-win"><div class="win-bar"><span></span><span></span><span></span><em class="mock">Mockup</em></div>
-        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas><div class="ph bare ph-plan"><em class="mock">Mockup</em><div class="pane check"><div class="p-head dark"><span>Checklist</span><b class="btn">Add Task</b></div>
+        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas><div class="ph bare doc ph-plan"><em class="mock">Mockup</em><div class="doc-head"><svg class="doc-logo" viewBox="0 0 32 65"><use href="#clipSym"/></svg><div><b>Tender Delivery Plan</b><small>Tasks, owners and deadlines · closes 4 Oct 2026</small></div><em class="doc-by"><img src="assets/ray-avatar.svg" alt="" />Created by Ray</em></div><div class="pane check"><div class="p-head dark"><span>Checklist</span><b class="btn">Add Task</b></div>
               <div class="tabs"><span class="on">My Tasks</span><span>Assigned Tasks</span><span>Completed Tasks</span><em>Priority</em></div>
               <div class="t-row t-head"><span></span><span>TASK</span><span>DUE DATE ↓</span><span>OWNER</span><span>ACTIONS</span></div><div class="t-row" style="--i:0"><i class="dot"></i><span class="t-name">Conduct final buyer-feedback com…<small>Before lodgement, confirm every relevant…</small></span><span class="t-due">30/09/2026</span><span class="t-own">DD</span><span class="t-act"><i class="ed"></i><i class="ok"></i><i class="del"></i></span></div><div class="t-row" style="--i:1"><i class="dot"></i><span class="t-name">Conduct qualitative differentiator r…<small>Review the draft response against t…</small></span><span class="t-due">28/09/2026</span><span class="t-own">MW</span><span class="t-act"><i class="ed"></i><i class="ok"></i><i class="del"></i></span></div><div class="t-row" style="--i:2"><i class="dot"></i><span class="t-name">Prepare measurable local and First…<small>Develop a project-specific response…</small></span><span class="t-due">25/09/2026</span><span class="t-own">DW</span><span class="t-act"><i class="ed"></i><i class="ok"></i><i class="del"></i></span></div><div class="t-row" style="--i:3"><i class="dot"></i><span class="t-name">Prepare role-specific resumes and…<small>Provide concise resumes for nomina…</small></span><span class="t-due">24/09/2026</span><span class="t-own">AN</span><span class="t-act"><i class="ed"></i><i class="ok"></i><i class="del"></i></span></div><div class="t-row" style="--i:4"><i class="dot"></i><span class="t-name">Verify three comparable projects a…<small>Confirm each reference meets the b…</small></span><span class="t-due">22/09/2026</span><span class="t-own">SC</span><span class="t-act"><i class="ed"></i><i class="ok"></i><i class="del"></i></span></div><div class="t-row" style="--i:5"><i class="dot"></i><span class="t-name">Prepare traffic and school access p…<small>Drop-off and pick-up windows, Gate B…</small></span><span class="t-due">19/09/2026</span><span class="t-own">DD</span><span class="t-act"><i class="ed"></i><i class="ok"></i><i class="del"></i></span></div></div></div></div>
         <span class="rec-tag"><i></i><b class="tb-rec"></b></span></div>
       <div class="win deck"><div class="win-bar"><span></span><span></span><span></span></div>
         <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas></div></div>
-      <div class="rail sk mini v4rail" aria-label="Ray, working">
-        <div class="rail-head"><img src="assets/ray-avatar.svg" alt="" /><span class="rh-t">Ray</span><span class="rh-s">Working</span></div>
+      <div class="rail sk mini v4rail raypanel" aria-label="Ray, working">
+        <div class="rp-head"><i class="rp-back"></i><span class="rp-title">Northside School Upgrade</span><em class="rp-beta">BETA</em><i class="rp-dots"></i></div>
         <div class="rail-body">
           <div class="rail-you"></div>
+          <div class="rp-ray"><img src="assets/ray-avatar.svg" alt="" /><span>Ray</span></div>
+          <div class="rh-s">Working.</div>
           <div class="rail-work"></div>
           <div class="rail-offer"><p></p><div class="acts"><span class="rail-btn"></span><span class="rail-btn ghost"></span><span class="rail-btn" style="display:none"></span></div></div>
           <div class="rail-next"><span></span><span class="prog"><i></i></span></div>
         </div>
+        <div class="rp-foot"><div class="rp-ref"><span>Reference</span><b>Request for Tender.pdf</b><b>Scope of Works · Addendum 2.pdf</b></div>
+          <div class="rp-composer"><i class="rp-att"></i><span>Reply to Ray…</span><i class="rp-clip"></i><i class="rp-send"></i></div></div>
       </div>
     </div>
   </div>
 </section>
 <section class="scene scene-deep pair push-calm v5" data-label="Add value" data-dur="18180" id="sValue" data-wipe="dissolve"
-         data-beats='[{"step": 3, "action": ["", 0, 3.0, 1], "result": ["", 0, 2.8, 1], "hold": 2.6, "offer": "I\u2019ve identified school drop-off and pick-up times as a key disruption risk. I can create a targeted disruption management plan to address this. Would you like me to create it?", "mode": "ask", "strip": "Add value", "work": ["Analysing buyer priorities\u2026", "Identifying value-add opportunities\u2026", "Finding relevant experience and evidence\u2026"], "ticks": null, "prompt": null, "btns": ["Yes, create it.", ""], "press": 0, "rec": "Recreated UI \u00b7 Tender documentation, buyer analysis"}, {"step": 4, "action": ["", 0, 3.4, 1], "result": ["", 0, 3.0, 1], "hold": 1.8, "offer": "Your School Drop-Off and Pick-Up Disruption Management Plan is ready for review.", "mode": "status", "strip": "Add value", "work": ["Analysing traffic and access requirements\u2026", "Developing mitigation measures\u2026", "Creating the plan\u2026"], "ticks": null, "prompt": null, "btns": null, "press": 0, "rec": "Recreated UI \u00b7 Responses editor"}]'>
+         data-beats='[{"step": 3, "action": ["", 0, 3.0, 1], "result": ["", 0, 2.8, 1], "hold": 2.6, "offer": "I\u2019ve identified school drop-off and pick-up times as a key disruption risk. I can create a targeted disruption management plan to address this. Would you like me to create it?", "mode": "ask", "strip": "Add value", "work": ["Analysing buyer priorities\u2026", "Identifying value-add opportunities\u2026", "Finding relevant experience and evidence\u2026"], "ticks": null, "tools": ["read_pages", "find_value_adds", "search_library"], "prompt": null, "btns": ["Yes, create it.", ""], "press": 0, "rec": "Recreated UI \u00b7 Tender documentation, buyer analysis"}, {"step": 4, "action": ["", 0, 3.4, 1], "result": ["", 0, 3.0, 1], "hold": 1.8, "offer": "Your School Drop-Off and Pick-Up Disruption Management Plan is ready for review.", "mode": "status", "strip": "Add value", "work": ["Analysing traffic and access requirements\u2026", "Developing mitigation measures\u2026", "Creating the plan\u2026"], "ticks": null, "tools": ["read_pages", "draft_section", "create_document"], "prompt": null, "btns": null, "press": 0, "rec": "Recreated UI \u00b7 Responses editor"}]'>
   <div class="deco" aria-hidden="true">
     <span class="orb orb-teal" style="width:32vw;height:32vw;left:-9vw;top:-10vh"></span>
     <span class="dots" style="width:180px;height:140px;right:6%;bottom:12%"></span>
@@ -1446,7 +1496,7 @@ body.on-light .edge { --edge: rgba(255,255,255,.3); }
     </div>
     <div class="stage stage-app">
       <div class="win deck ph-win"><div class="win-bar"><span></span><span></span><span></span><em class="mock">Mockup</em></div>
-        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas><div class="ph bare ph-buyer"><em class="mock">Mockup</em><div class="pane docs"><div class="p-head dark"><span>Tender documentation</span><b class="btn">Add Document</b></div>
+        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas><div class="ph bare doc ph-buyer"><em class="mock">Mockup</em><div class="doc-head"><svg class="doc-logo" viewBox="0 0 32 65"><use href="#clipSym"/></svg><div><b>Understanding the Buyer</b><small>Evaluation priorities · from the RFT and addendum 2</small></div><em class="doc-by"><img src="assets/ray-avatar.svg" alt="" />Created by Ray</em></div><div class="pane docs"><div class="p-head dark"><span>Tender documentation</span><b class="btn">Add Document</b></div>
               <div class="p-body"><div class="fold sel">(01 Selected) <b>Default</b></div><div class="file"><i></i>RFT · Northside School Upgrade.pdf</div><div class="file"><i></i>Addendum 2 · Scope of Works.pdf</div>
               <div class="qa"><span>Quick actions:</span><b>Go No Go</b><b>Executive Brief</b><b>Document Summary</b><b class="hi">Understand the buyer</b></div></div></div>
             <div class="pane doc"><div class="d-title">Understanding the buyer · Dept of Education</div><div class="d-sub">What this buyer scores, from the RFT and addendum 2</div>
@@ -1456,27 +1506,31 @@ body.on-light .edge { --edge: rgba(255,255,255,.3); }
               <div class="d-h">Your evidence</div><i class="ln w80"></i><div class="d-evd">3 comparable live-school projects found in your library</div></div></div></div>
         <span class="rec-tag"><i></i><b class="tb-rec"></b></span></div>
       <div class="win deck ph-win"><div class="win-bar"><span></span><span></span><span></span><em class="mock">Mockup</em></div>
-        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas><div class="ph bare ph-plandoc"><em class="mock">Mockup</em><div class="pane doc solo"><div class="d-crumb">Responses · Methodology · Section 4.2</div>
+        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas><div class="ph bare doc ph-plandoc"><em class="mock">Mockup</em><div class="doc-head"><svg class="doc-logo" viewBox="0 0 32 65"><use href="#clipSym"/></svg><div><b>School Drop-Off and Pick-Up Disruption Management Plan</b><small>Methodology · Section 4.2</small></div><em class="doc-by"><img src="assets/ray-avatar.svg" alt="" />Created by Ray</em></div><div class="pane doc solo"><div class="d-crumb">Responses · Methodology · Section 4.2</div>
               <div class="d-title">Disruption Management Plan: School Drop-Off and Pick-Up</div><div class="d-sub">Drafted by Ray · matched your library · for your review</div>
               <i class="ln w100"></i><i class="ln w90"></i><i class="ln w62"></i>
               <div class="d-h">Mitigation measures</div>
               <div class="m-row m-head"><span>Window</span><span>Measure</span><span>Owner</span></div><div class="m-row"><span>Drop-off, 8:00 to 9:00</span><span>No deliveries. Traffic controller at Gate B.</span><span>Site manager</span></div><div class="m-row"><span>Pick-up, 2:45 to 3:30</span><span>Plant movements paused. Pedestrian barrier line held.</span><span>Site manager</span></div><div class="m-row"><span>Wet weather</span><span>Covered walkway maintained. Extra controller.</span><span>Foreman</span></div><div class="m-row"><span>Term breaks</span><span>Heavy works scheduled. School advised two weeks prior.</span><span>Project manager</span></div>
               <div class="d-acts"><b class="btn ghost">Discard</b><b class="btn ghost">Edit</b><b class="btn">Approve</b></div></div></div></div>
         <span class="rec-tag"><i></i><b class="tb-rec"></b></span></div>
-      <div class="rail sk mini v4rail" aria-label="Ray, working">
-        <div class="rail-head"><img src="assets/ray-avatar.svg" alt="" /><span class="rh-t">Ray</span><span class="rh-s">Working</span></div>
+      <div class="rail sk mini v4rail raypanel" aria-label="Ray, working">
+        <div class="rp-head"><i class="rp-back"></i><span class="rp-title">Northside School Upgrade</span><em class="rp-beta">BETA</em><i class="rp-dots"></i></div>
         <div class="rail-body">
           <div class="rail-you"></div>
+          <div class="rp-ray"><img src="assets/ray-avatar.svg" alt="" /><span>Ray</span></div>
+          <div class="rh-s">Working.</div>
           <div class="rail-work"></div>
           <div class="rail-offer"><p></p><div class="acts"><span class="rail-btn"></span><span class="rail-btn ghost"></span><span class="rail-btn" style="display:none"></span></div></div>
           <div class="rail-next"><span></span><span class="prog"><i></i></span></div>
         </div>
+        <div class="rp-foot"><div class="rp-ref"><span>Reference</span><b>Request for Tender.pdf</b><b>Scope of Works · Addendum 2.pdf</b></div>
+          <div class="rp-composer"><i class="rp-att"></i><span>Reply to Ray…</span><i class="rp-clip"></i><i class="rp-send"></i></div></div>
       </div>
     </div>
   </div>
 </section>
 <section class="scene scene-light pair push-calm v5" data-label="Resumes and profiles" data-dur="8639" id="sResumes" data-wipe="dissolve"
-         data-beats='[{"step": 5, "action": ["", 0, 3.4, 1], "result": ["", 0, 2.8, 1], "hold": 1.4, "offer": "Resumes and project profiles updated and added to the tender build.", "mode": "status", "strip": "Resumes and profiles", "work": ["Matching relevant experience\u2026", "Tailoring content to the buyer\u2026", "Updating resumes and project profiles\u2026", "Adding them to the tender build\u2026"], "ticks": null, "prompt": "Select the most relevant resumes and project profiles for this project, then tailor them to the buyer\u2019s priorities using their own language.", "btns": null, "press": 0, "rec": "Recreated UI \u00b7 Build Tender"}]'>
+         data-beats='[{"step": 5, "action": ["", 0, 3.4, 1], "result": ["", 0, 2.8, 1], "hold": 1.4, "offer": "Resumes and project profiles updated and added to the tender build.", "mode": "status", "strip": "Resumes and profiles", "work": ["Matching relevant experience\u2026", "Tailoring content to the buyer\u2026", "Updating resumes and project profiles\u2026", "Adding them to the tender build\u2026"], "ticks": null, "tools": ["search_library", "tailor_content", "update_documents", "add_to_build"], "prompt": "Select the most relevant resumes and project profiles for this project, then tailor them to the buyer\u2019s priorities using their own language.", "btns": null, "press": 0, "rec": "Recreated UI \u00b7 Build Tender"}]'>
   <div class="deco" aria-hidden="true">
     <span class="orb orb-teal" style="width:32vw;height:32vw;left:-10vw;top:-12vh"></span>
     <span class="dots" style="width:180px;height:140px;right:4%;top:16%"></span>
@@ -1491,27 +1545,31 @@ body.on-light .edge { --edge: rgba(255,255,255,.3); }
     </div>
     <div class="stage stage-app">
       <div class="win deck ph-win"><div class="win-bar"><span></span><span></span><span></span><em class="mock">Mockup</em></div>
-        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas><div class="ph bare ph-tailor"><em class="mock">Mockup</em><div class="b-top"><b class="back">‹ Back</b><span class="b-title">Tender Attachments · Tender Pack</span><b class="btn amber">Download</b><b class="btn">Save Changes</b></div>
+        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas><div class="ph bare doc ph-tailor"><em class="mock">Mockup</em><div class="doc-head"><svg class="doc-logo" viewBox="0 0 32 65"><use href="#clipSym"/></svg><div><b>Tender Pack · Resumes and Project Profiles</b><small>Tailored to the buyer’s priorities</small></div><em class="doc-by"><img src="assets/ray-avatar.svg" alt="" />Created by Ray</em></div><div class="b-top"><b class="back">‹ Back</b><span class="b-title">Tender Attachments · Tender Pack</span><b class="btn amber">Download</b><b class="btn">Save Changes</b></div>
             <div class="pane build"><div class="sec"><span class="s-t">Cover Pages</span><span class="s-add">+ Add Cover Pages</span></div><div class="sec"><span class="s-t">Table of Contents</span><span class="s-add">+ Add Table of Contents</span></div>
               <div class="sec"><span class="s-t">Resumes</span><div class="r-row"><i class="r-photo"></i><span class="r-name">Daniel Whitfield<small>Senior Civil Estimator</small></span><span class="r-skill">Estimating · ECI</span><em class="tail">Tailored</em></div><div class="r-row"><i class="r-photo"></i><span class="r-name">Priya Nair<small>Contracts Administrator</small></span><span class="r-skill">Contracts · Procure</span><em class="tail">Tailored</em></div><span class="s-add">+ Add Resumes</span></div>
               <div class="sec"><span class="s-t">Case Studies</span><div class="r-row"><i class="r-photo sq"></i><span class="r-name">Hillcrest Primary, Stage 1<small>Live school · 2024 · Dept of Education</small></span><span class="r-skill">Case study</span><em class="tail">Tailored</em></div><span class="s-add">+ Add Case Studies</span></div></div></div></div>
         <span class="rec-tag"><i></i><b class="tb-rec"></b></span></div>
       <div class="win deck"><div class="win-bar"><span></span><span></span><span></span></div>
         <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas></div></div>
-      <div class="rail sk mini v4rail" aria-label="Ray, working">
-        <div class="rail-head"><img src="assets/ray-avatar.svg" alt="" /><span class="rh-t">Ray</span><span class="rh-s">Working</span></div>
+      <div class="rail sk mini v4rail raypanel" aria-label="Ray, working">
+        <div class="rp-head"><i class="rp-back"></i><span class="rp-title">Northside School Upgrade</span><em class="rp-beta">BETA</em><i class="rp-dots"></i></div>
         <div class="rail-body">
           <div class="rail-you"></div>
+          <div class="rp-ray"><img src="assets/ray-avatar.svg" alt="" /><span>Ray</span></div>
+          <div class="rh-s">Working.</div>
           <div class="rail-work"></div>
           <div class="rail-offer"><p></p><div class="acts"><span class="rail-btn"></span><span class="rail-btn ghost"></span><span class="rail-btn" style="display:none"></span></div></div>
           <div class="rail-next"><span></span><span class="prog"><i></i></span></div>
         </div>
+        <div class="rp-foot"><div class="rp-ref"><span>Reference</span><b>Request for Tender.pdf</b><b>Scope of Works · Addendum 2.pdf</b></div>
+          <div class="rp-composer"><i class="rp-att"></i><span>Reply to Ray…</span><i class="rp-clip"></i><i class="rp-send"></i></div></div>
       </div>
     </div>
   </div>
 </section>
 <section class="scene scene-offwhite pair push-calm v5" data-label="Approval" data-dur="5640" id="sApproval" data-wipe="dissolve"
-         data-beats='[{"step": 6, "action": ["", 0, 1.2, 1], "result": ["", 0, 1.0, 1], "hold": 2.4, "offer": "Ready for your review.", "mode": "review", "strip": "Approval", "work": null, "ticks": null, "prompt": null, "btns": ["Review", "Request Changes", "Approve & Update"], "press": 2, "rec": "Recreated UI \u00b7 Responses editor, awaiting approval"}]'>
+         data-beats='[{"step": 6, "action": ["", 0, 1.2, 1], "result": ["", 0, 1.0, 1], "hold": 2.4, "offer": "Ready for your review.", "mode": "review", "strip": "Approval", "work": null, "ticks": null, "tools": null, "prompt": null, "btns": ["Review", "Request Changes", "Approve & Update"], "press": 2, "rec": "Recreated UI \u00b7 Responses editor, awaiting approval"}]'>
   <div class="deco" aria-hidden="true">
     <span class="orb orb-teal" style="width:32vw;height:32vw;left:-9vw;top:-10vh"></span>
     <span class="dots" style="width:180px;height:140px;right:6%;bottom:12%"></span>
@@ -1526,7 +1584,7 @@ body.on-light .edge { --edge: rgba(255,255,255,.3); }
     </div>
     <div class="stage stage-app">
       <div class="win deck ph-win"><div class="win-bar"><span></span><span></span><span></span><em class="mock">Mockup</em></div>
-        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas><div class="ph bare ph-plandoc"><em class="mock">Mockup</em><div class="pane doc solo"><div class="d-crumb">Responses · Methodology · Section 4.2</div>
+        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas><div class="ph bare doc ph-plandoc"><em class="mock">Mockup</em><div class="doc-head"><svg class="doc-logo" viewBox="0 0 32 65"><use href="#clipSym"/></svg><div><b>School Drop-Off and Pick-Up Disruption Management Plan</b><small>Methodology · Section 4.2</small></div><em class="doc-by"><img src="assets/ray-avatar.svg" alt="" />Created by Ray</em></div><div class="pane doc solo"><div class="d-crumb">Responses · Methodology · Section 4.2</div>
               <div class="d-title">Disruption Management Plan: School Drop-Off and Pick-Up</div><div class="d-sub">Drafted by Ray · matched your library · for your review</div>
               <i class="ln w100"></i><i class="ln w90"></i><i class="ln w62"></i>
               <div class="d-h">Mitigation measures</div>
@@ -1535,20 +1593,24 @@ body.on-light .edge { --edge: rgba(255,255,255,.3); }
         <span class="rec-tag"><i></i><b class="tb-rec"></b></span></div>
       <div class="win deck"><div class="win-bar"><span></span><span></span><span></span></div>
         <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas></div></div>
-      <div class="rail sk mini v4rail" aria-label="Ray, working">
-        <div class="rail-head"><img src="assets/ray-avatar.svg" alt="" /><span class="rh-t">Ray</span><span class="rh-s">Working</span></div>
+      <div class="rail sk mini v4rail raypanel" aria-label="Ray, working">
+        <div class="rp-head"><i class="rp-back"></i><span class="rp-title">Northside School Upgrade</span><em class="rp-beta">BETA</em><i class="rp-dots"></i></div>
         <div class="rail-body">
           <div class="rail-you"></div>
+          <div class="rp-ray"><img src="assets/ray-avatar.svg" alt="" /><span>Ray</span></div>
+          <div class="rh-s">Working.</div>
           <div class="rail-work"></div>
           <div class="rail-offer"><p></p><div class="acts"><span class="rail-btn"></span><span class="rail-btn ghost"></span><span class="rail-btn" style="display:none"></span></div></div>
           <div class="rail-next"><span></span><span class="prog"><i></i></span></div>
         </div>
+        <div class="rp-foot"><div class="rp-ref"><span>Reference</span><b>Request for Tender.pdf</b><b>Scope of Works · Addendum 2.pdf</b></div>
+          <div class="rp-composer"><i class="rp-att"></i><span>Reply to Ray…</span><i class="rp-clip"></i><i class="rp-send"></i></div></div>
       </div>
     </div>
   </div>
 </section>
 <section class="scene scene-deep pair push-calm v5" data-label="Build and review" data-dur="7039" id="sBuild" data-wipe="dissolve"
-         data-beats='[{"step": 7, "action": ["ray-07-08-build-review.mp4", 15.5, 18.5, 1.5], "result": ["ray-07-08-build-review.mp4", 22.3, 24.9, 1.0], "hold": 1.4, "offer": "Compliance checked. Missing information flagged.", "mode": "status", "strip": "Build and review", "work": ["Building the tender documents\u2026", "Checking compliance\u2026", "Flagging missing information\u2026"], "ticks": null, "prompt": null, "btns": null, "press": 0, "rec": null}]'>
+         data-beats='[{"step": 7, "action": ["ray-07-08-build-review.mp4", 15.5, 18.5, 1.5], "result": ["ray-07-08-build-review.mp4", 22.3, 24.9, 1.0], "hold": 1.4, "offer": "Compliance checked. Missing information flagged.", "mode": "status", "strip": "Build and review", "work": ["Building the tender documents\u2026", "Checking compliance\u2026", "Flagging missing information\u2026"], "ticks": null, "tools": ["build_documents", "check_compliance", "flag_missing"], "prompt": null, "btns": null, "press": 0, "rec": null}]'>
   <svg class="clip-mark" viewBox="0 0 32 65" aria-hidden="true"><use href="#clipSym"/></svg>
   <div class="deco" aria-hidden="true">
     <span class="orb orb-teal" style="width:40vw;height:40vw;left:-12vw;bottom:-16vh;--od:17s"></span>
@@ -1572,20 +1634,24 @@ body.on-light .edge { --edge: rgba(255,255,255,.3); }
         <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas></div></div>
       <div class="win deck"><div class="win-bar"><span></span><span></span><span></span></div>
         <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas></div></div>
-      <div class="rail sk mini v4rail" aria-label="Ray, working">
-        <div class="rail-head"><img src="assets/ray-avatar.svg" alt="" /><span class="rh-t">Ray</span><span class="rh-s">Working</span></div>
+      <div class="rail sk mini v4rail raypanel" aria-label="Ray, working">
+        <div class="rp-head"><i class="rp-back"></i><span class="rp-title">Northside School Upgrade</span><em class="rp-beta">BETA</em><i class="rp-dots"></i></div>
         <div class="rail-body">
           <div class="rail-you"></div>
+          <div class="rp-ray"><img src="assets/ray-avatar.svg" alt="" /><span>Ray</span></div>
+          <div class="rh-s">Working.</div>
           <div class="rail-work"></div>
           <div class="rail-offer"><p></p><div class="acts"><span class="rail-btn"></span><span class="rail-btn ghost"></span><span class="rail-btn" style="display:none"></span></div></div>
           <div class="rail-next"><span></span><span class="prog"><i></i></span></div>
         </div>
+        <div class="rp-foot"><div class="rp-ref"><span>Reference</span><b>Request for Tender.pdf</b><b>Scope of Works · Addendum 2.pdf</b></div>
+          <div class="rp-composer"><i class="rp-att"></i><span>Reply to Ray…</span><i class="rp-clip"></i><i class="rp-send"></i></div></div>
       </div>
     </div>
   </div>
 </section>
 <section class="scene scene-light pair push-calm v5" data-label="Download" data-dur="5640" id="sDownload" data-wipe="dissolve"
-         data-beats='[{"step": 8, "action": ["", 0, 1.6, 1], "result": ["", 0, 2.4, 1], "hold": 0.6, "offer": "", "mode": "status", "strip": "", "work": null, "ticks": null, "prompt": null, "btns": null, "press": 0, "rec": "NEW ray-13-download \u00b7 the finished tender being downloaded \u00b7 3s"}]'>
+         data-beats='[{"step": 8, "action": ["", 0, 1.6, 1], "result": ["", 0, 2.4, 1], "hold": 0.6, "offer": "", "mode": "status", "strip": "", "work": null, "ticks": null, "tools": null, "prompt": null, "btns": null, "press": 0, "rec": "NEW ray-13-download \u00b7 the finished tender being downloaded \u00b7 3s"}]'>
   <div class="deco" aria-hidden="true">
     <span class="orb orb-blue" style="width:32vw;height:32vw;left:-10vw;bottom:-12vh"></span>
     <span class="dots" style="width:180px;height:140px;right:5%;top:14%"></span>
@@ -1600,7 +1666,7 @@ body.on-light .edge { --edge: rgba(255,255,255,.3); }
     </div>
     <div class="stage stage-app">
       <div class="win deck ph-win"><div class="win-bar"><span></span><span></span><span></span><em class="mock">Mockup</em></div>
-        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas><div class="ph bare ph-download"><em class="mock">Mockup</em><div class="b-top"><b class="back">‹ Back</b><span class="b-title">Tender Attachments · Tender Pack</span><b class="btn amber">Download</b><b class="btn">Save Changes</b></div><div class="dl-chip"><i></i><span>Tender-Pack.pdf</span><em>Done</em></div></div></div>
+        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas><div class="ph bare doc ph-download"><em class="mock">Mockup</em><div class="doc-head"><svg class="doc-logo" viewBox="0 0 32 65"><use href="#clipSym"/></svg><div><b>Tender Pack</b><small>Ready for submission</small></div><em class="doc-by"><img src="assets/ray-avatar.svg" alt="" />Created by Ray</em></div><div class="b-top"><b class="back">‹ Back</b><span class="b-title">Tender Attachments · Tender Pack</span><b class="btn amber">Download</b><b class="btn">Save Changes</b></div><div class="dl-chip"><i></i><span>Tender-Pack.pdf</span><em>Done</em></div></div></div>
         <span class="rec-tag"><i></i><b class="tb-rec"></b></span></div>
       <div class="win deck"><div class="win-bar"><span></span><span></span><span></span></div>
         <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas></div></div>
@@ -2226,12 +2292,12 @@ body.on-light .edge { --edge: rgba(255,255,255,.3); }
   function paintWork(rail, b, phase) {
     var box = rail && rail.querySelector('.rail-work'); if (!box) return;
     workTimers.forEach(clearTimeout); workTimers = [];
-    var st = rail.querySelector('.rh-s'); if (st) st.textContent = phase === 'run' ? 'Working' : 'Done';
+    var st = rail.querySelector('.rh-s'); if (st) st.textContent = phase === 'run' ? (rail.classList.contains('raypanel') ? 'Working.' : 'Working') : (rail.classList.contains('raypanel') ? 'Thought for ' + (1.2 + rows.length * 0.4).toFixed(1) + 's · ' + rows.length + ' steps' : 'Done');
     // Ray's line waits for the working lines: it lands with the result, not before
     var off = rail.querySelector('.rail-offer'); if (off) off.classList.toggle('pending', phase === 'run' && !!(b.work || b.ticks));
     var rows = b.work || b.ticks || [];
     if (phase === 'run') {
-      box.innerHTML = rows.map(function (t) { return '<div class="work"><i></i><span>' + t + '</span></div>'; }).join('');
+      box.innerHTML = rows.map(function (t, i) { return '<div class="work"><i></i>' + (b.tools && b.tools[i] ? '<code>' + b.tools[i] + '</code>' : '') + '<span>' + t + '</span></div>'; }).join('');
       var els = box.querySelectorAll('.work');
       if (b.work) els.forEach(function (el, i) { workTimers.push(setTimeout(function () {
         el.classList.add('on', 'live'); if (i > 0) { els[i - 1].classList.remove('live'); els[i - 1].classList.add('done'); } }, 180 + i * 480)); });

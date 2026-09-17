@@ -2108,12 +2108,12 @@ body.on-light .chrome-label, body.on-light .chrome-brand { color: var(--ink, #0F
   function paintWork(rail, b, phase) {
     var box = rail && rail.querySelector('.rail-work'); if (!box) return;
     workTimers.forEach(clearTimeout); workTimers = [];
-    var st = rail.querySelector('.rh-s'); if (st) st.textContent = phase === 'run' ? 'Working' : 'Done';
+    var st = rail.querySelector('.rh-s'); if (st) st.textContent = phase === 'run' ? (rail.classList.contains('raypanel') ? 'Working.' : 'Working') : (rail.classList.contains('raypanel') ? 'Thought for ' + (1.2 + rows.length * 0.4).toFixed(1) + 's · ' + rows.length + ' steps' : 'Done');
     // Ray's line waits for the working lines: it lands with the result, not before
     var off = rail.querySelector('.rail-offer'); if (off) off.classList.toggle('pending', phase === 'run' && !!(b.work || b.ticks));
     var rows = b.work || b.ticks || [];
     if (phase === 'run') {
-      box.innerHTML = rows.map(function (t) { return '<div class="work"><i></i><span>' + t + '</span></div>'; }).join('');
+      box.innerHTML = rows.map(function (t, i) { return '<div class="work"><i></i>' + (b.tools && b.tools[i] ? '<code>' + b.tools[i] + '</code>' : '') + '<span>' + t + '</span></div>'; }).join('');
       var els = box.querySelectorAll('.work');
       if (b.work) els.forEach(function (el, i) { workTimers.push(setTimeout(function () {
         el.classList.add('on', 'live'); if (i > 0) { els[i - 1].classList.remove('live'); els[i - 1].classList.add('done'); } }, 180 + i * 480)); });
