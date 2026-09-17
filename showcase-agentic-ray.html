@@ -1520,7 +1520,8 @@ body.on-light .chrome-label, body.on-light .chrome-brand { color: var(--ink, #0F
     /* calm: a feathered veil, up or down, and a dip to the next scene's own ground */
     veil:  [{ transform: 'translateY(100vh)' }, { transform: 'translateY(-100vh)' }],
     'veil-down': [{ transform: 'translateY(-100vh)' }, { transform: 'translateY(100vh)' }],
-    dip:   [{ transform: 'none', opacity: 0 }, { transform: 'none', opacity: 1, offset: .4 }, { transform: 'none', opacity: 1, offset: .6 }, { transform: 'none', opacity: 0 }]
+    dip:   [{ transform: 'none', opacity: 0 }, { transform: 'none', opacity: 1, offset: .4 }, { transform: 'none', opacity: 1, offset: .6 }, { transform: 'none', opacity: 0 }],
+    dissolve: [{ transform: 'none', opacity: 0 }, { transform: 'none', opacity: 0 }]
   };
   var EASE = { veil: 'cubic-bezier(.45,0,.2,1)', 'veil-down': 'cubic-bezier(.45,0,.2,1)', dip: 'ease-in-out' };
   curtain.animate = function (kf, opts) {
@@ -1530,7 +1531,7 @@ body.on-light .chrome-label, body.on-light .chrome-brand { color: var(--ink, #0F
     var col = cs && (wipe === 'dip' ? cs.getPropertyValue('--paper') : cs.getPropertyValue('--curtain')).trim();
     curtain.style.background = col || '';
     curtain.classList.toggle('h', wipe === 'right');
-    curtain.classList.toggle('flat', wipe === 'iris' || wipe === 'diag' || wipe === 'dip');
+    curtain.classList.toggle('flat', wipe === 'iris' || wipe === 'diag' || wipe === 'dip' || wipe === 'dissolve');
     curtain.classList.toggle('soft', wipe === 'veil' || wipe === 'veil-down');
     var frames = reduced ? W.dip : (W[wipe] || W.up);
     var o = Object.assign({}, opts); if (EASE[wipe]) o.easing = EASE[wipe];
