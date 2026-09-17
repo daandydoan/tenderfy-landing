@@ -1221,7 +1221,8 @@ body.on-light .edge { --edge: rgba(255,255,255,.3); }
 .v5hook { --paper: #0F1A17; background: #0F1A17; color: #F2F6F4; --curtain: #0F1A17; justify-content: center; gap: 0; padding-top: 60px; }
 .v5hook .hk-glow { position: absolute; left: 50%; top: 40%; width: 70vw; height: 60vh; transform: translate(-50%, -50%); background: radial-gradient(ellipse, rgba(29,158,117,.35), transparent 65%); filter: blur(20px); pointer-events: none; animation: glowPulse 6s ease-in-out infinite; }
 .v5hook .hk-eyebrow { position: relative; font-size: 11px; letter-spacing: .3em; text-transform: uppercase; color: #E8A33A; margin: 0 0 6px; }
-.v5hook .hk-big { position: relative; z-index: 2; font-size: clamp(56px, 9.4vw, 160px); line-height: .9; letter-spacing: -.02em; margin: 0 0 -.06em; text-align: center; }
+.v5hook .hk-big { position: relative; z-index: 2; font-size: clamp(56px, 9.4vw, 160px); line-height: .9; letter-spacing: -.02em; margin: 0 0 18px; text-align: center; }
+@media (max-height: 840px) { .v5hook { padding-top: 48px; } .v5hook .hk-big { font-size: clamp(44px, 6.6vw, 92px); margin-bottom: 10px; } .v5hook .hk-empty { padding-top: 16px; } .v5hook .hk-empty p { display: none; } .v5hook .hk-starter:nth-child(6) { display: none; } .v5hook .hk-row { margin-top: 14px; } }
 .v5hook .hk-panel { position: relative; z-index: 1; width: min(470px, 82vw); background: #26302E; color: #E6ECEA; border: 1px solid rgba(255,255,255,.08); border-radius: 14px; box-shadow: 0 50px 90px -40px rgba(0,0,0,.8); overflow: hidden; text-align: left; font-size: 12px; }
 .v5hook .rp-head { display: flex; align-items: center; gap: 8px; padding: 10px 12px; border-bottom: 1px solid rgba(255,255,255,.08); font-weight: 600; }
 .v5hook .rp-back { width: 7px; height: 7px; border-left: 1.5px solid #B8C4C0; border-bottom: 1.5px solid #B8C4C0; transform: rotate(45deg); margin-right: 4px; }
