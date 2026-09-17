@@ -1255,7 +1255,7 @@ body.on-light .edge { --edge: rgba(255,255,255,.3); }
 .v5 .ph.bare .pane.docs { display: none; }
 .v5 .ph.bare.ph-plan .p-head { border-radius: .5em; }
 .v5 .ph.bare .b-top { padding-bottom: .5em; }
-.t-row { grid-template-columns: 1.2em 1fr 6.5em 3em 5.5em; }
+.t-row { grid-template-columns: 1.2em 1fr 6.5em 3.4em 5.5em; }
 .t-own { font-size: .78em; font-weight: 700; letter-spacing: .05em; text-align: center; border-radius: 999px; padding: .2em 0; background: #E9EFEC; color: #6B7975; opacity: 0; transform: scale(.6); transition: all .35s cubic-bezier(.2,1.5,.3,1); transition-delay: calc(var(--i) * .12s); }
 .res .t-own { opacity: 1; transform: none; background: #38988A; color: #fff; }
 .v5 .ph-download .dl-chip { margin-top: 1em; display: inline-flex; align-items: center; gap: .6em; background: #F2F5F4; border: 1px solid #D7DEDB; border-radius: .6em; padding: .5em .9em; font-size: .95em; opacity: 0; transform: translateY(6px); transition: all .4s ease .35s; }
@@ -1304,10 +1304,22 @@ body.on-light .edge { --edge: rgba(255,255,255,.3); }
 .v5 .ph.bare.doc > .dl-chip { margin-top: 0; }
 .v5 .ph.bare.doc .pane.check .p-head, .v5 .ph.bare.doc .pane.check .tabs { display: none; }
 .v5 .ph.bare.doc .pane.doc > .d-title { display: none; }
-.v5 .win.deck .ph.bare { font-size: clamp(11px, 2.2cqw, 22px); }
+.v5 .win.deck .ph.bare { font-size: clamp(11px, 1.85cqw, 19px); }
 .v5 .ph.bare.doc.ph-download { justify-content: flex-start; }
 .v5 .pack .c-row { transition-delay: calc(var(--i) * .08s); } .v5 .pack .c-row i { transition: all .3s ease calc(var(--i) * .08s); }
 .v5 .ph.bare.doc > .pane.pack { flex: 0 0 auto; margin-top: .4em; }
+/* stacked: the canvas full width, the caption above or below it */
+.scene.v5.pair .split, .scene.v5.pair .split.split-vid { grid-template-columns: 1fr; width: min(1180px, 100%); gap: clamp(10px, 1.8vh, 20px); text-align: center; }
+.scene.v5.pair.above .beatcol { order: 2; }
+.scene.v5.pair .beatcol { display: flex; flex-direction: column; align-items: center; }
+.scene.v5.pair .beatcol .eyebrow { justify-content: center; }
+.v5 .split .cap.v5cap { font-size: clamp(22px, 2.3vw, 36px); max-width: 34ch; margin: 0 auto; }
+.scene.v5.pair { padding-top: 84px; padding-bottom: 90px; }
+.v5 .stage-app { width: 100%; height: clamp(300px, 54vh, 600px); }
+.v5 .stage-app .win.deck { width: 74%; left: 2%; }
+.v5 .ph.bare.doc { min-height: 48vh; }
+.v5 .stage-app .rail.mini.raypanel { width: min(340px, 30%); right: 0; bottom: 2%; }
+@media (max-width: 940px) { .scene.v5.pair .beatcol { order: 0; } }
 /* open and end */
 .v5open .big.v5big, .v5end .big.v5big { font-size: clamp(40px, 5.6vw, 84px); line-height: 1; margin: 0 0 8px; text-align: left; }
 .v5end .big.v5big { text-align: center; }
@@ -1400,7 +1412,7 @@ body.on-light .edge { --edge: rgba(255,255,255,.3); }
   </div>
   <p class="hk-row"><span class="hk-line"><span class="w"><i class="ch" style="--i:12">Y</i><i class="ch" style="--i:13">o</i><i class="ch" style="--i:14">u</i><i class="ch" style="--i:15">r</i></span> <span class="w"><i class="ch" style="--i:16">t</i><i class="ch" style="--i:17">e</i><i class="ch" style="--i:18">n</i><i class="ch" style="--i:19">d</i><i class="ch" style="--i:20">e</i><i class="ch" style="--i:21">r</i></span> <span class="w"></span> <u class="ul"><span class="w"><i class="ch" style="--i:22">c</i><i class="ch" style="--i:23">o</i><i class="ch" style="--i:24">-</i><i class="ch" style="--i:25">w</i><i class="ch" style="--i:26">o</i><i class="ch" style="--i:27">r</i><i class="ch" style="--i:28">k</i><i class="ch" style="--i:29">e</i><i class="ch" style="--i:30">r</i></span></u><span class="w"><i class="ch" style="--i:31">.</i></span></span><span class="hk-sub fx" style="--d:1.5s">You guide. Ray helps deliver the tender.</span></p>
 </section>
-<section class="scene scene-light pair push-calm v5" data-label="Understand" data-dur="8440" id="sUnderstand" data-wipe="dissolve"
+<section class="scene scene-light pair push-calm v5 above" data-label="Understand" data-dur="8440" id="sUnderstand" data-wipe="dissolve"
          data-beats='[{"step": 1, "action": ["", 0, 3.4, 1], "result": ["", 0, 2.6, 1], "hold": 1.4, "offer": "Go/No-Go assessment created. Filed in the Go/No-Go folder with the tender.", "mode": "status", "strip": "Understand", "work": ["Reviewing the tender pack\u2026", "Identifying key requirements\u2026", "Understanding how to add value\u2026", "Checking your company knowledge\u2026"], "ticks": null, "tools": ["list_documents", "read_whole_document", "outline_document", "search_library"], "prompt": null, "btns": null, "press": 0, "rec": "Recreated UI \u00b7 Tender details, Go/No-Go assessment"}]'>
   <div class="deco" aria-hidden="true">
     <span class="orb orb-teal" style="width:34vw;height:34vw;right:-9vw;top:-12vh"></span>
@@ -1440,7 +1452,7 @@ body.on-light .edge { --edge: rgba(255,255,255,.3); }
     </div>
   </div>
 </section>
-<section class="scene scene-offwhite pair push-calm v5" data-label="Plan" data-dur="8240" id="sPlan" data-wipe="dissolve"
+<section class="scene scene-offwhite pair push-calm v5 below" data-label="Plan" data-dur="8240" id="sPlan" data-wipe="dissolve"
          data-beats='[{"step": 2, "action": ["", 0, 2.8, 1], "result": ["", 0, 3.2, 1], "hold": 1.2, "offer": "Tasks assigned to team members.", "mode": "status", "strip": "Plan", "work": null, "ticks": ["Tender Delivery Plan Created", "Tasks Identified", "Responsibilities Assigned", "Deadlines Mapped"], "tools": ["create_plan", "create_tasks", "assign_tasks", "set_due_dates"], "prompt": null, "btns": null, "press": 0, "rec": "Recreated UI \u00b7 Checklist"}]'>
   <div class="deco" aria-hidden="true">
     <span class="orb orb-teal" style="width:34vw;height:34vw;right:-9vw;top:-12vh"></span>
@@ -1478,7 +1490,7 @@ body.on-light .edge { --edge: rgba(255,255,255,.3); }
     </div>
   </div>
 </section>
-<section class="scene scene-deep pair push-calm v5" data-label="Add value" data-dur="18180" id="sValue" data-wipe="dissolve"
+<section class="scene scene-deep pair push-calm v5 above" data-label="Add value" data-dur="18180" id="sValue" data-wipe="dissolve"
          data-beats='[{"step": 3, "action": ["", 0, 3.0, 1], "result": ["", 0, 2.8, 1], "hold": 2.6, "offer": "I\u2019ve identified school drop-off and pick-up times as a key disruption risk. I can create a targeted disruption management plan to address this. Would you like me to create it?", "mode": "ask", "strip": "Add value", "work": ["Analysing buyer priorities\u2026", "Identifying value-add opportunities\u2026", "Finding relevant experience and evidence\u2026"], "ticks": null, "tools": ["read_pages", "find_value_adds", "search_library"], "prompt": null, "btns": ["Yes, create it.", ""], "press": 0, "rec": "Recreated UI \u00b7 Tender documentation, buyer analysis"}, {"step": 4, "action": ["", 0, 3.4, 1], "result": ["", 0, 3.0, 1], "hold": 1.8, "offer": "Your School Drop-Off and Pick-Up Disruption Management Plan is ready for review.", "mode": "status", "strip": "Add value", "work": ["Analysing traffic and access requirements\u2026", "Developing mitigation measures\u2026", "Creating the plan\u2026"], "ticks": null, "tools": ["read_pages", "draft_section", "create_document"], "prompt": null, "btns": null, "press": 0, "rec": "Recreated UI \u00b7 Responses editor"}]'>
   <div class="deco" aria-hidden="true">
     <span class="orb orb-teal" style="width:32vw;height:32vw;left:-9vw;top:-10vh"></span>
@@ -1531,7 +1543,7 @@ body.on-light .edge { --edge: rgba(255,255,255,.3); }
     </div>
   </div>
 </section>
-<section class="scene scene-light pair push-calm v5" data-label="Resumes and profiles" data-dur="8639" id="sResumes" data-wipe="dissolve"
+<section class="scene scene-light pair push-calm v5 below" data-label="Resumes and profiles" data-dur="8639" id="sResumes" data-wipe="dissolve"
          data-beats='[{"step": 5, "action": ["", 0, 3.4, 1], "result": ["", 0, 2.8, 1], "hold": 1.4, "offer": "Resumes and project profiles updated and added to the tender build.", "mode": "status", "strip": "Resumes and profiles", "work": ["Matching relevant experience\u2026", "Tailoring content to the buyer\u2026", "Updating resumes and project profiles\u2026", "Adding them to the tender build\u2026"], "ticks": null, "tools": ["search_library", "tailor_content", "update_documents", "add_to_build"], "prompt": "Select the most relevant resumes and project profiles for this project, then tailor them to the buyer\u2019s priorities using their own language.", "btns": null, "press": 0, "rec": "Recreated UI \u00b7 Build Tender"}]'>
   <div class="deco" aria-hidden="true">
     <span class="orb orb-teal" style="width:32vw;height:32vw;left:-10vw;top:-12vh"></span>
@@ -1570,7 +1582,7 @@ body.on-light .edge { --edge: rgba(255,255,255,.3); }
     </div>
   </div>
 </section>
-<section class="scene scene-offwhite pair push-calm v5" data-label="Approval" data-dur="5640" id="sApproval" data-wipe="dissolve"
+<section class="scene scene-offwhite pair push-calm v5 above" data-label="Approval" data-dur="5640" id="sApproval" data-wipe="dissolve"
          data-beats='[{"step": 6, "action": ["", 0, 1.2, 1], "result": ["", 0, 1.0, 1], "hold": 2.4, "offer": "Ready for your review.", "mode": "review", "strip": "Approval", "work": null, "ticks": null, "tools": null, "prompt": null, "btns": ["Review", "Request Changes", "Approve & Update"], "press": 2, "rec": "Recreated UI \u00b7 Responses editor, awaiting approval"}]'>
   <div class="deco" aria-hidden="true">
     <span class="orb orb-teal" style="width:32vw;height:32vw;left:-9vw;top:-10vh"></span>
@@ -1611,7 +1623,7 @@ body.on-light .edge { --edge: rgba(255,255,255,.3); }
     </div>
   </div>
 </section>
-<section class="scene scene-deep pair push-calm v5" data-label="Build and review" data-dur="7039" id="sBuild" data-wipe="dissolve"
+<section class="scene scene-deep pair push-calm v5 below" data-label="Build and review" data-dur="7039" id="sBuild" data-wipe="dissolve"
          data-beats='[{"step": 7, "action": ["ray-07-08-build-review.mp4", 15.5, 18.5, 1.5], "result": ["ray-07-08-build-review.mp4", 22.3, 24.9, 1.0], "hold": 1.4, "offer": "Compliance checked. Missing information flagged.", "mode": "status", "strip": "Build and review", "work": ["Building the tender documents\u2026", "Checking compliance\u2026", "Flagging missing information\u2026"], "ticks": null, "tools": ["build_documents", "check_compliance", "flag_missing"], "prompt": null, "btns": null, "press": 0, "rec": null}]'>
   <svg class="clip-mark" viewBox="0 0 32 65" aria-hidden="true"><use href="#clipSym"/></svg>
   <div class="deco" aria-hidden="true">
@@ -1652,7 +1664,7 @@ body.on-light .edge { --edge: rgba(255,255,255,.3); }
     </div>
   </div>
 </section>
-<section class="scene scene-light pair push-calm v5" data-label="Download" data-dur="5640" id="sDownload" data-wipe="dissolve"
+<section class="scene scene-light pair push-calm v5 above" data-label="Download" data-dur="5640" id="sDownload" data-wipe="dissolve"
          data-beats='[{"step": 8, "action": ["", 0, 1.6, 1], "result": ["", 0, 2.4, 1], "hold": 0.6, "offer": "", "mode": "status", "strip": "", "work": null, "ticks": null, "tools": null, "prompt": null, "btns": null, "press": 0, "rec": "NEW ray-13-download \u00b7 the finished tender being downloaded \u00b7 3s"}]'>
   <div class="deco" aria-hidden="true">
     <span class="orb orb-blue" style="width:32vw;height:32vw;left:-10vw;bottom:-12vh"></span>
