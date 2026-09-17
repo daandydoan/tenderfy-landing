@@ -1170,6 +1170,10 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
 .v5 .v4rail .rail-offer { transition: opacity .35s ease; } .v5 .v4rail .rail-offer.pending { opacity: 0; }
 .v5 .win.deck .ph { font-size: clamp(8px, 1.4cqw, 17px); }
 .v5 .win.deck { container-type: inline-size; }
+.v5 .ph { position: absolute; inset: 0; line-height: 1.3; color: #33423E; transition: opacity .3s ease; }
+.v5 .vwrap.dim .ph { opacity: .35; }
+.v5 .vwrap.settle .ph { animation: settleIn .48s cubic-bezier(.76,0,.24,1) both; }
+.v5 .win.deck.ph-win .vwrap { position: relative; aspect-ratio: 16 / 9.4; background: #FAFCFB; overflow: hidden; }
 .v5 .ph-download .dl-chip { margin-top: 1em; display: inline-flex; align-items: center; gap: .6em; background: #F2F5F4; border: 1px solid #D7DEDB; border-radius: .6em; padding: .5em .9em; font-size: .95em; color: #33423E; }
 .v5 .ph-download .dl-chip i { width: .8em; height: .8em; border: solid #1D9E75; border-width: 0 .18em .18em 0; transform: rotate(45deg) translate(-.1em,-.1em); } .v5 .ph-download .dl-chip em { font-style: normal; color: #0F7355; font-weight: 600; }
 .v5 .ph-download .a-body { display: block; }
@@ -1249,6 +1253,40 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
   </div>
 </div>
 
+<!-- ============ S1 · HOOK ============ -->
+<section class="scene scene-dark hook-grad" data-wipe="veil" data-label="The Old Way" data-dur="5200">
+  <svg class="clip-mark" viewBox="0 0 32 65" aria-hidden="true"><use href="#clipSym"/></svg>
+  <div class="deco" aria-hidden="true">
+    <span class="orb orb-teal" style="width:42vw;height:42vw;left:-12vw;top:-14vh"></span>
+    <span class="orb orb-amber" style="width:28vw;height:28vw;right:-8vw;bottom:-12vh;--od:18s"></span>
+    <span class="dots" style="width:220px;height:160px;left:5%;bottom:9%"></span>
+    <span class="bit" style="left:16%;top:26%"></span>
+    <span class="bit bit-mint" style="right:20%;top:16%;--bd:8s;--bx:-14px;--by:18px"></span>
+  </div>
+  <div class="hook-docs" aria-hidden="true">
+    <div class="hook-doc chat advice" style="--d:0.2s; --r:-7deg; --sx:-70vw; --sy:-20vh; left:12%; top:16%"><span class="hd"><i class="aiic"></i><span class="fn">AI assistant</span></span><span class="bul" style="--b:0.6s"><i class="n">1</i><i class="ln w80"></i></span><span class="bul" style="--b:0.85s"><i class="n">2</i><i class="ln"></i></span><span class="bul" style="--b:1.1s"><i class="n">3</i><i class="ln w60"></i></span><span class="comp"><span></span><i></i></span></div>
+    <div class="hook-doc chat advice" style="--d:0.35s; --r:5deg; --sx:70vw; --sy:-30vh; right:14%; top:13%"><span class="hd"><i class="aiic"></i><span class="fn">AI assistant</span></span><span class="bul" style="--b:0.75s"><i class="n">1</i><i class="ln"></i></span><span class="bul" style="--b:1.0s"><i class="n">2</i><i class="ln w60"></i></span><span class="bul" style="--b:1.25s"><i class="n">3</i><i class="ln w80"></i></span><span class="comp"><span></span><i></i></span></div>
+    <div class="hook-doc chat advice" style="--d:0.5s; --r:-4deg; --sx:-60vw; --sy:35vh; left:8%; bottom:14%"><span class="hd"><i class="aiic"></i><span class="fn">AI assistant</span></span><span class="bul" style="--b:0.9s"><i class="n">1</i><i class="ln w60"></i></span><span class="bul" style="--b:1.15s"><i class="n">2</i><i class="ln"></i></span><span class="bul" style="--b:1.4s"><i class="n">3</i><i class="ln w80"></i></span><span class="comp"><span></span><i></i></span></div>
+    <div class="hook-doc chat advice" style="--d:0.65s; --r:8deg; --sx:65vw; --sy:30vh; right:9%; bottom:17%"><span class="hd"><i class="aiic"></i><span class="fn">AI assistant</span></span><span class="bul" style="--b:1.05s"><i class="n">1</i><i class="ln w80"></i></span><span class="bul" style="--b:1.3s"><i class="n">2</i><i class="ln w60"></i></span><span class="bul" style="--b:1.55s"><i class="n">3</i><i class="ln"></i></span><span class="comp"><span></span><i></i></span></div>
+    <div class="hook-doc chat advice" style="--d:0.8s; --r:-10deg; --sx:-70vw; --sy:0vh; left:3%; top:41%"><span class="hd"><i class="aiic"></i><span class="fn">AI assistant</span></span><span class="bul" style="--b:1.2s"><i class="n">1</i><i class="ln"></i></span><span class="bul" style="--b:1.45s"><i class="n">2</i><i class="ln w80"></i></span><span class="bul" style="--b:1.7s"><i class="n">3</i><i class="ln w60"></i></span><span class="comp"><span></span><i></i></span></div>
+  </div>
+  <h1 class="big">
+    <span class="rw"><span style="--d:.5s">You</span></span>
+    <span class="rw"><span style="--d:.58s">do</span></span>
+    <span class="rw"><span style="--d:.66s">not</span></span>
+    <span class="rw"><span style="--d:.74s">need</span></span><br>
+    <span class="rw"><span style="--d:.82s">more</span></span>
+    <span class="rw"><span class="tl-bright" style="--d:.9s">AI</span></span>
+    <span class="rw"><span class="tl-bright" style="--d:.98s">advice.</span></span><br>
+    <span class="rw"><span style="--d:1.14s">You</span></span>
+    <span class="rw"><span style="--d:1.22s">need</span></span>
+    <span class="rw"><span style="--d:1.3s">the</span></span>
+    <span class="rw"><span class="am" style="--d:1.38s">work</span></span>
+    <span class="rw"><span class="am" style="--d:1.46s">done.</span></span>
+  </h1>
+  <div class="hook-ray fx" style="--d:2.8s" aria-hidden="true"><span class="halo"></span><span class="halo halo-2"></span><img src="assets/ray-avatar.svg" alt="" /></div>
+  <p class="hook-kicker fx" style="--d:3.2s"><span class="say">“Ray, get this tender started.”</span></p>
+</section>
 <section class="scene scene-dark hook-grad pair v5 v5open" data-label="Agentic Ray" data-dur="6400" id="sOpen" data-wipe="veil"
          data-beats='[{"step": 0, "action": ["ray-00-rail.mp4", 0.0, 5.2, 1.2], "result": null, "hold": 0, "offer": "", "mode": "status", "strip": ""}]'>
   <div class="split split-vid">
@@ -1270,8 +1308,8 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
     </div>
   </div>
 </section>
-<section class="scene scene-light pair push-calm v5" data-label="Understand" data-dur="7539" id="sUnderstand" data-wipe="veil"
-         data-beats='[{"step": 1, "action": ["ray-03-04-buyer.mp4", 0.0, 3.0, 1.5], "result": ["ray-01-gonogo.mp4", 24.3, 27.4, 1.0], "hold": 1.4, "offer": "Go/No-Go assessment created. Filed in the Go/No-Go folder with the tender.", "mode": "status", "strip": "Understand", "work": ["Reviewing the tender pack\u2026", "Identifying key requirements\u2026", "Understanding how to add value\u2026", "Checking your company knowledge\u2026"], "ticks": null, "prompt": null, "btns": null, "press": 0, "rec": null}]'>
+<section class="scene scene-light pair push-calm v5" data-label="Understand" data-dur="8440" id="sUnderstand" data-wipe="veil"
+         data-beats='[{"step": 1, "action": ["", 0, 3.4, 1], "result": ["", 0, 2.6, 1], "hold": 1.4, "offer": "Go/No-Go assessment created. Filed in the Go/No-Go folder with the tender.", "mode": "status", "strip": "Understand", "work": ["Reviewing the tender pack\u2026", "Identifying key requirements\u2026", "Understanding how to add value\u2026", "Checking your company knowledge\u2026"], "ticks": null, "prompt": null, "btns": null, "press": 0, "rec": "Recreated UI \u00b7 Tender details, Go/No-Go assessment"}]'>
   <div class="deco" aria-hidden="true">
     <span class="orb orb-teal" style="width:34vw;height:34vw;right:-9vw;top:-12vh"></span>
     <span class="dots" style="width:190px;height:150px;left:4%;top:12%"></span>
@@ -1285,8 +1323,19 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
       </div>
     </div>
     <div class="stage stage-app">
-      <div class="win deck"><div class="win-bar"><span></span><span></span><span></span></div>
-        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas></div></div>
+      <div class="win deck ph-win"><div class="win-bar"><span></span><span></span><span></span><em class="mock">Mockup</em></div>
+        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas><div class="ph app ph-gonogo">
+          <div class="a-side"><svg class="a-logo" viewBox="0 0 32 65"><use href="#clipSym"/></svg><i class="a-ic"></i><i class="a-ic"></i><i class="a-ic"></i><i class="a-ic"></i><i class="a-ic"></i></div>
+          <div class="a-main">
+            <div class="a-bar"><i class="a-home"></i><span class="a-crumb">Tenders · Tender Details</span><span class="a-ray"><img src="assets/ray-avatar.svg" alt="" />Ray</span><i class="a-av"></i></div>
+            <div class="a-body"><div class="pane docs"><div class="p-head dark"><span>Tender documentation</span><b class="btn">Add Document</b></div>
+              <div class="p-body"><div class="fold sel">(02 Selected) <b>Default</b></div><div class="file"><i></i>RFT · Northside School Upgrade.pdf</div><div class="file"><i></i>Addendum 2 · Scope of Works.pdf</div><div class="fold">Go / No-Go</div></div></div>
+            <div class="pane doc"><div class="d-title">Go / No-Go Assessment</div><div class="d-sub">Headline scorecard</div>
+              <div class="sc-row sc-head"><span>Criterion</span><b>Rating</b></div><div class="sc-row"><span>Strategic alignment</span><b class="g">Green</b></div><div class="sc-row"><span>Relevant capability and experience</span><b class="a">Amber</b></div><div class="sc-row"><span>Commercial viability</span><b class="r">Red</b></div><div class="sc-row"><span>Mandatory requirements and compliance</span><b class="r">Red</b></div><div class="sc-row"><span>Client relationship and understanding</span><b class="a">Amber</b></div><div class="sc-row"><span>Competitive position / likelihood of winning</span><b class="a">Amber</b></div><div class="sc-row"><span>Scope and delivery risk</span><b class="r">Red</b></div><div class="sc-row"><span>Programme and tender timeframe</span><b class="a">Amber</b></div>
+              <div class="d-rec"><span>Recommendation</span><b>Go, with conditions</b></div></div></div>
+          </div>
+        </div></div>
+        <span class="rec-tag"><i></i><b class="tb-rec"></b></span></div>
       <div class="win deck"><div class="win-bar"><span></span><span></span><span></span></div>
         <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas></div></div>
       <div class="rail sk mini v4rail" aria-label="Ray, working">
@@ -1301,8 +1350,8 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
     </div>
   </div>
 </section>
-<section class="scene scene-offwhite pair push-calm v5" data-label="Plan" data-dur="10639" id="sPlan" data-wipe="veil"
-         data-beats='[{"step": 2, "action": ["ray-02-plan.mp4", 0.0, 3.0, 1.5], "result": ["ray-02-plan.mp4", 40.0, 46.4, 1.0], "hold": 1.2, "offer": "Tasks assigned to team members.", "mode": "status", "strip": "Plan", "work": null, "ticks": ["Tender Delivery Plan Created", "Tasks Identified", "Responsibilities Assigned", "Deadlines Mapped"], "prompt": null, "btns": null, "press": 0, "rec": null}]'>
+<section class="scene scene-offwhite pair push-calm v5" data-label="Plan" data-dur="8240" id="sPlan" data-wipe="veil"
+         data-beats='[{"step": 2, "action": ["", 0, 2.8, 1], "result": ["", 0, 3.2, 1], "hold": 1.2, "offer": "Tasks assigned to team members.", "mode": "status", "strip": "Plan", "work": null, "ticks": ["Tender Delivery Plan Created", "Tasks Identified", "Responsibilities Assigned", "Deadlines Mapped"], "prompt": null, "btns": null, "press": 0, "rec": "Recreated UI \u00b7 Checklist"}]'>
   <div class="deco" aria-hidden="true">
     <span class="orb orb-teal" style="width:34vw;height:34vw;right:-9vw;top:-12vh"></span>
     <span class="dots" style="width:190px;height:150px;left:4%;top:12%"></span>
@@ -1316,8 +1365,17 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
       </div>
     </div>
     <div class="stage stage-app">
-      <div class="win deck"><div class="win-bar"><span></span><span></span><span></span></div>
-        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas></div></div>
+      <div class="win deck ph-win"><div class="win-bar"><span></span><span></span><span></span><em class="mock">Mockup</em></div>
+        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas><div class="ph app ph-plan">
+          <div class="a-side"><svg class="a-logo" viewBox="0 0 32 65"><use href="#clipSym"/></svg><i class="a-ic"></i><i class="a-ic"></i><i class="a-ic"></i><i class="a-ic"></i><i class="a-ic"></i></div>
+          <div class="a-main">
+            <div class="a-bar"><i class="a-home"></i><span class="a-crumb">Tenders · Tender Details</span><span class="a-ray"><img src="assets/ray-avatar.svg" alt="" />Ray</span><i class="a-av"></i></div>
+            <div class="a-body wide"><div class="pane check"><div class="p-head dark"><span>Checklist</span><b class="btn">Add Task</b></div>
+              <div class="tabs"><span class="on">My Tasks</span><span>Assigned Tasks</span><span>Completed Tasks</span><em>Priority</em></div>
+              <div class="t-row t-head"><span></span><span>TASK</span><span>DUE DATE ↓</span><span>ACTIONS</span></div><div class="t-row" style="--i:0"><i class="dot"></i><span class="t-name">Conduct final buyer-feedback com…<small>Before lodgement, confirm every relevant…</small></span><span class="t-due">30/09/2026</span><span class="t-act"><i class="ed"></i><i class="ok"></i><i class="del"></i></span></div><div class="t-row" style="--i:1"><i class="dot"></i><span class="t-name">Conduct qualitative differentiator r…<small>Review the draft response against t…</small></span><span class="t-due">28/09/2026</span><span class="t-act"><i class="ed"></i><i class="ok"></i><i class="del"></i></span></div><div class="t-row" style="--i:2"><i class="dot"></i><span class="t-name">Prepare measurable local and First…<small>Develop a project-specific response…</small></span><span class="t-due">25/09/2026</span><span class="t-act"><i class="ed"></i><i class="ok"></i><i class="del"></i></span></div><div class="t-row" style="--i:3"><i class="dot"></i><span class="t-name">Prepare role-specific resumes and…<small>Provide concise resumes for nomina…</small></span><span class="t-due">24/09/2026</span><span class="t-act"><i class="ed"></i><i class="ok"></i><i class="del"></i></span></div><div class="t-row" style="--i:4"><i class="dot"></i><span class="t-name">Verify three comparable projects a…<small>Confirm each reference meets the b…</small></span><span class="t-due">22/09/2026</span><span class="t-act"><i class="ed"></i><i class="ok"></i><i class="del"></i></span></div><div class="t-row" style="--i:5"><i class="dot"></i><span class="t-name">Prepare traffic and school access p…<small>Drop-off and pick-up windows, Gate B…</small></span><span class="t-due">19/09/2026</span><span class="t-act"><i class="ed"></i><i class="ok"></i><i class="del"></i></span></div></div></div>
+          </div>
+        </div></div>
+        <span class="rec-tag"><i></i><b class="tb-rec"></b></span></div>
       <div class="win deck"><div class="win-bar"><span></span><span></span><span></span></div>
         <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas></div></div>
       <div class="rail sk mini v4rail" aria-label="Ray, working">
@@ -1332,8 +1390,8 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
     </div>
   </div>
 </section>
-<section class="scene scene-deep pair push-calm v5" data-label="Add value" data-dur="14779" id="sValue" data-wipe="veil"
-         data-beats='[{"step": 3, "action": ["ray-03-04-buyer.mp4", 6.0, 9.0, 1.5], "result": ["ray-03-04-buyer.mp4", 17.5, 19.9, 1.0], "hold": 2.6, "offer": "I\u2019ve identified school drop-off and pick-up times as a key disruption risk. I can create a targeted disruption management plan to address this. Would you like me to create it?", "mode": "ask", "strip": "Add value", "work": ["Analysing buyer priorities\u2026", "Identifying value-add opportunities\u2026", "Finding relevant experience and evidence\u2026"], "ticks": null, "prompt": null, "btns": ["Yes, create it.", ""], "press": 0, "rec": null}, {"step": 4, "action": ["ray-05-06-responses.mp4", 27.0, 30.0, 1.5], "result": ["ray-05-06-responses.mp4", 50.1, 52.5, 1.0], "hold": 1.8, "offer": "Your School Drop-Off and Pick-Up Disruption Management Plan is ready for review.", "mode": "status", "strip": "Add value", "work": ["Analysing traffic and access requirements\u2026", "Developing mitigation measures\u2026", "Creating the plan\u2026"], "ticks": null, "prompt": null, "btns": null, "press": 0, "rec": null}]'>
+<section class="scene scene-deep pair push-calm v5" data-label="Add value" data-dur="18180" id="sValue" data-wipe="veil"
+         data-beats='[{"step": 3, "action": ["", 0, 3.0, 1], "result": ["", 0, 2.8, 1], "hold": 2.6, "offer": "I\u2019ve identified school drop-off and pick-up times as a key disruption risk. I can create a targeted disruption management plan to address this. Would you like me to create it?", "mode": "ask", "strip": "Add value", "work": ["Analysing buyer priorities\u2026", "Identifying value-add opportunities\u2026", "Finding relevant experience and evidence\u2026"], "ticks": null, "prompt": null, "btns": ["Yes, create it.", ""], "press": 0, "rec": "Recreated UI \u00b7 Tender documentation, buyer analysis"}, {"step": 4, "action": ["", 0, 3.4, 1], "result": ["", 0, 3.0, 1], "hold": 1.8, "offer": "Your School Drop-Off and Pick-Up Disruption Management Plan is ready for review.", "mode": "status", "strip": "Add value", "work": ["Analysing traffic and access requirements\u2026", "Developing mitigation measures\u2026", "Creating the plan\u2026"], "ticks": null, "prompt": null, "btns": null, "press": 0, "rec": "Recreated UI \u00b7 Responses editor"}]'>
   <div class="deco" aria-hidden="true">
     <span class="orb orb-teal" style="width:32vw;height:32vw;left:-9vw;top:-10vh"></span>
     <span class="dots" style="width:180px;height:140px;right:6%;bottom:12%"></span>
@@ -1351,10 +1409,36 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
       </div>
     </div>
     <div class="stage stage-app">
-      <div class="win deck"><div class="win-bar"><span></span><span></span><span></span></div>
-        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas></div></div>
-      <div class="win deck"><div class="win-bar"><span></span><span></span><span></span></div>
-        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas></div></div>
+      <div class="win deck ph-win"><div class="win-bar"><span></span><span></span><span></span><em class="mock">Mockup</em></div>
+        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas><div class="ph app ph-buyer">
+          <div class="a-side"><svg class="a-logo" viewBox="0 0 32 65"><use href="#clipSym"/></svg><i class="a-ic"></i><i class="a-ic"></i><i class="a-ic"></i><i class="a-ic"></i><i class="a-ic"></i></div>
+          <div class="a-main">
+            <div class="a-bar"><i class="a-home"></i><span class="a-crumb">Tenders · Tender Details</span><span class="a-ray"><img src="assets/ray-avatar.svg" alt="" />Ray</span><i class="a-av"></i></div>
+            <div class="a-body"><div class="pane docs"><div class="p-head dark"><span>Tender documentation</span><b class="btn">Add Document</b></div>
+              <div class="p-body"><div class="fold sel">(01 Selected) <b>Default</b></div><div class="file"><i></i>RFT · Northside School Upgrade.pdf</div><div class="file"><i></i>Addendum 2 · Scope of Works.pdf</div>
+              <div class="qa"><span>Quick actions:</span><b>Go No Go</b><b>Executive Brief</b><b>Document Summary</b><b class="hi">Understand the buyer</b></div></div></div>
+            <div class="pane doc"><div class="d-title">Understanding the buyer · Dept of Education</div><div class="d-sub">What this buyer scores, from the RFT and addendum 2</div>
+              <div class="d-h">Evaluation priorities</div><i class="ln w100"></i><i class="ln w86"></i>
+              <div class="d-hot"><i class="pin"></i><span>School drop-off and pick-up times</span><em>key disruption risk</em></div>
+              <i class="ln w92"></i><i class="ln w70"></i>
+              <div class="d-h">Your evidence</div><i class="ln w80"></i><div class="d-evd">3 comparable live-school projects found in your library</div></div></div>
+          </div>
+        </div></div>
+        <span class="rec-tag"><i></i><b class="tb-rec"></b></span></div>
+      <div class="win deck ph-win"><div class="win-bar"><span></span><span></span><span></span><em class="mock">Mockup</em></div>
+        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas><div class="ph app ph-plandoc">
+          <div class="a-side"><svg class="a-logo" viewBox="0 0 32 65"><use href="#clipSym"/></svg><i class="a-ic"></i><i class="a-ic"></i><i class="a-ic"></i><i class="a-ic"></i><i class="a-ic"></i></div>
+          <div class="a-main">
+            <div class="a-bar"><i class="a-home"></i><span class="a-crumb">Responses · Methodology</span><span class="a-ray"><img src="assets/ray-avatar.svg" alt="" />Ray</span><i class="a-av"></i></div>
+            <div class="a-body wide"><div class="pane doc solo"><div class="d-crumb">Responses · Methodology · Section 4.2</div>
+              <div class="d-title">Disruption Management Plan: School Drop-Off and Pick-Up</div><div class="d-sub">Drafted by Ray · matched your library · for your review</div>
+              <i class="ln w100"></i><i class="ln w90"></i><i class="ln w62"></i>
+              <div class="d-h">Mitigation measures</div>
+              <div class="m-row m-head"><span>Window</span><span>Measure</span><span>Owner</span></div><div class="m-row"><span>Drop-off, 8:00 to 9:00</span><span>No deliveries. Traffic controller at Gate B.</span><span>Site manager</span></div><div class="m-row"><span>Pick-up, 2:45 to 3:30</span><span>Plant movements paused. Pedestrian barrier line held.</span><span>Site manager</span></div><div class="m-row"><span>Wet weather</span><span>Covered walkway maintained. Extra controller.</span><span>Foreman</span></div><div class="m-row"><span>Term breaks</span><span>Heavy works scheduled. School advised two weeks prior.</span><span>Project manager</span></div>
+              <div class="d-acts"><b class="btn ghost">Discard</b><b class="btn ghost">Edit</b><b class="btn">Approve</b></div></div></div>
+          </div>
+        </div></div>
+        <span class="rec-tag"><i></i><b class="tb-rec"></b></span></div>
       <div class="rail sk mini v4rail" aria-label="Ray, working">
         <div class="rail-head"><img src="assets/ray-avatar.svg" alt="" /><span class="rh-t">Ray</span><span class="rh-s">Working</span></div>
         <div class="rail-body">
@@ -1367,8 +1451,8 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
     </div>
   </div>
 </section>
-<section class="scene scene-light pair push-calm v5" data-label="Resumes and profiles" data-dur="6840" id="sResumes" data-wipe="veil"
-         data-beats='[{"step": 5, "action": ["ray-07-08-build-review.mp4", 0.0, 3.0, 1.5], "result": ["ray-07-08-build-review.mp4", 10.6, 13.0, 1.0], "hold": 1.4, "offer": "Resumes and project profiles updated and added to the tender build.", "mode": "status", "strip": "Resumes and profiles", "work": ["Matching relevant experience\u2026", "Tailoring content to the buyer\u2026", "Updating resumes and project profiles\u2026", "Adding them to the tender build\u2026"], "ticks": null, "prompt": "Select the most relevant resumes and project profiles for this project, then tailor them to the buyer\u2019s priorities using their own language.", "btns": null, "press": 0, "rec": null}]'>
+<section class="scene scene-light pair push-calm v5" data-label="Resumes and profiles" data-dur="8639" id="sResumes" data-wipe="veil"
+         data-beats='[{"step": 5, "action": ["", 0, 3.4, 1], "result": ["", 0, 2.8, 1], "hold": 1.4, "offer": "Resumes and project profiles updated and added to the tender build.", "mode": "status", "strip": "Resumes and profiles", "work": ["Matching relevant experience\u2026", "Tailoring content to the buyer\u2026", "Updating resumes and project profiles\u2026", "Adding them to the tender build\u2026"], "ticks": null, "prompt": "Select the most relevant resumes and project profiles for this project, then tailor them to the buyer\u2019s priorities using their own language.", "btns": null, "press": 0, "rec": "Recreated UI \u00b7 Build Tender"}]'>
   <div class="deco" aria-hidden="true">
     <span class="orb orb-teal" style="width:32vw;height:32vw;left:-10vw;top:-12vh"></span>
     <span class="dots" style="width:180px;height:140px;right:4%;top:16%"></span>
@@ -1382,8 +1466,18 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
       </div>
     </div>
     <div class="stage stage-app">
-      <div class="win deck"><div class="win-bar"><span></span><span></span><span></span></div>
-        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas></div></div>
+      <div class="win deck ph-win"><div class="win-bar"><span></span><span></span><span></span><em class="mock">Mockup</em></div>
+        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas><div class="ph app ph-tailor">
+          <div class="a-side"><svg class="a-logo" viewBox="0 0 32 65"><use href="#clipSym"/></svg><i class="a-ic"></i><i class="a-ic"></i><i class="a-ic"></i><i class="a-ic"></i><i class="a-ic"></i></div>
+          <div class="a-main">
+            <div class="a-bar"><i class="a-home"></i><span class="a-crumb">Tenders · Tender Details · Build Tender</span><span class="a-ray"><img src="assets/ray-avatar.svg" alt="" />Ray</span><i class="a-av"></i></div>
+            <div class="a-body wide"><div class="b-top"><b class="back">‹ Back</b><span class="b-title">Tender Attachments · Tender Pack</span><b class="btn amber">Download</b><b class="btn">Save Changes</b></div>
+            <div class="pane build"><div class="sec"><span class="s-t">Cover Pages</span><span class="s-add">+ Add Cover Pages</span></div><div class="sec"><span class="s-t">Table of Contents</span><span class="s-add">+ Add Table of Contents</span></div>
+              <div class="sec"><span class="s-t">Resumes</span><div class="r-row"><i class="r-photo"></i><span class="r-name">Daniel Whitfield<small>Senior Civil Estimator</small></span><span class="r-skill">Estimating · ECI</span><em class="tail">Tailored</em></div><div class="r-row"><i class="r-photo"></i><span class="r-name">Priya Nair<small>Contracts Administrator</small></span><span class="r-skill">Contracts · Procure</span><em class="tail">Tailored</em></div><span class="s-add">+ Add Resumes</span></div>
+              <div class="sec"><span class="s-t">Case Studies</span><div class="r-row"><i class="r-photo sq"></i><span class="r-name">Hillcrest Primary, Stage 1<small>Live school · 2024 · Dept of Education</small></span><span class="r-skill">Case study</span><em class="tail">Tailored</em></div><span class="s-add">+ Add Case Studies</span></div></div></div>
+          </div>
+        </div></div>
+        <span class="rec-tag"><i></i><b class="tb-rec"></b></span></div>
       <div class="win deck"><div class="win-bar"><span></span><span></span><span></span></div>
         <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas></div></div>
       <div class="rail sk mini v4rail" aria-label="Ray, working">
@@ -1398,8 +1492,8 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
     </div>
   </div>
 </section>
-<section class="scene scene-offwhite pair push-calm v5" data-label="Approval" data-dur="5340" id="sApproval" data-wipe="veil"
-         data-beats='[{"step": 6, "action": ["ray-07-08-build-review.mp4", 13.5, 14.6, 1.0], "result": ["ray-07-08-build-review.mp4", 14.6, 15.4, 1.0], "hold": 2.4, "offer": "Ready for your review.", "mode": "review", "strip": "Approval", "work": null, "ticks": null, "prompt": null, "btns": ["Review", "Request Changes", "Approve & Update"], "press": 2, "rec": null}]'>
+<section class="scene scene-offwhite pair push-calm v5" data-label="Approval" data-dur="5640" id="sApproval" data-wipe="veil"
+         data-beats='[{"step": 6, "action": ["", 0, 1.2, 1], "result": ["", 0, 1.0, 1], "hold": 2.4, "offer": "Ready for your review.", "mode": "review", "strip": "Approval", "work": null, "ticks": null, "prompt": null, "btns": ["Review", "Request Changes", "Approve & Update"], "press": 2, "rec": "Recreated UI \u00b7 Responses editor, awaiting approval"}]'>
   <div class="deco" aria-hidden="true">
     <span class="orb orb-teal" style="width:32vw;height:32vw;left:-9vw;top:-10vh"></span>
     <span class="dots" style="width:180px;height:140px;right:6%;bottom:12%"></span>
@@ -1413,8 +1507,20 @@ html.rm .scene *, html.rm .scene { animation-duration: .001ms !important; animat
       </div>
     </div>
     <div class="stage stage-app">
-      <div class="win deck"><div class="win-bar"><span></span><span></span><span></span></div>
-        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas></div></div>
+      <div class="win deck ph-win"><div class="win-bar"><span></span><span></span><span></span><em class="mock">Mockup</em></div>
+        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas><div class="ph app ph-plandoc">
+          <div class="a-side"><svg class="a-logo" viewBox="0 0 32 65"><use href="#clipSym"/></svg><i class="a-ic"></i><i class="a-ic"></i><i class="a-ic"></i><i class="a-ic"></i><i class="a-ic"></i></div>
+          <div class="a-main">
+            <div class="a-bar"><i class="a-home"></i><span class="a-crumb">Responses · Methodology</span><span class="a-ray"><img src="assets/ray-avatar.svg" alt="" />Ray</span><i class="a-av"></i></div>
+            <div class="a-body wide"><div class="pane doc solo"><div class="d-crumb">Responses · Methodology · Section 4.2</div>
+              <div class="d-title">Disruption Management Plan: School Drop-Off and Pick-Up</div><div class="d-sub">Drafted by Ray · matched your library · for your review</div>
+              <i class="ln w100"></i><i class="ln w90"></i><i class="ln w62"></i>
+              <div class="d-h">Mitigation measures</div>
+              <div class="m-row m-head"><span>Window</span><span>Measure</span><span>Owner</span></div><div class="m-row"><span>Drop-off, 8:00 to 9:00</span><span>No deliveries. Traffic controller at Gate B.</span><span>Site manager</span></div><div class="m-row"><span>Pick-up, 2:45 to 3:30</span><span>Plant movements paused. Pedestrian barrier line held.</span><span>Site manager</span></div><div class="m-row"><span>Wet weather</span><span>Covered walkway maintained. Extra controller.</span><span>Foreman</span></div><div class="m-row"><span>Term breaks</span><span>Heavy works scheduled. School advised two weeks prior.</span><span>Project manager</span></div>
+              <div class="d-acts"><b class="btn ghost">Discard</b><b class="btn ghost">Edit</b><b class="btn">Approve</b></div></div></div>
+          </div>
+        </div></div>
+        <span class="rec-tag"><i></i><b class="tb-rec"></b></span></div>
       <div class="win deck"><div class="win-bar"><span></span><span></span><span></span></div>
         <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas></div></div>
       <div class="rail sk mini v4rail" aria-label="Ray, working">
