@@ -2206,12 +2206,14 @@ body.on-light .chrome-label, body.on-light .chrome-brand { color: var(--ink, #0F
         thaw(win); await sleep(reduced ? 0 : 300);
         // the next window's seek rides the result clip, off the boundary's critical path
         var nb = beats[i + 1]; if (nb && nb.action[0]) seekTo(vids[1 - cur], nb.action[0], nb.action[1]).catch(function () {});
-        scene.classList.add('res'); paintWork(rail, b, 'done');
+        var rayFirst = scene.classList.contains('v5');
+        if (rayFirst) { paintWork(rail, b, 'done'); if (b.offer) approve(rail, b, win); await sleep(reduced ? 0 : 700); if (!whileRunning(token)) return; }
+        scene.classList.add('res'); if (!rayFirst) paintWork(rail, b, 'done');
         copies.forEach(function (c) { if (c.dataset.step === String(b.step)) c.classList.add('res'); });
         await run(v, b.result, token);
         if (!whileRunning(token)) return;
         cards.forEach(function (c) { if (c.dataset.step === String(b.step)) c.classList.add('on'); });
-        if (b.offer) approve(rail, b, win);
+        if (b.offer && !rayFirst) approve(rail, b, win);
         await sleep((b.hold || 0.5) * 1000);
       }
       var next = beats[i + 1]; if (!next) break;
