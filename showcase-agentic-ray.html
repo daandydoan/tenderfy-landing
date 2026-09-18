@@ -2184,6 +2184,7 @@ body.on-light .chrome-label, body.on-light .chrome-brand { color: var(--ink, #0F
     var wins = scene.querySelectorAll('.win.deck'), vids = [];
     wins.forEach(function (w) { w.classList.remove('in', 'out', 'parked'); thaw(w); vids.push(w.querySelector('video')); });
     var copies = scene.querySelectorAll('.beatcopy, .beatpoint'), cards = scene.querySelectorAll('.mcard[data-step]');
+    var rayFirst = scene.classList.contains('v5'); // the Ray film: Ray acts, then the document slides in
     var rail = scene.querySelector('.rail');
     var cur = 0;
     for (var i = 0; i < beats.length; i++) {
@@ -2196,7 +2197,7 @@ body.on-light .chrome-label, body.on-light .chrome-brand { color: var(--ink, #0F
       paintWork(rail, b, 'run'); paintSheet(win, b);
       await seekTo(v, b.action[0], b.action[1]); thaw(win);
       if (!whileRunning(token)) return;
-      if (i === 0) { await sleep(40); win.classList.add('in'); await sleep(reduced ? 0 : 120); }
+      if (i === 0) { await sleep(40); if (!rayFirst) win.classList.add('in'); await sleep(reduced ? 0 : 120); }
       await run(v, b.action, token);
       if (!whileRunning(token)) return;
       if (b.result) {
@@ -2206,8 +2207,7 @@ body.on-light .chrome-label, body.on-light .chrome-brand { color: var(--ink, #0F
         thaw(win); await sleep(reduced ? 0 : 300);
         // the next window's seek rides the result clip, off the boundary's critical path
         var nb = beats[i + 1]; if (nb && nb.action[0]) seekTo(vids[1 - cur], nb.action[0], nb.action[1]).catch(function () {});
-        var rayFirst = scene.classList.contains('v5');
-        if (rayFirst) { paintWork(rail, b, 'done'); if (b.offer) approve(rail, b, win); await sleep(reduced ? 0 : 700); if (!whileRunning(token)) return; }
+        if (rayFirst) { paintWork(rail, b, 'done'); if (b.offer) approve(rail, b, win); await sleep(reduced ? 0 : 700); if (!whileRunning(token)) return; win.classList.add('in'); await sleep(reduced ? 0 : 420); if (!whileRunning(token)) return; }
         scene.classList.add('res'); if (!rayFirst) paintWork(rail, b, 'done');
         copies.forEach(function (c) { if (c.dataset.step === String(b.step)) c.classList.add('res'); });
         await run(v, b.result, token);
@@ -2227,7 +2227,7 @@ body.on-light .chrome-label, body.on-light .chrome-brand { color: var(--ink, #0F
         // the words change at the crossing, not at the start
         if (v.videoWidth) freeze(win, v);
         win.classList.remove('in'); win.classList.add('parked');
-        await sleep(reduced ? 0 : 60); nwin.classList.add('in');
+        await sleep(reduced ? 0 : 60); if (!rayFirst) nwin.classList.add('in');
         await sleep(reduced ? 0 : 160);
       } else { win.classList.add('out'); win.classList.remove('in'); }
       // the headline, the rail's offer and the strip change behind the move, not after it

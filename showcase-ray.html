@@ -1503,6 +1503,22 @@ body.on-light .edge { --edge: rgba(255,255,255,.3); }
 /* ===== the Ray panel in the app's light tokens, larger, the chrome down to the logo ===== */
 .brandmark { left: auto; right: var(--pad); }
 .v5 .mock, .v5 .rec-tag { display: none; }
+/* Ray's mark on the hook; the alternate mark, lit from behind, on the end frame */
+.v5hook .hk-ray { position: relative; z-index: 2; width: 56px; margin: 0 auto 4px; display: block; filter: drop-shadow(0 10px 18px rgba(0,0,0,.45)); }
+.v5hook { padding-top: 36px; } .v5hook .hk-big { margin-bottom: 8px; } .v5hook .hk-row { margin-top: 16px; }
+@media (max-height: 840px) { .v5hook { padding-top: 26px; } .v5hook .hk-ray { width: 40px; margin-bottom: 2px; } .v5hook .hk-big { font-size: clamp(40px, 6vw, 84px); margin-bottom: 4px; } .v5hook .hk-row { margin-top: 10px; } }
+.v5endwrap .end-ray { position: relative; display: grid; place-items: center; isolation: isolate; margin-bottom: 12px; }
+.v5endwrap .end-ray .open-ray-img { width: 118px; margin: 0; }
+.v5endwrap .end-shine { position: absolute; width: 300px; height: 300px; border-radius: 50%; z-index: -1; background: radial-gradient(circle, rgba(111,208,173,.6) 0%, rgba(111,208,173,.22) 32%, rgba(242,196,109,.1) 52%, transparent 70%); filter: blur(12px); animation: shinePulse 4.5s ease-in-out infinite alternate; }
+.v5endwrap .end-shine::after { content: ''; position: absolute; inset: 27%; border-radius: 50%; border: 1px solid rgba(255,255,255,.22); box-shadow: 0 0 40px rgba(111,208,173,.35); }
+@keyframes shinePulse { from { transform: scale(.9); opacity: .7; } to { transform: scale(1.08); opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .v5endwrap .end-shine { animation: none; } }
+/* alone, the panel holds the middle; it glides right as the document rises beside it */
+.v5 .stage-app .rail.mini.raypanel { transition: right .65s cubic-bezier(.2,.8,.2,1), transform .65s cubic-bezier(.2,.8,.2,1), opacity .4s ease; }
+.v5 .stage-app:not(:has(.win.deck.in, .win.deck.parked)) .rail.mini.raypanel { right: 50%; transform: translateX(50%); }
+@media (max-width: 940px) { .v5 .stage-app:not(:has(.win.deck.in, .win.deck.parked)) .rail.mini.raypanel { right: 50%; transform: translateX(50%); } }
+/* the document's slide: a longer rise than the swap's */
+.v5.push-calm .stage-app .win.deck { transition-duration: .65s; } .v5.push-calm .stage-app .win.deck:not(.in):not(.parked) { transform: translateY(calc(-50% + 60px)); }
 /* the player: small and quiet, one row at the bottom right */
 .chrome-bot { display: flex; justify-content: flex-end; align-items: center; gap: 14px; opacity: .55; transition: opacity .25s ease; }
 .chrome-bot:hover { opacity: 1; }
@@ -1514,6 +1530,7 @@ body.on-light .edge { --edge: rgba(255,255,255,.3); }
 /* the page is there from the start; its content answers Ray */
 .v5 .ph.bare.doc .pane > *, .v5 .ph.bare.doc .fgrid > * { opacity: 0; transform: translateY(5px); transition: opacity .4s ease, transform .5s cubic-bezier(.2,.7,.2,1); }
 .v5.res .ph.bare.doc .pane > *, .v5.res .ph.bare.doc .fgrid > * { opacity: 1; transform: none; }
+.v5 .win.deck.parked .ph.bare.doc .pane > *, .v5 .win.deck.parked .fgrid > * { opacity: 1; transform: none; transition: none; } /* the parked page keeps what Ray wrote */
 .v5 .ph-plan .t-row:not(.t-head) { animation: none; transform: translateY(5px); } .v5.res .ph-plan .t-row:not(.t-head) { transform: none; }
 .v5 .ph.bare.doc .pane > :nth-child(1), .v5 .ph.bare.doc .fgrid > :nth-child(1) { transition-delay: 0.07s; } .v5 .ph.bare.doc .pane > :nth-child(2), .v5 .ph.bare.doc .fgrid > :nth-child(2) { transition-delay: 0.14s; } .v5 .ph.bare.doc .pane > :nth-child(3), .v5 .ph.bare.doc .fgrid > :nth-child(3) { transition-delay: 0.21s; } .v5 .ph.bare.doc .pane > :nth-child(4), .v5 .ph.bare.doc .fgrid > :nth-child(4) { transition-delay: 0.28s; } .v5 .ph.bare.doc .pane > :nth-child(5), .v5 .ph.bare.doc .fgrid > :nth-child(5) { transition-delay: 0.35s; } .v5 .ph.bare.doc .pane > :nth-child(6), .v5 .ph.bare.doc .fgrid > :nth-child(6) { transition-delay: 0.42s; } .v5 .ph.bare.doc .pane > :nth-child(7), .v5 .ph.bare.doc .fgrid > :nth-child(7) { transition-delay: 0.49s; } .v5 .ph.bare.doc .pane > :nth-child(8), .v5 .ph.bare.doc .fgrid > :nth-child(8) { transition-delay: 0.56s; } .v5 .ph.bare.doc .pane > :nth-child(9), .v5 .ph.bare.doc .fgrid > :nth-child(9) { transition-delay: 0.63s; } .v5 .ph.bare.doc .pane > :nth-child(10), .v5 .ph.bare.doc .fgrid > :nth-child(10) { transition-delay: 0.70s; } .v5 .ph.bare.doc .pane > :nth-child(11), .v5 .ph.bare.doc .fgrid > :nth-child(11) { transition-delay: 0.77s; } .v5 .ph.bare.doc .pane > :nth-child(12), .v5 .ph.bare.doc .fgrid > :nth-child(12) { transition-delay: 0.84s; } .v5 .ph.bare.doc .pane > :nth-child(13), .v5 .ph.bare.doc .fgrid > :nth-child(13) { transition-delay: 0.91s; } .v5 .ph.bare.doc .pane > :nth-child(14), .v5 .ph.bare.doc .fgrid > :nth-child(14) { transition-delay: 0.98s; } .v5 .ph.bare.doc .pane > :nth-child(15), .v5 .ph.bare.doc .fgrid > :nth-child(15) { transition-delay: 1.05s; } .v5 .ph.bare.doc .pane > :nth-child(16), .v5 .ph.bare.doc .fgrid > :nth-child(16) { transition-delay: 1.12s; } .v5 .ph.bare.doc .pane > :nth-child(17), .v5 .ph.bare.doc .fgrid > :nth-child(17) { transition-delay: 1.19s; } .v5 .ph.bare.doc .pane > :nth-child(18), .v5 .ph.bare.doc .fgrid > :nth-child(18) { transition-delay: 1.26s; } .v5 .ph.bare.doc .pane > :nth-child(19), .v5 .ph.bare.doc .fgrid > :nth-child(19) { transition-delay: 1.33s; } .v5 .ph.bare.doc .pane > :nth-child(20), .v5 .ph.bare.doc .fgrid > :nth-child(20) { transition-delay: 1.40s; } .v5 .ph.bare.doc .pane > :nth-child(21), .v5 .ph.bare.doc .fgrid > :nth-child(21) { transition-delay: 1.47s; } .v5 .ph.bare.doc .pane > :nth-child(22), .v5 .ph.bare.doc .fgrid > :nth-child(22) { transition-delay: 1.54s; } .v5 .ph.bare.doc .pane > :nth-child(23), .v5 .ph.bare.doc .fgrid > :nth-child(23) { transition-delay: 1.61s; } .v5 .ph.bare.doc .pane > :nth-child(24), .v5 .ph.bare.doc .fgrid > :nth-child(24) { transition-delay: 1.68s; } 
 .v5.res .t-own { transition-delay: calc(var(--i) * .12s + .45s); }
@@ -1619,6 +1636,7 @@ body.on-light .edge { --edge: rgba(255,255,255,.3); }
 <section class="scene scene-dark v5 v5hook" data-label="Agentic Ray" data-dur="6800" id="sHook" data-wipe="dissolve">
   <i class="hk-glow" aria-hidden="true"></i><i class="streak s1"></i><i class="streak s2"></i>
   <div class="amb" aria-hidden="true"><span class="frag f-doc" style="left:4%;top:16%;--r:-6deg;--d:.2s"><b class="fh"></b><i class="ln w90"></i><i class="ln w70"></i><i class="ln w80"></i><i class="ln w50"></i></span><span class="frag f-check" style="right:5%;top:20%;--r:5deg;--d:.5s"><span class="fr"><i class="dot"></i><i class="ln"></i><em class="tk"></em></span><span class="fr"><i class="dot"></i><i class="ln"></i><em class="tk"></em></span><span class="fr"><i class="dot"></i><i class="ln"></i><em class="tk"></em></span></span><span class="frag f-chip" style="left:7%;top:60%;--r:-3deg;--d:.9s"><code>list_documents</code></span><span class="frag f-score" style="right:4%;top:58%;--r:4deg;--d:.7s"><span class="fr"><i class="ln"></i><em class="pill g"></em></span><span class="fr"><i class="ln"></i><em class="pill a"></em></span><span class="fr"><i class="ln"></i><em class="pill r"></em></span><span class="fr"><i class="ln"></i><em class="pill a"></em></span></span><span class="frag f-ring" style="left:-4%;bottom:4%;--d:.3s"></span><span class="frag f-file" style="right:10%;bottom:14%;--r:-4deg;--d:1.1s"><b class="thumb"><i class="ln w80"></i><i class="ln w60"></i><i class="ln w70"></i></b><i class="ln w70"></i></span></div>
+  <img class="hk-ray fx" style="--d:.05s" src="assets/ray-avatar.svg" alt="" />
   <h1 class="big hk-big"><span class="w"><i class="ch" style="--i:0">A</i><i class="ch" style="--i:1">g</i><i class="ch" style="--i:2">e</i><i class="ch" style="--i:3">n</i><i class="ch" style="--i:4">t</i><i class="ch" style="--i:5">i</i><i class="ch" style="--i:6">c</i></span> <span class="w"><i class="ch" style="--i:7">R</i><i class="ch" style="--i:8">a</i><i class="ch" style="--i:9">y</i><i class="ch" style="--i:10">.</i></span></h1>
   <div class="hk-panel fx" style="--d:.6s" aria-hidden="true">      <div class="rail sk mini v4rail raypanel opening" aria-label="Ray">
         <div class="rp-head"><i class="rp-back"></i><span class="rp-title">Northside School Upgrade</span><em class="rp-beta">Beta</em><i class="rp-dots"></i></div>
@@ -1950,7 +1968,7 @@ body.on-light .edge { --edge: rgba(255,255,255,.3); }
 <section class="scene scene-end end-dark v5 v5end" data-label="Agentic Ray" data-dur="5600" id="sEnd" data-wipe="dissolve">
   <div class="amb" aria-hidden="true"><span class="frag f-doc" style="left:5%;top:18%;--r:-6deg;--d:.4s"><b class="fh"></b><i class="ln w90"></i><i class="ln w70"></i><i class="ln w80"></i><i class="ln w50"></i></span><span class="frag f-check" style="left:8%;bottom:20%;--r:4deg;--d:.9s"><span class="fr"><i class="dot"></i><i class="ln"></i><em class="tk"></em></span><span class="fr"><i class="dot"></i><i class="ln"></i><em class="tk"></em></span><span class="fr"><i class="dot"></i><i class="ln"></i><em class="tk"></em></span></span><span class="frag f-score" style="right:5%;top:20%;--r:5deg;--d:.6s"><span class="fr"><i class="ln"></i><em class="pill g"></em></span><span class="fr"><i class="ln"></i><em class="pill a"></em></span><span class="fr"><i class="ln"></i><em class="pill r"></em></span><span class="fr"><i class="ln"></i><em class="pill a"></em></span></span><span class="frag f-pack" style="right:8%;bottom:22%;--r:-4deg;--d:1.1s"><span class="fr"><em class="tk on"></em><i class="ln"></i></span><span class="fr"><em class="tk on"></em><i class="ln"></i></span><span class="fr"><em class="tk on"></em><i class="ln"></i></span><span class="fr"><em class="tk on"></em><i class="ln"></i></span></span><span class="frag f-ring" style="left:-6%;bottom:-6%;--d:.3s"></span><span class="frag f-ring" style="right:-8%;top:-8%;--d:.5s"></span></div>
   <div class="v5endwrap">
-    <img class="open-ray-img fx" style="--d:.1s" src="assets/ray-avatar.svg" alt="" />
+    <span class="end-ray fx" style="--d:.1s"><i class="end-shine" aria-hidden="true"></i><img class="open-ray-img" src="assets/ray-alt.svg" alt="" /></span>
     <h1 class="big v5big"><span class="w"><i class="ch" style="--i:0">A</i><i class="ch" style="--i:1">g</i><i class="ch" style="--i:2">e</i><i class="ch" style="--i:3">n</i><i class="ch" style="--i:4">t</i><i class="ch" style="--i:5">i</i><i class="ch" style="--i:6">c</i></span> <span class="w"><i class="ch" style="--i:7">R</i><i class="ch" style="--i:8">a</i><i class="ch" style="--i:9">y</i><i class="ch" style="--i:10">.</i></span></h1>
     <p class="v5line"><span class="w"><i class="ch" style="--i:12">Y</i><i class="ch" style="--i:13">o</i><i class="ch" style="--i:14">u</i><i class="ch" style="--i:15">r</i></span> <span class="w"><i class="ch" style="--i:16">a</i><i class="ch" style="--i:17">g</i><i class="ch" style="--i:18">e</i><i class="ch" style="--i:19">n</i><i class="ch" style="--i:20">t</i><i class="ch" style="--i:21">i</i><i class="ch" style="--i:22">c</i></span> <span class="w"><i class="ch" style="--i:23">t</i><i class="ch" style="--i:24">e</i><i class="ch" style="--i:25">n</i><i class="ch" style="--i:26">d</i><i class="ch" style="--i:27">e</i><i class="ch" style="--i:28">r</i></span> <span class="w"><i class="ch" style="--i:29">c</i><i class="ch" style="--i:30">o</i><i class="ch" style="--i:31">-</i><i class="ch" style="--i:32">w</i><i class="ch" style="--i:33">o</i><i class="ch" style="--i:34">r</i><i class="ch" style="--i:35">k</i><i class="ch" style="--i:36">e</i><i class="ch" style="--i:37">r</i><i class="ch" style="--i:38">.</i></span></p>
     <p class="v5moves fx" style="--d:1.2s"><span>Understand.</span><span>Plan.</span><span>Create.</span><span>Deliver.</span></p>
@@ -2639,6 +2657,7 @@ body.on-light .edge { --edge: rgba(255,255,255,.3); }
     var wins = scene.querySelectorAll('.win.deck'), vids = [];
     wins.forEach(function (w) { w.classList.remove('in', 'out', 'parked'); thaw(w); vids.push(w.querySelector('video')); });
     var copies = scene.querySelectorAll('.beatcopy, .beatpoint'), cards = scene.querySelectorAll('.mcard[data-step]');
+    var rayFirst = scene.classList.contains('v5'); // the Ray film: Ray acts, then the document slides in
     var rail = scene.querySelector('.rail');
     var cur = 0;
     for (var i = 0; i < beats.length; i++) {
@@ -2651,7 +2670,7 @@ body.on-light .edge { --edge: rgba(255,255,255,.3); }
       paintWork(rail, b, 'run'); paintSheet(win, b);
       await seekTo(v, b.action[0], b.action[1]); thaw(win);
       if (!whileRunning(token)) return;
-      if (i === 0) { await sleep(40); win.classList.add('in'); await sleep(reduced ? 0 : 120); }
+      if (i === 0) { await sleep(40); if (!rayFirst) win.classList.add('in'); await sleep(reduced ? 0 : 120); }
       await run(v, b.action, token);
       if (!whileRunning(token)) return;
       if (b.result) {
@@ -2661,8 +2680,7 @@ body.on-light .edge { --edge: rgba(255,255,255,.3); }
         thaw(win); await sleep(reduced ? 0 : 300);
         // the next window's seek rides the result clip, off the boundary's critical path
         var nb = beats[i + 1]; if (nb && nb.action[0]) seekTo(vids[1 - cur], nb.action[0], nb.action[1]).catch(function () {});
-        var rayFirst = scene.classList.contains('v5');
-        if (rayFirst) { paintWork(rail, b, 'done'); if (b.offer) approve(rail, b, win); await sleep(reduced ? 0 : 700); if (!whileRunning(token)) return; }
+        if (rayFirst) { paintWork(rail, b, 'done'); if (b.offer) approve(rail, b, win); await sleep(reduced ? 0 : 700); if (!whileRunning(token)) return; win.classList.add('in'); await sleep(reduced ? 0 : 420); if (!whileRunning(token)) return; }
         scene.classList.add('res'); if (!rayFirst) paintWork(rail, b, 'done');
         copies.forEach(function (c) { if (c.dataset.step === String(b.step)) c.classList.add('res'); });
         await run(v, b.result, token);
@@ -2682,7 +2700,7 @@ body.on-light .edge { --edge: rgba(255,255,255,.3); }
         // the words change at the crossing, not at the start
         if (v.videoWidth) freeze(win, v);
         win.classList.remove('in'); win.classList.add('parked');
-        await sleep(reduced ? 0 : 60); nwin.classList.add('in');
+        await sleep(reduced ? 0 : 60); if (!rayFirst) nwin.classList.add('in');
         await sleep(reduced ? 0 : 160);
       } else { win.classList.add('out'); win.classList.remove('in'); }
       // the headline, the rail's offer and the strip change behind the move, not after it
