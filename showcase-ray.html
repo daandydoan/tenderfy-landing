@@ -1308,6 +1308,43 @@ body.on-light .edge { --edge: rgba(255,255,255,.3); }
 .v5 .ph.bare.doc.ph-download { justify-content: flex-start; }
 .v5 .pack .c-row { transition-delay: calc(var(--i) * .08s); } .v5 .pack .c-row i { transition: all .3s ease calc(var(--i) * .08s); }
 .v5 .ph.bare.doc > .pane.pack { flex: 0 0 auto; margin-top: .4em; }
+/* ===== ambient: skeleton screens drifting in the gutters ===== */
+.amb { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.frag { position: absolute; display: block; width: 8.6vw; max-width: 132px; min-width: 96px; padding: .55em .6em; border-radius: 8px; background: rgba(255,255,255,.72); border: 1px solid rgba(15,26,23,.08); box-shadow: 0 18px 40px -24px rgba(15,26,23,.35); font-size: 10px; opacity: 0; transform: rotate(var(--r, 0deg)) translateY(14px); transition: opacity 1.1s ease var(--d, 0s), transform 1.1s cubic-bezier(.2,.8,.2,1) var(--d, 0s); }
+.active .frag { opacity: var(--o, .75); transform: rotate(var(--r, 0deg)); animation: fragFloat var(--t, 12s) ease-in-out var(--d, 0s) infinite alternate; }
+@keyframes fragFloat { from { translate: 0 0; } to { translate: 0 -9px; } }
+.frag .ln { display: block; height: .45em; border-radius: .25em; background: rgba(15,26,23,.13); margin: .3em 0; }
+.frag .fh { display: block; height: .7em; width: 55%; border-radius: .3em; background: rgba(56,152,138,.55); margin-bottom: .45em; }
+.frag .fr { display: flex; align-items: center; gap: .4em; padding: .2em 0; } .frag .fr .ln { flex: 1; margin: 0; }
+.frag .dot { width: .55em; height: .55em; border-radius: 50%; background: #E24B3F; flex: none; }
+.frag .tk { width: .8em; height: .8em; border-radius: 50%; border: .12em solid rgba(15,26,23,.2); flex: none; position: relative; }
+.frag .tk.on { border-color: #38988A; background: #38988A; } .frag .tk.on::after { content: ''; position: absolute; left: .22em; top: .06em; width: .2em; height: .38em; border-right: .11em solid #fff; border-bottom: .11em solid #fff; transform: rotate(45deg); }
+.frag .pill { width: 1.6em; height: .6em; border-radius: 999px; flex: none; } .frag .pill.g { background: #2E9E6B; } .frag .pill.a { background: #E8A33A; } .frag .pill.r { background: #C6483B; }
+.f-people { display: flex; gap: .3em; align-items: center; padding: .55em .7em; }
+.frag .av { width: 1.7em; height: 1.7em; border-radius: 50%; border: .15em solid rgba(255,255,255,.9); background: #B7C3BF; margin-left: -.5em; } .frag .av:first-child { margin-left: 0; }
+.frag .av.a1 { background: #6FA5A0; } .frag .av.a2 { background: #E8A33A; } .frag .av.a3 { background: #3B4C49; } .frag .av.a4 { background: #8FBF9F; }
+.f-table { display: grid; grid-template-columns: repeat(3, 1fr); gap: .3em; }
+.frag .cell { height: .55em; border-radius: .2em; background: rgba(15,26,23,.1); } .frag .cell.h { background: rgba(56,152,138,.5); }
+.f-file { padding: .5em; } .frag .thumb { display: block; background: rgba(15,26,23,.04); border: 1px solid rgba(15,26,23,.08); border-radius: .3em; padding: .5em .45em; margin-bottom: .35em; }
+.f-stamp { position: absolute; } .frag .seal { position: absolute; right: .5em; bottom: .4em; width: 2.2em; height: 2.2em; border-radius: 50%; border: .18em solid #0F7355; opacity: .8; transform: rotate(-14deg); }
+.frag .seal::after { content: ''; position: absolute; left: .55em; top: .35em; width: .45em; height: .85em; border-right: .2em solid #0F7355; border-bottom: .2em solid #0F7355; transform: rotate(45deg); }
+.f-chip { width: auto; min-width: 0; max-width: none; padding: .45em .75em; border-radius: 999px; background: #1F2B28; border-color: rgba(255,255,255,.1); --o: .8; }
+.f-chip code { font-family: ui-monospace, Menlo, monospace; font-size: 9.5px; color: #C9D4D0; white-space: nowrap; }
+.f-chip::before { content: ''; display: inline-block; width: .6em; height: .6em; border-radius: 50%; background: #6FD0AD; margin-right: .5em; vertical-align: middle; }
+.f-ring { width: 22vw; max-width: 340px; min-width: 200px; aspect-ratio: 1; padding: 0; border-radius: 50%; background: transparent; box-shadow: none; border: 1px solid rgba(56,152,138,.22); --o: 1; }
+.f-ring::after { content: ''; position: absolute; inset: 14%; border-radius: 50%; border: 1px dashed rgba(56,152,138,.18); }
+.active .f-ring { animation: ringTurn 60s linear infinite; }
+@keyframes ringTurn { to { rotate: 360deg; } }
+.scene-dark .frag, .scene-deep .frag, .end-dark .frag { background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.12); box-shadow: none; --o: .55; }
+.scene-dark .frag .ln, .scene-deep .frag .ln, .end-dark .frag .ln, .scene-dark .frag .cell, .scene-deep .frag .cell, .end-dark .frag .cell { background: rgba(255,255,255,.18); }
+.scene-dark .frag .thumb, .scene-deep .frag .thumb, .end-dark .frag .thumb { background: rgba(255,255,255,.04); border-color: rgba(255,255,255,.1); }
+.scene-dark .frag .tk, .scene-deep .frag .tk, .end-dark .frag .tk { border-color: rgba(255,255,255,.3); }
+.scene-dark .frag .av, .scene-deep .frag .av, .end-dark .frag .av { border-color: #26302E; }
+.scene-dark .f-ring, .scene-deep .f-ring, .end-dark .f-ring { background: transparent; border-color: rgba(111,208,173,.2); } .scene-dark .f-ring::after, .scene-deep .f-ring::after, .end-dark .f-ring::after { border-color: rgba(111,208,173,.14); }
+.scene.v5 { isolation: isolate; } .amb { z-index: -1; }
+@media (max-width: 1180px) { .frag:not(.f-ring) { display: none; } }
+@media (max-width: 940px) { .amb { display: none; } }
+@media (prefers-reduced-motion: reduce) { .frag, .f-ring { animation: none !important; } }
 /* stacked: the canvas full width, the caption above or below it */
 .scene.v5.pair .split, .scene.v5.pair .split.split-vid { grid-template-columns: 1fr; width: min(1180px, 100%); gap: clamp(10px, 1.8vh, 20px); text-align: center; }
 .scene.v5.pair.above .beatcol { order: 2; }
@@ -1320,9 +1357,37 @@ body.on-light .edge { --edge: rgba(255,255,255,.3); }
 /* beside the panel the document stops where the panel starts, so its right-hand column stays readable */
 @media (min-width: 941px) { .v5.with-panel .stage-app .win.deck { width: 66%; left: 0; } }
 .v5 .ph.bare.doc { min-height: 40vh; max-height: 50vh; }
+/* the documentation grid */
+.v5 .ph.bare.doc .pane.grid { display: flex; flex-direction: column; gap: .6em; background: #F2F5F4; padding: 0 0 .7em; }
+.v5 .pane.grid .p-head { border-radius: .5em .5em 0 0; }
+.fgrid { display: grid; grid-template-columns: repeat(6, 1fr); gap: .7em; padding: .2em .9em 0; }
+.fcard { position: relative; background: #fff; border: 1px solid #DCE5E1; border-radius: .5em; padding: .5em .5em .55em; display: flex; flex-direction: column; gap: .3em; transition: border-color .3s ease, box-shadow .3s ease; }
+.fcard .thumb { display: block; background: #F7FAF9; border: 1px solid #E6ECEA; border-radius: .3em; padding: .45em .4em; aspect-ratio: 3/3.6; }
+.fcard .thumb .ln { height: .35em; margin: .22em 0; background: #DCE5E1; }
+.fcard > .ln { margin: .1em 0 0; height: .5em; }
+.fcard .rd { position: absolute; top: .35em; right: .35em; width: 1em; height: 1em; border-radius: 50%; background: #38988A; opacity: 0; transform: scale(.4); transition: all .3s cubic-bezier(.2,1.5,.3,1); transition-delay: calc(var(--i) * .22s); }
+.fcard .rd::after { content: ''; position: absolute; left: .3em; top: .16em; width: .25em; height: .45em; border-right: .13em solid #fff; border-bottom: .13em solid #fff; transform: rotate(45deg); }
+.res .fcard { border-color: #38988A; box-shadow: 0 0 0 .15em rgba(56,152,138,.18); transition-delay: calc(var(--i) * .22s); }
+.res .fcard .rd { opacity: 1; transform: none; }
+.v5 .pane.grid .qa { margin: 0 .9em; }
+/* build and review: the pack filling in, the approvals card flagging */
+.v5 .ph.bare.doc.ph-compliance > .b-top { margin-bottom: 0; }
+.two { display: grid; grid-template-columns: 1.15fr 1fr; gap: 1em; margin: .6em 1.4em 1em; }
+.v5 .ph-compliance .pane.pack { padding: .4em .3em; background: #F7FAF9; }
+.v5 .ph-compliance .c-row em.ln { width: 30%; height: .45em; margin-left: auto; opacity: .7; }
+.v5 .ph-compliance .c-row i { transition-delay: calc(var(--i) * .18s); }
+.v5 .ph-compliance .c-row i::after { content: ''; position: absolute; left: .32em; top: .12em; width: .25em; height: .5em; border-right: .14em solid #fff; border-bottom: .14em solid #fff; transform: rotate(45deg) scale(0); transition: transform .25s ease; transition-delay: calc(var(--i) * .18s + .1s); }
+.in .ph-compliance .c-row i { border-color: #38988A; background: #38988A; } .in .ph-compliance .c-row i::after { transform: rotate(45deg) scale(1); }
+.pane.comp { padding: .8em 1em; gap: .3em; border: 1px solid #E6ECEA; box-shadow: none; }
+.pane.comp .k { font-size: .82em; font-weight: 600; color: #4A4038; margin-top: .5em; } .pane.comp .k:first-child { margin-top: 0; }
+.pane.comp > .ln { margin: .15em 0 .3em; }
+.flag { display: flex; align-items: center; gap: .6em; padding: .3em .4em; border-radius: .35em; opacity: .35; transition: all .35s ease; transition-delay: calc(var(--i) * .2s); }
+.flag i { width: .9em; height: .9em; border-radius: 50%; border: .13em solid #D7DEDB; flex: none; }
+.flag .ln { flex: 1; margin: 0; height: .5em; }
+.res .flag { opacity: 1; background: rgba(232,163,58,.12); } .res .flag i { border-color: #E8A33A; background: rgba(232,163,58,.35); }
 /* a document taller than its window fades out at the foot instead of cutting a line in half */
 .v5 .ph.bare.doc .ln { flex-shrink: 0; }
-.v5 .ph.bare.doc.ph-plandoc::after, .v5 .ph.bare.doc.ph-gonogo::after { display: none; } /* these two fit; their last line is the point */
+.v5 .ph.bare.doc.ph-plandoc::after, .v5 .ph.bare.doc.ph-gonogo::after, .v5 .ph.bare.doc.ph-docs::after, .v5 .ph.bare.doc.ph-compliance::after, .v5 .ph.bare.doc.ph-plan::after { display: none; } /* these two fit; their last line is the point */
 .v5 .ph .ln.w96 { width: 96%; } .v5 .ph .ln.w88 { width: 88%; } .v5 .ph .ln.w72 { width: 72%; } .v5 .ph .ln.w60 { width: 60%; } .v5 .ph .ln.w50 { width: 50%; } .v5 .ph .ln.w40 { width: 40%; } .v5 .ph .ln.w30 { width: 30%; }
 .v5 .ph.bare.doc.ph-plandoc .pane.doc { text-align: left; } .v5 .ph-plandoc .pane.doc > .ln { margin: .15em 0; }
 .v5 .ph.bare.doc::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 3em; background: linear-gradient(to bottom, rgba(255,255,255,0), #fff 85%); pointer-events: none; z-index: 1; }
@@ -1487,6 +1552,7 @@ body.on-light .edge { --edge: rgba(255,255,255,.3); }
 
 <section class="scene scene-dark v5 v5hook" data-label="Agentic Ray" data-dur="6800" id="sHook" data-wipe="dissolve">
   <i class="hk-glow" aria-hidden="true"></i><i class="streak s1"></i><i class="streak s2"></i>
+  <div class="amb" aria-hidden="true"><span class="frag f-doc" style="left:4%;top:16%;--r:-6deg;--d:.2s"><b class="fh"></b><i class="ln w90"></i><i class="ln w70"></i><i class="ln w80"></i><i class="ln w50"></i></span><span class="frag f-check" style="right:5%;top:20%;--r:5deg;--d:.5s"><span class="fr"><i class="dot"></i><i class="ln"></i><em class="tk"></em></span><span class="fr"><i class="dot"></i><i class="ln"></i><em class="tk"></em></span><span class="fr"><i class="dot"></i><i class="ln"></i><em class="tk"></em></span></span><span class="frag f-chip" style="left:7%;top:60%;--r:-3deg;--d:.9s"><code>list_documents</code></span><span class="frag f-score" style="right:4%;top:58%;--r:4deg;--d:.7s"><span class="fr"><i class="ln"></i><em class="pill g"></em></span><span class="fr"><i class="ln"></i><em class="pill a"></em></span><span class="fr"><i class="ln"></i><em class="pill r"></em></span><span class="fr"><i class="ln"></i><em class="pill a"></em></span></span><span class="frag f-ring" style="left:-4%;bottom:4%;--d:.3s"></span><span class="frag f-file" style="right:10%;bottom:14%;--r:-4deg;--d:1.1s"><b class="thumb"><i class="ln w80"></i><i class="ln w60"></i><i class="ln w70"></i></b><i class="ln w70"></i></span></div>
   <h1 class="big hk-big"><span class="w"><i class="ch" style="--i:0">A</i><i class="ch" style="--i:1">g</i><i class="ch" style="--i:2">e</i><i class="ch" style="--i:3">n</i><i class="ch" style="--i:4">t</i><i class="ch" style="--i:5">i</i><i class="ch" style="--i:6">c</i></span> <span class="w"><i class="ch" style="--i:7">R</i><i class="ch" style="--i:8">a</i><i class="ch" style="--i:9">y</i><i class="ch" style="--i:10">.</i></span></h1>
   <div class="hk-panel fx" style="--d:.6s" aria-hidden="true">      <div class="rail sk mini v4rail raypanel opening" aria-label="Ray">
         <div class="rp-head"><i class="rp-back"></i><span class="rp-title">Northside School Upgrade</span><em class="rp-beta">Beta</em><i class="rp-dots"></i></div>
@@ -1509,6 +1575,7 @@ body.on-light .edge { --edge: rgba(255,255,255,.3); }
     <span class="dots" style="width:190px;height:150px;left:4%;top:12%"></span>
     <span class="bit bit-mint" style="left:9%;bottom:22%;--bd:7.5s"></span>
   </div>
+  <div class="amb" aria-hidden="true"><span class="frag f-file" style="left:3%;top:16%;--r:-5deg;--d:.2s"><b class="thumb"><i class="ln w80"></i><i class="ln w60"></i><i class="ln w70"></i></b><i class="ln w70"></i></span><span class="frag f-file" style="left:8%;top:38%;--r:3deg;--d:.6s"><b class="thumb"><i class="ln w80"></i><i class="ln w60"></i><i class="ln w70"></i></b><i class="ln w70"></i></span><span class="frag f-chip" style="left:4%;top:64%;--r:-2deg;--d:1s"><code>read_pages</code></span><span class="frag f-score" style="right:3%;top:22%;--r:5deg;--d:.4s"><span class="fr"><i class="ln"></i><em class="pill g"></em></span><span class="fr"><i class="ln"></i><em class="pill a"></em></span><span class="fr"><i class="ln"></i><em class="pill r"></em></span><span class="fr"><i class="ln"></i><em class="pill a"></em></span></span><span class="frag f-ring" style="right:-6%;top:50%;--d:.3s"></span><span class="frag f-doc" style="right:6%;bottom:16%;--r:-4deg;--d:.8s"><b class="fh"></b><i class="ln w90"></i><i class="ln w70"></i><i class="ln w80"></i><i class="ln w50"></i></span></div>
   <div class="split split-vid">
     <div class="beatcol">
       <div class="beatcopy" data-step="1">
@@ -1544,13 +1611,14 @@ body.on-light .edge { --edge: rgba(255,255,255,.3); }
     </div>
   </div>
 </section>
-<section class="scene scene-offwhite pair push-calm v5 below" data-label="Plan" data-dur="10773" id="sPlan" data-wipe="dissolve"
-         data-beats='[{"step": 2, "action": ["ray-02-plan.mp4", 0.0, 3.2, 1.5], "result": ["ray-02-plan.mp4", 40.0, 46.4, 1.0], "hold": 1.2, "offer": "", "mode": "status", "strip": "", "work": null, "ticks": ["Tender Delivery Plan Created", "Tasks Identified", "Responsibilities Assigned", "Deadlines Mapped"], "trace": null, "start": null, "ask": null, "next": null, "prompt": null, "btns": null, "press": 0, "rec": null}]'>
+<section class="scene scene-offwhite pair push-calm v5 below" data-label="Plan" data-dur="8240" id="sPlan" data-wipe="dissolve"
+         data-beats='[{"step": 2, "action": ["", 0, 3.4, 1], "result": ["", 0, 2.6, 1], "hold": 1.2, "offer": "", "mode": "status", "strip": "", "work": null, "ticks": ["Tender Delivery Plan Created", "Tasks Identified", "Responsibilities Assigned", "Deadlines Mapped"], "trace": null, "start": null, "ask": null, "next": null, "prompt": null, "btns": null, "press": 0, "rec": "Recreated \u00b7 the Checklist; owners land on the result"}]'>
   <div class="deco" aria-hidden="true">
     <span class="orb orb-teal" style="width:34vw;height:34vw;right:-9vw;top:-12vh"></span>
     <span class="dots" style="width:190px;height:150px;left:4%;top:12%"></span>
     <span class="bit bit-mint" style="left:9%;bottom:22%;--bd:7.5s"></span>
   </div>
+  <div class="amb" aria-hidden="true"><span class="frag f-check" style="left:3%;top:18%;--r:-4deg;--d:.2s"><span class="fr"><i class="dot"></i><i class="ln"></i><em class="tk"></em></span><span class="fr"><i class="dot"></i><i class="ln"></i><em class="tk"></em></span><span class="fr"><i class="dot"></i><i class="ln"></i><em class="tk"></em></span></span><span class="frag f-people" style="left:6%;top:48%;--r:3deg;--d:.7s"><span class="av a1"></span><span class="av a2"></span><span class="av a3"></span><span class="av a4"></span></span><span class="frag f-chip" style="left:3%;top:66%;--r:-2deg;--d:1s"><code>plan_document_review</code></span><span class="frag f-table" style="right:4%;top:20%;--r:5deg;--d:.4s"><span class="cell h"></span><span class="cell h"></span><span class="cell h"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span></span><span class="frag f-ring" style="right:-5%;bottom:0;--d:.3s"></span><span class="frag f-doc" style="right:7%;top:52%;--r:-5deg;--d:.8s"><b class="fh"></b><i class="ln w90"></i><i class="ln w70"></i><i class="ln w80"></i><i class="ln w50"></i></span></div>
   <div class="split split-vid">
     <div class="beatcol">
       <div class="beatcopy" data-step="2">
@@ -1559,21 +1627,25 @@ body.on-light .edge { --edge: rgba(255,255,255,.3); }
       </div>
     </div>
     <div class="stage stage-app">
-      <div class="win deck"><div class="win-bar"><span></span><span></span><span></span></div>
-        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas></div></div>
+      <div class="win deck ph-win"><div class="win-bar"><span></span><span></span><span></span><em class="mock">Mockup</em></div>
+        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas><div class="ph bare doc ph-plan"><em class="mock">Mockup</em><div class="doc-head"><svg class="doc-logo" viewBox="0 0 32 65"><use href="#clipSym"/></svg><div><b>Tender Delivery Plan</b></div></div><div class="pane check"><div class="p-head dark"><span>Checklist</span><b class="btn">Add Task</b></div>
+              <div class="tabs"><span class="on">My Tasks</span><span>Assigned Tasks</span><span>Completed Tasks</span><em>Priority</em></div>
+              <div class="t-row t-head"><span></span><span>TASK</span><span>DUE DATE ↓</span><span>OWNER</span><span>ACTIONS</span></div><div class="t-row" style="--i:0"><i class="dot"></i><span class="t-name">Conduct final buyer-feedback com…<small>Before lodgement, confirm every relevant…</small></span><span class="t-due"><i class="ln w80"></i></span><span class="t-own">DD</span><span class="t-act"><i class="ed"></i><i class="ok"></i><i class="del"></i></span></div><div class="t-row" style="--i:1"><i class="dot"></i><span class="t-name">Conduct qualitative differentiator r…<small>Review the draft response against t…</small></span><span class="t-due"><i class="ln w80"></i></span><span class="t-own">MW</span><span class="t-act"><i class="ed"></i><i class="ok"></i><i class="del"></i></span></div><div class="t-row" style="--i:2"><i class="dot"></i><span class="t-name">Prepare measurable local and First…<small>Develop a project-specific response…</small></span><span class="t-due"><i class="ln w80"></i></span><span class="t-own">DW</span><span class="t-act"><i class="ed"></i><i class="ok"></i><i class="del"></i></span></div><div class="t-row" style="--i:3"><i class="dot"></i><span class="t-name">Prepare role-specific resumes and…<small>Provide concise resumes for nomina…</small></span><span class="t-due"><i class="ln w80"></i></span><span class="t-own">AN</span><span class="t-act"><i class="ed"></i><i class="ok"></i><i class="del"></i></span></div><div class="t-row" style="--i:4"><i class="dot"></i><span class="t-name">Verify three comparable projects a…<small>Confirm each reference meets the b…</small></span><span class="t-due"><i class="ln w80"></i></span><span class="t-own">SC</span><span class="t-act"><i class="ed"></i><i class="ok"></i><i class="del"></i></span></div></div></div></div>
+        <span class="rec-tag"><i></i><b class="tb-rec"></b></span></div>
       <div class="win deck"><div class="win-bar"><span></span><span></span><span></span></div>
         <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas></div></div>
 
     </div>
   </div>
 </section>
-<section class="scene scene-deep pair push-calm v5 above with-panel" data-label="Add value" data-dur="16580" id="sValue" data-wipe="dissolve"
-         data-beats='[{"step": 3, "action": ["ray-03-04-buyer.mp4", 0.0, 3.0, 1.5], "result": ["ray-03-04-buyer.mp4", 3.0, 5.2, 1.0], "hold": 2.6, "offer": "I\u2019ve identified school drop-off and pick-up times as a key disruption risk. I can create a targeted disruption management plan to address this. Would you like me to create it?", "mode": "status", "strip": "", "work": ["Analysing buyer priorities\u2026", "Identifying value-add opportunities\u2026", "Finding relevant experience and evidence\u2026"], "ticks": null, "trace": [["search_document", ""], ["read_pages", ""], ["search_response_library", ""]], "start": null, "ask": null, "next": null, "prompt": null, "btns": null, "press": 0, "rec": null}, {"step": 4, "action": ["", 0, 3.4, 1], "result": ["", 0, 3.0, 1], "hold": 1.8, "offer": "Your School Drop-Off and Pick-Up Disruption Management Plan is ready for review.", "mode": "status", "strip": "", "work": ["Analysing traffic and access requirements\u2026", "Developing mitigation measures\u2026", "Creating the plan\u2026"], "ticks": null, "trace": [["read_pages", ""], ["generate_content", ""], ["search_document", ""]], "start": null, "ask": null, "next": null, "prompt": "Yes, create it.", "btns": null, "press": 0, "rec": "Recreated \u00b7 the plan as structure; NEW capture replaces it"}]'>
+<section class="scene scene-deep pair push-calm v5 above with-panel" data-label="Add value" data-dur="17780" id="sValue" data-wipe="dissolve"
+         data-beats='[{"step": 3, "action": ["", 0, 3.2, 1], "result": ["", 0, 2.2, 1], "hold": 2.6, "offer": "I\u2019ve identified school drop-off and pick-up times as a key disruption risk. I can create a targeted disruption management plan to address this. Would you like me to create it?", "mode": "status", "strip": "", "work": ["Analysing buyer priorities\u2026", "Identifying value-add opportunities\u2026", "Finding relevant experience and evidence\u2026"], "ticks": null, "trace": [["search_document", ""], ["read_pages", ""], ["search_response_library", ""]], "start": null, "ask": null, "next": null, "prompt": null, "btns": null, "press": 0, "rec": "Recreated \u00b7 the documentation grid; Ray reads through it"}, {"step": 4, "action": ["", 0, 3.4, 1], "result": ["", 0, 3.0, 1], "hold": 1.8, "offer": "Your School Drop-Off and Pick-Up Disruption Management Plan is ready for review.", "mode": "status", "strip": "", "work": ["Analysing traffic and access requirements\u2026", "Developing mitigation measures\u2026", "Creating the plan\u2026"], "ticks": null, "trace": [["read_pages", ""], ["generate_content", ""], ["search_document", ""]], "start": null, "ask": null, "next": null, "prompt": "Yes, create it.", "btns": null, "press": 0, "rec": "Recreated \u00b7 the plan as structure; NEW capture replaces it"}]'>
   <div class="deco" aria-hidden="true">
     <span class="orb orb-teal" style="width:32vw;height:32vw;left:-9vw;top:-10vh"></span>
     <span class="dots" style="width:180px;height:140px;right:6%;bottom:12%"></span>
     <span class="bit bit-mint" style="right:26%;top:14%;--bd:8s"></span>
   </div><i class="streak s1"></i><i class="streak s2"></i>
+  <div class="amb" aria-hidden="true"><span class="frag f-doc" style="left:3%;top:18%;--r:-6deg;--d:.2s"><b class="fh"></b><i class="ln w90"></i><i class="ln w70"></i><i class="ln w80"></i><i class="ln w50"></i></span><span class="frag f-table" style="left:6%;top:50%;--r:4deg;--d:.6s"><span class="cell h"></span><span class="cell h"></span><span class="cell h"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span></span><span class="frag f-chip" style="left:4%;top:72%;--r:-2deg;--d:1s"><code>search_document</code></span><span class="frag f-file" style="right:4%;top:18%;--r:5deg;--d:.4s"><b class="thumb"><i class="ln w80"></i><i class="ln w60"></i><i class="ln w70"></i></b><i class="ln w70"></i></span><span class="frag f-chip" style="right:5%;top:50%;--r:3deg;--d:.9s"><code>generate_content</code></span><span class="frag f-ring" style="right:-4%;bottom:2%;--d:.3s"></span></div>
   <div class="split split-vid">
     <div class="beatcol">
       <div class="beatcopy" data-step="3">
@@ -1586,8 +1658,11 @@ body.on-light .edge { --edge: rgba(255,255,255,.3); }
       </div>
     </div>
     <div class="stage stage-app">
-      <div class="win deck"><div class="win-bar"><span></span><span></span><span></span></div>
-        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas></div></div>
+      <div class="win deck ph-win"><div class="win-bar"><span></span><span></span><span></span><em class="mock">Mockup</em></div>
+        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas><div class="ph bare doc ph-docs"><em class="mock">Mockup</em><div class="doc-head"><svg class="doc-logo" viewBox="0 0 32 65"><use href="#clipSym"/></svg><div><b>Tender Documentation</b></div></div><div class="pane grid"><div class="p-head dark"><span>Tender documentation</span><b class="btn">Add Document</b></div>
+              <div class="fgrid"><div class="fcard" style="--i:0"><b class="thumb"><i class="ln w80"></i><i class="ln w60"></i><i class="ln w70"></i><i class="ln w40"></i></b><i class="ln w80"></i><em class="rd"></em></div><div class="fcard" style="--i:1"><b class="thumb"><i class="ln w80"></i><i class="ln w60"></i><i class="ln w70"></i><i class="ln w40"></i></b><i class="ln w60"></i><em class="rd"></em></div><div class="fcard" style="--i:2"><b class="thumb"><i class="ln w80"></i><i class="ln w60"></i><i class="ln w70"></i><i class="ln w40"></i></b><i class="ln w70"></i><em class="rd"></em></div><div class="fcard" style="--i:3"><b class="thumb"><i class="ln w80"></i><i class="ln w60"></i><i class="ln w70"></i><i class="ln w40"></i></b><i class="ln w50"></i><em class="rd"></em></div><div class="fcard" style="--i:4"><b class="thumb"><i class="ln w80"></i><i class="ln w60"></i><i class="ln w70"></i><i class="ln w40"></i></b><i class="ln w90"></i><em class="rd"></em></div><div class="fcard" style="--i:5"><b class="thumb"><i class="ln w80"></i><i class="ln w60"></i><i class="ln w70"></i><i class="ln w40"></i></b><i class="ln w65"></i><em class="rd"></em></div></div>
+              <div class="qa"><span>Quick actions:</span><b>Go No Go</b><b>Executive Brief</b><b>Document Summary</b></div></div></div></div>
+        <span class="rec-tag"><i></i><b class="tb-rec"></b></span></div>
       <div class="win deck ph-win"><div class="win-bar"><span></span><span></span><span></span><em class="mock">Mockup</em></div>
         <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas><div class="ph bare doc ph-plandoc"><em class="mock">Mockup</em><div class="doc-head"><svg class="doc-logo" viewBox="0 0 32 65"><use href="#clipSym"/></svg><div><b>School Drop-Off and Pick-Up Disruption Management Plan</b></div></div><div class="pane doc solo"><div class="d-crumb">Responses · AI Responses</div>
               <div class="d-title">School Drop-Off and Pick-Up Disruption Management Plan</div>
@@ -1623,6 +1698,7 @@ body.on-light .edge { --edge: rgba(255,255,255,.3); }
     <span class="dots" style="width:180px;height:140px;right:4%;top:16%"></span>
     <span class="bit bit-mint" style="right:9%;bottom:32%;--bd:7s;--bx:-10px;--by:-16px"></span>
   </div>
+  <div class="amb" aria-hidden="true"><span class="frag f-people" style="left:3%;top:20%;--r:-4deg;--d:.2s"><span class="av a1"></span><span class="av a2"></span><span class="av a3"></span><span class="av a4"></span></span><span class="frag f-doc" style="left:5%;top:44%;--r:4deg;--d:.6s"><b class="fh"></b><i class="ln w90"></i><i class="ln w70"></i><i class="ln w80"></i><i class="ln w50"></i></span><span class="frag f-chip" style="left:2%;top:70%;--r:-2deg;--d:1s"><code>search_response_library</code></span><span class="frag f-file" style="right:4%;top:22%;--r:5deg;--d:.4s"><b class="thumb"><i class="ln w80"></i><i class="ln w60"></i><i class="ln w70"></i></b><i class="ln w70"></i></span><span class="frag f-pack" style="right:6%;top:54%;--r:-3deg;--d:.8s"><span class="fr"><em class="tk on"></em><i class="ln"></i></span><span class="fr"><em class="tk on"></em><i class="ln"></i></span><span class="fr"><em class="tk on"></em><i class="ln"></i></span><span class="fr"><em class="tk on"></em><i class="ln"></i></span></span><span class="frag f-ring" style="left:-5%;bottom:0;--d:.3s"></span></div>
   <div class="split split-vid">
     <div class="beatcol">
       <div class="beatcopy" data-step="5">
@@ -1664,6 +1740,7 @@ body.on-light .edge { --edge: rgba(255,255,255,.3); }
     <span class="dots" style="width:180px;height:140px;right:6%;bottom:12%"></span>
     <span class="bit bit-mint" style="right:26%;top:14%;--bd:8s"></span>
   </div>
+  <div class="amb" aria-hidden="true"><span class="frag f-stamp" style="left:4%;top:20%;--r:-5deg;--d:.2s"><b class="fh"></b><i class="ln w80"></i><i class="ln w60"></i><em class="seal"></em></span><span class="frag f-check" style="left:5%;top:52%;--r:3deg;--d:.7s"><span class="fr"><i class="dot"></i><i class="ln"></i><em class="tk"></em></span><span class="fr"><i class="dot"></i><i class="ln"></i><em class="tk"></em></span><span class="fr"><i class="dot"></i><i class="ln"></i><em class="tk"></em></span></span><span class="frag f-doc" style="right:4%;top:18%;--r:5deg;--d:.4s"><b class="fh"></b><i class="ln w90"></i><i class="ln w70"></i><i class="ln w80"></i><i class="ln w50"></i></span><span class="frag f-people" style="right:6%;top:50%;--r:-3deg;--d:.9s"><span class="av a1"></span><span class="av a2"></span><span class="av a3"></span><span class="av a4"></span></span><span class="frag f-ring" style="right:-6%;bottom:2%;--d:.3s"></span></div>
   <div class="split split-vid">
     <div class="beatcol">
       <div class="beatcopy" data-step="6">
@@ -1702,8 +1779,8 @@ body.on-light .edge { --edge: rgba(255,255,255,.3); }
     </div>
   </div>
 </section>
-<section class="scene scene-deep pair push-calm v5 below" data-label="Build and review" data-dur="8039" id="sBuild" data-wipe="dissolve"
-         data-beats='[{"step": 7, "action": ["ray-07-08-build-review.mp4", 13.5, 16.5, 1.0], "result": ["ray-07-08-build-review.mp4", 22.3, 24.9, 1.0], "hold": 1.4, "offer": "", "mode": "status", "strip": "", "work": ["Building the tender documents\u2026", "Checking compliance\u2026", "Flagging missing information\u2026"], "ticks": null, "trace": null, "start": null, "ask": null, "next": null, "prompt": null, "btns": null, "press": 0, "rec": null}]'>
+<section class="scene scene-deep pair push-calm v5 below" data-label="Build and review" data-dur="8240" id="sBuild" data-wipe="dissolve"
+         data-beats='[{"step": 7, "action": ["", 0, 3.4, 1], "result": ["", 0, 2.4, 1], "hold": 1.4, "offer": "", "mode": "status", "strip": "", "work": ["Building the tender documents\u2026", "Checking compliance\u2026", "Flagging missing information\u2026"], "ticks": null, "trace": null, "start": null, "ask": null, "next": null, "prompt": null, "btns": null, "press": 0, "rec": "Recreated \u00b7 the pack building, the compliance card flagging"}]'>
   <svg class="clip-mark" viewBox="0 0 32 65" aria-hidden="true"><use href="#clipSym"/></svg>
   <div class="deco" aria-hidden="true">
     <span class="orb orb-teal" style="width:40vw;height:40vw;left:-12vw;bottom:-16vh;--od:17s"></span>
@@ -1715,6 +1792,7 @@ body.on-light .edge { --edge: rgba(255,255,255,.3); }
     <span class="spark" style="left:30%;bottom:14%;--sd:2s"></span>
     <span class="bit bit-mint" style="left:8%;top:42%;--bd:7s"></span>
   </div><i class="streak s1"></i><i class="streak s2"></i>
+  <div class="amb" aria-hidden="true"><span class="frag f-pack" style="left:3%;top:18%;--r:-4deg;--d:.2s"><span class="fr"><em class="tk on"></em><i class="ln"></i></span><span class="fr"><em class="tk on"></em><i class="ln"></i></span><span class="fr"><em class="tk on"></em><i class="ln"></i></span><span class="fr"><em class="tk on"></em><i class="ln"></i></span></span><span class="frag f-check" style="left:6%;top:48%;--r:3deg;--d:.7s"><span class="fr"><i class="dot"></i><i class="ln"></i><em class="tk"></em></span><span class="fr"><i class="dot"></i><i class="ln"></i><em class="tk"></em></span><span class="fr"><i class="dot"></i><i class="ln"></i><em class="tk"></em></span></span><span class="frag f-chip" style="left:3%;top:72%;--r:-2deg;--d:1s"><code>list_documents</code></span><span class="frag f-doc" style="right:4%;top:20%;--r:5deg;--d:.4s"><b class="fh"></b><i class="ln w90"></i><i class="ln w70"></i><i class="ln w80"></i><i class="ln w50"></i></span><span class="frag f-table" style="right:6%;top:52%;--r:-4deg;--d:.9s"><span class="cell h"></span><span class="cell h"></span><span class="cell h"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span><span class="cell"></span></span><span class="frag f-ring" style="left:-5%;bottom:0;--d:.3s"></span></div>
   <div class="split split-vid">
     <div class="beatcol">
       <div class="beatcopy" data-step="7">
@@ -1723,8 +1801,13 @@ body.on-light .edge { --edge: rgba(255,255,255,.3); }
       </div>
     </div>
     <div class="stage stage-app">
-      <div class="win deck"><div class="win-bar"><span></span><span></span><span></span></div>
-        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas></div></div>
+      <div class="win deck ph-win"><div class="win-bar"><span></span><span></span><span></span><em class="mock">Mockup</em></div>
+        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas><div class="ph bare doc ph-compliance"><em class="mock">Mockup</em><div class="doc-head"><svg class="doc-logo" viewBox="0 0 32 65"><use href="#clipSym"/></svg><div><b>Tender Pack · Build and review</b></div></div><div class="b-top"><b class="back">‹ Back</b><span class="b-title">Tender Attachments · Tender Pack</span><b class="btn">Build Tender</b><b class="btn amber">Update Tender</b></div>
+            <div class="two"><div class="pane pack"><div class="c-row" style="--i:0"><i></i><span>Cover Pages</span><em class="ln w30"></em></div><div class="c-row" style="--i:1"><i></i><span>Table of Contents</span><em class="ln w30"></em></div><div class="c-row" style="--i:2"><i></i><span>Tender Documentations</span><em class="ln w30"></em></div><div class="c-row" style="--i:3"><i></i><span>Resumes</span><em class="ln w30"></em></div><div class="c-row" style="--i:4"><i></i><span>Case Studies</span><em class="ln w30"></em></div><div class="c-row" style="--i:5"><i></i><span>Policies</span><em class="ln w30"></em></div><div class="c-row" style="--i:6"><i></i><span>Insurances</span><em class="ln w30"></em></div><div class="c-row" style="--i:7"><i></i><span>Certifications</span><em class="ln w30"></em></div></div>
+              <div class="pane comp"><div class="k">Compliance status</div><i class="ln w60"></i>
+                <div class="k">Submission readiness</div><i class="ln w50"></i>
+                <div class="k">Final human approvals required</div><div class="flag" style="--i:0"><i></i><b class="ln w86"></b></div><div class="flag" style="--i:1"><i></i><b class="ln w70"></b></div><div class="flag" style="--i:2"><i></i><b class="ln w78"></b></div></div></div></div></div>
+        <span class="rec-tag"><i></i><b class="tb-rec"></b></span></div>
       <div class="win deck"><div class="win-bar"><span></span><span></span><span></span></div>
         <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas></div></div>
 
@@ -1738,6 +1821,7 @@ body.on-light .edge { --edge: rgba(255,255,255,.3); }
     <span class="dots" style="width:180px;height:140px;right:5%;top:14%"></span>
     <span class="bit" style="right:11%;bottom:24%;--bx:-12px;--by:-14px"></span>
   </div>
+  <div class="amb" aria-hidden="true"><span class="frag f-pack" style="left:3%;top:20%;--r:-5deg;--d:.2s"><span class="fr"><em class="tk on"></em><i class="ln"></i></span><span class="fr"><em class="tk on"></em><i class="ln"></i></span><span class="fr"><em class="tk on"></em><i class="ln"></i></span><span class="fr"><em class="tk on"></em><i class="ln"></i></span></span><span class="frag f-doc" style="left:6%;top:50%;--r:4deg;--d:.7s"><b class="fh"></b><i class="ln w90"></i><i class="ln w70"></i><i class="ln w80"></i><i class="ln w50"></i></span><span class="frag f-file" style="right:4%;top:18%;--r:5deg;--d:.4s"><b class="thumb"><i class="ln w80"></i><i class="ln w60"></i><i class="ln w70"></i></b><i class="ln w70"></i></span><span class="frag f-stamp" style="right:6%;top:50%;--r:-3deg;--d:.9s"><b class="fh"></b><i class="ln w80"></i><i class="ln w60"></i><em class="seal"></em></span><span class="frag f-ring" style="right:-5%;bottom:0;--d:.3s"></span></div>
   <div class="split split-vid">
     <div class="beatcol">
       <div class="beatcopy" data-step="8">
@@ -1770,6 +1854,7 @@ body.on-light .edge { --edge: rgba(255,255,255,.3); }
   </div>
 </section>
 <section class="scene scene-end end-dark v5 v5end" data-label="Agentic Ray" data-dur="5600" id="sEnd" data-wipe="dissolve">
+  <div class="amb" aria-hidden="true"><span class="frag f-doc" style="left:5%;top:18%;--r:-6deg;--d:.4s"><b class="fh"></b><i class="ln w90"></i><i class="ln w70"></i><i class="ln w80"></i><i class="ln w50"></i></span><span class="frag f-check" style="left:8%;bottom:20%;--r:4deg;--d:.9s"><span class="fr"><i class="dot"></i><i class="ln"></i><em class="tk"></em></span><span class="fr"><i class="dot"></i><i class="ln"></i><em class="tk"></em></span><span class="fr"><i class="dot"></i><i class="ln"></i><em class="tk"></em></span></span><span class="frag f-score" style="right:5%;top:20%;--r:5deg;--d:.6s"><span class="fr"><i class="ln"></i><em class="pill g"></em></span><span class="fr"><i class="ln"></i><em class="pill a"></em></span><span class="fr"><i class="ln"></i><em class="pill r"></em></span><span class="fr"><i class="ln"></i><em class="pill a"></em></span></span><span class="frag f-pack" style="right:8%;bottom:22%;--r:-4deg;--d:1.1s"><span class="fr"><em class="tk on"></em><i class="ln"></i></span><span class="fr"><em class="tk on"></em><i class="ln"></i></span><span class="fr"><em class="tk on"></em><i class="ln"></i></span><span class="fr"><em class="tk on"></em><i class="ln"></i></span></span><span class="frag f-ring" style="left:-6%;bottom:-6%;--d:.3s"></span><span class="frag f-ring" style="right:-8%;top:-8%;--d:.5s"></span></div>
   <div class="v5endwrap">
     <img class="open-ray-img fx" style="--d:.1s" src="assets/ray-avatar.svg" alt="" />
     <h1 class="big v5big"><span class="w"><i class="ch" style="--i:0">A</i><i class="ch" style="--i:1">g</i><i class="ch" style="--i:2">e</i><i class="ch" style="--i:3">n</i><i class="ch" style="--i:4">t</i><i class="ch" style="--i:5">i</i><i class="ch" style="--i:6">c</i></span> <span class="w"><i class="ch" style="--i:7">R</i><i class="ch" style="--i:8">a</i><i class="ch" style="--i:9">y</i><i class="ch" style="--i:10">.</i></span></h1>
