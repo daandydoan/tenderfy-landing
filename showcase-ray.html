@@ -1517,6 +1517,11 @@ body.on-light .edge { --edge: rgba(255,255,255,.3); }
 .raypanel .work { color: #4A5754; } .raypanel .work code { color: #1F2B28; }
 .raypanel .work i { border-color: #C9D4D0; } .raypanel .work.done i { background: #1D9E75; border-color: #1D9E75; } .raypanel .work.done i::after { border-color: #fff; }
 .raypanel .work .ln { background: rgba(15,26,23,.1); }
+/* the result bar is an <i> too: it is not a tick */
+.raypanel .work i.ln, .raypanel .work.done i.ln { width: 46%; height: 6px; border: 0; border-radius: 3px; background: rgba(15,26,23,.1); margin-top: 3px; }
+.raypanel .work.done i.ln::after { content: none; }
+/* the ✓ list: a glyph, not a filled dot */
+.upd.ticks li::before, .upd.ticks li.done::before { background: transparent; border-radius: 0; }
 .raypanel .rail-offer p { color: #1F2B28; }
 .raypanel .rail-offer.done p b { color: #0F7355; }
 .raypanel .rail-offer .rail-btn, .raypanel .rail-btn { background: #1D9E75; color: #fff; }
