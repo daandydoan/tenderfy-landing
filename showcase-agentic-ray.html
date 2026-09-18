@@ -2227,15 +2227,15 @@ body.on-light .chrome-label, body.on-light .chrome-brand { color: var(--ink, #0F
         // the words change at the crossing, not at the start
         if (v.videoWidth) freeze(win, v);
         win.classList.remove('in'); win.classList.add('parked');
-        await sleep(reduced ? 0 : 60); if (!rayFirst) nwin.classList.add('in');
-        await sleep(reduced ? 0 : 160);
+        await sleep(reduced ? 0 : 60); if (!whileRunning(token)) return; if (!rayFirst) nwin.classList.add('in');
+        await sleep(reduced ? 0 : 160); if (!whileRunning(token)) return;
       } else { win.classList.add('out'); win.classList.remove('in'); }
       // the headline, the rail's offer and the strip change behind the move, not after it
       copies.forEach(function (c) { c.classList.toggle('on', c.dataset.step === String(next.step)); c.classList.remove('res'); });
       cards.forEach(function (c) { c.classList.remove('on'); });
       if (next.offer) paintRail(rail, next, false);
       scene.classList.remove('res'); paintWork(rail, next, 'run'); paintSheet(nwin, next);
-      if (park) { await sleep(reduced ? 0 : 300); }
+      if (park) { await sleep(reduced ? 0 : 300); if (!whileRunning(token)) return; }
       else { await sleep(60); nwin.classList.add('in'); await sleep(reduced ? 0 : 300); win.classList.remove('out'); }
       scene.classList.remove('moving');
       cur = 1 - cur;
