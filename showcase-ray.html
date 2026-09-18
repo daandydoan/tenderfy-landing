@@ -1317,7 +1317,15 @@ body.on-light .edge { --edge: rgba(255,255,255,.3); }
 .scene.v5.pair { padding-top: 84px; padding-bottom: 90px; }
 .v5 .stage-app { width: 100%; height: clamp(300px, 54vh, 600px); }
 .v5 .stage-app .win.deck { width: 74%; left: 2%; }
+/* beside the panel the document stops where the panel starts, so its right-hand column stays readable */
+@media (min-width: 941px) { .v5.with-panel .stage-app .win.deck { width: 66%; left: 0; } }
 .v5 .ph.bare.doc { min-height: 40vh; max-height: 50vh; }
+/* a document taller than its window fades out at the foot instead of cutting a line in half */
+.v5 .ph.bare.doc .ln { flex-shrink: 0; }
+.v5 .ph.bare.doc.ph-plandoc::after, .v5 .ph.bare.doc.ph-gonogo::after { display: none; } /* these two fit; their last line is the point */
+.v5 .ph .ln.w96 { width: 96%; } .v5 .ph .ln.w88 { width: 88%; } .v5 .ph .ln.w72 { width: 72%; } .v5 .ph .ln.w60 { width: 60%; } .v5 .ph .ln.w50 { width: 50%; } .v5 .ph .ln.w40 { width: 40%; } .v5 .ph .ln.w30 { width: 30%; }
+.v5 .ph.bare.doc.ph-plandoc .pane.doc { text-align: left; } .v5 .ph-plandoc .pane.doc > .ln { margin: .15em 0; }
+.v5 .ph.bare.doc::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 3em; background: linear-gradient(to bottom, rgba(255,255,255,0), #fff 85%); pointer-events: none; z-index: 1; }
 .v5 .win.deck:not(.ph-win) .vwrap { max-height: 46vh; overflow: hidden; }
 .v5 .win.deck:not(.ph-win) .vwrap video { max-height: 46vh; object-fit: cover; object-position: top; }
 .v5 .stage-app { height: clamp(300px, 56vh, 620px); }
@@ -1363,6 +1371,8 @@ body.on-light .edge { --edge: rgba(255,255,255,.3); }
 .raypanel .rh-s { display: none; } .raypanel .rh-s.on { display: flex; align-items: center; gap: 5px; }
 .raypanel .rh-s .ell { font-style: normal; animation: ellip 1.2s steps(4) infinite; } @keyframes ellip { 0% { clip-path: inset(0 100% 0 0); } 100% { clip-path: inset(0 0 0 0); } }
 .raypanel .rh-s .chev { width: 6px; height: 6px; border-top: 1.5px solid #9AA8A3; border-right: 1.5px solid #9AA8A3; transform: rotate(45deg); }
+/* a beat with nothing to say leaves no empty bubble or blank buttons behind */
+.raypanel .rail-offer:has(> p:empty) { display: none; } .raypanel .rail-btn:empty { display: none; }
 .raypanel .rail-work { transition: max-height .4s ease, opacity .3s ease; max-height: 400px; overflow: hidden; } .raypanel .rail-work.folded { max-height: 0; opacity: 0; }
 .raypanel .work .ln { display: block; height: 6px; width: 46%; border-radius: 3px; background: rgba(255,255,255,.14); margin-top: 3px; }
 .raypanel .rail-offer.review, .raypanel .rail-offer.done, .raypanel .rail-offer.ask, .raypanel .rail-offer.approve { background: transparent; border: 0; padding: 4px 0 0; }
@@ -1382,7 +1392,7 @@ body.on-light .edge { --edge: rgba(255,255,255,.3); }
 .ctl span { display: inline-flex; align-items: center; gap: .4em; } .ctl .ln { display: inline-block; height: .5em; margin: 0; }
 .res .ph-plandoc .ctl .rev { color: #0F7355; font-weight: 600; } .res .ph-plandoc .ctl .rev .ln { background: #0F7355; opacity: .5; }
 .m-row { grid-template-columns: 1.1fr 1fr 1fr .8fr; }
-.v5hook .hk-panel .raypanel { position: static; width: 100%; min-width: 0; border-radius: 14px; box-shadow: none; opacity: 1; animation: none; transform: none; }
+.v5hook .hk-panel .raypanel { position: static; width: 100%; min-width: 0; border-radius: 14px; box-shadow: none; opacity: 1; animation: none; transform: none; background: #26302E; color: #E6ECEA; border: 0; --acc: #6FD0AD; --dim: #9AA8A3; --ink-2: #DCE4E1; --line: rgba(255,255,255,.1); }
 .v5hook .hk-panel .raypanel .rail-body { min-height: 0; }
 @media (max-height: 840px) {
   .scene.v5.pair { padding-top: 70px; padding-bottom: 80px; }
@@ -1492,7 +1502,7 @@ body.on-light .edge { --edge: rgba(255,255,255,.3); }
       </div></div>
   <p class="hk-row"><span class="hk-line"><span class="w"><i class="ch" style="--i:12">Y</i><i class="ch" style="--i:13">o</i><i class="ch" style="--i:14">u</i><i class="ch" style="--i:15">r</i></span> <span class="w"><i class="ch" style="--i:16">t</i><i class="ch" style="--i:17">e</i><i class="ch" style="--i:18">n</i><i class="ch" style="--i:19">d</i><i class="ch" style="--i:20">e</i><i class="ch" style="--i:21">r</i></span> <span class="w"></span> <u class="ul"><span class="w"><i class="ch" style="--i:22">c</i><i class="ch" style="--i:23">o</i><i class="ch" style="--i:24">-</i><i class="ch" style="--i:25">w</i><i class="ch" style="--i:26">o</i><i class="ch" style="--i:27">r</i><i class="ch" style="--i:28">k</i><i class="ch" style="--i:29">e</i><i class="ch" style="--i:30">r</i></span></u><span class="w"><i class="ch" style="--i:31">.</i></span></span><span class="hk-sub fx" style="--d:1.5s">You guide. Ray helps deliver the tender.</span></p>
 </section>
-<section class="scene scene-light pair push-calm v5 above" data-label="Understand" data-dur="9440" id="sUnderstand" data-wipe="dissolve"
+<section class="scene scene-light pair push-calm v5 above with-panel" data-label="Understand" data-dur="9440" id="sUnderstand" data-wipe="dissolve"
          data-beats='[{"step": 1, "action": ["", 0, 4.2, 1], "result": ["", 0, 2.8, 1], "hold": 1.4, "offer": "", "mode": "status", "strip": "", "work": ["Reviewing the tender pack\u2026", "Identifying key requirements\u2026", "Understanding how to add value\u2026", "Checking your company knowledge\u2026"], "ticks": null, "trace": [["list_documents", "5 documents readable"], ["plan_document_review", "Request for Tender.pdf \u2192 Page-by-page, Scope of Works \u2192 Whole file, Site Survey (scanned).pdf \u2192 OCR (~15600 tokens vs 198 pages)"], ["outline_document", "7 sections, 148 pages \u2014 no body text read"], ["read_whole_document", "11 pages (small file, one pass)"], ["read_pages", "1 page of Site Survey (scanned).pdf via OCR"], ["read_pages", "1 page of Tenderer Q&A Register.xlsx"], ["read_pages", "1 page of Commercial Rates \u2014 CONFIDENTIAL.xlsx"], ["read_pages", "3 pages of Request for Tender.pdf"]], "start": "Next \u00b7 1 of 8 \u00b7 Go / No-Go", "ask": "Review all documents for this tender", "next": "Next \u00b7 2 of 8 \u00b7 Plan the tender", "prompt": null, "btns": null, "press": 0, "rec": "Recreated \u00b7 the prototype running step 1; the scorecard from ray-01-gonogo"}]'>
   <div class="deco" aria-hidden="true">
     <span class="orb orb-teal" style="width:34vw;height:34vw;right:-9vw;top:-12vh"></span>
@@ -1557,7 +1567,7 @@ body.on-light .edge { --edge: rgba(255,255,255,.3); }
     </div>
   </div>
 </section>
-<section class="scene scene-deep pair push-calm v5 above" data-label="Add value" data-dur="16580" id="sValue" data-wipe="dissolve"
+<section class="scene scene-deep pair push-calm v5 above with-panel" data-label="Add value" data-dur="16580" id="sValue" data-wipe="dissolve"
          data-beats='[{"step": 3, "action": ["ray-03-04-buyer.mp4", 0.0, 3.0, 1.5], "result": ["ray-03-04-buyer.mp4", 3.0, 5.2, 1.0], "hold": 2.6, "offer": "I\u2019ve identified school drop-off and pick-up times as a key disruption risk. I can create a targeted disruption management plan to address this. Would you like me to create it?", "mode": "status", "strip": "", "work": ["Analysing buyer priorities\u2026", "Identifying value-add opportunities\u2026", "Finding relevant experience and evidence\u2026"], "ticks": null, "trace": [["search_document", ""], ["read_pages", ""], ["search_response_library", ""]], "start": null, "ask": null, "next": null, "prompt": null, "btns": null, "press": 0, "rec": null}, {"step": 4, "action": ["", 0, 3.4, 1], "result": ["", 0, 3.0, 1], "hold": 1.8, "offer": "Your School Drop-Off and Pick-Up Disruption Management Plan is ready for review.", "mode": "status", "strip": "", "work": ["Analysing traffic and access requirements\u2026", "Developing mitigation measures\u2026", "Creating the plan\u2026"], "ticks": null, "trace": [["read_pages", ""], ["generate_content", ""], ["search_document", ""]], "start": null, "ask": null, "next": null, "prompt": "Yes, create it.", "btns": null, "press": 0, "rec": "Recreated \u00b7 the plan as structure; NEW capture replaces it"}]'>
   <div class="deco" aria-hidden="true">
     <span class="orb orb-teal" style="width:32vw;height:32vw;left:-9vw;top:-10vh"></span>
@@ -1606,7 +1616,7 @@ body.on-light .edge { --edge: rgba(255,255,255,.3); }
     </div>
   </div>
 </section>
-<section class="scene scene-light pair push-calm v5 below" data-label="Resumes and profiles" data-dur="8840" id="sResumes" data-wipe="dissolve"
+<section class="scene scene-light pair push-calm v5 below with-panel" data-label="Resumes and profiles" data-dur="8840" id="sResumes" data-wipe="dissolve"
          data-beats='[{"step": 5, "action": ["", 0, 3.6, 1], "result": ["", 0, 2.8, 1], "hold": 1.4, "offer": "", "mode": "status", "strip": "", "work": ["Matching relevant experience\u2026", "Tailoring content to the buyer\u2026", "Updating resumes and project profiles\u2026", "Adding them to the tender build\u2026"], "ticks": null, "trace": [["search_response_library", ""], ["read_pages", ""], ["generate_content", ""], ["list_documents", ""]], "start": null, "ask": null, "next": null, "prompt": "Select the most relevant resumes and project profiles for this project, then tailor them to the buyer\u2019s priorities using their own language.", "btns": null, "press": 0, "rec": "Recreated \u00b7 Build Tender with the library\u2019s own resumes and case study"}]'>
   <div class="deco" aria-hidden="true">
     <span class="orb orb-teal" style="width:32vw;height:32vw;left:-10vw;top:-12vh"></span>
@@ -1647,7 +1657,7 @@ body.on-light .edge { --edge: rgba(255,255,255,.3); }
     </div>
   </div>
 </section>
-<section class="scene scene-offwhite pair push-calm v5 above" data-label="Approval" data-dur="6240" id="sApproval" data-wipe="dissolve"
+<section class="scene scene-offwhite pair push-calm v5 above with-panel" data-label="Approval" data-dur="6240" id="sApproval" data-wipe="dissolve"
          data-beats='[{"step": 6, "action": ["", 0, 1.6, 1], "result": ["", 0, 1.2, 1], "hold": 2.4, "offer": "Your School Drop-Off and Pick-Up Disruption Management Plan is ready for review.", "mode": "review", "strip": "", "work": null, "ticks": null, "trace": null, "start": null, "ask": null, "next": null, "prompt": null, "btns": ["Review", "Request Changes", "Approve & Update"], "press": 2, "rec": "Recreated \u00b7 the same plan, awaiting approval"}]'>
   <div class="deco" aria-hidden="true">
     <span class="orb orb-teal" style="width:32vw;height:32vw;left:-9vw;top:-10vh"></span>
@@ -1721,7 +1731,7 @@ body.on-light .edge { --edge: rgba(255,255,255,.3); }
     </div>
   </div>
 </section>
-<section class="scene scene-light pair push-calm v5 above" data-label="Download" data-dur="5840" id="sDownload" data-wipe="dissolve"
+<section class="scene scene-light pair push-calm v5 above with-panel" data-label="Download" data-dur="5840" id="sDownload" data-wipe="dissolve"
          data-beats='[{"step": 8, "action": ["", 0, 1.6, 1], "result": ["", 0, 2.4, 1], "hold": 0.8, "offer": "<b>That\u2019s the whole method</b> Northside School Upgrade has been through all 8 stages \u2014 assessed, planned, written, built and checked. It\u2019s ready for your final approval.", "mode": "done", "strip": "", "work": null, "ticks": null, "trace": null, "start": null, "ask": null, "next": null, "prompt": null, "btns": ["Review the tender", "See what we did", ""], "press": -1, "rec": "NEW ray-13-download \u00b7 Download pressed on Tender Pack \u00b7 3s"}]'>
   <div class="deco" aria-hidden="true">
     <span class="orb orb-blue" style="width:32vw;height:32vw;left:-10vw;bottom:-12vh"></span>
