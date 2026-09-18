@@ -1503,6 +1503,13 @@ body.on-light .edge { --edge: rgba(255,255,255,.3); }
 /* ===== the Ray panel in the app's light tokens, larger, the chrome down to the logo ===== */
 .brandmark { left: auto; right: var(--pad); }
 .v5 .mock, .v5 .rec-tag { display: none; }
+/* the player: small and quiet, one row at the bottom right */
+.chrome-bot { display: flex; justify-content: flex-end; align-items: center; gap: 14px; opacity: .55; transition: opacity .25s ease; }
+.chrome-bot:hover { opacity: 1; }
+.segs { gap: 4px; } .seg { width: clamp(9px, 1.3vw, 16px); height: 14px; }
+.hud { gap: 6px; } .hud-count { font-size: 10px; letter-spacing: .1em; min-width: 0; margin-right: 4px; }
+.hud-btn { width: 24px; height: 24px; } .hud-btn svg { width: 10px; height: 10px; }
+@media (max-width: 940px) { .chrome-bot { gap: 10px; } .seg { width: 8px; } }
 .curtain::before, .curtain::after { display: none; } /* the rounded ends of the wipe showed as a green bend at the foot */
 /* the page is there from the start; its content answers Ray */
 .v5 .ph.bare.doc .pane > *, .v5 .ph.bare.doc .fgrid > * { opacity: 0; transform: translateY(5px); transition: opacity .4s ease, transform .5s cubic-bezier(.2,.7,.2,1); }
