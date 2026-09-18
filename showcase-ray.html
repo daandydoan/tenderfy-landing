@@ -1337,6 +1337,71 @@ body.on-light .edge { --edge: rgba(255,255,255,.3); }
   .v5 .raypanel .rail-body { min-height: 0; padding: 8px 10px 10px; }
   .v5 .raypanel .work { font-size: 9.5px; } .v5 .raypanel .rail-offer p { font-size: 10.5px; }
 }
+/* the on-screen lines beside the panel */
+.upd { list-style: none; margin: 0 0 14px; padding: 0; display: flex; flex-direction: column; gap: 6px; align-items: center; }
+.upd li { font-size: clamp(14px, 1.25vw, 18px); color: var(--dim, #6B7975); opacity: 0; transform: translateY(6px); transition: opacity .35s ease, transform .45s cubic-bezier(.2,.7,.2,1), color .3s; display: flex; align-items: center; gap: 8px; }
+.upd li::before { content: ''; width: 9px; height: 9px; border-radius: 50%; border: 1.5px solid currentColor; flex: none; }
+.upd li.on { opacity: 1; transform: none; }
+.upd li.done { color: var(--ink, #1F1A14); } .upd li.done::before { background: #1D9E75; border-color: #1D9E75; }
+.upd.ticks li::before { content: '✓'; border: 0; width: auto; height: auto; color: #1D9E75; font-weight: 700; opacity: 0; } .upd.ticks li.done::before { opacity: 1; }
+.scene-dark .upd li, .scene-deep .upd li { color: rgba(242,246,244,.6); } .scene-dark .upd li.done, .scene-deep .upd li.done { color: #F2F6F4; }
+/* the panel's true states */
+.raypanel .rp-beta { text-transform: uppercase; }
+.raypanel .ray-empty { display: flex; flex-direction: column; gap: 6px; padding: 10px 0 4px; }
+.raypanel .ray-halo { width: 34px; height: 34px; border-radius: 50%; background: radial-gradient(circle, rgba(111,208,173,.5), rgba(111,208,173,.08) 70%); display: grid; place-items: center; margin-bottom: 6px; } .raypanel .ray-halo img { width: 22px; }
+.raypanel .ray-empty h3 { margin: 0; font-size: 14px; color: #F2F6F4; } .raypanel .ray-empty p { margin: 0 0 6px; font-size: 11.5px; line-height: 1.45; color: #B8C4C0; } .raypanel .ray-empty p b { color: #F2F6F4; }
+.raypanel .ray-starters { display: flex; flex-direction: column; gap: 5px; } .raypanel .ray-starter { background: #33403D; border-radius: 9px; padding: 7px 10px; font-size: 11px; color: #E6ECEA; }
+.raypanel .rp-next, .raypanel .rp-start { display: none; position: relative; align-items: center; gap: 8px; margin-top: 8px; padding: 8px 10px 12px; border: 1px solid rgba(255,255,255,.12); border-radius: 10px; font-size: 11px; color: #E6ECEA; }
+.raypanel .rp-next.on, .raypanel .rp-start.on { display: flex; }
+.raypanel .rp-arrow { width: 8px; height: 8px; border-top: 1.5px solid #6FD0AD; border-right: 1.5px solid #6FD0AD; transform: rotate(45deg); flex: none; }
+.raypanel .rp-next .t, .raypanel .rp-start .t { flex: 1; min-width: 0; } .raypanel .rp-next b, .raypanel .rp-start b { color: #F2F6F4; }
+.raypanel .rp-caret { width: 7px; height: 7px; border-right: 1.5px solid #9AA8A3; border-bottom: 1.5px solid #9AA8A3; transform: rotate(45deg); margin-right: 4px; }
+.raypanel .rp-go { background: #1D9E75; color: #fff; border-radius: 999px; padding: 4px 11px; font-size: 11px; font-weight: 600; transition: transform .18s cubic-bezier(.2,1.5,.3,1); }
+.raypanel .rp-start.on .rp-go { animation: pressGo 2.2s ease-in-out 1.1s 1 both; }
+@keyframes pressGo { 0%, 40% { transform: none; } 50% { transform: scale(.86); filter: brightness(.85); } 60%, 100% { transform: none; } }
+.raypanel .rp-meter { position: absolute; left: 10px; right: 10px; bottom: 4px; height: 2px; background: rgba(255,255,255,.12); border-radius: 1px; overflow: hidden; } .raypanel .rp-meter i { display: block; height: 100%; background: #6FD0AD; transition: width .6s ease; }
+.raypanel .rh-s { display: none; } .raypanel .rh-s.on { display: flex; align-items: center; gap: 5px; }
+.raypanel .rh-s .ell { font-style: normal; animation: ellip 1.2s steps(4) infinite; } @keyframes ellip { 0% { clip-path: inset(0 100% 0 0); } 100% { clip-path: inset(0 0 0 0); } }
+.raypanel .rh-s .chev { width: 6px; height: 6px; border-top: 1.5px solid #9AA8A3; border-right: 1.5px solid #9AA8A3; transform: rotate(45deg); }
+.raypanel .rail-work { transition: max-height .4s ease, opacity .3s ease; max-height: 400px; overflow: hidden; } .raypanel .rail-work.folded { max-height: 0; opacity: 0; }
+.raypanel .work .ln { display: block; height: 6px; width: 46%; border-radius: 3px; background: rgba(255,255,255,.14); margin-top: 3px; }
+.raypanel .rail-offer.review, .raypanel .rail-offer.done, .raypanel .rail-offer.ask, .raypanel .rail-offer.approve { background: transparent; border: 0; padding: 4px 0 0; }
+.raypanel .rail-offer .acts { gap: 6px; flex-wrap: wrap; margin-top: 8px; }
+.raypanel .rail-offer .rail-btn { background: #1D9E75; color: #fff; border-radius: 8px; padding: 6px 11px; font-size: 11px; }
+.raypanel .rail-offer.review .rail-btn:not(:last-child), .raypanel .rail-offer.done .rail-btn:nth-child(2) { background: transparent; color: #C9D4D0; border: 1px solid rgba(255,255,255,.22); }
+.raypanel .rail-offer.done p b { display: block; margin-bottom: 2px; }
+.raypanel .rp-ref .add { background: transparent; border: 1px dashed rgba(255,255,255,.25); color: #9AA8A3; }
+.raypanel .rp-input { flex: 1; min-height: 1.2em; color: #F2F6F4; } .raypanel .rp-input:empty::before { content: attr(data-ph); color: #9AA8A3; }
+.raypanel .rp-input.typing::after { content: ''; display: inline-block; width: 1px; height: 1em; background: #6FD0AD; margin-left: 1px; vertical-align: -2px; animation: caret 1s steps(2) infinite; } @keyframes caret { 50% { opacity: 0; } }
+.raypanel .work { grid-template-columns: 12px auto minmax(0, 1fr); }
+.raypanel .work span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.v5 .stage-app .rail.mini.raypanel { max-height: calc(100% + 36px); overflow: hidden; display: flex; flex-direction: column; }
+.v5 .stage-app .rail.mini.raypanel .rail-body { flex: 1; min-height: 0; overflow: hidden; }
+/* the plan's control block */
+.ctl { display: flex; gap: 1.2em; flex-wrap: wrap; margin-top: auto; padding-top: .7em; border-top: 1px solid #DCE5E1; font-size: .82em; color: #6B7975; }
+.ctl span { display: inline-flex; align-items: center; gap: .4em; } .ctl .ln { display: inline-block; height: .5em; margin: 0; }
+.res .ph-plandoc .ctl .rev { color: #0F7355; font-weight: 600; } .res .ph-plandoc .ctl .rev .ln { background: #0F7355; opacity: .5; }
+.m-row { grid-template-columns: 1.1fr 1fr 1fr .8fr; }
+.v5hook .hk-panel .raypanel { position: static; width: 100%; min-width: 0; border-radius: 14px; box-shadow: none; opacity: 1; animation: none; transform: none; }
+.v5hook .hk-panel .raypanel .rail-body { min-height: 0; }
+@media (max-height: 840px) {
+  .scene.v5.pair { padding-top: 70px; padding-bottom: 80px; }
+  .scene.v5.pair .split, .scene.v5.pair .split.split-vid { gap: 14px; }
+  .v5 .stage-app { height: clamp(260px, 46vh, 520px); }
+  .v5 .ph.bare.doc { min-height: 34vh; max-height: 42vh; }
+  .v5 .win.deck:not(.ph-win) .vwrap, .v5 .win.deck:not(.ph-win) .vwrap video { max-height: 40vh; }
+  .upd { gap: 3px; margin-bottom: 8px; } .upd li { font-size: clamp(12px, 1.05vw, 15px); }
+  .v5 .split .cap.v5cap { font-size: clamp(20px, 2vw, 30px); }
+  .v5 .stage-app .rail.mini.raypanel { max-height: 100%; bottom: 0; }
+  .v5 .raypanel .rail-you { max-width: 92%; font-size: 10.5px; }
+  .v5hook { padding-top: 44px; } .v5hook .hk-big { font-size: clamp(40px, 5.8vw, 80px); } .v5hook .hk-panel { width: min(420px, 82vw); font-size: 11px; } .v5hook .hk-panel .ray-empty p { display: none; }
+}
+@media (max-width: 940px) {
+  .v5 .ph.bare.doc { min-height: 30vh; max-height: 34vh; }
+  .v5 .win.deck:not(.ph-win) .vwrap, .v5 .win.deck:not(.ph-win) .vwrap video { max-height: 32vh; }
+  .upd { gap: 2px; margin-bottom: 6px; } .upd li { font-size: 12.5px; }
+  .v5 .stage-app .rail.mini.raypanel { max-height: 100%; }
+}
 /* open and end */
 .v5open .big.v5big, .v5end .big.v5big { font-size: clamp(40px, 5.6vw, 84px); line-height: 1; margin: 0 0 8px; text-align: left; }
 .v5end .big.v5big { text-align: center; }
@@ -1412,25 +1477,23 @@ body.on-light .edge { --edge: rgba(255,255,255,.3); }
 
 <section class="scene scene-dark v5 v5hook" data-label="Agentic Ray" data-dur="6800" id="sHook" data-wipe="dissolve">
   <i class="hk-glow" aria-hidden="true"></i><i class="streak s1"></i><i class="streak s2"></i>
-  <p class="hk-eyebrow fx" style="--d:.2s">Tenderfy</p>
   <h1 class="big hk-big"><span class="w"><i class="ch" style="--i:0">A</i><i class="ch" style="--i:1">g</i><i class="ch" style="--i:2">e</i><i class="ch" style="--i:3">n</i><i class="ch" style="--i:4">t</i><i class="ch" style="--i:5">i</i><i class="ch" style="--i:6">c</i></span> <span class="w"><i class="ch" style="--i:7">R</i><i class="ch" style="--i:8">a</i><i class="ch" style="--i:9">y</i><i class="ch" style="--i:10">.</i></span></h1>
-  <div class="hk-panel fx" style="--d:.6s" aria-hidden="true">
-    <div class="rp-head"><i class="rp-back"></i><span class="rp-title">Northside School Upgrade</span><em class="rp-beta">BETA</em><i class="rp-dots"></i></div>
-    <div class="hk-empty">
-      <span class="hk-halo"><img src="assets/ray-avatar.svg" alt="" /></span>
-      <b>How can Ray help?</b>
-      <p>Ask me anything across your tenders, documents and Response Library.</p>
-      <span class="hk-starter">What are the evaluation criteria on this tender?</span>
-      <span class="hk-starter">What insurance is required?</span>
-      <span class="hk-starter">Which tenders am I on?</span>
-    </div>
-    <div class="rp-foot"><div class="rp-ref"><span>Reference</span><b>Request for Tender.pdf</b><b>Scope of Works · Addendum 2.pdf</b></div>
-      <div class="rp-composer"><i class="rp-att"></i><span>Click to run step 1 of 8</span><i class="rp-clip"></i><i class="rp-send"></i></div></div>
-  </div>
+  <div class="hk-panel fx" style="--d:.6s" aria-hidden="true">      <div class="rail sk mini v4rail raypanel opening" aria-label="Ray">
+        <div class="rp-head"><i class="rp-back"></i><span class="rp-title">Northside School Upgrade</span><em class="rp-beta">Beta</em><i class="rp-dots"></i></div>
+        <div class="rail-body">
+          <div class="ray-empty"><span class="ray-halo"><img src="assets/ray-avatar.svg" alt="" /></span>
+            <h3>How can Ray help?</h3>
+            <p>Let’s work through <b>Northside School Upgrade</b>. There are 8 steps, and I’ll offer the next one each time.<br>You can also just ask me anything about it.</p>
+            <div class="ray-starters"><span class="ray-starter">What insurance is required?</span><span class="ray-starter">What changed in Addendum 2?</span><span class="ray-starter">What are the evaluation criteria?</span></div></div>
+          <div class="rp-next on"><i class="rp-arrow"></i><span class="t"><b>Next · 1 of 8</b> Go / No-Go</span><i class="rp-caret"></i><b class="rp-go">Start</b><i class="rp-meter"><i style="width:0%"></i></i></div>
+        </div>
+        <div class="rp-foot"><div class="rp-ref"><span>Reference</span><b class="add">+ Add a document as reference</b></div>
+          <div class="rp-composer"><i class="rp-att"></i><span class="rp-input" data-ph="Ask Ray anything…"></span><i class="rp-clip"></i><i class="rp-send"></i></div></div>
+      </div></div>
   <p class="hk-row"><span class="hk-line"><span class="w"><i class="ch" style="--i:12">Y</i><i class="ch" style="--i:13">o</i><i class="ch" style="--i:14">u</i><i class="ch" style="--i:15">r</i></span> <span class="w"><i class="ch" style="--i:16">t</i><i class="ch" style="--i:17">e</i><i class="ch" style="--i:18">n</i><i class="ch" style="--i:19">d</i><i class="ch" style="--i:20">e</i><i class="ch" style="--i:21">r</i></span> <span class="w"></span> <u class="ul"><span class="w"><i class="ch" style="--i:22">c</i><i class="ch" style="--i:23">o</i><i class="ch" style="--i:24">-</i><i class="ch" style="--i:25">w</i><i class="ch" style="--i:26">o</i><i class="ch" style="--i:27">r</i><i class="ch" style="--i:28">k</i><i class="ch" style="--i:29">e</i><i class="ch" style="--i:30">r</i></span></u><span class="w"><i class="ch" style="--i:31">.</i></span></span><span class="hk-sub fx" style="--d:1.5s">You guide. Ray helps deliver the tender.</span></p>
 </section>
-<section class="scene scene-light pair push-calm v5 above" data-label="Understand" data-dur="8440" id="sUnderstand" data-wipe="dissolve"
-         data-beats='[{"step": 1, "action": ["", 0, 3.4, 1], "result": ["", 0, 2.6, 1], "hold": 1.4, "offer": "Go/No-Go assessment created. Filed in the Go/No-Go folder with the tender.", "mode": "status", "strip": "Understand", "work": ["Reviewing the tender pack\u2026", "Identifying key requirements\u2026", "Understanding how to add value\u2026", "Checking your company knowledge\u2026"], "ticks": null, "tools": ["list_documents", "read_whole_document", "outline_document", "search_library"], "prompt": null, "btns": null, "press": 0, "rec": "Recreated UI \u00b7 Tender details, Go/No-Go assessment"}]'>
+<section class="scene scene-light pair push-calm v5 above" data-label="Understand" data-dur="9440" id="sUnderstand" data-wipe="dissolve"
+         data-beats='[{"step": 1, "action": ["", 0, 4.2, 1], "result": ["", 0, 2.8, 1], "hold": 1.4, "offer": "", "mode": "status", "strip": "", "work": ["Reviewing the tender pack\u2026", "Identifying key requirements\u2026", "Understanding how to add value\u2026", "Checking your company knowledge\u2026"], "ticks": null, "trace": [["list_documents", "5 documents readable"], ["plan_document_review", "Request for Tender.pdf \u2192 Page-by-page, Scope of Works \u2192 Whole file, Site Survey (scanned).pdf \u2192 OCR (~15600 tokens vs 198 pages)"], ["outline_document", "7 sections, 148 pages \u2014 no body text read"], ["read_whole_document", "11 pages (small file, one pass)"], ["read_pages", "1 page of Site Survey (scanned).pdf via OCR"], ["read_pages", "1 page of Tenderer Q&A Register.xlsx"], ["read_pages", "1 page of Commercial Rates \u2014 CONFIDENTIAL.xlsx"], ["read_pages", "3 pages of Request for Tender.pdf"]], "start": "Next \u00b7 1 of 8 \u00b7 Go / No-Go", "ask": "Review all documents for this tender", "next": "Next \u00b7 2 of 8 \u00b7 Plan the tender", "prompt": null, "btns": null, "press": 0, "rec": "Recreated \u00b7 the prototype running step 1; the scorecard from ray-01-gonogo"}]'>
   <div class="deco" aria-hidden="true">
     <span class="orb orb-teal" style="width:34vw;height:34vw;right:-9vw;top:-12vh"></span>
     <span class="dots" style="width:190px;height:150px;left:4%;top:12%"></span>
@@ -1439,38 +1502,40 @@ body.on-light .edge { --edge: rgba(255,255,255,.3); }
   <div class="split split-vid">
     <div class="beatcol">
       <div class="beatcopy" data-step="1">
-        <p class="eyebrow fx" style="--d:.05s"><img class="rayi" src="assets/ray-avatar.svg" alt="" />Ray at work</p>
+        <ul class="upd"><li>Reviewing the tender pack…</li><li>Identifying key requirements…</li><li>Understanding how to add value…</li><li>Checking your company knowledge…</li></ul>
         <h2 class="cap v5cap"><span class="w"><i class="ch" style="--i:0">R</i><i class="ch" style="--i:1">a</i><i class="ch" style="--i:2">y</i></span> <span class="w"><i class="ch" style="--i:3">u</i><i class="ch" style="--i:4">n</i><i class="ch" style="--i:5">d</i><i class="ch" style="--i:6">e</i><i class="ch" style="--i:7">r</i><i class="ch" style="--i:8">s</i><i class="ch" style="--i:9">t</i><i class="ch" style="--i:10">a</i><i class="ch" style="--i:11">n</i><i class="ch" style="--i:12">d</i><i class="ch" style="--i:13">s</i></span> <span class="w"><i class="ch" style="--i:14">t</i><i class="ch" style="--i:15">h</i><i class="ch" style="--i:16">e</i></span> <span class="w"><i class="ch" style="--i:17">o</i><i class="ch" style="--i:18">p</i><i class="ch" style="--i:19">p</i><i class="ch" style="--i:20">o</i><i class="ch" style="--i:21">r</i><i class="ch" style="--i:22">t</i><i class="ch" style="--i:23">u</i><i class="ch" style="--i:24">n</i><i class="ch" style="--i:25">i</i><i class="ch" style="--i:26">t</i><i class="ch" style="--i:27">y</i></span> <span class="w"></span> <u class="ul"><span class="w"><i class="ch" style="--i:28">b</i><i class="ch" style="--i:29">e</i><i class="ch" style="--i:30">f</i><i class="ch" style="--i:31">o</i><i class="ch" style="--i:32">r</i><i class="ch" style="--i:33">e</i></span> <span class="w"><i class="ch" style="--i:34">s</i><i class="ch" style="--i:35">t</i><i class="ch" style="--i:36">a</i><i class="ch" style="--i:37">r</i><i class="ch" style="--i:38">t</i><i class="ch" style="--i:39">i</i><i class="ch" style="--i:40">n</i><i class="ch" style="--i:41">g</i></span> <span class="w"><i class="ch" style="--i:42">t</i><i class="ch" style="--i:43">h</i><i class="ch" style="--i:44">e</i></span> <span class="w"><i class="ch" style="--i:45">w</i><i class="ch" style="--i:46">o</i><i class="ch" style="--i:47">r</i><i class="ch" style="--i:48">k</i></span></u><span class="w"><i class="ch" style="--i:49">.</i></span></h2>
       </div>
     </div>
     <div class="stage stage-app">
       <div class="win deck ph-win"><div class="win-bar"><span></span><span></span><span></span><em class="mock">Mockup</em></div>
-        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas><div class="ph bare doc ph-gonogo"><em class="mock">Mockup</em><div class="doc-head"><svg class="doc-logo" viewBox="0 0 32 65"><use href="#clipSym"/></svg><div><b>Go/No-Go Assessment</b><small>Northside School Upgrade · Dept of Education</small></div><em class="doc-by"><img src="assets/ray-avatar.svg" alt="" />Created by Ray</em></div><div class="pane docs"><div class="p-head dark"><span>Tender documentation</span><b class="btn">Add Document</b></div>
+        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas><div class="ph bare doc ph-gonogo"><em class="mock">Mockup</em><div class="doc-head"><svg class="doc-logo" viewBox="0 0 32 65"><use href="#clipSym"/></svg><div><b>Go/No-Go Assessment</b></div></div><div class="pane docs"><div class="p-head dark"><span>Tender documentation</span><b class="btn">Add Document</b></div>
               <div class="p-body"><div class="fold sel">(02 Selected) <b>Default</b></div><div class="file"><i></i>RFT · Northside School Upgrade.pdf</div><div class="file"><i></i>Addendum 2 · Scope of Works.pdf</div><div class="fold">Go / No-Go</div></div></div>
             <div class="pane doc"><div class="d-title">Go / No-Go Assessment</div><div class="d-sub">Headline scorecard</div>
               <div class="sc-row sc-head"><span>Criterion</span><b>Rating</b></div><div class="sc-row"><span>Strategic alignment</span><b class="g">Green</b></div><div class="sc-row"><span>Relevant capability and experience</span><b class="a">Amber</b></div><div class="sc-row"><span>Commercial viability</span><b class="r">Red</b></div><div class="sc-row"><span>Mandatory requirements and compliance</span><b class="r">Red</b></div><div class="sc-row"><span>Client relationship and understanding</span><b class="a">Amber</b></div><div class="sc-row"><span>Competitive position / likelihood of winning</span><b class="a">Amber</b></div><div class="sc-row"><span>Scope and delivery risk</span><b class="r">Red</b></div><div class="sc-row"><span>Programme and tender timeframe</span><b class="a">Amber</b></div>
-              <div class="d-rec"><span>Recommendation</span><b>Go, with conditions</b></div></div></div></div>
+              <div class="d-rec"><span>Recommendation</span><b>HOLD</b></div></div></div></div>
         <span class="rec-tag"><i></i><b class="tb-rec"></b></span></div>
       <div class="win deck"><div class="win-bar"><span></span><span></span><span></span></div>
         <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas></div></div>
-      <div class="rail sk mini v4rail raypanel" aria-label="Ray, working">
-        <div class="rp-head"><i class="rp-back"></i><span class="rp-title">Northside School Upgrade</span><em class="rp-beta">BETA</em><i class="rp-dots"></i></div>
+      <div class="rail sk mini v4rail raypanel" aria-label="Ray">
+        <div class="rp-head"><i class="rp-back"></i><span class="rp-title">Northside School Upgrade</span><em class="rp-beta">Beta</em><i class="rp-dots"></i></div>
         <div class="rail-body">
+          <div class="rp-start"><i class="rp-arrow"></i><span class="t"></span><b class="rp-go">Start</b></div>
           <div class="rail-you"></div>
           <div class="rp-ray"><img src="assets/ray-avatar.svg" alt="" /><span>Ray</span></div>
-          <div class="rh-s">Working.</div>
+          <div class="rh-s">Working<i class="ell">…</i></div>
           <div class="rail-work"></div>
           <div class="rail-offer"><p></p><div class="acts"><span class="rail-btn"></span><span class="rail-btn ghost"></span><span class="rail-btn" style="display:none"></span></div></div>
-          <div class="rail-next"><span></span><span class="prog"><i></i></span></div>
+          <div class="rp-next"><i class="rp-arrow"></i><span class="t"></span><i class="rp-caret"></i><b class="rp-go">Start</b><i class="rp-meter"><i></i></i></div>
+          <div class="rail-next" style="display:none"><span></span><span class="prog"><i></i></span></div>
         </div>
-        <div class="rp-foot"><div class="rp-ref"><span>Reference</span><b>Request for Tender.pdf</b><b>Scope of Works · Addendum 2.pdf</b></div>
-          <div class="rp-composer"><i class="rp-att"></i><span>Reply to Ray…</span><i class="rp-clip"></i><i class="rp-send"></i></div></div>
+        <div class="rp-foot"><div class="rp-ref"><span>Reference</span><b class="add">+ Add a document as reference</b></div>
+          <div class="rp-composer"><i class="rp-att"></i><span class="rp-input" data-ph="Reply to Ray…"></span><i class="rp-clip"></i><i class="rp-send"></i></div></div>
       </div>
     </div>
   </div>
 </section>
-<section class="scene scene-offwhite pair push-calm v5 below" data-label="Plan" data-dur="8240" id="sPlan" data-wipe="dissolve"
-         data-beats='[{"step": 2, "action": ["", 0, 2.8, 1], "result": ["", 0, 3.2, 1], "hold": 1.2, "offer": "Tasks assigned to team members.", "mode": "status", "strip": "Plan", "work": null, "ticks": ["Tender Delivery Plan Created", "Tasks Identified", "Responsibilities Assigned", "Deadlines Mapped"], "tools": ["create_plan", "create_tasks", "assign_tasks", "set_due_dates"], "prompt": null, "btns": null, "press": 0, "rec": "Recreated UI \u00b7 Checklist"}]'>
+<section class="scene scene-offwhite pair push-calm v5 below" data-label="Plan" data-dur="10773" id="sPlan" data-wipe="dissolve"
+         data-beats='[{"step": 2, "action": ["ray-02-plan.mp4", 0.0, 3.2, 1.5], "result": ["ray-02-plan.mp4", 40.0, 46.4, 1.0], "hold": 1.2, "offer": "", "mode": "status", "strip": "", "work": null, "ticks": ["Tender Delivery Plan Created", "Tasks Identified", "Responsibilities Assigned", "Deadlines Mapped"], "trace": null, "start": null, "ask": null, "next": null, "prompt": null, "btns": null, "press": 0, "rec": null}]'>
   <div class="deco" aria-hidden="true">
     <span class="orb orb-teal" style="width:34vw;height:34vw;right:-9vw;top:-12vh"></span>
     <span class="dots" style="width:190px;height:150px;left:4%;top:12%"></span>
@@ -1479,36 +1544,21 @@ body.on-light .edge { --edge: rgba(255,255,255,.3); }
   <div class="split split-vid">
     <div class="beatcol">
       <div class="beatcopy" data-step="2">
-        <p class="eyebrow fx" style="--d:.05s"><img class="rayi" src="assets/ray-avatar.svg" alt="" />Ray at work</p>
+        <ul class="upd ticks"><li>Tender Delivery Plan Created</li><li>Tasks Identified</li><li>Responsibilities Assigned</li><li>Deadlines Mapped</li></ul>
         <h2 class="cap v5cap"><span class="w"><i class="ch" style="--i:0">R</i><i class="ch" style="--i:1">a</i><i class="ch" style="--i:2">y</i></span> <span class="w"><i class="ch" style="--i:3">d</i><i class="ch" style="--i:4">e</i><i class="ch" style="--i:5">t</i><i class="ch" style="--i:6">e</i><i class="ch" style="--i:7">r</i><i class="ch" style="--i:8">m</i><i class="ch" style="--i:9">i</i><i class="ch" style="--i:10">n</i><i class="ch" style="--i:11">e</i><i class="ch" style="--i:12">s</i></span> <span class="w"><i class="ch" style="--i:13">w</i><i class="ch" style="--i:14">h</i><i class="ch" style="--i:15">a</i><i class="ch" style="--i:16">t</i></span> <span class="w"><i class="ch" style="--i:17">n</i><i class="ch" style="--i:18">e</i><i class="ch" style="--i:19">e</i><i class="ch" style="--i:20">d</i><i class="ch" style="--i:21">s</i></span> <span class="w"><i class="ch" style="--i:22">t</i><i class="ch" style="--i:23">o</i></span> <span class="w"><i class="ch" style="--i:24">b</i><i class="ch" style="--i:25">e</i></span> <span class="w"><i class="ch" style="--i:26">d</i><i class="ch" style="--i:27">o</i><i class="ch" style="--i:28">n</i><i class="ch" style="--i:29">e</i><i class="ch" style="--i:30">—</i><i class="ch" style="--i:31">a</i><i class="ch" style="--i:32">n</i><i class="ch" style="--i:33">d</i></span> <span class="w"></span> <u class="ul"><span class="w"><i class="ch" style="--i:34">c</i><i class="ch" style="--i:35">r</i><i class="ch" style="--i:36">e</i><i class="ch" style="--i:37">a</i><i class="ch" style="--i:38">t</i><i class="ch" style="--i:39">e</i><i class="ch" style="--i:40">s</i></span> <span class="w"><i class="ch" style="--i:41">t</i><i class="ch" style="--i:42">h</i><i class="ch" style="--i:43">e</i></span> <span class="w"><i class="ch" style="--i:44">p</i><i class="ch" style="--i:45">l</i><i class="ch" style="--i:46">a</i><i class="ch" style="--i:47">n</i></span></u> <span class="w"><i class="ch" style="--i:48">t</i><i class="ch" style="--i:49">o</i></span> <span class="w"><i class="ch" style="--i:50">d</i><i class="ch" style="--i:51">e</i><i class="ch" style="--i:52">l</i><i class="ch" style="--i:53">i</i><i class="ch" style="--i:54">v</i><i class="ch" style="--i:55">e</i><i class="ch" style="--i:56">r</i></span> <span class="w"><i class="ch" style="--i:57">i</i><i class="ch" style="--i:58">t</i><i class="ch" style="--i:59">.</i></span></h2>
       </div>
     </div>
     <div class="stage stage-app">
-      <div class="win deck ph-win"><div class="win-bar"><span></span><span></span><span></span><em class="mock">Mockup</em></div>
-        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas><div class="ph bare doc ph-plan"><em class="mock">Mockup</em><div class="doc-head"><svg class="doc-logo" viewBox="0 0 32 65"><use href="#clipSym"/></svg><div><b>Tender Delivery Plan</b><small>Tasks, owners and deadlines · closes 4 Oct 2026</small></div><em class="doc-by"><img src="assets/ray-avatar.svg" alt="" />Created by Ray</em></div><div class="pane check"><div class="p-head dark"><span>Checklist</span><b class="btn">Add Task</b></div>
-              <div class="tabs"><span class="on">My Tasks</span><span>Assigned Tasks</span><span>Completed Tasks</span><em>Priority</em></div>
-              <div class="t-row t-head"><span></span><span>TASK</span><span>DUE DATE ↓</span><span>OWNER</span><span>ACTIONS</span></div><div class="t-row" style="--i:0"><i class="dot"></i><span class="t-name">Conduct final buyer-feedback com…<small>Before lodgement, confirm every relevant…</small></span><span class="t-due">30/09/2026</span><span class="t-own">DD</span><span class="t-act"><i class="ed"></i><i class="ok"></i><i class="del"></i></span></div><div class="t-row" style="--i:1"><i class="dot"></i><span class="t-name">Conduct qualitative differentiator r…<small>Review the draft response against t…</small></span><span class="t-due">28/09/2026</span><span class="t-own">MW</span><span class="t-act"><i class="ed"></i><i class="ok"></i><i class="del"></i></span></div><div class="t-row" style="--i:2"><i class="dot"></i><span class="t-name">Prepare measurable local and First…<small>Develop a project-specific response…</small></span><span class="t-due">25/09/2026</span><span class="t-own">DW</span><span class="t-act"><i class="ed"></i><i class="ok"></i><i class="del"></i></span></div><div class="t-row" style="--i:3"><i class="dot"></i><span class="t-name">Prepare role-specific resumes and…<small>Provide concise resumes for nomina…</small></span><span class="t-due">24/09/2026</span><span class="t-own">AN</span><span class="t-act"><i class="ed"></i><i class="ok"></i><i class="del"></i></span></div><div class="t-row" style="--i:4"><i class="dot"></i><span class="t-name">Verify three comparable projects a…<small>Confirm each reference meets the b…</small></span><span class="t-due">22/09/2026</span><span class="t-own">SC</span><span class="t-act"><i class="ed"></i><i class="ok"></i><i class="del"></i></span></div><div class="t-row" style="--i:5"><i class="dot"></i><span class="t-name">Prepare traffic and school access p…<small>Drop-off and pick-up windows, Gate B…</small></span><span class="t-due">19/09/2026</span><span class="t-own">DD</span><span class="t-act"><i class="ed"></i><i class="ok"></i><i class="del"></i></span></div></div></div></div>
-        <span class="rec-tag"><i></i><b class="tb-rec"></b></span></div>
       <div class="win deck"><div class="win-bar"><span></span><span></span><span></span></div>
         <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas></div></div>
-      <div class="rail sk mini v4rail raypanel" aria-label="Ray, working">
-        <div class="rp-head"><i class="rp-back"></i><span class="rp-title">Northside School Upgrade</span><em class="rp-beta">BETA</em><i class="rp-dots"></i></div>
-        <div class="rail-body">
-          <div class="rail-you"></div>
-          <div class="rp-ray"><img src="assets/ray-avatar.svg" alt="" /><span>Ray</span></div>
-          <div class="rh-s">Working.</div>
-          <div class="rail-work"></div>
-          <div class="rail-offer"><p></p><div class="acts"><span class="rail-btn"></span><span class="rail-btn ghost"></span><span class="rail-btn" style="display:none"></span></div></div>
-          <div class="rail-next"><span></span><span class="prog"><i></i></span></div>
-        </div>
-        <div class="rp-foot"><div class="rp-ref"><span>Reference</span><b>Request for Tender.pdf</b><b>Scope of Works · Addendum 2.pdf</b></div>
-          <div class="rp-composer"><i class="rp-att"></i><span>Reply to Ray…</span><i class="rp-clip"></i><i class="rp-send"></i></div></div>
-      </div>
+      <div class="win deck"><div class="win-bar"><span></span><span></span><span></span></div>
+        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas></div></div>
+
     </div>
   </div>
 </section>
-<section class="scene scene-deep pair push-calm v5 above" data-label="Add value" data-dur="18180" id="sValue" data-wipe="dissolve"
-         data-beats='[{"step": 3, "action": ["", 0, 3.0, 1], "result": ["", 0, 2.8, 1], "hold": 2.6, "offer": "I\u2019ve identified school drop-off and pick-up times as a key disruption risk. I can create a targeted disruption management plan to address this. Would you like me to create it?", "mode": "ask", "strip": "Add value", "work": ["Analysing buyer priorities\u2026", "Identifying value-add opportunities\u2026", "Finding relevant experience and evidence\u2026"], "ticks": null, "tools": ["read_pages", "find_value_adds", "search_library"], "prompt": null, "btns": ["Yes, create it.", ""], "press": 0, "rec": "Recreated UI \u00b7 Tender documentation, buyer analysis"}, {"step": 4, "action": ["", 0, 3.4, 1], "result": ["", 0, 3.0, 1], "hold": 1.8, "offer": "Your School Drop-Off and Pick-Up Disruption Management Plan is ready for review.", "mode": "status", "strip": "Add value", "work": ["Analysing traffic and access requirements\u2026", "Developing mitigation measures\u2026", "Creating the plan\u2026"], "ticks": null, "tools": ["read_pages", "draft_section", "create_document"], "prompt": null, "btns": null, "press": 0, "rec": "Recreated UI \u00b7 Responses editor"}]'>
+<section class="scene scene-deep pair push-calm v5 above" data-label="Add value" data-dur="16580" id="sValue" data-wipe="dissolve"
+         data-beats='[{"step": 3, "action": ["ray-03-04-buyer.mp4", 0.0, 3.0, 1.5], "result": ["ray-03-04-buyer.mp4", 3.0, 5.2, 1.0], "hold": 2.6, "offer": "I\u2019ve identified school drop-off and pick-up times as a key disruption risk. I can create a targeted disruption management plan to address this. Would you like me to create it?", "mode": "status", "strip": "", "work": ["Analysing buyer priorities\u2026", "Identifying value-add opportunities\u2026", "Finding relevant experience and evidence\u2026"], "ticks": null, "trace": [["search_document", ""], ["read_pages", ""], ["search_response_library", ""]], "start": null, "ask": null, "next": null, "prompt": null, "btns": null, "press": 0, "rec": null}, {"step": 4, "action": ["", 0, 3.4, 1], "result": ["", 0, 3.0, 1], "hold": 1.8, "offer": "Your School Drop-Off and Pick-Up Disruption Management Plan is ready for review.", "mode": "status", "strip": "", "work": ["Analysing traffic and access requirements\u2026", "Developing mitigation measures\u2026", "Creating the plan\u2026"], "ticks": null, "trace": [["read_pages", ""], ["generate_content", ""], ["search_document", ""]], "start": null, "ask": null, "next": null, "prompt": "Yes, create it.", "btns": null, "press": 0, "rec": "Recreated \u00b7 the plan as structure; NEW capture replaces it"}]'>
   <div class="deco" aria-hidden="true">
     <span class="orb orb-teal" style="width:32vw;height:32vw;left:-9vw;top:-10vh"></span>
     <span class="dots" style="width:180px;height:140px;right:6%;bottom:12%"></span>
@@ -1517,51 +1567,47 @@ body.on-light .edge { --edge: rgba(255,255,255,.3); }
   <div class="split split-vid">
     <div class="beatcol">
       <div class="beatcopy" data-step="3">
-        <p class="eyebrow fx" style="--d:.05s"><img class="rayi" src="assets/ray-avatar.svg" alt="" />Ray at work</p>
+        <ul class="upd"><li>Analysing buyer priorities…</li><li>Identifying value-add opportunities…</li><li>Finding relevant experience and evidence…</li></ul>
         <h2 class="cap v5cap"><span class="w"><i class="ch" style="--i:0">R</i><i class="ch" style="--i:1">a</i><i class="ch" style="--i:2">y</i></span> <span class="w"><i class="ch" style="--i:3">t</i><i class="ch" style="--i:4">u</i><i class="ch" style="--i:5">r</i><i class="ch" style="--i:6">n</i><i class="ch" style="--i:7">s</i></span> <span class="w"><i class="ch" style="--i:8">b</i><i class="ch" style="--i:9">u</i><i class="ch" style="--i:10">y</i><i class="ch" style="--i:11">e</i><i class="ch" style="--i:12">r</i></span> <span class="w"><i class="ch" style="--i:13">p</i><i class="ch" style="--i:14">r</i><i class="ch" style="--i:15">i</i><i class="ch" style="--i:16">o</i><i class="ch" style="--i:17">r</i><i class="ch" style="--i:18">i</i><i class="ch" style="--i:19">t</i><i class="ch" style="--i:20">i</i><i class="ch" style="--i:21">e</i><i class="ch" style="--i:22">s</i></span> <span class="w"><i class="ch" style="--i:23">i</i><i class="ch" style="--i:24">n</i><i class="ch" style="--i:25">t</i><i class="ch" style="--i:26">o</i></span> <span class="w"></span> <u class="ul"><span class="w"><i class="ch" style="--i:27">t</i><i class="ch" style="--i:28">e</i><i class="ch" style="--i:29">n</i><i class="ch" style="--i:30">d</i><i class="ch" style="--i:31">e</i><i class="ch" style="--i:32">r</i><i class="ch" style="--i:33">-</i><i class="ch" style="--i:34">r</i><i class="ch" style="--i:35">e</i><i class="ch" style="--i:36">a</i><i class="ch" style="--i:37">d</i><i class="ch" style="--i:38">y</i></span> <span class="w"><i class="ch" style="--i:39">s</i><i class="ch" style="--i:40">o</i><i class="ch" style="--i:41">l</i><i class="ch" style="--i:42">u</i><i class="ch" style="--i:43">t</i><i class="ch" style="--i:44">i</i><i class="ch" style="--i:45">o</i><i class="ch" style="--i:46">n</i><i class="ch" style="--i:47">s</i></span></u><span class="w"><i class="ch" style="--i:48">.</i></span></h2>
       </div>
       <div class="beatcopy" data-step="4">
-        <p class="eyebrow fx" style="--d:.05s"><img class="rayi" src="assets/ray-avatar.svg" alt="" />Ray at work</p>
-        <h2 class="cap v5cap"><span class="w"><i class="ch" style="--i:0">R</i><i class="ch" style="--i:1">a</i><i class="ch" style="--i:2">y</i></span> <span class="w"><i class="ch" style="--i:3">t</i><i class="ch" style="--i:4">u</i><i class="ch" style="--i:5">r</i><i class="ch" style="--i:6">n</i><i class="ch" style="--i:7">s</i></span> <span class="w"><i class="ch" style="--i:8">b</i><i class="ch" style="--i:9">u</i><i class="ch" style="--i:10">y</i><i class="ch" style="--i:11">e</i><i class="ch" style="--i:12">r</i></span> <span class="w"><i class="ch" style="--i:13">p</i><i class="ch" style="--i:14">r</i><i class="ch" style="--i:15">i</i><i class="ch" style="--i:16">o</i><i class="ch" style="--i:17">r</i><i class="ch" style="--i:18">i</i><i class="ch" style="--i:19">t</i><i class="ch" style="--i:20">i</i><i class="ch" style="--i:21">e</i><i class="ch" style="--i:22">s</i></span> <span class="w"><i class="ch" style="--i:23">i</i><i class="ch" style="--i:24">n</i><i class="ch" style="--i:25">t</i><i class="ch" style="--i:26">o</i></span> <span class="w"></span> <u class="ul"><span class="w"><i class="ch" style="--i:27">t</i><i class="ch" style="--i:28">e</i><i class="ch" style="--i:29">n</i><i class="ch" style="--i:30">d</i><i class="ch" style="--i:31">e</i><i class="ch" style="--i:32">r</i><i class="ch" style="--i:33">-</i><i class="ch" style="--i:34">r</i><i class="ch" style="--i:35">e</i><i class="ch" style="--i:36">a</i><i class="ch" style="--i:37">d</i><i class="ch" style="--i:38">y</i></span> <span class="w"><i class="ch" style="--i:39">s</i><i class="ch" style="--i:40">o</i><i class="ch" style="--i:41">l</i><i class="ch" style="--i:42">u</i><i class="ch" style="--i:43">t</i><i class="ch" style="--i:44">i</i><i class="ch" style="--i:45">o</i><i class="ch" style="--i:46">n</i><i class="ch" style="--i:47">s</i></span></u><span class="w"><i class="ch" style="--i:48">.</i></span></h2>
+        <ul class="upd"><li>Analysing traffic and access requirements…</li><li>Developing mitigation measures…</li><li>Creating the plan…</li></ul>
+        
       </div>
     </div>
     <div class="stage stage-app">
+      <div class="win deck"><div class="win-bar"><span></span><span></span><span></span></div>
+        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas></div></div>
       <div class="win deck ph-win"><div class="win-bar"><span></span><span></span><span></span><em class="mock">Mockup</em></div>
-        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas><div class="ph bare doc ph-buyer"><em class="mock">Mockup</em><div class="doc-head"><svg class="doc-logo" viewBox="0 0 32 65"><use href="#clipSym"/></svg><div><b>Understanding the Buyer</b><small>Evaluation priorities · from the RFT and addendum 2</small></div><em class="doc-by"><img src="assets/ray-avatar.svg" alt="" />Created by Ray</em></div><div class="pane docs"><div class="p-head dark"><span>Tender documentation</span><b class="btn">Add Document</b></div>
-              <div class="p-body"><div class="fold sel">(01 Selected) <b>Default</b></div><div class="file"><i></i>RFT · Northside School Upgrade.pdf</div><div class="file"><i></i>Addendum 2 · Scope of Works.pdf</div>
-              <div class="qa"><span>Quick actions:</span><b>Go No Go</b><b>Executive Brief</b><b>Document Summary</b><b class="hi">Understand the buyer</b></div></div></div>
-            <div class="pane doc"><div class="d-title">Understanding the buyer · Dept of Education</div><div class="d-sub">What this buyer scores, from the RFT and addendum 2</div>
-              <div class="d-h">Evaluation priorities</div><i class="ln w100"></i><i class="ln w86"></i>
-              <div class="d-hot"><i class="pin"></i><span>School drop-off and pick-up times</span><em>key disruption risk</em></div>
-              <i class="ln w92"></i><i class="ln w70"></i>
-              <div class="d-h">Your evidence</div><i class="ln w80"></i><div class="d-evd">3 comparable live-school projects found in your library</div></div></div></div>
+        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas><div class="ph bare doc ph-plandoc"><em class="mock">Mockup</em><div class="doc-head"><svg class="doc-logo" viewBox="0 0 32 65"><use href="#clipSym"/></svg><div><b>School Drop-Off and Pick-Up Disruption Management Plan</b></div></div><div class="pane doc solo"><div class="d-crumb">Responses · AI Responses</div>
+              <div class="d-title">School Drop-Off and Pick-Up Disruption Management Plan</div>
+              <div class="d-h">1. Purpose</div><i class="ln w100"></i><i class="ln w72"></i>
+              <div class="d-h">2. Site and access context</div><i class="ln w96"></i><i class="ln w60"></i>
+              <div class="d-h">3. Mitigation measures</div>
+              <div class="m-row m-head"><span>Window</span><span>Restriction</span><span>Control</span><span>Responsible</span></div><div class="m-row"><span>School drop-off</span><i class="ln w80"></i><i class="ln w70"></i><i class="ln w50"></i></div><div class="m-row"><span>School pick-up</span><i class="ln w80"></i><i class="ln w70"></i><i class="ln w50"></i></div>
+              <div class="d-h">4. Communication with the school</div><i class="ln w88"></i>
+              <div class="ctl"><span>Rev A · Draft</span><span>Prepared by <i class="ln w40"></i></span><span class="rev">Reviewed by <i class="ln w40"></i></span><span>Date <i class="ln w30"></i></span></div></div></div></div>
         <span class="rec-tag"><i></i><b class="tb-rec"></b></span></div>
-      <div class="win deck ph-win"><div class="win-bar"><span></span><span></span><span></span><em class="mock">Mockup</em></div>
-        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas><div class="ph bare doc ph-plandoc"><em class="mock">Mockup</em><div class="doc-head"><svg class="doc-logo" viewBox="0 0 32 65"><use href="#clipSym"/></svg><div><b>School Drop-Off and Pick-Up Disruption Management Plan</b><small>Methodology · Section 4.2</small></div><em class="doc-by"><img src="assets/ray-avatar.svg" alt="" />Created by Ray</em></div><div class="pane doc solo"><div class="d-crumb">Responses · Methodology · Section 4.2</div>
-              <div class="d-title">Disruption Management Plan: School Drop-Off and Pick-Up</div><div class="d-sub">Drafted by Ray · matched your library · for your review</div>
-              <i class="ln w100"></i><i class="ln w90"></i><i class="ln w62"></i>
-              <div class="d-h">Mitigation measures</div>
-              <div class="m-row m-head"><span>Window</span><span>Measure</span><span>Owner</span></div><div class="m-row"><span>Drop-off, 8:00 to 9:00</span><span>No deliveries. Traffic controller at Gate B.</span><span>Site manager</span></div><div class="m-row"><span>Pick-up, 2:45 to 3:30</span><span>Plant movements paused. Pedestrian barrier line held.</span><span>Site manager</span></div><div class="m-row"><span>Wet weather</span><span>Covered walkway maintained. Extra controller.</span><span>Foreman</span></div><div class="m-row"><span>Term breaks</span><span>Heavy works scheduled. School advised two weeks prior.</span><span>Project manager</span></div>
-              <div class="d-acts"><b class="btn ghost">Discard</b><b class="btn ghost">Edit</b><b class="btn">Approve</b></div></div></div></div>
-        <span class="rec-tag"><i></i><b class="tb-rec"></b></span></div>
-      <div class="rail sk mini v4rail raypanel" aria-label="Ray, working">
-        <div class="rp-head"><i class="rp-back"></i><span class="rp-title">Northside School Upgrade</span><em class="rp-beta">BETA</em><i class="rp-dots"></i></div>
+      <div class="rail sk mini v4rail raypanel" aria-label="Ray">
+        <div class="rp-head"><i class="rp-back"></i><span class="rp-title">Northside School Upgrade</span><em class="rp-beta">Beta</em><i class="rp-dots"></i></div>
         <div class="rail-body">
+          <div class="rp-start"><i class="rp-arrow"></i><span class="t"></span><b class="rp-go">Start</b></div>
           <div class="rail-you"></div>
           <div class="rp-ray"><img src="assets/ray-avatar.svg" alt="" /><span>Ray</span></div>
-          <div class="rh-s">Working.</div>
+          <div class="rh-s">Working<i class="ell">…</i></div>
           <div class="rail-work"></div>
           <div class="rail-offer"><p></p><div class="acts"><span class="rail-btn"></span><span class="rail-btn ghost"></span><span class="rail-btn" style="display:none"></span></div></div>
-          <div class="rail-next"><span></span><span class="prog"><i></i></span></div>
+          <div class="rp-next"><i class="rp-arrow"></i><span class="t"></span><i class="rp-caret"></i><b class="rp-go">Start</b><i class="rp-meter"><i></i></i></div>
+          <div class="rail-next" style="display:none"><span></span><span class="prog"><i></i></span></div>
         </div>
-        <div class="rp-foot"><div class="rp-ref"><span>Reference</span><b>Request for Tender.pdf</b><b>Scope of Works · Addendum 2.pdf</b></div>
-          <div class="rp-composer"><i class="rp-att"></i><span>Reply to Ray…</span><i class="rp-clip"></i><i class="rp-send"></i></div></div>
+        <div class="rp-foot"><div class="rp-ref"><span>Reference</span><b class="add">+ Add a document as reference</b></div>
+          <div class="rp-composer"><i class="rp-att"></i><span class="rp-input" data-ph="Reply to Ray…"></span><i class="rp-clip"></i><i class="rp-send"></i></div></div>
       </div>
     </div>
   </div>
 </section>
-<section class="scene scene-light pair push-calm v5 below" data-label="Resumes and profiles" data-dur="8639" id="sResumes" data-wipe="dissolve"
-         data-beats='[{"step": 5, "action": ["", 0, 3.4, 1], "result": ["", 0, 2.8, 1], "hold": 1.4, "offer": "Resumes and project profiles updated and added to the tender build.", "mode": "status", "strip": "Resumes and profiles", "work": ["Matching relevant experience\u2026", "Tailoring content to the buyer\u2026", "Updating resumes and project profiles\u2026", "Adding them to the tender build\u2026"], "ticks": null, "tools": ["search_library", "tailor_content", "update_documents", "add_to_build"], "prompt": "Select the most relevant resumes and project profiles for this project, then tailor them to the buyer\u2019s priorities using their own language.", "btns": null, "press": 0, "rec": "Recreated UI \u00b7 Build Tender"}]'>
+<section class="scene scene-light pair push-calm v5 below" data-label="Resumes and profiles" data-dur="8840" id="sResumes" data-wipe="dissolve"
+         data-beats='[{"step": 5, "action": ["", 0, 3.6, 1], "result": ["", 0, 2.8, 1], "hold": 1.4, "offer": "", "mode": "status", "strip": "", "work": ["Matching relevant experience\u2026", "Tailoring content to the buyer\u2026", "Updating resumes and project profiles\u2026", "Adding them to the tender build\u2026"], "ticks": null, "trace": [["search_response_library", ""], ["read_pages", ""], ["generate_content", ""], ["list_documents", ""]], "start": null, "ask": null, "next": null, "prompt": "Select the most relevant resumes and project profiles for this project, then tailor them to the buyer\u2019s priorities using their own language.", "btns": null, "press": 0, "rec": "Recreated \u00b7 Build Tender with the library\u2019s own resumes and case study"}]'>
   <div class="deco" aria-hidden="true">
     <span class="orb orb-teal" style="width:32vw;height:32vw;left:-10vw;top:-12vh"></span>
     <span class="dots" style="width:180px;height:140px;right:4%;top:16%"></span>
@@ -1570,37 +1616,39 @@ body.on-light .edge { --edge: rgba(255,255,255,.3); }
   <div class="split split-vid">
     <div class="beatcol">
       <div class="beatcopy" data-step="5">
-        <p class="eyebrow fx" style="--d:.05s"><img class="rayi" src="assets/ray-avatar.svg" alt="" />Ray at work</p>
+        <ul class="upd"><li>Matching relevant experience…</li><li>Tailoring content to the buyer…</li><li>Updating resumes and project profiles…</li><li>Adding them to the tender build…</li></ul>
         <h2 class="cap v5cap"><span class="w"><i class="ch" style="--i:0">R</i><i class="ch" style="--i:1">a</i><i class="ch" style="--i:2">y</i></span> <span class="w"><i class="ch" style="--i:3">t</i><i class="ch" style="--i:4">a</i><i class="ch" style="--i:5">i</i><i class="ch" style="--i:6">l</i><i class="ch" style="--i:7">o</i><i class="ch" style="--i:8">r</i><i class="ch" style="--i:9">s</i></span> <span class="w"><i class="ch" style="--i:10">y</i><i class="ch" style="--i:11">o</i><i class="ch" style="--i:12">u</i><i class="ch" style="--i:13">r</i></span> <span class="w"><i class="ch" style="--i:14">c</i><i class="ch" style="--i:15">o</i><i class="ch" style="--i:16">n</i><i class="ch" style="--i:17">t</i><i class="ch" style="--i:18">e</i><i class="ch" style="--i:19">n</i><i class="ch" style="--i:20">t</i></span> <span class="w"><i class="ch" style="--i:21">t</i><i class="ch" style="--i:22">o</i></span> <span class="w"><i class="ch" style="--i:23">t</i><i class="ch" style="--i:24">h</i><i class="ch" style="--i:25">e</i></span> <span class="w"><i class="ch" style="--i:26">o</i><i class="ch" style="--i:27">p</i><i class="ch" style="--i:28">p</i><i class="ch" style="--i:29">o</i><i class="ch" style="--i:30">r</i><i class="ch" style="--i:31">t</i><i class="ch" style="--i:32">u</i><i class="ch" style="--i:33">n</i><i class="ch" style="--i:34">i</i><i class="ch" style="--i:35">t</i><i class="ch" style="--i:36">y</i><i class="ch" style="--i:37">—</i></span><u class="ul"><span class="w"><i class="ch" style="--i:38">w</i><i class="ch" style="--i:39">i</i><i class="ch" style="--i:40">t</i><i class="ch" style="--i:41">h</i><i class="ch" style="--i:42">o</i><i class="ch" style="--i:43">u</i><i class="ch" style="--i:44">t</i></span> <span class="w"><i class="ch" style="--i:45">c</i><i class="ch" style="--i:46">h</i><i class="ch" style="--i:47">a</i><i class="ch" style="--i:48">n</i><i class="ch" style="--i:49">g</i><i class="ch" style="--i:50">i</i><i class="ch" style="--i:51">n</i><i class="ch" style="--i:52">g</i></span> <span class="w"><i class="ch" style="--i:53">t</i><i class="ch" style="--i:54">h</i><i class="ch" style="--i:55">e</i></span> <span class="w"><i class="ch" style="--i:56">f</i><i class="ch" style="--i:57">a</i><i class="ch" style="--i:58">c</i><i class="ch" style="--i:59">t</i><i class="ch" style="--i:60">s</i></span></u><span class="w"><i class="ch" style="--i:61">.</i></span></h2>
       </div>
     </div>
     <div class="stage stage-app">
       <div class="win deck ph-win"><div class="win-bar"><span></span><span></span><span></span><em class="mock">Mockup</em></div>
-        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas><div class="ph bare doc ph-tailor"><em class="mock">Mockup</em><div class="doc-head"><svg class="doc-logo" viewBox="0 0 32 65"><use href="#clipSym"/></svg><div><b>Tender Pack · Resumes and Project Profiles</b><small>Tailored to the buyer’s priorities</small></div><em class="doc-by"><img src="assets/ray-avatar.svg" alt="" />Created by Ray</em></div><div class="b-top"><b class="back">‹ Back</b><span class="b-title">Tender Attachments · Tender Pack</span><b class="btn amber">Download</b><b class="btn">Save Changes</b></div>
+        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas><div class="ph bare doc ph-tailor"><em class="mock">Mockup</em><div class="doc-head"><svg class="doc-logo" viewBox="0 0 32 65"><use href="#clipSym"/></svg><div><b>Tender Pack · Resumes and Project Profiles</b></div></div><div class="b-top"><b class="back">‹ Back</b><span class="b-title">Tender Attachments · Tender Pack</span><b class="btn amber">Download</b><b class="btn">Save Changes</b></div>
             <div class="pane build"><div class="sec"><span class="s-t">Cover Pages</span><span class="s-add">+ Add Cover Pages</span></div><div class="sec"><span class="s-t">Table of Contents</span><span class="s-add">+ Add Table of Contents</span></div>
-              <div class="sec"><span class="s-t">Resumes</span><div class="r-row"><i class="r-photo"></i><span class="r-name">Daniel Whitfield<small>Senior Civil Estimator</small></span><span class="r-skill">Estimating · ECI</span><em class="tail">Tailored</em></div><div class="r-row"><i class="r-photo"></i><span class="r-name">Priya Nair<small>Contracts Administrator</small></span><span class="r-skill">Contracts · Procure</span><em class="tail">Tailored</em></div><span class="s-add">+ Add Resumes</span></div>
-              <div class="sec"><span class="s-t">Case Studies</span><div class="r-row"><i class="r-photo sq"></i><span class="r-name">Hillcrest Primary, Stage 1<small>Live school · 2024 · Dept of Education</small></span><span class="r-skill">Case study</span><em class="tail">Tailored</em></div><span class="s-add">+ Add Case Studies</span></div></div></div></div>
+              <div class="sec"><span class="s-t">Resumes</span><div class="r-row"><i class="r-photo"></i><span class="r-name">Daniel Whitfield<small>Senior Civil Estimator</small></span><span class="r-skill">Estimating · ECI</span></div><div class="r-row"><i class="r-photo"></i><span class="r-name">Priya Nair<small>Contracts Administrator</small></span><span class="r-skill">Contracts · Procure</span></div><span class="s-add">+ Add Resumes</span></div>
+              <div class="sec"><span class="s-t">Case Studies</span><div class="r-row"><i class="r-photo sq"></i><span class="r-name">Pedestrian Bridge Build – Regional Connectivity Enhancement<small>Case study</small></span></div><span class="s-add">+ Add Case Studies</span></div></div></div></div>
         <span class="rec-tag"><i></i><b class="tb-rec"></b></span></div>
       <div class="win deck"><div class="win-bar"><span></span><span></span><span></span></div>
         <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas></div></div>
-      <div class="rail sk mini v4rail raypanel" aria-label="Ray, working">
-        <div class="rp-head"><i class="rp-back"></i><span class="rp-title">Northside School Upgrade</span><em class="rp-beta">BETA</em><i class="rp-dots"></i></div>
+      <div class="rail sk mini v4rail raypanel" aria-label="Ray">
+        <div class="rp-head"><i class="rp-back"></i><span class="rp-title">Northside School Upgrade</span><em class="rp-beta">Beta</em><i class="rp-dots"></i></div>
         <div class="rail-body">
+          <div class="rp-start"><i class="rp-arrow"></i><span class="t"></span><b class="rp-go">Start</b></div>
           <div class="rail-you"></div>
           <div class="rp-ray"><img src="assets/ray-avatar.svg" alt="" /><span>Ray</span></div>
-          <div class="rh-s">Working.</div>
+          <div class="rh-s">Working<i class="ell">…</i></div>
           <div class="rail-work"></div>
           <div class="rail-offer"><p></p><div class="acts"><span class="rail-btn"></span><span class="rail-btn ghost"></span><span class="rail-btn" style="display:none"></span></div></div>
-          <div class="rail-next"><span></span><span class="prog"><i></i></span></div>
+          <div class="rp-next"><i class="rp-arrow"></i><span class="t"></span><i class="rp-caret"></i><b class="rp-go">Start</b><i class="rp-meter"><i></i></i></div>
+          <div class="rail-next" style="display:none"><span></span><span class="prog"><i></i></span></div>
         </div>
-        <div class="rp-foot"><div class="rp-ref"><span>Reference</span><b>Request for Tender.pdf</b><b>Scope of Works · Addendum 2.pdf</b></div>
-          <div class="rp-composer"><i class="rp-att"></i><span>Reply to Ray…</span><i class="rp-clip"></i><i class="rp-send"></i></div></div>
+        <div class="rp-foot"><div class="rp-ref"><span>Reference</span><b class="add">+ Add a document as reference</b></div>
+          <div class="rp-composer"><i class="rp-att"></i><span class="rp-input" data-ph="Reply to Ray…"></span><i class="rp-clip"></i><i class="rp-send"></i></div></div>
       </div>
     </div>
   </div>
 </section>
-<section class="scene scene-offwhite pair push-calm v5 above" data-label="Approval" data-dur="5640" id="sApproval" data-wipe="dissolve"
-         data-beats='[{"step": 6, "action": ["", 0, 1.2, 1], "result": ["", 0, 1.0, 1], "hold": 2.4, "offer": "Ready for your review.", "mode": "review", "strip": "Approval", "work": null, "ticks": null, "tools": null, "prompt": null, "btns": ["Review", "Request Changes", "Approve & Update"], "press": 2, "rec": "Recreated UI \u00b7 Responses editor, awaiting approval"}]'>
+<section class="scene scene-offwhite pair push-calm v5 above" data-label="Approval" data-dur="6240" id="sApproval" data-wipe="dissolve"
+         data-beats='[{"step": 6, "action": ["", 0, 1.6, 1], "result": ["", 0, 1.2, 1], "hold": 2.4, "offer": "Your School Drop-Off and Pick-Up Disruption Management Plan is ready for review.", "mode": "review", "strip": "", "work": null, "ticks": null, "trace": null, "start": null, "ask": null, "next": null, "prompt": null, "btns": ["Review", "Request Changes", "Approve & Update"], "press": 2, "rec": "Recreated \u00b7 the same plan, awaiting approval"}]'>
   <div class="deco" aria-hidden="true">
     <span class="orb orb-teal" style="width:32vw;height:32vw;left:-9vw;top:-10vh"></span>
     <span class="dots" style="width:180px;height:140px;right:6%;bottom:12%"></span>
@@ -1609,39 +1657,43 @@ body.on-light .edge { --edge: rgba(255,255,255,.3); }
   <div class="split split-vid">
     <div class="beatcol">
       <div class="beatcopy" data-step="6">
-        <p class="eyebrow fx" style="--d:.05s"><img class="rayi" src="assets/ray-avatar.svg" alt="" />Approval controls</p>
+        
         <h2 class="cap v5cap"><span class="w"><i class="ch" style="--i:0">Y</i><i class="ch" style="--i:1">o</i><i class="ch" style="--i:2">u</i><i class="ch" style="--i:3">r</i></span> <span class="w"><i class="ch" style="--i:4">t</i><i class="ch" style="--i:5">e</i><i class="ch" style="--i:6">a</i><i class="ch" style="--i:7">m</i></span> <span class="w"></span> <u class="ul"><span class="w"><i class="ch" style="--i:8">r</i><i class="ch" style="--i:9">e</i><i class="ch" style="--i:10">m</i><i class="ch" style="--i:11">a</i><i class="ch" style="--i:12">i</i><i class="ch" style="--i:13">n</i><i class="ch" style="--i:14">s</i></span> <span class="w"><i class="ch" style="--i:15">i</i><i class="ch" style="--i:16">n</i></span> <span class="w"><i class="ch" style="--i:17">c</i><i class="ch" style="--i:18">o</i><i class="ch" style="--i:19">n</i><i class="ch" style="--i:20">t</i><i class="ch" style="--i:21">r</i><i class="ch" style="--i:22">o</i><i class="ch" style="--i:23">l</i></span></u><span class="w"><i class="ch" style="--i:24">.</i></span></h2>
       </div>
     </div>
     <div class="stage stage-app">
       <div class="win deck ph-win"><div class="win-bar"><span></span><span></span><span></span><em class="mock">Mockup</em></div>
-        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas><div class="ph bare doc ph-plandoc"><em class="mock">Mockup</em><div class="doc-head"><svg class="doc-logo" viewBox="0 0 32 65"><use href="#clipSym"/></svg><div><b>School Drop-Off and Pick-Up Disruption Management Plan</b><small>Methodology · Section 4.2</small></div><em class="doc-by"><img src="assets/ray-avatar.svg" alt="" />Created by Ray</em></div><div class="pane doc solo"><div class="d-crumb">Responses · Methodology · Section 4.2</div>
-              <div class="d-title">Disruption Management Plan: School Drop-Off and Pick-Up</div><div class="d-sub">Drafted by Ray · matched your library · for your review</div>
-              <i class="ln w100"></i><i class="ln w90"></i><i class="ln w62"></i>
-              <div class="d-h">Mitigation measures</div>
-              <div class="m-row m-head"><span>Window</span><span>Measure</span><span>Owner</span></div><div class="m-row"><span>Drop-off, 8:00 to 9:00</span><span>No deliveries. Traffic controller at Gate B.</span><span>Site manager</span></div><div class="m-row"><span>Pick-up, 2:45 to 3:30</span><span>Plant movements paused. Pedestrian barrier line held.</span><span>Site manager</span></div><div class="m-row"><span>Wet weather</span><span>Covered walkway maintained. Extra controller.</span><span>Foreman</span></div><div class="m-row"><span>Term breaks</span><span>Heavy works scheduled. School advised two weeks prior.</span><span>Project manager</span></div>
-              <div class="d-acts"><b class="btn ghost">Discard</b><b class="btn ghost">Edit</b><b class="btn">Approve</b></div></div></div></div>
+        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas><div class="ph bare doc ph-plandoc"><em class="mock">Mockup</em><div class="doc-head"><svg class="doc-logo" viewBox="0 0 32 65"><use href="#clipSym"/></svg><div><b>School Drop-Off and Pick-Up Disruption Management Plan</b></div></div><div class="pane doc solo"><div class="d-crumb">Responses · AI Responses</div>
+              <div class="d-title">School Drop-Off and Pick-Up Disruption Management Plan</div>
+              <div class="d-h">1. Purpose</div><i class="ln w100"></i><i class="ln w72"></i>
+              <div class="d-h">2. Site and access context</div><i class="ln w96"></i><i class="ln w60"></i>
+              <div class="d-h">3. Mitigation measures</div>
+              <div class="m-row m-head"><span>Window</span><span>Restriction</span><span>Control</span><span>Responsible</span></div><div class="m-row"><span>School drop-off</span><i class="ln w80"></i><i class="ln w70"></i><i class="ln w50"></i></div><div class="m-row"><span>School pick-up</span><i class="ln w80"></i><i class="ln w70"></i><i class="ln w50"></i></div>
+              <div class="d-h">4. Communication with the school</div><i class="ln w88"></i>
+              <div class="ctl"><span>Rev A · Draft</span><span>Prepared by <i class="ln w40"></i></span><span class="rev">Reviewed by <i class="ln w40"></i></span><span>Date <i class="ln w30"></i></span></div></div></div></div>
         <span class="rec-tag"><i></i><b class="tb-rec"></b></span></div>
       <div class="win deck"><div class="win-bar"><span></span><span></span><span></span></div>
         <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas></div></div>
-      <div class="rail sk mini v4rail raypanel" aria-label="Ray, working">
-        <div class="rp-head"><i class="rp-back"></i><span class="rp-title">Northside School Upgrade</span><em class="rp-beta">BETA</em><i class="rp-dots"></i></div>
+      <div class="rail sk mini v4rail raypanel" aria-label="Ray">
+        <div class="rp-head"><i class="rp-back"></i><span class="rp-title">Northside School Upgrade</span><em class="rp-beta">Beta</em><i class="rp-dots"></i></div>
         <div class="rail-body">
+          <div class="rp-start"><i class="rp-arrow"></i><span class="t"></span><b class="rp-go">Start</b></div>
           <div class="rail-you"></div>
           <div class="rp-ray"><img src="assets/ray-avatar.svg" alt="" /><span>Ray</span></div>
-          <div class="rh-s">Working.</div>
+          <div class="rh-s">Working<i class="ell">…</i></div>
           <div class="rail-work"></div>
           <div class="rail-offer"><p></p><div class="acts"><span class="rail-btn"></span><span class="rail-btn ghost"></span><span class="rail-btn" style="display:none"></span></div></div>
-          <div class="rail-next"><span></span><span class="prog"><i></i></span></div>
+          <div class="rp-next"><i class="rp-arrow"></i><span class="t"></span><i class="rp-caret"></i><b class="rp-go">Start</b><i class="rp-meter"><i></i></i></div>
+          <div class="rail-next" style="display:none"><span></span><span class="prog"><i></i></span></div>
         </div>
-        <div class="rp-foot"><div class="rp-ref"><span>Reference</span><b>Request for Tender.pdf</b><b>Scope of Works · Addendum 2.pdf</b></div>
-          <div class="rp-composer"><i class="rp-att"></i><span>Reply to Ray…</span><i class="rp-clip"></i><i class="rp-send"></i></div></div>
+        <div class="rp-foot"><div class="rp-ref"><span>Reference</span><b class="add">+ Add a document as reference</b></div>
+          <div class="rp-composer"><i class="rp-att"></i><span class="rp-input" data-ph="Reply to Ray…"></span><i class="rp-clip"></i><i class="rp-send"></i></div></div>
       </div>
     </div>
   </div>
 </section>
-<section class="scene scene-deep pair push-calm v5 below" data-label="Build and review" data-dur="7039" id="sBuild" data-wipe="dissolve"
-         data-beats='[{"step": 7, "action": ["ray-07-08-build-review.mp4", 15.5, 18.5, 1.5], "result": ["ray-07-08-build-review.mp4", 22.3, 24.9, 1.0], "hold": 1.4, "offer": "Compliance checked. Missing information flagged.", "mode": "status", "strip": "Build and review", "work": ["Building the tender documents\u2026", "Checking compliance\u2026", "Flagging missing information\u2026"], "ticks": null, "tools": ["build_documents", "check_compliance", "flag_missing"], "prompt": null, "btns": null, "press": 0, "rec": null}]'>
+<section class="scene scene-deep pair push-calm v5 below" data-label="Build and review" data-dur="8039" id="sBuild" data-wipe="dissolve"
+         data-beats='[{"step": 7, "action": ["ray-07-08-build-review.mp4", 13.5, 16.5, 1.0], "result": ["ray-07-08-build-review.mp4", 22.3, 24.9, 1.0], "hold": 1.4, "offer": "", "mode": "status", "strip": "", "work": ["Building the tender documents\u2026", "Checking compliance\u2026", "Flagging missing information\u2026"], "ticks": null, "trace": null, "start": null, "ask": null, "next": null, "prompt": null, "btns": null, "press": 0, "rec": null}]'>
   <svg class="clip-mark" viewBox="0 0 32 65" aria-hidden="true"><use href="#clipSym"/></svg>
   <div class="deco" aria-hidden="true">
     <span class="orb orb-teal" style="width:40vw;height:40vw;left:-12vw;bottom:-16vh;--od:17s"></span>
@@ -1656,7 +1708,7 @@ body.on-light .edge { --edge: rgba(255,255,255,.3); }
   <div class="split split-vid">
     <div class="beatcol">
       <div class="beatcopy" data-step="7">
-        <p class="eyebrow fx" style="--d:.05s"><img class="rayi" src="assets/ray-avatar.svg" alt="" />Ray at work</p>
+        <ul class="upd"><li>Building the tender documents…</li><li>Checking compliance…</li><li>Flagging missing information…</li></ul>
         <h2 class="cap v5cap"><span class="w"><i class="ch" style="--i:0">F</i><i class="ch" style="--i:1">r</i><i class="ch" style="--i:2">o</i><i class="ch" style="--i:3">m</i></span> <span class="w"><i class="ch" style="--i:4">u</i><i class="ch" style="--i:5">n</i><i class="ch" style="--i:6">d</i><i class="ch" style="--i:7">e</i><i class="ch" style="--i:8">r</i><i class="ch" style="--i:9">s</i><i class="ch" style="--i:10">t</i><i class="ch" style="--i:11">a</i><i class="ch" style="--i:12">n</i><i class="ch" style="--i:13">d</i><i class="ch" style="--i:14">i</i><i class="ch" style="--i:15">n</i><i class="ch" style="--i:16">g</i></span> <span class="w"><i class="ch" style="--i:17">t</i><i class="ch" style="--i:18">h</i><i class="ch" style="--i:19">e</i></span> <span class="w"><i class="ch" style="--i:20">o</i><i class="ch" style="--i:21">p</i><i class="ch" style="--i:22">p</i><i class="ch" style="--i:23">o</i><i class="ch" style="--i:24">r</i><i class="ch" style="--i:25">t</i><i class="ch" style="--i:26">u</i><i class="ch" style="--i:27">n</i><i class="ch" style="--i:28">i</i><i class="ch" style="--i:29">t</i><i class="ch" style="--i:30">y</i></span> <span class="w"><i class="ch" style="--i:31">t</i><i class="ch" style="--i:32">o</i></span> <span class="w"><i class="ch" style="--i:33">r</i><i class="ch" style="--i:34">e</i><i class="ch" style="--i:35">v</i><i class="ch" style="--i:36">i</i><i class="ch" style="--i:37">e</i><i class="ch" style="--i:38">w</i><i class="ch" style="--i:39">i</i><i class="ch" style="--i:40">n</i><i class="ch" style="--i:41">g</i></span> <span class="w"></span> <u class="ul"><span class="w"><i class="ch" style="--i:42">t</i><i class="ch" style="--i:43">h</i><i class="ch" style="--i:44">e</i></span> <span class="w"><i class="ch" style="--i:45">f</i><i class="ch" style="--i:46">i</i><i class="ch" style="--i:47">n</i><i class="ch" style="--i:48">a</i><i class="ch" style="--i:49">l</i></span> <span class="w"><i class="ch" style="--i:50">s</i><i class="ch" style="--i:51">u</i><i class="ch" style="--i:52">b</i><i class="ch" style="--i:53">m</i><i class="ch" style="--i:54">i</i><i class="ch" style="--i:55">s</i><i class="ch" style="--i:56">s</i><i class="ch" style="--i:57">i</i><i class="ch" style="--i:58">o</i><i class="ch" style="--i:59">n</i></span></u><span class="w"><i class="ch" style="--i:60">.</i></span></h2>
       </div>
     </div>
@@ -1665,24 +1717,12 @@ body.on-light .edge { --edge: rgba(255,255,255,.3); }
         <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas></div></div>
       <div class="win deck"><div class="win-bar"><span></span><span></span><span></span></div>
         <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas></div></div>
-      <div class="rail sk mini v4rail raypanel" aria-label="Ray, working">
-        <div class="rp-head"><i class="rp-back"></i><span class="rp-title">Northside School Upgrade</span><em class="rp-beta">BETA</em><i class="rp-dots"></i></div>
-        <div class="rail-body">
-          <div class="rail-you"></div>
-          <div class="rp-ray"><img src="assets/ray-avatar.svg" alt="" /><span>Ray</span></div>
-          <div class="rh-s">Working.</div>
-          <div class="rail-work"></div>
-          <div class="rail-offer"><p></p><div class="acts"><span class="rail-btn"></span><span class="rail-btn ghost"></span><span class="rail-btn" style="display:none"></span></div></div>
-          <div class="rail-next"><span></span><span class="prog"><i></i></span></div>
-        </div>
-        <div class="rp-foot"><div class="rp-ref"><span>Reference</span><b>Request for Tender.pdf</b><b>Scope of Works · Addendum 2.pdf</b></div>
-          <div class="rp-composer"><i class="rp-att"></i><span>Reply to Ray…</span><i class="rp-clip"></i><i class="rp-send"></i></div></div>
-      </div>
+
     </div>
   </div>
 </section>
-<section class="scene scene-light pair push-calm v5 above" data-label="Download" data-dur="5640" id="sDownload" data-wipe="dissolve"
-         data-beats='[{"step": 8, "action": ["", 0, 1.6, 1], "result": ["", 0, 2.4, 1], "hold": 0.6, "offer": "", "mode": "status", "strip": "", "work": null, "ticks": null, "tools": null, "prompt": null, "btns": null, "press": 0, "rec": "NEW ray-13-download \u00b7 the finished tender being downloaded \u00b7 3s"}]'>
+<section class="scene scene-light pair push-calm v5 above" data-label="Download" data-dur="5840" id="sDownload" data-wipe="dissolve"
+         data-beats='[{"step": 8, "action": ["", 0, 1.6, 1], "result": ["", 0, 2.4, 1], "hold": 0.8, "offer": "<b>That\u2019s the whole method</b> Northside School Upgrade has been through all 8 stages \u2014 assessed, planned, written, built and checked. It\u2019s ready for your final approval.", "mode": "done", "strip": "", "work": null, "ticks": null, "trace": null, "start": null, "ask": null, "next": null, "prompt": null, "btns": ["Review the tender", "See what we did", ""], "press": -1, "rec": "NEW ray-13-download \u00b7 Download pressed on Tender Pack \u00b7 3s"}]'>
   <div class="deco" aria-hidden="true">
     <span class="orb orb-blue" style="width:32vw;height:32vw;left:-10vw;bottom:-12vh"></span>
     <span class="dots" style="width:180px;height:140px;right:5%;top:14%"></span>
@@ -1697,11 +1737,25 @@ body.on-light .edge { --edge: rgba(255,255,255,.3); }
     </div>
     <div class="stage stage-app">
       <div class="win deck ph-win"><div class="win-bar"><span></span><span></span><span></span><em class="mock">Mockup</em></div>
-        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas><div class="ph bare doc ph-download"><em class="mock">Mockup</em><div class="doc-head"><svg class="doc-logo" viewBox="0 0 32 65"><use href="#clipSym"/></svg><div><b>Tender Pack</b><small>Ready for submission</small></div><em class="doc-by"><img src="assets/ray-avatar.svg" alt="" />Created by Ray</em></div><div class="b-top"><b class="back">‹ Back</b><span class="b-title">Tender Attachments · Tender Pack</span><b class="btn amber">Download</b><b class="btn">Save Changes</b></div><div class="pane doc solo pack"><div class="c-row ok" style="--i:0"><i></i><span>Cover Page</span><em>1 page</em></div><div class="c-row ok" style="--i:1"><i></i><span>Table of Contents</span><em>1 page</em></div><div class="c-row ok" style="--i:2"><i></i><span>Tender Documentations</span><em>3 files</em></div><div class="c-row ok" style="--i:3"><i></i><span>Resumes</span><em>2 tailored</em></div><div class="c-row ok" style="--i:4"><i></i><span>Case Studies</span><em>1 tailored</em></div><div class="c-row ok" style="--i:5"><i></i><span>Policies</span><em>4 files</em></div><div class="c-row ok" style="--i:6"><i></i><span>Insurances</span><em>3 certificates</em></div><div class="c-row ok" style="--i:7"><i></i><span>Certifications</span><em>2 files</em></div></div><div class="dl-chip"><i></i><span>Northside-School-Upgrade-Tender-Pack.pdf</span><em>Done</em></div></div></div>
+        <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas><div class="ph bare doc ph-download"><em class="mock">Mockup</em><div class="doc-head"><svg class="doc-logo" viewBox="0 0 32 65"><use href="#clipSym"/></svg><div><b>Tender Pack</b></div></div><div class="b-top"><b class="back">‹ Back</b><span class="b-title">Tender Attachments · Tender Pack</span><b class="btn amber">Download</b><b class="btn">Save Changes</b></div><div class="pane doc solo pack"><div class="c-row ok" style="--i:0"><i></i><span>Cover Pages</span></div><div class="c-row ok" style="--i:1"><i></i><span>Table of Contents</span></div><div class="c-row ok" style="--i:2"><i></i><span>Tender Documentations</span></div><div class="c-row ok" style="--i:3"><i></i><span>Resumes</span></div><div class="c-row ok" style="--i:4"><i></i><span>Case Studies</span></div><div class="c-row ok" style="--i:5"><i></i><span>Policies</span></div><div class="c-row ok" style="--i:6"><i></i><span>Insurances</span></div><div class="c-row ok" style="--i:7"><i></i><span>Certifications</span></div><div class="c-row ok" style="--i:8"><i></i><span>Organisation Chart</span></div><div class="c-row ok" style="--i:9"><i></i><span>Others</span></div></div></div></div>
         <span class="rec-tag"><i></i><b class="tb-rec"></b></span></div>
       <div class="win deck"><div class="win-bar"><span></span><span></span><span></span></div>
         <div class="vwrap"><video class="shot beat" muted playsinline preload="auto"></video><canvas class="freeze"></canvas></div></div>
-
+      <div class="rail sk mini v4rail raypanel" aria-label="Ray">
+        <div class="rp-head"><i class="rp-back"></i><span class="rp-title">Northside School Upgrade</span><em class="rp-beta">Beta</em><i class="rp-dots"></i></div>
+        <div class="rail-body">
+          <div class="rp-start"><i class="rp-arrow"></i><span class="t"></span><b class="rp-go">Start</b></div>
+          <div class="rail-you"></div>
+          <div class="rp-ray"><img src="assets/ray-avatar.svg" alt="" /><span>Ray</span></div>
+          <div class="rh-s">Working<i class="ell">…</i></div>
+          <div class="rail-work"></div>
+          <div class="rail-offer"><p></p><div class="acts"><span class="rail-btn"></span><span class="rail-btn ghost"></span><span class="rail-btn" style="display:none"></span></div></div>
+          <div class="rp-next"><i class="rp-arrow"></i><span class="t"></span><i class="rp-caret"></i><b class="rp-go">Start</b><i class="rp-meter"><i></i></i></div>
+          <div class="rail-next" style="display:none"><span></span><span class="prog"><i></i></span></div>
+        </div>
+        <div class="rp-foot"><div class="rp-ref"><span>Reference</span><b class="add">+ Add a document as reference</b></div>
+          <div class="rp-composer"><i class="rp-att"></i><span class="rp-input" data-ph="Reply to Ray…"></span><i class="rp-clip"></i><i class="rp-send"></i></div></div>
+      </div>
     </div>
   </div>
 </section>
@@ -1711,7 +1765,6 @@ body.on-light .edge { --edge: rgba(255,255,255,.3); }
     <h1 class="big v5big"><span class="w"><i class="ch" style="--i:0">A</i><i class="ch" style="--i:1">g</i><i class="ch" style="--i:2">e</i><i class="ch" style="--i:3">n</i><i class="ch" style="--i:4">t</i><i class="ch" style="--i:5">i</i><i class="ch" style="--i:6">c</i></span> <span class="w"><i class="ch" style="--i:7">R</i><i class="ch" style="--i:8">a</i><i class="ch" style="--i:9">y</i><i class="ch" style="--i:10">.</i></span></h1>
     <p class="v5line"><span class="w"><i class="ch" style="--i:12">Y</i><i class="ch" style="--i:13">o</i><i class="ch" style="--i:14">u</i><i class="ch" style="--i:15">r</i></span> <span class="w"><i class="ch" style="--i:16">a</i><i class="ch" style="--i:17">g</i><i class="ch" style="--i:18">e</i><i class="ch" style="--i:19">n</i><i class="ch" style="--i:20">t</i><i class="ch" style="--i:21">i</i><i class="ch" style="--i:22">c</i></span> <span class="w"><i class="ch" style="--i:23">t</i><i class="ch" style="--i:24">e</i><i class="ch" style="--i:25">n</i><i class="ch" style="--i:26">d</i><i class="ch" style="--i:27">e</i><i class="ch" style="--i:28">r</i></span> <span class="w"><i class="ch" style="--i:29">c</i><i class="ch" style="--i:30">o</i><i class="ch" style="--i:31">-</i><i class="ch" style="--i:32">w</i><i class="ch" style="--i:33">o</i><i class="ch" style="--i:34">r</i><i class="ch" style="--i:35">k</i><i class="ch" style="--i:36">e</i><i class="ch" style="--i:37">r</i><i class="ch" style="--i:38">.</i></span></p>
     <p class="v5moves fx" style="--d:1.2s"><span>Understand.</span><span>Plan.</span><span>Create.</span><span>Deliver.</span></p>
-    <div class="end-actions fx" style="--d:1.7s"><a class="btn btn-amber" href="pricing.html">Try for free →</a><a class="btn btn-ghost" href="pricing.html">Book a demo</a></div>
   </div>
 </section>
 <div class="grain" aria-hidden="true"></div><div class="edge l" aria-hidden="true"></div><div class="edge r" aria-hidden="true"></div>
@@ -2300,6 +2353,7 @@ body.on-light .edge { --edge: rgba(255,255,255,.3); }
     offer.classList.toggle('ask', b.mode === 'ask');
     offer.classList.toggle('review', b.mode === 'review'); offer.classList.toggle('status', b.mode === 'status');
     var labels = b.btns || (b.mode === 'approve' ? ['Approve', 'Amend'] : b.mode === 'done' ? ['Readiness summary', ''] : b.mode === 'ask' ? ['Yes, create it', 'Not now'] : ['Go ahead', 'Skip']);
+    offer.classList.toggle('done', b.mode === 'done');
     var you = rail.querySelector('.rail-you'); if (you) { you.textContent = b.prompt || ''; you.classList.toggle('on', !!b.prompt); }
     for (var k = 0; k < btns.length; k++) { btns[k].textContent = labels[k] || ''; btns[k].style.display = labels[k] ? '' : 'none'; }
     rail.querySelector('.rail-next > span').innerHTML = b.strip;
@@ -2308,8 +2362,8 @@ body.on-light .edge { --edge: rgba(255,255,255,.3); }
   }
   function approve(rail, b, win) {
     if (rail) {
-      var btn = rail.querySelectorAll('.rail-btn')[b.press || 0] || rail.querySelector('.rail-btn'); btn.classList.add('pressed');
-      setTimeout(function () { btn.classList.remove('pressed'); }, 260);
+      var btn = (b.press === -1) ? null : (rail.querySelectorAll('.rail-btn')[b.press || 0] || rail.querySelector('.rail-btn'));
+      if (btn) { btn.classList.add('pressed'); setTimeout(function () { btn.classList.remove('pressed'); }, 260); }
       paintRail(rail, b, true);
     }
     var nx = rail && rail.querySelector('.rail-next'); if (nx) { nx.classList.remove('pop'); void nx.offsetWidth; nx.classList.add('pop'); }
@@ -2319,12 +2373,45 @@ body.on-light .edge { --edge: rgba(255,255,255,.3); }
   /* Ray's working lines: 'run' paints them one at a time with the newest
      live; 'done' ticks them all. A beat with ticks instead shows nothing
      while working and paints the ticks as the result plays. */
-  var workTimers = [];
+  var workTimers = [], curScene = null;
+  /* the script's on-screen lines, in the copy column: they land over the
+     working window and tick when the result lands */
+  function paintUpdates(b, phase) {
+    var sc = curScene; if (!sc) return;
+    var ul = sc.querySelector('.beatcopy[data-step="' + b.step + '"] .upd'); if (!ul) return;
+    var lis = ul.querySelectorAll('li'), n = lis.length; if (!n) return;
+    var span = Math.max(600, ((b.action[2] - b.action[1]) / b.action[3]) * 1000 - 400);
+    if (phase === 'run') lis.forEach(function (li, i) { li.classList.remove('on', 'done'); workTimers.push(setTimeout(function () { li.classList.add('on'); }, 200 + i * (span / n))); });
+    else lis.forEach(function (li, i) { workTimers.push(setTimeout(function () { li.classList.add('on', 'done'); }, i * 90)); });
+  }
+  function typePrompt(rail, b) {
+    var inp = rail.querySelector('.rp-input'), you = rail.querySelector('.rail-you'); if (!inp || !you || !b.prompt) return;
+    you.classList.remove('on'); you.textContent = b.prompt; inp.textContent = ''; inp.classList.add('typing');
+    var t = b.prompt, i = 0, per = Math.max(10, Math.min(38, 1100 / t.length));
+    (function tick() { if (i <= t.length) { inp.textContent = t.slice(0, i++); workTimers.push(setTimeout(tick, per)); }
+      else workTimers.push(setTimeout(function () { inp.textContent = ''; inp.classList.remove('typing'); you.classList.add('on'); }, 220)); })();
+  }
   function paintWork(rail, b, phase) {
+    var off0 = rail && rail.querySelector('.rail-offer'); if (off0) off0.classList.toggle('pending', phase === 'run' && !!(b.work || b.ticks || b.trace));
+    paintUpdates(b, phase);
     var box = rail && rail.querySelector('.rail-work'); if (!box) return;
     workTimers.forEach(clearTimeout); workTimers = [];
+    paintUpdates(b, phase);
+    var st0 = rail.querySelector('.rp-start'); if (st0) { st0.classList.toggle('on', phase === 'run' && !!b.start); if (b.start) st0.querySelector('.t').innerHTML = b.start.replace(/^(Next · \d of \d)/, '<b>$1</b>'); }
+    var nx = rail.querySelector('.rp-next'); if (nx && !rail.classList.contains('opening')) { nx.classList.toggle('on', phase !== 'run' && !!b.next); if (b.next) { nx.querySelector('.t').innerHTML = b.next.replace(/^(Next · \d of \d)/, '<b>$1</b>'); nx.querySelector('.rp-meter i').style.width = Math.round((b.step) / 8 * 100) + '%'; } }
+    if (phase === 'run') { if (b.ask) { var y = rail.querySelector('.rail-you'); if (y) { y.textContent = b.ask; y.classList.add('on'); } } if (b.prompt) typePrompt(rail, b); }
+    if (b.trace) {
+      if (phase === 'run') {
+        box.innerHTML = b.trace.map(function (r) { return '<div class="work"><i></i><code>' + r[0] + '</code>' + (r[1] ? '<span>' + r[1] + '</span>' : '<i class="ln"></i>') + '</div>'; }).join('');
+        var els = box.querySelectorAll('.work'), gap = Math.max(260, (((b.action[2] - b.action[1]) / b.action[3]) * 1000 - 600) / els.length);
+        els.forEach(function (el, i) { workTimers.push(setTimeout(function () { el.classList.add('on', 'done'); }, 320 + i * gap)); });
+      }
+    } else box.innerHTML = '';
+    var rows = b.trace || [];
+    var st = rail.querySelector('.rh-s'); if (st) { st.classList.toggle('on', !!(b.trace) || !!b.offer); st.innerHTML = phase === 'run' ? (b.trace ? 'Working<i class="ell">…</i>' : '') : (b.trace ? '<i class="chev"></i>Thought for ' + (0.9 + rows.length * 0.1).toFixed(1) + 's · ' + rows.length + ' step' + (rows.length === 1 ? '' : 's') : ''); }
+    if (phase !== 'run' && b.trace) { workTimers.push(setTimeout(function () { box.classList.add('folded'); }, 500)); } else box.classList.remove('folded');
+    return;
     var st = rail.querySelector('.rh-s'); if (st) st.textContent = phase === 'run' ? (rail.classList.contains('raypanel') ? 'Working.' : 'Working') : (rail.classList.contains('raypanel') ? 'Thought for ' + (1.2 + rows.length * 0.4).toFixed(1) + 's · ' + rows.length + ' steps' : 'Done');
-    // Ray's line waits for the working lines: it lands with the result, not before
     var off = rail.querySelector('.rail-offer'); if (off) off.classList.toggle('pending', phase === 'run' && !!(b.work || b.ticks));
     var rows = b.work || b.ticks || [];
     if (phase === 'run') {
@@ -2357,7 +2444,7 @@ body.on-light .edge { --edge: rgba(255,255,255,.3); }
   }
 
   async function runScene(scene) {
-    var token = {}; live = token;
+    var token = {}; live = token; curScene = scene;
     var beats = JSON.parse(scene.dataset.beats);
     setTimeout(function () { if (live === token) prime(scene); }, 1500);
     var wins = scene.querySelectorAll('.win.deck'), vids = [];
