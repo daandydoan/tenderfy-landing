@@ -1500,6 +1500,46 @@ body.on-light .edge { --edge: rgba(255,255,255,.3); }
   .v5open .big.v5big { text-align: center; } .v5open .beatcol { text-align: center; }
 }
 
+/* ===== the Ray panel in the app's light tokens, larger, the chrome down to the logo ===== */
+.brandmark { left: auto; right: var(--pad); }
+.chrome-top .mid-label, .chrome-top #sceneLabel { display: none; }
+.v5 .stage-app .rail.mini.raypanel, .v5hook .hk-panel .raypanel, .v5hook .hk-panel {
+  background: #fff; color: #33423E; border: 1px solid #DCE5E1; --acc: #1D9E75; --dim: #6B7975; --ink-2: #33423E; --line: #E6ECEA; }
+.v5 .stage-app .rail.mini.raypanel { width: min(370px, 36%); right: -1%; bottom: 0; border-top: 0; box-shadow: 0 40px 80px -30px rgba(15,26,23,.45), 0 0 0 1px rgba(15,26,23,.03); zoom: 1.16; max-height: 86%; /* zoomed: the stage's own height */ }
+@media (min-width: 941px) { .v5.with-panel .stage-app .win.deck { width: 58%; } }
+.v5hook .hk-panel { width: min(520px, 84vw); border-color: #DCE5E1; box-shadow: 0 50px 90px -40px rgba(15,26,23,.6), 0 0 0 1px rgba(15,26,23,.03); zoom: 1.1; }
+.v5hook .hk-panel .raypanel { border: 0; }
+.raypanel .rp-head, .v5hook .rp-head { border-bottom-color: #EEF2F0; color: #1F2B28; }
+.raypanel .rp-back, .v5hook .rp-back { border-color: #6B7975; }
+.raypanel .rp-dots, .v5hook .rp-dots { background: radial-gradient(circle, #6B7975 1px, transparent 1.4px) 0 0 / 5px 3px; }
+.raypanel .rail-you { background: #E9EFEC; color: #1F2B28; }
+.raypanel .rp-ray, .raypanel .rh-s, .raypanel .work.done, .raypanel .rh-s .chev { color: #6B7975; border-color: #6B7975; }
+.raypanel .work { color: #4A5754; } .raypanel .work code { color: #1F2B28; }
+.raypanel .work i { border-color: #C9D4D0; } .raypanel .work.done i { background: #1D9E75; border-color: #1D9E75; } .raypanel .work.done i::after { border-color: #fff; }
+.raypanel .work .ln { background: rgba(15,26,23,.1); }
+.raypanel .rail-offer p { color: #1F2B28; }
+.raypanel .rail-offer.done p b { color: #0F7355; }
+.raypanel .rail-offer .rail-btn, .raypanel .rail-btn { background: #1D9E75; color: #fff; }
+.raypanel .rail-btn.ghost, .raypanel .rail-offer.review .rail-btn:not(:last-child), .raypanel .rail-offer.done .rail-btn:nth-child(2) { background: #fff; color: #33423E; border: 1px solid #D7DEDB; }
+.raypanel .rp-foot, .v5hook .rp-foot { border-top-color: #EEF2F0; }
+.raypanel .rp-ref span, .v5hook .rp-ref span { color: #6B7975; }
+.raypanel .rp-ref b, .v5hook .rp-ref b { background: #EEF2F0; color: #33423E; }
+.raypanel .rp-ref .add, .v5hook .rp-ref .add { background: transparent; border: 1px dashed #C9D4D0; color: #6B7975; }
+.raypanel .rp-composer, .v5hook .rp-composer { background: #F2F5F4; color: #6B7975; }
+.raypanel .rp-att, .raypanel .rp-clip, .v5hook .rp-att, .v5hook .rp-clip { border-color: #8A9793; }
+.raypanel .rp-input { color: #1F2B28; } .raypanel .rp-input:empty::before { color: #6B7975; }
+.raypanel .rp-input.typing::after { background: #1D9E75; }
+.raypanel .ray-halo { background: radial-gradient(circle, rgba(29,158,117,.28), rgba(29,158,117,.05) 70%); }
+.raypanel .ray-empty h3 { color: #1F2B28; } .raypanel .ray-empty p { color: #4A5754; } .raypanel .ray-empty p b { color: #1F2B28; }
+.raypanel .ray-starter { background: #F2F5F4; color: #1F2B28; border: 1px solid #E6ECEA; }
+.raypanel .rp-next, .raypanel .rp-start { border-color: #DCE5E1; color: #33423E; background: #FBFCFB; }
+.raypanel .rp-next b, .raypanel .rp-start b { color: #1F2B28; }
+.raypanel .rp-arrow { border-color: #1D9E75; } .raypanel .rp-caret { border-color: #6B7975; }
+.raypanel .rp-meter { background: #E6ECEA; } .raypanel .rp-meter i { background: #1D9E75; }
+.v5 .v4rail .rail-offer.status { background: transparent; }
+.v5 .ph-plandoc .ctl { font-size: .78em; gap: .9em; flex-wrap: nowrap; } .v5 .ph-plandoc .ctl span { white-space: nowrap; }
+@media (max-width: 940px) { .v5 .stage-app .rail.mini.raypanel { zoom: 1; width: 66%; } .v5hook .hk-panel { zoom: 1; } }
+
 </style>
   <script>if(location.hostname.indexOf("tenderfy.org")===-1){document.head.appendChild(Object.assign(document.createElement("meta"),{name:"robots",content:"noindex,nofollow"}));}</script>
 </head>
