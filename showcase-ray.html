@@ -1587,6 +1587,11 @@ body:hover .chrome-bot { opacity: 1; pointer-events: auto; }
 .v5 .v4rail .rail-offer.status { background: transparent; }
 .v5 .ph-plandoc .ctl { font-size: .78em; gap: .9em; flex-wrap: nowrap; } .v5 .ph-plandoc .ctl span { white-space: nowrap; }
 @media (max-width: 940px) { .v5 .stage-app .rail.mini.raypanel { zoom: 1; width: 66%; } .v5hook .hk-panel { zoom: 1; } }
+/* ===== headline/caption text set in italic, matching the Subbies film's treatment
+   (its .hl headline runs every character through <i>, italic film-wide, not just
+   one screen) — same per-character <i class="ch"> spans Ray already builds through
+   chars(), just no longer reset to upright ===== */
+.v5 .ch { font-style: italic; }
 
 </style>
   <script>if(location.hostname.indexOf("tenderfy.org")===-1){document.head.appendChild(Object.assign(document.createElement("meta"),{name:"robots",content:"noindex,nofollow"}));}</script>
